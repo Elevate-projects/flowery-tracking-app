@@ -1,0 +1,93 @@
+name: flowery_tracking_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_screenutil: ^5.9.3
+  flutter_bloc: ^9.1.0
+  flutter_svg: ^2.1.0
+  shared_preferences: ^2.5.3
+  flutter_secure_storage: ^9.2.4
+  iconsax_flutter: ^1.0.0
+  another_flushbar: ^1.12.30
+  connectivity_plus: ^6.1.4
+  injectable: ^2.5.0
+  get_it: ^8.0.3
+  flutter_native_splash: ^2.4.6
+  lottie: ^3.3.1
+  retrofit: ^4.5.0
+  logger: ^2.4.0
+  json_annotation: ^4.9.0
+  pretty_dio_logger: ^1.4.0
+  pin_code_fields: ^8.0.1
+  mockito: ^5.4.6
+  bloc_test: ^10.0.0
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  equatable: ^2.0.7
+  dio: any
+  easy_localization: ^3.0.8
+
+dev_dependencies:
+  flutter_launcher_icons: "^0.14.4"
+  injectable_generator: ^2.7.0
+  retrofit_generator: ^9.2.0
+  json_serializable: ^6.8.0
+  build_runner: ^2.5.4
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/animations/
+    - assets/images/
+    - assets/translations/
+
+  fonts:
+    - family: IM Fell English
+      fonts:
+        - asset: assets/fonts/im_fell_english/IMFellEnglish-Italic.ttf
+          weight: 400
+        - asset: assets/fonts/im_fell_english/IMFellEnglish-Regular.ttf
+          weight: 700
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter_18pt-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/inter/Inter_18pt-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/inter/Inter_18pt-Light.ttf
+          weight: 300
+        - asset: assets/fonts/inter/Inter_18pt-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/inter/Inter_18pt-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/inter/Inter_18pt-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/inter/Inter_18pt-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/inter/Inter_18pt-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/inter/Inter_18pt-Black.ttf
+          weight: 900
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf
+        - asset: assets/fonts/Roboto-VariableFont_wdth,wght.ttf

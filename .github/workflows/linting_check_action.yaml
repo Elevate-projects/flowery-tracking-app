@@ -1,0 +1,38 @@
+name: Flutter Linting
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  flutter_lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # 2️⃣ Setup Flutter with correct Dart SDK
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      # 3️⃣ Confirm version
+      - name: Flutter & Dart version
+        run: flutter --version
+
+      # 4️⃣ Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 5️⃣ Run build_runner (if needed for generated files)
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      # 6️⃣ Run lint check
+      - name: Run Flutter analyze
+        run: flutter analyze --fatal-infos --fatal-warnings

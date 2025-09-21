@@ -1,0 +1,39 @@
+name: Pull Request Title & Branch Name Validator
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize, edited ]
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR Title
+        uses: pragmatic-tools/pr-title-validator@1.0.0
+        with:
+          pattern: |
+            ^((fix|release|feat|hotfix|build|test))\((FAT1-[0-9]+|[A-Z]+-[0-9]+)\):\s?.+$
+
+      - name: Ensure PR Title Ticket Matches Branch Ticket
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          BRANCH="${{ github.head_ref }}"
+
+          # Extract ticket IDs (e.g. JIRA-1234, ECOM-27)
+          TITLE_TICKET=$(echo "$TITLE" | grep -oE '(FAT1-[0-9]+|[A-Z]+-[0-9]+)' | head -1)
+          BRANCH_TICKET=$(echo "$BRANCH" | grep -oE '(FAT1-[0-9]+|[A-Z]+-[0-9]+)' | head -1)
+
+          echo "PR Title Ticket: $TITLE_TICKET"
+          echo "Branch Ticket: $BRANCH_TICKET"
+
+          if [[ -z "$TITLE_TICKET" || -z "$BRANCH_TICKET" ]]; then
+            echo "❌ Could not extract ticket ID from PR title or branch name!"
+            exit 1
+          fi
+
+          if [[ "$TITLE_TICKET" != "$BRANCH_TICKET" ]]; then
+            echo "::error file=pr-title::❌ Ticket ID in PR title does not match ticket ID in branch name!"
+            exit 1
+          fi
+
+          echo "✅ Ticket ID in PR title matches branch name."

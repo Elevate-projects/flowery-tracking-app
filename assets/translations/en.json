@@ -1,0 +1,32 @@
+{
+
+  "userNameValidation": "This user name is not valid",
+  "emptyTextValidation": "This field is required",
+  "phoneNumberValidation": "Phone number field is required",
+  "phoneNumberValidation2": "Phone Number should consist of 11 digits",
+  "emailValidation": "This Email is not valid",
+  "emailValidation2": "Enter a valid email",
+  "passwordValidation": "Invalid password",
+  "passwordValidation2": "Password field should contain at least 8 characters",
+  "confirmPasswordValidation": "Confirm password field is required",
+  "confirmPasswordValidation2": "Password does not match, please check the entered password",
+  "passwordValidation3": "Password cannot contain spaces",
+  "passwordValidation4": "Password must contain at least one number",
+  "passwordValidation5": "Password must not exceed 20 characters",
+  "passwordValidation6": "Password must contain a capital letter",
+  "passwordValidation7": "Password must contain a special character",
+  "otpValidation": "The code sent to your email address is required",
+  "otpValidation2": "You have to enter the 6-digit code",
+
+  "connectionError": "Please check your internet connection and try again",
+  "noResponseReceivedMessage": "No response received or response is not in expected format.",
+  "error": "Error",
+  "unexpectedError": "Unexpected error:",
+  "unexpectedErrorOccurred": "Unexpected error occurred.",
+  "requestCancelled": "Request was cancelled.",
+  "receiveTimeout": "Receive timeout, please try again later.",
+  "sendTimeout": "Send timeout, please try again later.",
+  "connectionTimeout": "Connection timeout, please try again later.",
+  "networkError": "Something went wrong. Please check your internet connection.",
+  "anUnknownErrorOccurred": "An unknown error occurred."
+}
