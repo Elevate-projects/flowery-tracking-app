@@ -30,4 +30,26 @@ abstract final class AppText {
   static const String connectionTimeout = "connectionTimeout";
   static const String networkError = "networkError";
   static const String anUnknownErrorOccurred = "anUnknownErrorOccurred";
+  static const String password = "password";
+  static const String resendOtp = "resendOtp";
+  static const String forgetPasswordTitle = 'forgetPasswordTitle';
+  static const String forgetPasswordSubTitle = 'forgetPasswordSubTitle';
+  static const String emailVerificationTitle = 'emailVerificationTitle';
+  static const String emailVerificationSubTitle = 'emailVerificationSubTitle';
+  static const String resetPasswordTitle = 'resetPasswordTitle';
+  static const String resetPasswordSubTitle = 'resetPasswordSubTitle';
+  static const String continueWord = 'continueWord';
+  static const String email = 'email';
+  static const String emailHint = 'emailHint';
+  static const String passwordHint = 'passwordHint';
+  static const String enter6DigitCode = "enter6DigitCode";
+  static const String resendAvailableStatement = "resendAvailableStatement";
+  static const String invalidCode = 'invalidCode';
+  static const String notReceivedCodeStatement = 'notReceivedCodeStatement';
+  static const String otpResentedSuccessfully = "otpResentedSuccessfully";
+  static const String verificationSuccess = "verificationSuccess";
+  static const String passwordRested = "passwordRested";
+  static const String confirmPassword = "confirmPassword";
+  static const String confirmPasswordHint = "confirmPasswordHint";
+  static const String resendWord = "ResendWord";
 }
