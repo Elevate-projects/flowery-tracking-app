@@ -76,14 +76,17 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> _toggleRememberMe() async {
+    final newRememberMe = !state.rememberMe;
     await _sharedPreferencesHelper.saveBool(
       key: ConstKeys.rememberMe,
-      value: !state.rememberMe,
+      value: newRememberMe,
     );
-    await _forgetUserData();
+    if (!newRememberMe) {
+      await _forgetUserData();
+    }
     emit(
       state.copyWith(
-        rememberMe: !state.rememberMe,
+        rememberMe: newRememberMe,
         loginStatus: const StateStatus.initial(),
       ),
     );

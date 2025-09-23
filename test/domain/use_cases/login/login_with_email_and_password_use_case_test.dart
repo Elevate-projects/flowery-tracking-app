@@ -26,7 +26,7 @@ void main() {
       final expectedResult = Success<void>(null);
       provideDummy<Result<void>>(expectedResult);
       when(
-        loginUseCase.invoke(request: request),
+        mockedLoginRepository.login(request: request),
       ).thenAnswer((_) async => expectedResult);
 
       // Act
