@@ -33,7 +33,7 @@ jobs:
         run: flutter analyze
 
       - name: Run tests with coverage
-        run: flutter test coverage
+        run: flutter test --coverage
 
       - name: Upload coverage report (debugging only)
         uses: actions/upload-artifact@v4
