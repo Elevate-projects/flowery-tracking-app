@@ -24,7 +24,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   }
 
   Future<void> _onInit() async {
-    redirectedScreen = RouteNames.onboarding;
+    redirectedScreen = RouteNames.login;
     _getSelectedLanguage();
   }
 

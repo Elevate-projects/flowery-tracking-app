@@ -1,4 +1,13 @@
 {
+  "login": "Login",
+  "email": "Email",
+  "emailHint": "Enter your email",
+  "password": "Password",
+  "passwordHint": "Enter your password",
+  "rememberMe": "Remember me",
+  "forgetPassword": "Forget password?",
+  "continueText": "Continue",
+  "loggingInMessage": "Logging you in ...",
 
   "userNameValidation": "This user name is not valid",
   "emptyTextValidation": "This field is required",
