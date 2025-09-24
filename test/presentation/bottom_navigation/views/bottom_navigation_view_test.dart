@@ -71,7 +71,7 @@ void main() {
     await tester.pumpWidget(prepareWidget());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(ValueKey('tab_0')));
+    await tester.tap(find.byKey(const ValueKey('tab_0')));
     await tester.pumpAndSettle();
 
     verify(cubit.doIntent(argThat(isA<OnBottomTabsClick>().having((i) => i.index, 'index', 0)))).called(1);
@@ -81,7 +81,7 @@ void main() {
     await tester.pumpWidget(prepareWidget());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(ValueKey('tab_1')));
+    await tester.tap(find.byKey(const ValueKey('tab_1')));
     await tester.pumpAndSettle();
 
     verify(cubit.doIntent(argThat(isA<OnBottomTabsClick>().having((i) => i.index, 'index', 1)))).called(1);
@@ -91,7 +91,7 @@ void main() {
     await tester.pumpWidget(prepareWidget());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(ValueKey('tab_2')));
+    await tester.tap(find.byKey(const ValueKey('tab_2')));
     await tester.pumpAndSettle();
 
     verify(cubit.doIntent(argThat(isA<OnBottomTabsClick>().having((i) => i.index, 'index', 2)))).called(1);
