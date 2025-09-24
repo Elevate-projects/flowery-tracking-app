@@ -19,6 +19,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      key: const ValueKey('bottom_nav_bar'),
       elevation: 1,
       backgroundColor: theme.colorScheme.secondary,
       currentIndex: currentIndex,
