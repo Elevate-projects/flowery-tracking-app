@@ -110,9 +110,11 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
       ],
       child: BlocBuilder<VerificationScreenCubit, VerificationScreenState>(
         builder: (context, state) {
-          return BuildVerificationForm(
-            email: widget.email,
-            isError: state.isError,
+          return SingleChildScrollView(
+            child: BuildVerificationForm(
+              email: widget.email,
+              isError: state.isError,
+            ),
           );
         },
       ),

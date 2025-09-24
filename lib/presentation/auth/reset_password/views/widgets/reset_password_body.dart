@@ -46,7 +46,9 @@ class ResetPasswordBody extends StatelessWidget {
       },
       child: BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
         builder: (context, state) {
-          return BuildResetPasswordForm(email: email);
+          return SingleChildScrollView(
+            child: BuildResetPasswordForm(email: email),
+          );
         },
       ),
     );
