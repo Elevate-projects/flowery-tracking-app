@@ -30,4 +30,9 @@ abstract final class AppText {
   static const String connectionTimeout = "connectionTimeout";
   static const String networkError = "networkError";
   static const String anUnknownErrorOccurred = "anUnknownErrorOccurred";
+  //BottomNavigation
+  static const String home = 'home';
+  static const String order = 'order';
+  static const String profile = 'profile';
+
 }
