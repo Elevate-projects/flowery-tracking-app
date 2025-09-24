@@ -28,5 +28,8 @@
   "sendTimeout": "Send timeout, please try again later.",
   "connectionTimeout": "Connection timeout, please try again later.",
   "networkError": "Something went wrong. Please check your internet connection.",
-  "anUnknownErrorOccurred": "An unknown error occurred."
+  "anUnknownErrorOccurred": "An unknown error occurred.",
+  "appleyNow": "Appley Now",
+  "login": "Login"
+
 }
