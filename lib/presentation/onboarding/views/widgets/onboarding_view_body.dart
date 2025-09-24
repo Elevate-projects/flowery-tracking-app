@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_images.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/widgets/appley_button.dart';
@@ -12,47 +13,49 @@ class OnboardingViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      body: Column(
-        children: [
-          const Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Image(
-                  image: AssetImage(AppImages.deliveryImage),
-                ),
-              ),
-            ],
-          ),
-          const RSizedBox(height: 20),
-          Padding(
-            padding: REdgeInsets.only(left: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Row(
               children: [
-                Text(
-                  AppText.welcome,
-                  style: theme.textTheme.headlineMedium,
-                  textAlign: TextAlign.start,
+                Expanded(
+                  flex: 1,
+                  child: Image(
+                    image: AssetImage(AppImages.deliveryImage),
+                  ),
                 ),
               ],
             ),
-          ),
-          const RSizedBox(height: 24),
-          const LoginButtonWidget(),
-          const RSizedBox(height: 16),
-          const AppleyButtonWidget(),
-          const Spacer(),
-          Padding(
-            padding: REdgeInsets.only(bottom: 52),
-            child: Text(
-              AppText.appVersion,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.shadow,
+            const RSizedBox(height: 20),
+            Padding(
+              padding: REdgeInsets.only(left: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    AppText.welcome.tr(),
+                    style: theme.textTheme.headlineMedium,
+                    textAlign: TextAlign.start,
+                  ),
+                ],
               ),
             ),
-          )
-        ],
+            const RSizedBox(height: 24),
+            const LoginButtonWidget(),
+            const RSizedBox(height: 16),
+            const AppleyButtonWidget(),
+            Padding(
+              padding: REdgeInsets.only(top: 136),
+              child: Text(
+                AppText.appVersion,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.shadow,
+                ),
+              ),
+            ),
+            const RSizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
