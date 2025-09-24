@@ -17,8 +17,8 @@ class ForgetPasswordBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<ForgetPasswordAndResendCodeCubit>(context);
     return BlocListener<
-        ForgetPasswordAndResendCodeCubit,
-        ForgetPasswordAndResendCodeState
+      ForgetPasswordAndResendCodeCubit,
+      ForgetPasswordAndResendCodeState
     >(
       listener: (context, state) {
         switch (state.forgetPasswordAndResendCodeStatus.status) {
@@ -27,10 +27,7 @@ class ForgetPasswordBody extends StatelessWidget {
           case Status.loading:
             showLoadingDialog(
               context,
-              color: Theme
-                  .of(context)
-                  .colorScheme
-                  .primary,
+              color: Theme.of(context).colorScheme.primary,
             );
             break;
           case Status.success:
@@ -48,14 +45,14 @@ class ForgetPasswordBody extends StatelessWidget {
             Navigator.pop(context);
             Loaders.showErrorMessage(
               message:
-              state.forgetPasswordAndResendCodeStatus.error?.message ??
+                  state.forgetPasswordAndResendCodeStatus.error?.message ??
                   AppText.error.tr(),
               context: context,
             );
             break;
         }
       },
-      child: SingleChildScrollView(child: const BuildForgetPasswordForm()),
+      child: const SingleChildScrollView(child: BuildForgetPasswordForm()),
     );
   }
 }
