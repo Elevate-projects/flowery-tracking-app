@@ -1,8 +1,8 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views/forget_password.dart';
+import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/reset_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views/email_verification.dart';
-import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
 

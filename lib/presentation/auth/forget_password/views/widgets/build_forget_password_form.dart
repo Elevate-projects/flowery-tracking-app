@@ -55,8 +55,8 @@ class BuildForgetPasswordForm extends StatelessWidget {
                 ),
                 const RSizedBox(height: 50),
                 CustomElevatedButton(
-                  onPressed: () {
-                    cubit.doIntent(
+                  onPressed: () async {
+                    await cubit.doIntent(
                       OnConfirmEmailClickIntent(
                         request: ForgetPasswordAndResendCodeRequestEntity(
                           email: cubit.emailController.text.trim(),

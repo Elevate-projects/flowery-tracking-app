@@ -20,10 +20,10 @@ class ForgetPasswordAndResendCodeCubit
   late GlobalKey<FormState> formKey;
   late final TextEditingController emailController;
 
-  void doIntent(ForgetPasswordAndResendCodeIntent intent) {
+  Future<void> doIntent(ForgetPasswordAndResendCodeIntent intent) async {
     switch (intent) {
       case OnConfirmEmailClickIntent():
-        return _forgetPasswordAndResendCode(intent.request);
+        return await _forgetPasswordAndResendCode(intent.request);
       case InitializeForgetPasswordFormIntent():
         return _onInit();
     }
@@ -39,7 +39,7 @@ class ForgetPasswordAndResendCodeCubit
     emit(state.copyWith(autoValidateMode: AutovalidateMode.always));
   }
 
-  void _forgetPasswordAndResendCode(
+  Future<void> _forgetPasswordAndResendCode(
     ForgetPasswordAndResendCodeRequestEntity request,
   ) async {
     if (formKey.currentState!.validate()) {

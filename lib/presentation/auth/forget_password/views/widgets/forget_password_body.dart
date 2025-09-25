@@ -30,16 +30,18 @@ class ForgetPasswordBody extends StatelessWidget {
             );
             break;
           case Status.success:
-            Navigator.pop(context);
-            Loaders.showSuccessMessage(
-              message: AppText.resendOtp,
-              context: context,
-            );
-            Navigator.pushNamed(
-              context,
-              RouteNames.emailVerification,
-              arguments: cubit.emailController.text.trim(),
-            );
+            {
+              Navigator.pop(context);
+              Loaders.showSuccessMessage(
+                message: AppText.resendOtp,
+                context: context,
+              );
+              Navigator.pushReplacementNamed(
+                context,
+                RouteNames.emailVerification,
+                arguments: cubit.emailController.text.trim(),
+              );
+            }
           case Status.failure:
             Navigator.pop(context);
             Loaders.showErrorMessage(

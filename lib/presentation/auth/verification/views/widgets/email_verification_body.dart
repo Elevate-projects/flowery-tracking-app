@@ -36,19 +36,11 @@ class EmailVerificationBody extends StatelessWidget {
                 if (Navigator.canPop(context)) {
                   Navigator.pop(context);
                 }
-                Loaders.showSuccessMessage(
-                  message: AppText.verificationSuccess,
-                  context: context,
+                Navigator.pushReplacementNamed(
+                  context,
+                  RouteNames.resetPassword,
+                  arguments: email,
                 );
-                Future.delayed(const Duration(milliseconds: 1000), () {
-                  if (context.mounted) {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      RouteNames.resetPassword,
-                      arguments: email,
-                    );
-                  }
-                });
                 break;
               case Status.failure:
                 if (Navigator.canPop(context)) {
