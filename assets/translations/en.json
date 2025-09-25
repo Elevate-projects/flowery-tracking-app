@@ -37,5 +37,9 @@
   "sendTimeout": "Send timeout, please try again later.",
   "connectionTimeout": "Connection timeout, please try again later.",
   "networkError": "Something went wrong. Please check your internet connection.",
-  "anUnknownErrorOccurred": "An unknown error occurred."
+  "anUnknownErrorOccurred": "An unknown error occurred.",
+  "applyNow": "Apply Now",
+  "login": "Login",
+  "welcome": "welcome to\nFlowery rider app"
+
 }
