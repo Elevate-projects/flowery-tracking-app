@@ -7,17 +7,17 @@ import 'package:flutter/material.dart';
 class BottomNavigationBarWidget extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
-  final ThemeData theme;
 
   const BottomNavigationBarWidget({
     super.key,
     required this.currentIndex,
     required this.onTap,
-    required this.theme,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BottomNavigationBar(
       key: const ValueKey('bottom_nav_bar'),
       elevation: 1,
@@ -27,10 +27,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
       onTap: onTap,
       items: [
         buildBottomNavItem(
-
           label: AppText.home.tr(),
           iconPath: AppIcons.home,
-
           index: 0,
           currentIndex: currentIndex,
           theme: theme,
@@ -38,7 +36,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
         buildBottomNavItem(
           label: AppText.order.tr(),
           iconPath: AppIcons.factCheck,
-
           index: 1,
           currentIndex: currentIndex,
           theme: theme,
@@ -46,7 +43,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
         buildBottomNavItem(
           label: AppText.profile.tr(),
           iconPath: AppIcons.profile,
-
           index: 2,
           currentIndex: currentIndex,
           theme: theme,

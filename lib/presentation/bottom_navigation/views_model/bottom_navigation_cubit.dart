@@ -2,11 +2,12 @@ import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class BottomNavigationCubit extends Cubit<BottomNavigationState> {
   BottomNavigationCubit() : super(const BottomNavigationState());
   final PageController pageController = PageController();
-
 
   //  These are only for testing the BottomNavigation functionality.
   final List<Widget> pages = const [
@@ -14,8 +15,6 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
     Center(child: Text("Orders")),
     Center(child: Text("Profile")),
   ];
-
-
 
   // Uncomment these once the actual screens are ready
   // final List<Widget> pages = [
@@ -36,7 +35,6 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
 
   void _changeTapIndex({required int index}) {
     emit(state.copyWith(currentIndex: index));
-
   }
 
   void _onPageChanged({required int index}) {
@@ -48,4 +46,4 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
     pageController.dispose();
     return super.close();
   }
-  }
+}

@@ -12,8 +12,8 @@ BottomNavigationBarItem buildBottomNavItem({
 }) {
   return BottomNavigationBarItem(
     label: label,
-    icon: Padding(
-      padding: EdgeInsets.only(top: 3.h, bottom: 4.h),
+    icon: RPadding(
+      padding:  const EdgeInsets.only(top: 3, bottom: 4 ),
       child: SvgPicture.asset(
         key: ValueKey('bottom_nav_icon_$index'),
         iconPath,
