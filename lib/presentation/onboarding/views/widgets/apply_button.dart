@@ -3,19 +3,25 @@ import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+class ApplyButton extends StatelessWidget {
+  const ApplyButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return RPadding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: CustomElevatedButton(
+        height: 50.h,
+        backgroundColor: theme.colorScheme.secondary,
+        borderColor: theme.colorScheme.shadow,
         onPressed: () {
           // Action here
         },
-        height: 50.h,
-        buttonTitle: AppText.login,
+        buttonTitle: AppText.applyNow,
+        titleStyle: Theme.of(
+          context,
+        ).textTheme.labelLarge?.copyWith(color: theme.colorScheme.onSecondary),
       ),
     );
   }

@@ -31,8 +31,8 @@ abstract final class AppText {
   static const String networkError = "networkError";
   static const String anUnknownErrorOccurred = "anUnknownErrorOccurred";
   // On Boarding
-  static const String welcome = "welcome to\nFlowery rider app";
-  static const String appleyNow = "appleyNow";
+  static const String welcome = "welcome";
+  static const String applyNow = "applyNow";
   static const String appVersion = "v 6.3.0 - (446)";
   static const String login = "login";
 }

@@ -29,7 +29,7 @@
   "connectionTimeout": "Connection timeout, please try again later.",
   "networkError": "Something went wrong. Please check your internet connection.",
   "anUnknownErrorOccurred": "An unknown error occurred.",
-  "appleyNow": "Appley Now",
+  "applyNow": "Apply Now",
   "login": "Login",
   "welcome": "welcome to\nFlowery rider app"
 
