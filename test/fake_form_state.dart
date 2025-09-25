@@ -13,7 +13,6 @@ class FakeFormState extends Fake implements FormState {
 
 class FakeGlobalKey extends Fake implements GlobalKey<FormState> {
   final FormState _state;
-
   FakeGlobalKey(this._state);
 
   @override

@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flowery_tracking_app/api/requests/login_request/login_request_model.dart';
+import 'package:flowery_tracking_app/api/responses/login_response/login_response.dart';
 import 'package:flowery_tracking_app/api/requests/forget_password_and_resend_code/forget_password_and_resend_code_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/reset_password/reset_password_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/verification/verify_request_model.dart';
@@ -17,16 +19,19 @@ abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
 
+  @POST(Endpoints.login)
+  Future<LoginResponse> login({@Body() required LoginRequestModel request});
+
   @POST(Endpoints.forgetPasswordAndResendCode)
   Future<ForgetPasswordAndResendCodeResponse> forgetPasswordAndResendCode(
-    @Body() ForgetPasswordAndResendCodeRequestModel request,
-  );
+      @Body() ForgetPasswordAndResendCodeRequestModel request,
+      );
 
   @POST(Endpoints.verification)
   Future<VerifyResponse> verificationCode(@Body() VerifyRequestModel request);
 
   @PUT(Endpoints.resetPassword)
   Future<ResetPasswordResponse> resetPassword(
-    @Body() ResetPasswordRequestModel request,
-  );
+      @Body() ResetPasswordRequestModel request,
+      );
 }
