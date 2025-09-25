@@ -1,4 +1,13 @@
 {
+  "login": "Login",
+  "email": "Email",
+  "emailHint": "Enter your email",
+  "password": "Password",
+  "passwordHint": "Enter your password",
+  "rememberMe": "Remember me",
+  "forgetPassword": "Forget password?",
+  "continueText": "Continue",
+  "loggingInMessage": "Logging you in ...",
 
   "userNameValidation": "This user name is not valid",
   "emptyTextValidation": "This field is required",
@@ -30,7 +39,6 @@
   "networkError": "Something went wrong. Please check your internet connection.",
   "anUnknownErrorOccurred": "An unknown error occurred.",
   "applyNow": "Apply Now",
-  "login": "Login",
   "welcome": "welcome to\nFlowery rider app"
 
 }

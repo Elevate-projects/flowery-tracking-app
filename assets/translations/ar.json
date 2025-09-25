@@ -1,4 +1,14 @@
 {
+  "login": "تسجيل الدخول",
+  "email": "البريد الإلكتروني",
+  "emailHint": "أدخل بريدك الإلكتروني",
+  "password": "كلمة المرور",
+  "passwordHint": "أدخل كلمة المرور",
+  "rememberMe": "تذكرني",
+  "forgetPassword": "نسيت كلمة المرور؟",
+  "continueText": "متابعة",
+  "loggingInMessage": "جاري تسجيل دخولك ...",
+
   "userNameValidation": "اسم المستخدم غير صالح",
   "emptyTextValidation": "هذا الحقل مطلوب",
   "phoneNumberValidation": "حقل رقم الهاتف مطلوب",
@@ -29,6 +39,5 @@
   "networkError": "حدث خطأ ما. يرجى التحقق من اتصال الإنترنت.",
   "anUnknownErrorOccurred": "حدث خطأ غير معروف.",
   "applyNow": "سجل الان",
-  "login": "تسجيل الدخول",
   "welcome": "مرحبا بك في تطبيق ركاب فلاوري"
 }

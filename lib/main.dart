@@ -22,7 +22,6 @@ void main() async {
   ]);
   Bloc.observer = MyBlocObserver();
   await configureDependencies();
-  FlutterNativeSplash.remove();
 
   runApp(
     BlocProvider<GlobalCubit>(
