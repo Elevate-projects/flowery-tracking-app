@@ -6,14 +6,13 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetResetPasswordUseCase {
-  ResetPasswordRepository resetPasswordRepository;
+  final ResetPasswordRepository _resetPasswordRepository;
 
-  @factoryMethod
-  GetResetPasswordUseCase(this.resetPasswordRepository);
+  const GetResetPasswordUseCase(this._resetPasswordRepository);
 
   Future<Result<ResetPasswordResponse>> execute(
     ResetPasswordRequestEntity request,
   ) {
-    return resetPasswordRepository.resetPassword(request);
+    return _resetPasswordRepository.resetPassword(request);
   }
 }

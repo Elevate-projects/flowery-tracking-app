@@ -4,28 +4,16 @@ import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views/widgets/build_verification_form.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_cubit.dart';
-import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_state.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/loading_dialog.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EmailVerificationBody extends StatefulWidget {
+class EmailVerificationBody extends StatelessWidget {
   const EmailVerificationBody({super.key, required this.email});
 
   final String email;
-
-  @override
-  State<EmailVerificationBody> createState() => _EmailVerificationBodyState();
-}
-
-class _EmailVerificationBodyState extends State<EmailVerificationBody> {
-  @override
-  void initState() {
-    BlocProvider.of<VerificationScreenCubit>(context).doIntent(OnStartTimer());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +37,7 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
                   Navigator.pop(context);
                 }
                 Loaders.showSuccessMessage(
-                  message: AppText.verificationSuccess.tr(),
+                  message: AppText.verificationSuccess,
                   context: context,
                 );
                 Future.delayed(const Duration(milliseconds: 1000), () {
@@ -57,7 +45,7 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
                     Navigator.pushReplacementNamed(
                       context,
                       RouteNames.resetPassword,
-                      arguments: widget.email,
+                      arguments: email,
                     );
                   }
                 });
@@ -68,8 +56,7 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
                 }
                 Loaders.showErrorMessage(
                   message:
-                      state.verifyCodeStatus.error?.message ??
-                      AppText.error.tr(),
+                      state.verifyCodeStatus.error?.message ?? AppText.error,
                   context: context,
                 );
                 break;
@@ -111,10 +98,7 @@ class _EmailVerificationBodyState extends State<EmailVerificationBody> {
       child: BlocBuilder<VerificationScreenCubit, VerificationScreenState>(
         builder: (context, state) {
           return SingleChildScrollView(
-            child: BuildVerificationForm(
-              email: widget.email,
-              isError: state.isError,
-            ),
+            child: BuildVerificationForm(email: email, isError: state.isError),
           );
         },
       ),

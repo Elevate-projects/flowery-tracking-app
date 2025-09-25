@@ -8,17 +8,16 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: ResetPasswordDataSource)
 class ResetPasswordDataSourceImpl implements ResetPasswordDataSource {
-  ApiClient apiClient;
+  final ApiClient _apiClient;
 
-  @factoryMethod
-  ResetPasswordDataSourceImpl(this.apiClient);
+  const ResetPasswordDataSourceImpl(this._apiClient);
 
   @override
   Future<Result<ResetPasswordResponse>> resetPassword(
     ResetPasswordRequestEntity request,
   ) async {
     return executeApi(() async {
-      final res = await apiClient.resetPassword(
+      final res = await _apiClient.resetPassword(
         RequestMapper.resetPasswordToModel(request),
       );
       return res;

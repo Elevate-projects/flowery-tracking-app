@@ -11,10 +11,10 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<ForgetPasswordAndResendCodeCubit>(
       create: (context) =>
           getIt.get<ForgetPasswordAndResendCodeCubit>()
-            ..doIntent(InitializeForgetPasswordFormIntent()),
+            ..doIntent(const InitializeForgetPasswordFormIntent()),
       child: const Scaffold(
         appBar: ForgetPasswordAppBar(),
         body: ForgetPasswordBody(),

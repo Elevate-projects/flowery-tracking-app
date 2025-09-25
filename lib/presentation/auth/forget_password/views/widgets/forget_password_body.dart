@@ -33,7 +33,7 @@ class ForgetPasswordBody extends StatelessWidget {
           case Status.success:
             Navigator.pop(context);
             Loaders.showSuccessMessage(
-              message: AppText.resendOtp.tr(),
+              message: AppText.resendOtp,
               context: context,
             );
             Navigator.pushNamed(
@@ -46,7 +46,7 @@ class ForgetPasswordBody extends StatelessWidget {
             Loaders.showErrorMessage(
               message:
                   state.forgetPasswordAndResendCodeStatus.error?.message ??
-                  AppText.error.tr(),
+                  AppText.error,
               context: context,
             );
             break;

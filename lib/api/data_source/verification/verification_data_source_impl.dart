@@ -8,15 +8,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: VerificationDataSource)
 class VerificationDataSourceImpl implements VerificationDataSource {
-  ApiClient apiClient;
+  final ApiClient _apiClient;
 
-  @factoryMethod
-  VerificationDataSourceImpl(this.apiClient);
+  const VerificationDataSourceImpl(this._apiClient);
 
   @override
   Future<Result<VerifyResponse>> verify(VerifyRequestEntity request) async {
     return executeApi(() async {
-      final res = await apiClient.verificationCode(
+      final res = await _apiClient.verificationCode(
         RequestMapper.verifyToModel(request),
       );
       return res;

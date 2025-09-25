@@ -15,7 +15,7 @@ abstract class AppRoutes {
       case RouteNames.emailVerification:
         return MaterialPageRoute(
           builder: (_) =>
-              EmailVerification(email: settings.arguments as String),
+              EmailVerificationView(email: settings.arguments as String),
         );
       case RouteNames.resetPassword:
         return MaterialPageRoute(

@@ -13,7 +13,7 @@ class ResetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<ResetPasswordCubit>(
       create: (context) =>
           getIt.get<ResetPasswordCubit>()
             ..doIntent(InitializeResetPasswordFormIntent()),

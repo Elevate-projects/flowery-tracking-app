@@ -19,7 +19,6 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   late GlobalKey<FormState> formKey;
   late final TextEditingController passwordController;
   late final TextEditingController confirmPasswordController;
-  late AutovalidateMode autoValidateMode;
 
   void doIntent(ResetPasswordIntent intent) {
     switch (intent) {
@@ -34,12 +33,11 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     formKey = GlobalKey<FormState>();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
-    autoValidateMode = AutovalidateMode.disabled;
+    emit(state.copyWith(autoValidateMode: AutovalidateMode.disabled));
   }
 
   void _enableAutoValidateMode() {
-    autoValidateMode = AutovalidateMode.always;
-    emit(EnableAutoValidateModeState());
+    emit(state.copyWith(autoValidateMode: AutovalidateMode.always));
   }
 
   void _resetPassword(ResetPasswordRequestEntity request) async {

@@ -26,7 +26,7 @@ class ResendCodeRow extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-        SizedBox(width: 4.w),
+        const RSizedBox(width: 4),
         InkWell(
           onTap: isDisabled ? null : onResend,
           child: Text(

@@ -27,7 +27,7 @@ class BuildForgetPasswordForm extends StatelessWidget {
           padding: REdgeInsets.all(16),
           child: Form(
             key: cubit.formKey,
-            autovalidateMode: cubit.autoValidateMode,
+            autovalidateMode: cubit.state.autoValidateMode,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,11 +36,13 @@ class BuildForgetPasswordForm extends StatelessWidget {
                   AppText.forgetPasswordTitle.tr(),
                   style: theme.headlineSmall,
                 ),
-                SizedBox(height: 15.h),
+                const RSizedBox(height: 15),
                 Text(
                   textAlign: TextAlign.center,
                   AppText.forgetPasswordSubTitle.tr(),
-                  style: theme.bodyLarge?.copyWith(color: Colors.grey),
+                  style: theme.bodyLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.shadow,
+                  ),
                 ),
                 SizedBox(height: 30.h),
                 CustomTextFormField(
@@ -51,7 +53,7 @@ class BuildForgetPasswordForm extends StatelessWidget {
                   validator: (value) =>
                       Validations.emailValidation(email: value),
                 ),
-                SizedBox(height: 50.h),
+                const RSizedBox(height: 50),
                 CustomElevatedButton(
                   onPressed: () {
                     cubit.doIntent(

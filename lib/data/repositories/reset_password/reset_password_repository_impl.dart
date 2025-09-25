@@ -7,15 +7,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: ResetPasswordRepository)
 class ResetPasswordRepositoryImpl implements ResetPasswordRepository {
-  ResetPasswordDataSource resetPasswordDataSource;
+  final ResetPasswordDataSource _resetPasswordDataSource;
 
-  @factoryMethod
-  ResetPasswordRepositoryImpl(this.resetPasswordDataSource);
+  const ResetPasswordRepositoryImpl(this._resetPasswordDataSource);
 
   @override
   Future<Result<ResetPasswordResponse>> resetPassword(
     ResetPasswordRequestEntity request,
   ) {
-    return resetPasswordDataSource.resetPassword(request);
+    return _resetPasswordDataSource.resetPassword(request);
   }
 }

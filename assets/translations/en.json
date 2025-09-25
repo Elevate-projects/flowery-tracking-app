@@ -48,5 +48,6 @@
   "passwordRested": "Password Rested Successfully",
   "confirmPassword": "Confirm Password",
   "confirmPasswordHint": "Confirm your password",
-  "resendWord": "Resend"
+  "resendWord": "Resend",
+  "confirmWord": "Confirm"
 }

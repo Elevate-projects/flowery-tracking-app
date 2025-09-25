@@ -6,12 +6,11 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetVerificationUseCase {
-  VerificationRepository verificationRepository;
+  final VerificationRepository _verificationRepository;
 
-  @factoryMethod
-  GetVerificationUseCase(this.verificationRepository);
+  const GetVerificationUseCase(this._verificationRepository);
 
   Future<Result<VerifyResponse>> execute(VerifyRequestEntity request) {
-    return verificationRepository.verify(request);
+    return _verificationRepository.verify(request);
   }
 }

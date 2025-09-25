@@ -11,13 +11,12 @@ class ForgetPasswordAndResendCodeDataSourceImpl
     implements ForgetPasswordAndResendCodeDataSource {
   final ApiClient _apiClient;
 
-  @factoryMethod
-  ForgetPasswordAndResendCodeDataSourceImpl(this._apiClient);
+
+  const ForgetPasswordAndResendCodeDataSourceImpl(this._apiClient);
 
   @override
   Future<Result<ForgetPasswordAndResendCodeResponse>> resendCode(
-    ForgetPasswordAndResendCodeRequestEntity request,
-  ) async {
+      ForgetPasswordAndResendCodeRequestEntity request,) async {
     return executeApi(() async {
       final res = await _apiClient.forgetPasswordAndResendCode(
         RequestMapper.toForgetPasswordAndResendCodeRequestModel(

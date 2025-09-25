@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 class VerificationRepositoryImpl implements VerificationRepository {
   final VerificationDataSource _verificationDataSource;
 
-  VerificationRepositoryImpl(this._verificationDataSource);
+  const VerificationRepositoryImpl(this._verificationDataSource);
 
   @override
   Future<Result<VerifyResponse>> verify(VerifyRequestEntity request) {

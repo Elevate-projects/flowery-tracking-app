@@ -1,5 +1,5 @@
 class ForgetPasswordAndResendCodeRequestEntity {
-  String? email;
+  final String email;
 
-  ForgetPasswordAndResendCodeRequestEntity({required this.email});
+  const ForgetPasswordAndResendCodeRequestEntity({required this.email});
 }

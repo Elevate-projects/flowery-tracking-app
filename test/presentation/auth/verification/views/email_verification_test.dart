@@ -39,7 +39,7 @@ void main() {
         return MaterialApp(
           home: BlocProvider<VerificationScreenCubit>.value(
             value: cubit,
-            child: const EmailVerification(email: ''),
+            child: const EmailVerificationView(email: ''),
           ),
         );
       },

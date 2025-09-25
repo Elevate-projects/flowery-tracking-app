@@ -28,11 +28,18 @@ class BuildVerificationForm extends StatefulWidget {
 }
 
 class _BuildVerificationFormState extends State<BuildVerificationForm> {
-  TextEditingController verificationController = TextEditingController();
+  late TextEditingController verificationController;
 
   @override
   void initState() {
     super.initState();
+    verificationController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    verificationController.dispose();
+    super.dispose();
   }
 
   @override

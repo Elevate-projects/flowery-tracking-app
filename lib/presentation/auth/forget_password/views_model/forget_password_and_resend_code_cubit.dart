@@ -19,7 +19,6 @@ class ForgetPasswordAndResendCodeCubit
 
   late GlobalKey<FormState> formKey;
   late final TextEditingController emailController;
-  late AutovalidateMode autoValidateMode;
 
   void doIntent(ForgetPasswordAndResendCodeIntent intent) {
     switch (intent) {
@@ -33,12 +32,11 @@ class ForgetPasswordAndResendCodeCubit
   void _onInit() {
     formKey = GlobalKey<FormState>();
     emailController = TextEditingController();
-    autoValidateMode = AutovalidateMode.disabled;
+    emit(state.copyWith(autoValidateMode: AutovalidateMode.disabled));
   }
 
   void _enableAutoValidateMode() {
-    autoValidateMode = AutovalidateMode.always;
-    emit(EnableAutoValidateModeState());
+    emit(state.copyWith(autoValidateMode: AutovalidateMode.always));
   }
 
   void _forgetPasswordAndResendCode(

@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/reset_password_request/reset_password_request_entity.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/widgets/reset_password_title_and_sub_title.dart';
@@ -28,29 +27,31 @@ class BuildResetPasswordForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const ResetPasswordTitleAndSubTitle(),
-            SizedBox(height: 30.h),
+            const RSizedBox(height: 30),
             CustomTextFormField(
               label: AppText.password,
               controller: cubit.passwordController,
               keyboardType: TextInputType.visiblePassword,
               obscureText: true,
               hintText: AppText.passwordHint,
+              textInputAction: TextInputAction.next,
               validator: (value) =>
                   Validations.passwordValidation(password: value),
             ),
-            SizedBox(height: 25.h),
+            const RSizedBox(height: 25),
             CustomTextFormField(
               label: AppText.confirmPassword,
               controller: cubit.confirmPasswordController,
               keyboardType: TextInputType.visiblePassword,
               obscureText: true,
               hintText: AppText.confirmPasswordHint,
+              textInputAction: TextInputAction.next,
               validator: (value) => Validations.confirmPasswordValidation(
                 password: cubit.passwordController.text,
                 conformPassword: value,
               ),
             ),
-            SizedBox(height: 50.h),
+            const SizedBox(height: 50),
             CustomElevatedButton(
               onPressed: () {
                 BlocProvider.of<ResetPasswordCubit>(context).doIntent(
@@ -62,7 +63,7 @@ class BuildResetPasswordForm extends StatelessWidget {
                   ),
                 );
               },
-              buttonTitle: AppText.continueWord.tr(),
+              buttonTitle: AppText.confirmWord,
             ),
           ],
         ),

@@ -6,18 +6,18 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('when call toModel with null values it should return null values', () {
     final ForgetPasswordAndResendCodeRequestEntity entity =
-        ForgetPasswordAndResendCodeRequestEntity(email: null);
+        const ForgetPasswordAndResendCodeRequestEntity(email: '');
     final ForgetPasswordAndResendCodeRequestModel model =
         RequestMapper.toForgetPasswordAndResendCodeRequestModel(
           forgetPasswordRequestEntity: entity,
         );
-    expect(model.email, isNull);
+    expect(model.email, '');
   });
   test(
     'when call toModel with non-null values it should return right values',
     () {
       final ForgetPasswordAndResendCodeRequestEntity entity =
-          ForgetPasswordAndResendCodeRequestEntity(
+          const ForgetPasswordAndResendCodeRequestEntity(
             email: 'moaazhassan559@gmail.com',
           );
       final ForgetPasswordAndResendCodeRequestModel model =

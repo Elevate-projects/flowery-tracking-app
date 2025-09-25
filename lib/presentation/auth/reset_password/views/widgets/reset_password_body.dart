@@ -30,7 +30,7 @@ class ResetPasswordBody extends StatelessWidget {
           case Status.success:
             Navigator.pop(context);
             Loaders.showSuccessMessage(
-              message: AppText.passwordRested.tr(),
+              message: AppText.passwordRested,
               context: context,
             );
             // Navigator.pushReplacementNamed(context, RouteNames.login);

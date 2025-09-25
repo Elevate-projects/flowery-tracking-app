@@ -1,9 +1,9 @@
 class ResetPasswordRequestEntity {
-  String? email;
-  String? newPassword;
+  final String email;
+  final String newPassword;
 
-  ResetPasswordRequestEntity({
-    this.email,
-    this.newPassword,
+  const ResetPasswordRequestEntity({
+    required this.email,
+    required this.newPassword,
   });
 }

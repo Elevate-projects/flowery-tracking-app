@@ -1,10 +1,9 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'verify_response.g.dart';
 
 @JsonSerializable()
-class VerifyResponse extends Equatable {
+class VerifyResponse {
   @JsonKey(name: "status")
   final String? status;
   @JsonKey(name: "message")
@@ -21,7 +20,4 @@ class VerifyResponse extends Equatable {
   Map<String, dynamic> toJson() {
     return _$VerifyResponseToJson(this);
   }
-
-  @override
-  List<Object?> get props => [status, message, code];
 }

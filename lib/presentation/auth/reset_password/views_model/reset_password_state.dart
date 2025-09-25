@@ -24,8 +24,3 @@ class ResetPasswordState extends Equatable {
   @override
   List<Object?> get props => [resetPasswordState, autoValidateMode];
 }
-
-final class EnableAutoValidateModeState extends ResetPasswordState {
-  @override
-  List<Object?> get props => [];
-}

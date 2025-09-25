@@ -6,14 +6,6 @@ import 'package:flowery_tracking_app/domain/entities/requests/reset_password_req
 import 'package:flowery_tracking_app/domain/entities/requests/verify_request/verify_requset_entity.dart';
 
 abstract class RequestMapper {
-  // static LoginRequestModel toLoginRequestModel({
-  //   required LoginRequestEntity loginRequestEntity,
-  // }) {
-  //   return LoginRequestModel(
-  //     email: loginRequestEntity.email,
-  //     password: loginRequestEntity.password,
-  //   );
-  // }
   static ForgetPasswordAndResendCodeRequestModel
   toForgetPasswordAndResendCodeRequestModel({
     required ForgetPasswordAndResendCodeRequestEntity

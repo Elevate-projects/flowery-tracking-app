@@ -47,6 +47,7 @@
   "verificationSuccess": "تم التحقق بنجاح",
   "passwordRested": "تمت إعادة تعيين كلمة المرور بنجاح",
   "confirmPassword": "تأكيد كلمة المرور",
-  "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى"
-  "resendWord": "اعادة الارسال"
+  "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
+  "resendWord": "اعادة الارسال",
+  "confirmWord": "تأكيد"
 }

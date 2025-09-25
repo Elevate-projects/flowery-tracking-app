@@ -52,4 +52,5 @@ abstract final class AppText {
   static const String confirmPassword = "confirmPassword";
   static const String confirmPasswordHint = "confirmPasswordHint";
   static const String resendWord = "ResendWord";
+  static const String confirmWord = "confirmWord";
 }

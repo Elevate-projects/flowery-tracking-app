@@ -28,9 +28,3 @@ class ForgetPasswordAndResendCodeState extends Equatable {
     autoValidateMode,
   ];
 }
-
-final class EnableAutoValidateModeState
-    extends ForgetPasswordAndResendCodeState {
-  @override
-  List<Object?> get props => [];
-}
