@@ -10,6 +10,7 @@ import 'package:flowery_tracking_app/domain/use_cases/forget_password_and_resend
 import 'package:flowery_tracking_app/domain/use_cases/verification/verification_usecase.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,11 +20,23 @@ class VerificationScreenCubit extends Cubit<VerificationScreenState> {
   final GetForgetPasswordResendCodeUseCase _getResendCodeUseCase;
 
   Timer? _timer;
+  late GlobalKey<FormState> formKey;
+  late final TextEditingController verificationController;
 
   VerificationScreenCubit(
     this._getVerificationUseCase,
     this._getResendCodeUseCase,
   ) : super(const VerificationScreenState());
+
+  void _onInit() {
+    formKey = GlobalKey<FormState>();
+    verificationController = TextEditingController();
+    emit(state.copyWith(autoValidateMode: AutovalidateMode.disabled));
+  }
+
+  void _enableAutoValidateMode() {
+    emit(state.copyWith(autoValidateMode: AutovalidateMode.always));
+  }
 
   void doIntent(VerificationScreenIntent intent) {
     switch (intent) {
@@ -33,6 +46,8 @@ class VerificationScreenCubit extends Cubit<VerificationScreenState> {
         return _startTimer();
       case OnResendCodeClickIntent():
         return _resendCode(intent.request);
+      case InitializeVerificationFormIntent():
+        return _onInit();
     }
   }
 
@@ -53,23 +68,27 @@ class VerificationScreenCubit extends Cubit<VerificationScreenState> {
   }
 
   void _verify(VerifyRequestEntity request) async {
-    emit(state.copyWith(verifyCodeStatus: const StateStatus.loading()));
-    final res = await _getVerificationUseCase.execute(request);
-    switch (res) {
-      case Success<VerifyResponse>():
-        emit(
-          state.copyWith(
-            verifyCodeStatus: const StateStatus.success(null),
-            isError: false,
-          ),
-        );
-      case Failure<VerifyResponse>():
-        emit(
-          state.copyWith(
-            verifyCodeStatus: StateStatus.failure(res.responseException),
-            isError: true,
-          ),
-        );
+    if (formKey.currentState!.validate()) {
+      emit(state.copyWith(verifyCodeStatus: const StateStatus.loading()));
+      final res = await _getVerificationUseCase.execute(request);
+      switch (res) {
+        case Success<VerifyResponse>():
+          emit(
+            state.copyWith(
+              verifyCodeStatus: const StateStatus.success(null),
+              isError: false,
+            ),
+          );
+        case Failure<VerifyResponse>():
+          emit(
+            state.copyWith(
+              verifyCodeStatus: StateStatus.failure(res.responseException),
+              isError: true,
+            ),
+          );
+      }
+    } else {
+      _enableAutoValidateMode();
     }
   }
 
@@ -89,6 +108,7 @@ class VerificationScreenCubit extends Cubit<VerificationScreenState> {
 
   @override
   Future<void> close() {
+    verificationController.dispose();
     _timer?.cancel();
     return super.close();
   }

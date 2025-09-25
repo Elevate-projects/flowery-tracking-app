@@ -7,6 +7,7 @@ import 'package:flowery_tracking_app/presentation/auth/verification/views/email_
 import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views_model/verification_screen_state.dart';
+import 'package:flowery_tracking_app/utils/common_widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,6 +31,8 @@ void main() {
     provideDummy<VerificationScreenState>(const VerificationScreenState());
     when(cubit.state).thenReturn(const VerificationScreenState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
+    when(cubit.formKey).thenReturn(GlobalKey<FormState>());
+    when(cubit.verificationController).thenReturn(TextEditingController());
   });
 
   Widget prepareWidget() {
@@ -37,8 +40,10 @@ void main() {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return MaterialApp(
-          home: BlocProvider<VerificationScreenCubit>.value(
-            value: cubit,
+          home: BlocProvider<VerificationScreenCubit>(
+            create: (_) => getIt.get<VerificationScreenCubit>()
+              ..doIntent(OnStartTimer())
+              ..doIntent(InitializeVerificationFormIntent()),
             child: const EmailVerificationView(email: ''),
           ),
         );
@@ -49,7 +54,7 @@ void main() {
   testWidgets('Verify Verification Initial State UI', (tester) async {
     await tester.pumpWidget(prepareWidget());
     //Assert
-    expect(find.byType(AppBar), findsOneWidget);
+    expect(find.byType(CustomAppBar), findsOneWidget);
     expect(find.byType(Text), findsNWidgets(12));
     expect(find.byType(PinCodeTextField), findsNWidgets(1));
   });
@@ -103,7 +108,7 @@ void main() {
 
     cubit.doIntent(
       OnResendCodeClickIntent(
-        request: ForgetPasswordAndResendCodeRequestEntity(
+        request: const ForgetPasswordAndResendCodeRequestEntity(
           email: 'moaazhassan559@gmail.com',
         ),
       ),

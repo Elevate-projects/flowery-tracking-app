@@ -21,7 +21,7 @@ void main() {
   late ResetPasswordCubit cubit;
   late Result<ResetPasswordResponse> expectedSuccessResult;
 
-  final resetCodeRequest = ResetPasswordRequestEntity(
+  final resetCodeRequest = const ResetPasswordRequestEntity(
     email: 'moaazhassan559@gmail.com',
     newPassword: 'newPassword123',
   );

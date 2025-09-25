@@ -17,7 +17,7 @@ void main() {
     final GetForgetPasswordResendCodeUseCase useCase =
         GetForgetPasswordResendCodeUseCase(mockRepo);
 
-    final resendCodeRequest = ForgetPasswordAndResendCodeRequestEntity(
+    final resendCodeRequest = const ForgetPasswordAndResendCodeRequestEntity(
       email: 'moaazhassan559@gmail.com',
     );
     final expectedResponse = const ForgetPasswordAndResendCodeResponse(

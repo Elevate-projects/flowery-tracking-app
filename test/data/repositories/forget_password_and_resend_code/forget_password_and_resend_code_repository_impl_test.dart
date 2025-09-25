@@ -17,7 +17,7 @@ void main() {
     final ForgetPasswordAndResendCodeRepositoryImpl repo =
         ForgetPasswordAndResendCodeRepositoryImpl(mockDataSource);
 
-    final request = ForgetPasswordAndResendCodeRequestEntity(
+    final request = const ForgetPasswordAndResendCodeRequestEntity(
       email: 'moaazhassan559@gmail.com',
     );
     final expectedResponse = const ForgetPasswordAndResendCodeResponse(

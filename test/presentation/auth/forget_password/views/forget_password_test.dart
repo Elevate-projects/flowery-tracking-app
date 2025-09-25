@@ -7,6 +7,7 @@ import 'package:flowery_tracking_app/presentation/auth/forget_password/views/for
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views_model/forget_password_and_resend_code_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views_model/forget_password_and_resend_code_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views_model/forget_password_and_resend_code_state.dart';
+import 'package:flowery_tracking_app/utils/common_widgets/custom_app_bar.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,6 @@ void main() {
 
     when(cubit.formKey).thenReturn(GlobalKey<FormState>());
     when(cubit.emailController).thenReturn(TextEditingController());
-    when(cubit.autoValidateMode).thenReturn(AutovalidateMode.disabled);
   });
   Widget prepareWidget() {
     return ScreenUtilInit(
@@ -46,7 +46,7 @@ void main() {
       builder: (context, child) {
         return MaterialApp(
           home: BlocProvider<ForgetPasswordAndResendCodeCubit>.value(
-            value: cubit..doIntent(InitializeForgetPasswordFormIntent()),
+            value: cubit..doIntent(const InitializeForgetPasswordFormIntent()),
             child: const Scaffold(body: ForgetPassword()),
           ),
         );
@@ -57,7 +57,7 @@ void main() {
   testWidgets('Verify ForgetPassword Initial State UI', (tester) async {
     await tester.pumpWidget(prepareWidget());
     //Assert
-    expect(find.byType(AppBar), findsOneWidget);
+    expect(find.byType(CustomAppBar), findsOneWidget);
     expect(find.byType(Text), findsNWidgets(6));
     expect(find.byType(CustomTextFormField), findsNWidgets(1));
     expect(find.byType(CustomElevatedButton), findsOneWidget);
@@ -65,7 +65,7 @@ void main() {
       find.byWidgetPredicate(
         (widget) =>
             widget is CustomElevatedButton &&
-            widget.buttonTitle == AppText.continueWord,
+            widget.buttonTitle == AppText.confirmWord,
       ),
       findsOneWidget,
     );
@@ -76,13 +76,10 @@ void main() {
     when(cubit.state).thenReturn(const ForgetPasswordAndResendCodeState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(cubit.doIntent(any)).thenAnswer((_) {
-      when(cubit.autoValidateMode).thenReturn(AutovalidateMode.always);
-    });
-
     await tester.pumpWidget(prepareWidget());
 
-    await tester.tap(find.text(AppText.continueWord));
+    await tester.tap(find.text(AppText.confirmWord));
+    cubit.formKey.currentState?.validate();
 
     cubit.doIntent(
       OnConfirmEmailClickIntent(
@@ -103,10 +100,6 @@ void main() {
     when(cubit.state).thenReturn(const ForgetPasswordAndResendCodeState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(cubit.doIntent(any)).thenAnswer((_) {
-      when(cubit.autoValidateMode).thenReturn(AutovalidateMode.always);
-    });
-
     await tester.pumpWidget(prepareWidget());
 
     await tester.enterText(
@@ -117,7 +110,8 @@ void main() {
       "invalid-email-format",
     );
 
-    await tester.tap(find.text(AppText.continueWord));
+    await tester.tap(find.text(AppText.confirmWord));
+    cubit.formKey.currentState?.validate();
 
     cubit.doIntent(
       OnConfirmEmailClickIntent(

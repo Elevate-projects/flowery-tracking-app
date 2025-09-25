@@ -7,6 +7,7 @@ import 'package:flowery_tracking_app/presentation/auth/reset_password/views/rese
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views_model/reset_password_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views_model/reset_password_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views_model/reset_password_state.dart';
+import 'package:flowery_tracking_app/utils/common_widgets/custom_app_bar.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,6 @@ void main() {
     when(cubit.formKey).thenReturn(GlobalKey<FormState>());
     when(cubit.passwordController).thenReturn(TextEditingController());
     when(cubit.confirmPasswordController).thenReturn(TextEditingController());
-    when(cubit.autoValidateMode).thenReturn(AutovalidateMode.disabled);
   });
 
   Widget prepareWidget() {
@@ -57,7 +57,7 @@ void main() {
   testWidgets('Verify ResetPassword Initial State UI', (tester) async {
     await tester.pumpWidget(prepareWidget());
     //Assert
-    expect(find.byType(AppBar), findsOneWidget);
+    expect(find.byType(CustomAppBar), findsOneWidget);
     expect(find.byType(Text), findsNWidgets(8));
     expect(find.byType(CustomTextFormField), findsNWidgets(2));
     expect(find.byType(CustomElevatedButton), findsOneWidget);
@@ -65,7 +65,7 @@ void main() {
       find.byWidgetPredicate(
         (widget) =>
             widget is CustomElevatedButton &&
-            widget.buttonTitle == AppText.continueWord,
+            widget.buttonTitle == AppText.confirmWord,
       ),
       findsOneWidget,
     );
@@ -76,13 +76,9 @@ void main() {
     when(cubit.state).thenReturn(const ResetPasswordState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(cubit.doIntent(any)).thenAnswer((_) {
-      when(cubit.autoValidateMode).thenReturn(AutovalidateMode.always);
-    });
-
     await tester.pumpWidget(prepareWidget());
 
-    await tester.tap(find.text(AppText.continueWord));
+    await tester.tap(find.text(AppText.confirmWord));
     cubit.formKey.currentState?.validate();
     cubit.doIntent(
       OnResetPasswordIntent(
@@ -105,10 +101,6 @@ void main() {
     when(cubit.state).thenReturn(const ResetPasswordState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(cubit.doIntent(any)).thenAnswer((_) {
-      when(cubit.autoValidateMode).thenReturn(AutovalidateMode.always);
-    });
-
     await tester.pumpWidget(prepareWidget());
 
     await tester.enterText(
@@ -127,7 +119,7 @@ void main() {
       "123",
     );
 
-    await tester.tap(find.text(AppText.continueWord));
+    await tester.tap(find.text(AppText.confirmWord));
     cubit.formKey.currentState?.validate();
     await tester.pump(); //
     cubit.doIntent(

@@ -21,7 +21,7 @@ void main() {
   late ForgetPasswordAndResendCodeCubit cubit;
   late Result<ForgetPasswordAndResendCodeResponse> expectedSuccessResult;
 
-  final resendCodeRequest = ForgetPasswordAndResendCodeRequestEntity(
+  final resendCodeRequest = const ForgetPasswordAndResendCodeRequestEntity(
     email: 'moaazhassan559@gmail.com',
   );
   final resendExpectedResponse = const ForgetPasswordAndResendCodeResponse(
@@ -34,7 +34,7 @@ void main() {
   });
   setUp(() {
     cubit = ForgetPasswordAndResendCodeCubit(getResendCodeUseCase);
-    cubit.doIntent(InitializeForgetPasswordFormIntent());
+    cubit.doIntent(const InitializeForgetPasswordFormIntent());
     cubit.formKey = FakeGlobalKey(FakeFormState());
   });
   group('ForgetPasswordAndResendCodeCubit', () {

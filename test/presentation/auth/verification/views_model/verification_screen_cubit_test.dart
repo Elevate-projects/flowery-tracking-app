@@ -22,92 +22,100 @@ import 'verification_screen_cubit_test.mocks.dart';
 
 @GenerateMocks([GetVerificationUseCase, GetForgetPasswordResendCodeUseCase])
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   late MockGetVerificationUseCase getVerificationUseCase;
   late MockGetForgetPasswordResendCodeUseCase
   getForgetPasswordResendCodeUseCase;
-  late ForgetPasswordAndResendCodeCubit cubit;
-  late Result<ForgetPasswordAndResendCodeResponse> expectedSuccessResult;
 
+  // Requests
   final verificationRequest = VerifyRequestEntity(resetCode: '123456');
-
-  final resendCodeRequest = ForgetPasswordAndResendCodeRequestEntity(
+  const resendCodeRequest = ForgetPasswordAndResendCodeRequestEntity(
     email: 'moaazhassan559@gmail.com',
   );
-  final resendExpectedResponse = const ForgetPasswordAndResendCodeResponse(
+
+  // Expected responses
+  const resendExpectedResponse = ForgetPasswordAndResendCodeResponse(
     message: 'OTP Resented Successfully',
     info: 'Success',
   );
-  final resendExpectedResult = Success<ForgetPasswordAndResendCodeResponse>(
-    resendExpectedResponse,
-  );
-  final verificationExpectedResponse = const VerifyResponse(
+  const verificationExpectedResponse = VerifyResponse(
     message: 'Verification Successful',
     code: 200,
     status: 'Success',
   );
 
-  final verificationExpectedResult = Success<VerifyResponse>(
-    verificationExpectedResponse,
-  );
-  setUp(() {
+  // Success results
+  late Result<ForgetPasswordAndResendCodeResponse> resendExpectedResult;
+  late Result<VerifyResponse> verifyExpectedResult;
+
+  setUpAll(() {
     getVerificationUseCase = MockGetVerificationUseCase();
     getForgetPasswordResendCodeUseCase =
         MockGetForgetPasswordResendCodeUseCase();
-    provideDummy<Result<ForgetPasswordAndResendCodeResponse>>(
-      resendExpectedResult,
-    );
-    provideDummy<Result<VerifyResponse>>(verificationExpectedResult);
-    when(
-      getForgetPasswordResendCodeUseCase.execute(resendCodeRequest),
-    ).thenAnswer((_) async => resendExpectedResult);
-    when(
-      getVerificationUseCase.execute(verificationRequest),
-    ).thenAnswer((_) async => verificationExpectedResult);
-    cubit = ForgetPasswordAndResendCodeCubit(
-      getForgetPasswordResendCodeUseCase,
-    );
-    cubit.doIntent(InitializeForgetPasswordFormIntent());
-    cubit.formKey = FakeGlobalKey(FakeFormState());
   });
+
+  setUp(() {
+
+    resendExpectedResult = Success<ForgetPasswordAndResendCodeResponse>(
+      resendExpectedResponse,
+    );
+    verifyExpectedResult = Success<VerifyResponse>(
+      verificationExpectedResponse,
+    );
+  });
+
   blocTest<ForgetPasswordAndResendCodeCubit, ForgetPasswordAndResendCodeState>(
-    'should emit [loading, success] when resend code  is successful',
+    'should emit [loading, success] when resend code is successful',
     build: () {
-      expectedSuccessResult = Success<ForgetPasswordAndResendCodeResponse>(
-        resendExpectedResponse,
-      );
       provideDummy<Result<ForgetPasswordAndResendCodeResponse>>(
-        expectedSuccessResult,
+        resendExpectedResult,
       );
       when(
         getForgetPasswordResendCodeUseCase.execute(resendCodeRequest),
-      ).thenAnswer((_) async => expectedSuccessResult); // success
+      ).thenAnswer((_) async => resendExpectedResult);
+
+      final cubit = ForgetPasswordAndResendCodeCubit(
+        getForgetPasswordResendCodeUseCase,
+      );
+      cubit.doIntent(const InitializeForgetPasswordFormIntent());
+      cubit.formKey = FakeGlobalKey(FakeFormState());
       return cubit;
     },
-    act: (cubit) {
-      cubit.doIntent(OnConfirmEmailClickIntent(request: resendCodeRequest));
-    },
-    expect: () => [
-      const ForgetPasswordAndResendCodeState(
+    act: (cubit) => cubit.doIntent(
+      const OnConfirmEmailClickIntent(request: resendCodeRequest),
+    ),
+    expect: () => const [
+      ForgetPasswordAndResendCodeState(
         forgetPasswordAndResendCodeStatus: StateStatus.loading(),
       ),
-      const ForgetPasswordAndResendCodeState(
+      ForgetPasswordAndResendCodeState(
         forgetPasswordAndResendCodeStatus: StateStatus.success(null),
       ),
     ],
   );
+
   blocTest<VerificationScreenCubit, VerificationScreenState>(
     'should emit [loading, success] when verification is successful',
-    build: () => VerificationScreenCubit(
-      getVerificationUseCase,
-      getForgetPasswordResendCodeUseCase,
-    ),
+    build: () {
+      provideDummy<Result<VerifyResponse>>(verifyExpectedResult);
+      when(
+        getVerificationUseCase.execute(verificationRequest),
+      ).thenAnswer((_) async => verifyExpectedResult);
+
+      final cubit = VerificationScreenCubit(
+        getVerificationUseCase,
+        getForgetPasswordResendCodeUseCase,
+      );
+      cubit.doIntent(InitializeVerificationFormIntent());
+      cubit.formKey = FakeGlobalKey(FakeFormState());
+      return cubit;
+    },
     act: (cubit) =>
         cubit.doIntent(OnVerificationIntent(request: verificationRequest)),
-    expect: () => [
-      const VerificationScreenState(verifyCodeStatus: StateStatus.loading()),
-      const VerificationScreenState(
-        verifyCodeStatus: StateStatus.success(null),
-      ),
+    expect: () => const [
+      VerificationScreenState(verifyCodeStatus: StateStatus.loading()),
+      VerificationScreenState(verifyCodeStatus: StateStatus.success(null)),
     ],
   );
 }

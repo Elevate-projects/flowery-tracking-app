@@ -19,7 +19,7 @@ void main() {
       mockDataSource,
     );
 
-    final resetCodeRequest = ResetPasswordRequestEntity(
+    final resetCodeRequest = const ResetPasswordRequestEntity(
       email: 'moaazhassan559@gmail.com',
       newPassword: '12345678',
     );

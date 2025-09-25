@@ -64,7 +64,7 @@ class BuildForgetPasswordForm extends StatelessWidget {
                       ),
                     );
                   },
-                  buttonTitle: AppText.continueWord.tr(),
+                  buttonTitle: AppText.confirmWord.tr(),
                 ),
               ],
             ),

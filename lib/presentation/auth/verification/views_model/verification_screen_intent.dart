@@ -3,6 +3,8 @@ import 'package:flowery_tracking_app/domain/entities/requests/verify_request/ver
 
 sealed class VerificationScreenIntent {}
 
+class InitializeVerificationFormIntent extends VerificationScreenIntent {}
+
 class OnVerificationIntent extends VerificationScreenIntent {
   VerifyRequestEntity request;
 

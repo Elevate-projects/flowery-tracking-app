@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'forget_password_and_resend_code_request_model.g.dart';
 
 @JsonSerializable()
-class ForgetPasswordAndResendCodeRequestModel  {
+class ForgetPasswordAndResendCodeRequestModel extends Equatable {
   @JsonKey(name: "email")
   final String? email;
 
@@ -19,4 +19,7 @@ class ForgetPasswordAndResendCodeRequestModel  {
   Map<String, dynamic> toJson() {
     return _$ForgetPasswordAndResendCodeRequestModelToJson(this);
   }
+
+  @override
+  List<Object?> get props => [email];
 }

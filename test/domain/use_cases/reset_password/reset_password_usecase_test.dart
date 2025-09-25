@@ -16,7 +16,7 @@ void main() {
     final mockRepo = MockResetPasswordRepository();
     final GetResetPasswordUseCase useCase = GetResetPasswordUseCase(mockRepo);
 
-    final resetCodeRequest = ResetPasswordRequestEntity(
+    final resetCodeRequest = const ResetPasswordRequestEntity(
       email: 'moaazhassan559@gmail.com',
       newPassword: 'newPassword123',
     );

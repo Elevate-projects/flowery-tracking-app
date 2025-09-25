@@ -14,8 +14,9 @@ class EmailVerificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<VerificationScreenCubit>(
-      create: (context) =>
-          getIt.get<VerificationScreenCubit>()..doIntent(OnStartTimer()),
+      create: (context) => getIt.get<VerificationScreenCubit>()
+        ..doIntent(OnStartTimer())
+        ..doIntent(InitializeVerificationFormIntent()),
       child: Scaffold(
         appBar: const EmailVerificationAppBar(),
         body: EmailVerificationBody(email: email),

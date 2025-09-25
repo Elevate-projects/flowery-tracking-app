@@ -49,6 +49,7 @@ dev_dependencies:
 
   flutter_lints: ^5.0.0
 
+  connectivity_plus_platform_interface: any
 flutter:
 
   uses-material-design: true

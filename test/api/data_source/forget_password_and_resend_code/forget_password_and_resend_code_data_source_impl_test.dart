@@ -23,7 +23,7 @@ void main() {
         ForgetPasswordAndResendCodeDataSourceImpl(mockApiClient);
 
     final forgetPasswordAndResendCodeRequest =
-        ForgetPasswordAndResendCodeRequestEntity(
+        const ForgetPasswordAndResendCodeRequestEntity(
           email: 'moaazhassan559@gmail.com',
         );
 

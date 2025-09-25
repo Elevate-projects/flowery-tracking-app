@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BuildVerificationForm extends StatefulWidget {
+class BuildVerificationForm extends StatelessWidget {
   const BuildVerificationForm({
     super.key,
     required this.email,
@@ -24,29 +24,13 @@ class BuildVerificationForm extends StatefulWidget {
   final bool isError;
 
   @override
-  State<BuildVerificationForm> createState() => _BuildVerificationFormState();
-}
-
-class _BuildVerificationFormState extends State<BuildVerificationForm> {
-  late TextEditingController verificationController;
-
-  @override
-  void initState() {
-    super.initState();
-    verificationController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    verificationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<VerificationScreenCubit>(context);
     return Padding(
       padding: REdgeInsets.all(16),
       child: Form(
+        key: cubit.formKey,
+        autovalidateMode: cubit.state.autoValidateMode,
         child: BlocBuilder<VerificationScreenCubit, VerificationScreenState>(
           builder: (context, state) {
             return Column(
@@ -56,13 +40,13 @@ class _BuildVerificationFormState extends State<BuildVerificationForm> {
                 const TitleAndSubtitleOfVerification(),
                 SizedBox(height: 30.h),
                 PinCodeTextFiledWidget(
-                  isError: widget.isError,
-                  verificationController: verificationController,
+                  isError: isError,
+                  verificationController: cubit.verificationController,
                   onCompleted: (value) {
                     BlocProvider.of<VerificationScreenCubit>(context).doIntent(
                       OnVerificationIntent(
                         request: VerifyRequestEntity(
-                          resetCode: verificationController.text,
+                          resetCode: cubit.verificationController.text,
                         ),
                       ),
                     );
@@ -102,7 +86,7 @@ class _BuildVerificationFormState extends State<BuildVerificationForm> {
                     BlocProvider.of<VerificationScreenCubit>(context).doIntent(
                       OnResendCodeClickIntent(
                         request: ForgetPasswordAndResendCodeRequestEntity(
-                          email: widget.email,
+                          email: email,
                         ),
                       ),
                     );
