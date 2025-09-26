@@ -9,7 +9,7 @@
   "continueText": "متابعة",
   "loggingInMessage": "جاري تسجيل دخولك ...",
 
-  "userNameValidation": "اسم المستخدم غير صالح",
+  "fieldValidation": "هذا الحقل مطلوب",
   "emptyTextValidation": "هذا الحقل مطلوب",
   "phoneNumberValidation": "حقل رقم الهاتف مطلوب",
   "phoneNumberValidation2": "رقم الهاتف يجب أن يتكون من 11 رقمًا",

@@ -37,6 +37,9 @@ dependencies:
   equatable: ^2.0.7
   dio: any
   easy_localization: ^3.0.8
+  image_picker: ^1.2.0
+  dropdown_button2: ^2.3.9
+  path: ^1.9.1
 
 dev_dependencies:
   flutter_launcher_icons: "^0.14.4"
@@ -58,6 +61,7 @@ flutter:
     - assets/animations/
     - assets/images/
     - assets/translations/
+    - assets/json/
 
   fonts:
     - family: IM Fell English

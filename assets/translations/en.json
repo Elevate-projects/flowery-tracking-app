@@ -9,7 +9,7 @@
   "continueText": "Continue",
   "loggingInMessage": "Logging you in ...",
 
-  "userNameValidation": "This user name is not valid",
+  "fieldValidation": "This field is required",
   "emptyTextValidation": "This field is required",
   "phoneNumberValidation": "Phone number field is required",
   "phoneNumberValidation2": "Phone Number should consist of 11 digits",
