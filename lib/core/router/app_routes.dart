@@ -1,4 +1,5 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views/bottom_navigation_view.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,9 @@ abstract class AppRoutes {
     switch (settings.name) {
       case RouteNames.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingView());
+      case RouteNames.login:
+        return MaterialPageRoute(builder: (_) => const LoginView());
+
       case RouteNames.bottomNavigation:
         return MaterialPageRoute(builder: (_) => const BottomNavigationView());
       default:

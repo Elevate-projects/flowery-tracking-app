@@ -1,4 +1,15 @@
 abstract final class AppText {
+  // Login
+  static const String login = "login";
+  static const String email = "email";
+  static const String emailHint = "emailHint";
+  static const String password = "password";
+  static const String passwordHint = "passwordHint";
+  static const String rememberMe = "rememberMe";
+  static const String forgetPassword = "forgetPassword";
+  static const String continueText = "continueText";
+  static const String loggingInMessage = "loggingInMessage";
+
   // Validations
   static const String userNameValidation = "userNameValidation";
   static const String emptyTextValidation = "emptyTextValidation";
@@ -30,6 +41,10 @@ abstract final class AppText {
   static const String connectionTimeout = "connectionTimeout";
   static const String networkError = "networkError";
   static const String anUnknownErrorOccurred = "anUnknownErrorOccurred";
+  // On Boarding
+  static const String welcome = "welcome";
+  static const String applyNow = "applyNow";
+  static const String appVersion = "v 6.3.0 - (446)";
   //BottomNavigation
   static const String home = 'home';
   static const String order = 'order';
