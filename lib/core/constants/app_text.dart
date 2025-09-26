@@ -51,7 +51,6 @@ abstract final class AppText {
   static const String order = 'order';
   static const String profile = 'profile';
 
-
   // Forget Password
   static const String resendOtp = "resendOtp";
   static const String forgetPasswordTitle = 'forgetPasswordTitle';
