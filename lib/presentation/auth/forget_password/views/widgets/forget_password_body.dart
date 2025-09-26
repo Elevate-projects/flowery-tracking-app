@@ -19,6 +19,7 @@ class ForgetPasswordBody extends StatelessWidget {
       ForgetPasswordAndResendCodeCubit,
       ForgetPasswordAndResendCodeState
     >(
+      bloc: cubit,
       listener: (context, state) {
         switch (state.forgetPasswordAndResendCodeStatus.status) {
           case Status.initial:
@@ -32,14 +33,11 @@ class ForgetPasswordBody extends StatelessWidget {
           case Status.success:
             {
               Navigator.pop(context);
-              Loaders.showSuccessMessage(
-                message: AppText.resendOtp,
-                context: context,
-              );
+
               Navigator.pushReplacementNamed(
                 context,
                 RouteNames.emailVerification,
-                arguments: cubit.emailController.text.trim(),
+                arguments: cubit.emailController.text,
               );
             }
           case Status.failure:

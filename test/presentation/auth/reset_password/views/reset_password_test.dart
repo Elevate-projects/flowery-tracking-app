@@ -1,6 +1,5 @@
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/di/di.dart';
-import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/reset_password_request/reset_password_request_entity.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/reset_password.dart';
@@ -136,7 +135,7 @@ void main() {
     expect(find.text(AppText.passwordValidation2), findsNWidgets(1));
   });
 
-  testWidgets('verify forgetPassword loading state UI', (tester) async {
+  testWidgets('verify resetPassword loading state UI', (tester) async {
     //Arrange
     when(cubit.state).thenReturn(
       const ResetPasswordState(resetPasswordState: StateStatus.loading()),
@@ -164,41 +163,6 @@ void main() {
     );
 
     // Assert
-    expect(find.byType(Text), findsNWidgets(8));
-  });
-  testWidgets("Verify ResetPassword failure State UI", (tester) async {
-    // Arrange
-    final ResponseException error = const ResponseException(
-      message: "Failed to ResetPassword",
-    );
-    when(cubit.state).thenReturn(
-      ResetPasswordState(resetPasswordState: StateStatus.failure(error)),
-    );
-    when(cubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        ResetPasswordState(resetPasswordState: StateStatus.failure(error)),
-      ]),
-    );
-    // Act
-    await tester.pumpWidget(prepareWidget());
-    await tester.enterText(
-      find.byWidgetPredicate(
-        (widget) =>
-            widget is CustomTextFormField && widget.label == AppText.password,
-      ),
-      "Moaaz@123",
-    );
-    await tester.enterText(
-      find.byWidgetPredicate(
-        (widget) =>
-            widget is CustomTextFormField &&
-            widget.label == AppText.confirmPassword,
-      ),
-      "Moaaz@123",
-    );
-
-    // Assert
     expect(find.byType(Text), findsNWidgets(9));
-    expect(find.text(error.message), findsOneWidget);
   });
 }

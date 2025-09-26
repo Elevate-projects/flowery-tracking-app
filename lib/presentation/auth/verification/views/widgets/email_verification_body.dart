@@ -33,9 +33,7 @@ class EmailVerificationBody extends StatelessWidget {
                 );
                 break;
               case Status.success:
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
-                }
+                Navigator.pop(context);
                 Navigator.pushReplacementNamed(
                   context,
                   RouteNames.resetPassword,
@@ -43,9 +41,7 @@ class EmailVerificationBody extends StatelessWidget {
                 );
                 break;
               case Status.failure:
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
-                }
+                Navigator.pop(context);
                 Loaders.showErrorMessage(
                   message:
                       state.verifyCodeStatus.error?.message ?? AppText.error,

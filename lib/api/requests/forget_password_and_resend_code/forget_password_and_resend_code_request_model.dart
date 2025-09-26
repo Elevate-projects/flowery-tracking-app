@@ -11,8 +11,7 @@ class ForgetPasswordAndResendCodeRequestModel extends Equatable {
   const ForgetPasswordAndResendCodeRequestModel({this.email});
 
   factory ForgetPasswordAndResendCodeRequestModel.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json,) {
     return _$ForgetPasswordAndResendCodeRequestModelFromJson(json);
   }
 
