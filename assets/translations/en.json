@@ -38,11 +38,31 @@
   "connectionTimeout": "Connection timeout, please try again later.",
   "networkError": "Something went wrong. Please check your internet connection.",
   "anUnknownErrorOccurred": "An unknown error occurred.",
+
   "applyNow": "Apply Now",
   "welcome": "welcome to\nFlowery rider app",
 
   "home": "Home",
   "order": "Order",
-  "profile": "Profile"
+  "profile": "Profile",
 
+  "resendOtp": "Otp has been resent Successfully",
+  "forgetPasswordTitle": "Forget Password",
+  "forgetPasswordSubTitle": "Please enter your email associated to your account",
+  "emailVerificationTitle": "Email verification",
+  "emailVerificationSubTitle": "Please enter your code that send to your email address",
+  "resetPasswordTitle": "Reset password",
+  "resetPasswordSubTitle": "Password must not be empty and must contain 6 characters with upper case letter and one number at least ",
+  "continueWord": "Continue",
+  "enter6DigitCode": "Please enter the 6-digit code.",
+  "resendAvailableStatement": "Resend available in ",
+  "invalidCode": "Invalid Code",
+  "notReceivedCodeStatement": "Didn't receive code?",
+  "otpResentedSuccessfully": "OTP Resented successfully.",
+  "verificationSuccess": "Verification Success",
+  "passwordRested": "Password Rested Successfully",
+  "confirmPassword": "Confirm Password",
+  "confirmPasswordHint": "Confirm your password",
+  "resendWord": "Resend",
+  "confirmWord": "Confirm"
 }
