@@ -1,6 +1,5 @@
+import 'package:flowery_tracking_app/api/models/country/timezones.dart';
 import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart';
-
-import 'Timezones.dart';
 
 class CountryModel {
   CountryModel({
