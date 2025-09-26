@@ -13,9 +13,10 @@ BottomNavigationBarItem buildBottomNavItem({
   return BottomNavigationBarItem(
     label: label,
     icon: RPadding(
+      key: ValueKey('bottom_nav_icon_$index'),
+
       padding:  const EdgeInsets.only(top: 3, bottom: 4 ),
       child: SvgPicture.asset(
-        key: ValueKey('bottom_nav_icon_$index'),
         iconPath,
         colorFilter: ColorFilter.mode(
           currentIndex == index
