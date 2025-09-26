@@ -39,6 +39,10 @@
   "networkError": "Something went wrong. Please check your internet connection.",
   "anUnknownErrorOccurred": "An unknown error occurred.",
   "applyNow": "Apply Now",
-  "welcome": "welcome to\nFlowery rider app"
+  "welcome": "welcome to\nFlowery rider app",
+
+  "home": "Home",
+  "order": "Order",
+  "profile": "Profile"
 
 }
