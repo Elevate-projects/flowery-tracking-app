@@ -1,5 +1,6 @@
 import 'package:flowery_tracking_app/core/constants/app_animations.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/widgets/login_button.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/widgets/login_form.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/widgets/remember_me_and_forget_pass_row.dart';
@@ -36,15 +37,10 @@ class LoginViewBody extends StatelessWidget {
           );
         } else if (state.loginStatus.isSuccess) {
           FullScreenLoader.stopLoading(context: context);
-          // this Loader will be deleted after we having the home screen
-          Loaders.showSuccessMessage(
-            message: "Logged in successfully",
-            context: context,
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            RouteNames.bottomNavigation,
+            (route) => false,
           );
-          // Navigator.of(context).pushNamedAndRemoveUntil(
-          //   RouteNames.floweryTrackingBottomNavBar,
-          //   (route) => false,
-          // );
         }
       },
       child: SingleChildScrollView(

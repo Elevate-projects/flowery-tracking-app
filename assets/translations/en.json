@@ -42,6 +42,10 @@
   "applyNow": "Apply Now",
   "welcome": "welcome to\nFlowery rider app",
 
+  "home": "Home",
+  "order": "Order",
+  "profile": "Profile",
+
   "resendOtp": "Otp has been resent Successfully",
   "forgetPasswordTitle": "Forget Password",
   "forgetPasswordSubTitle": "Please enter your email associated to your account",

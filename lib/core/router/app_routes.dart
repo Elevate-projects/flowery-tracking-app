@@ -1,6 +1,7 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views/forget_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
+import 'package:flowery_tracking_app/presentation/bottom_navigation/views/bottom_navigation_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/reset_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views/email_verification.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
@@ -13,6 +14,9 @@ abstract class AppRoutes {
         return MaterialPageRoute(builder: (_) => const OnboardingView());
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
+
+      case RouteNames.bottomNavigation:
+        return MaterialPageRoute(builder: (_) => const BottomNavigationView());
 
       case RouteNames.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPassword());
