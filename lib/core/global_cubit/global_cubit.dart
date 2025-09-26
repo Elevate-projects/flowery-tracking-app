@@ -48,8 +48,7 @@ class GlobalCubit extends Cubit<GlobalState> {
     FlutterNativeSplash.remove();
     if (userToken != null && isRemembered) {
       FloweryDriverMethodHelper.currentUserToken = userToken;
-      // redirectedScreen = RouteNames.floweryBottomNavigation;
-      redirectedScreen = RouteNames.login;
+      redirectedScreen = RouteNames.bottomNavigation;
     } else {
       redirectedScreen = RouteNames.onboarding;
     }

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views/widgets/bottom_navigation_item.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return BottomNavigationBar(
-      key: const ValueKey('bottom_nav_bar'),
+      key: const ValueKey(WidgetKeys.bottomNavBarKey),
       elevation: 1,
       backgroundColor: theme.colorScheme.secondary,
       currentIndex: currentIndex,

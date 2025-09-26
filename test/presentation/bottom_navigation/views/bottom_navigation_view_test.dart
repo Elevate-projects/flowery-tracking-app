@@ -1,14 +1,15 @@
 import 'package:flowery_tracking_app/core/constants/app_colors.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/core/di/di.dart';
-import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mockito/annotations.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views/bottom_navigation_view.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_cubit.dart';
+import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'bottom_navigation_view_test.mocks.dart';
@@ -54,7 +55,10 @@ Future<void> main() async {
     await tester.pumpWidget(prepareWidget());
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const ValueKey('bottom_nav_bar')), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey(WidgetKeys.bottomNavBarKey)),
+      findsOneWidget,
+    );
 
     expect(find.byKey(const ValueKey('bottom_nav_icon_0')), findsOneWidget);
     expect(find.byKey(const ValueKey('bottom_nav_icon_1')), findsOneWidget);
