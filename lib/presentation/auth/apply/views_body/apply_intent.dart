@@ -44,3 +44,7 @@ final class ToggleObscurePasswordIntent extends ApplyIntent {
 final class ToggleConfirmObscurePasswordIntent extends ApplyIntent {
   const ToggleConfirmObscurePasswordIntent();
 }
+
+// final class ExtractLicensePlateIntent extends ApplyIntent {
+//   const ExtractLicensePlateIntent();
+// }
