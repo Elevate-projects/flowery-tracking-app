@@ -1,4 +1,5 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/presentation/auth/application_approved/views/application_apprived_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views/forget_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/reset_password.dart';
@@ -30,6 +31,11 @@ abstract class AppRoutes {
       case RouteNames.resetPassword:
         return MaterialPageRoute(
           builder: (_) => ResetPassword(email: settings.arguments as String),
+        );
+
+      case RouteNames.applicationApproved:
+        return MaterialPageRoute(
+          builder: (_) => const ApplicationApprovedView(),
         );
 
       default:

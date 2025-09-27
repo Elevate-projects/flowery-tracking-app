@@ -61,5 +61,9 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
   "resendWord": "اعادة الارسال",
-  "confirmWord": "تأكيد"
+  "confirmWord": "تأكيد",
+
+  "applicationApproved": "!تم تقديم طلبك",
+  "applicationApprovedSubTitle": "شكرًا لتقديم طلبك، سنقوم بمراجعة طلبك وسنعود إليك قريبًا.",
+  "loginButton": "تسجيل الدخول"
 }
