@@ -15,26 +15,27 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Collect results
-        run: |
-          msg="*GitHub Actions Summary for PR: <${{ github.event.workflow_run.html_url }}|View run>*\n"
-
-          # The workflow that just finished
-          wf_name="${{ github.event.workflow.name }}"
-          wf_status="${{ github.event.workflow_run.conclusion }}"
-
-          if [ "$wf_status" = "success" ]; then
-            msg+="✅ $wf_name passed\n"
-          elif [ "$wf_status" = "failure" ]; then
-            msg+="❌ $wf_name failed\n"
-          else
-            msg+="⚠️ $wf_name finished with status: $wf_status\n"
-          fi
-
-          echo "$msg" > slack_message.txt
-
-      - name: Send to Slack
-        run: |
-          curl -X POST -H 'Content-type: application/json' \
-            --data "{\"text\":\"$(cat slack_message.txt)\"}" \
-            ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          channel-id: C12345678
+          payload: |
+            {
+              "text": "GitHub Workflow *${{ github.event.workflow.name }}* finished with status: *${{ github.event.workflow_run.conclusion }}*",
+              "attachments": [
+                {
+                  "color": "${{ github.event.workflow_run.conclusion == 'success' && 'good' || 'danger' }}",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "👤 *Actor*: ${{ github.actor }}\n📦 *Repo*: ${{ github.repository }}\n🔗 <${{ github.event.workflow_run.html_url }}|View run>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
