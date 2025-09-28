@@ -1,0 +1,40 @@
+name: Slack Notification
+
+on:
+  workflow_run:
+    workflows:
+      - "Flutter Linting"
+      - "Build & Analyze"
+      - "Flutter Unit Testing Action"
+      - "Validate Branch Name"
+      - "Pull Request Title & Branch Name Validator"
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect results
+        run: |
+          msg="*GitHub Actions Summary for PR: <${{ github.event.workflow_run.html_url }}|View run>*\n"
+
+          # The workflow that just finished
+          wf_name="${{ github.event.workflow.name }}"
+          wf_status="${{ github.event.workflow_run.conclusion }}"
+
+          if [ "$wf_status" = "success" ]; then
+            msg+="✅ $wf_name passed\n"
+          elif [ "$wf_status" = "failure" ]; then
+            msg+="❌ $wf_name failed\n"
+          else
+            msg+="⚠️ $wf_name finished with status: $wf_status\n"
+          fi
+
+          echo "$msg" > slack_message.txt
+
+      - name: Send to Slack
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+            --data "{\"text\":\"$(cat slack_message.txt)\"}" \
+            ${{ secrets.SLACK_WEBHOOK_URL }}
