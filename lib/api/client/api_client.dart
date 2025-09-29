@@ -3,6 +3,7 @@ import 'package:flowery_tracking_app/api/requests/forget_password_and_resend_cod
 import 'package:flowery_tracking_app/api/requests/login_request/login_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/reset_password/reset_password_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/verification/verify_request_model.dart';
+import 'package:flowery_tracking_app/api/responses/driver_pending_orders/driver_pending_orders_response.dart';
 import 'package:flowery_tracking_app/api/responses/forget_password_and_resend_code/forget_password_and_resend_code_response.dart';
 import 'package:flowery_tracking_app/api/responses/login_response/login_response.dart';
 import 'package:flowery_tracking_app/api/responses/reset_password/reset_password_response.dart';
@@ -34,4 +35,15 @@ abstract class ApiClient {
   Future<ResetPasswordResponse> resetPassword(
     @Body() ResetPasswordRequestModel request,
   );
+
+  @GET(Endpoints.driverPendingOrders)
+  Future<DriverPendingOrdersResponse> fetchAllDriverPendingOrders({
+    @Header("Authorization") required String token,
+  });
+
+  @PUT(Endpoints.startOrder)
+  Future<void> acceptOrder({
+    @Path("orderId") required String orderId,
+    @Header("Authorization") required String token,
+  });
 }

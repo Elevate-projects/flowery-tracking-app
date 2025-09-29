@@ -9,20 +9,11 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
   BottomNavigationCubit() : super(const BottomNavigationState());
   final PageController pageController = PageController();
 
-  //  These are only for testing the BottomNavigation functionality.
   final List<Widget> pages = const [
     Center(child: Text("Home")),
     Center(child: Text("Orders")),
     Center(child: Text("Profile")),
   ];
-
-  // Uncomment these once the actual screens are ready
-  // final List<Widget> pages = [
-  //   const HomeView(),
-  //   const OrderView(),
-  //   const ProfileView(),
-  //
-  // ];
 
   void doIntent(BottomNavigationIntent intent) {
     switch (intent) {

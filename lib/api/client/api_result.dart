@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flowery_tracking_app/core/connection_manager/connection_manager.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/exceptions/dio_exceptions.dart';
+import 'package:flowery_tracking_app/core/exceptions/firebase_exceptions.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 
 sealed class Result<T> {}
@@ -35,6 +37,18 @@ Future<Result<T>> executeApi<T>(Future<T> Function() apiCall) async {
   } on DioException catch (error) {
     return Failure(
       responseException: DioExceptions.handleError(error).responseException,
+    );
+  } on FirebaseException catch (error) {
+    return Failure(
+      responseException: FirebaseExceptions.firebaseExceptions(
+        error,
+      ).responseException,
+    );
+  } catch (error) {
+    return Failure(
+      responseException: ResponseException(
+        message: "${AppText.unknownErrorMessage} ${error.toString()}",
+      ),
     );
   }
 }
