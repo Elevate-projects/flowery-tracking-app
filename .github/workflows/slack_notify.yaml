@@ -1,0 +1,41 @@
+name: Slack Notification
+
+on:
+  workflow_run:
+    workflows:
+      - "Flutter Linting"
+      - "Build & Analyze"
+      - "Flutter Unit Testing Action"
+      - "Validate Branch Name"
+      - "Pull Request Title & Branch Name Validator"
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          channel-id: C09AHC1MVNH
+          payload: |
+            {
+              "text": "GitHub Workflow *${{ github.event.workflow.name }}* finished with status: *${{ github.event.workflow_run.conclusion }}*",
+              "attachments": [
+                {
+                  "color": "${{ github.event.workflow_run.conclusion == 'success' && 'good' || 'danger' }}",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "👤 *Actor*: ${{ github.actor }}\n📦 *Repo*: ${{ github.repository }}\n🔗 <${{ github.event.workflow_run.html_url }}|View run>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
