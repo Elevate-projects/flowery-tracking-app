@@ -14,7 +14,7 @@ import 'package:flowery_tracking_app/domain/entities/requests/login_request/logi
 import 'package:flowery_tracking_app/domain/entities/requests/reset_password_request/reset_password_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/verify_request/verify_requset_entity.dart';
 
-abstract class RequestMapper {
+abstract final class RequestMapper {
   static LoginRequestModel toLoginRequestModel({
     required LoginRequestEntity loginRequestEntity,
   }) {

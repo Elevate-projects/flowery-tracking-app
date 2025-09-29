@@ -47,7 +47,7 @@ Future<Result<T>> executeApi<T>(Future<T> Function() apiCall) async {
   } catch (error) {
     return Failure(
       responseException: ResponseException(
-        message: "${AppText.unknownErrorMessage} ${error.toString()}",
+        message: "${AppText.unknownErrorMessage.tr()} ${error.toString()}",
       ),
     );
   }

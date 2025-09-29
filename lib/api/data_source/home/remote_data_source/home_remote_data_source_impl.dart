@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/api/models/order/order_model.dart';
 import 'package:flowery_tracking_app/core/constants/app_collections.dart';
 import 'package:flowery_tracking_app/data/data_source/home/remote_data_source/home_remote_data_source.dart';
@@ -44,7 +44,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         token: "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
         orderId: request.orderId,
       );
-      await db.collection(AppCollections.drivers).add(orderModel.toJson());
+      await db
+          .collection(AppCollections.drivers)
+          .doc(request.orderId)
+          .set(orderModel.toJson());
     });
   }
 }
