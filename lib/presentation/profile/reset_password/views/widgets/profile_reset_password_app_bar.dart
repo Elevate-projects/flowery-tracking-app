@@ -5,9 +5,9 @@ import 'package:flowery_tracking_app/utils/common_widgets/custom_back_arrow.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProfileResetPasswordAppBar extends StatelessWidget
+class ResetPasswordAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const ProfileResetPasswordAppBar({super.key});
+  const ResetPasswordAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,7 @@ class ProfileResetPasswordAppBar extends StatelessWidget
       titleWidget: RPadding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
-          children: [
-            const CustomBackArrow(),
-            Text(AppText.resetPasswordTitle.tr()),
-          ],
+          children: [const CustomBackArrow(), Text(AppText.password.tr())],
         ),
       ),
     );
