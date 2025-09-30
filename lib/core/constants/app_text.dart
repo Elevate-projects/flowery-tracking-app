@@ -10,6 +10,19 @@ abstract final class AppText {
   static const String continueText = "continueText";
   static const String loggingInMessage = "loggingInMessage";
 
+  // Home
+  static const String floweryRider = "floweryRider";
+  static const String flowerOrder = "flowerOrder";
+  static const String pickupAddress = "pickupAddress";
+  static const String userAddress = "userAddress";
+  static const String reject = "reject";
+  static const String accept = "accept";
+  static const String notProvided = "notProvided";
+  static const String egp = "egp";
+  static const String reloadedOrdersMessage = "reloadedOrdersMessage";
+  static const String emptyOrdersMessage = "emptyOrdersMessage";
+  static const String reload = "reload";
+
   // Validations
   static const String userNameValidation = "userNameValidation";
   static const String emptyTextValidation = "emptyTextValidation";

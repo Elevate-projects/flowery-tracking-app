@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class UserModel {
   @JsonKey(name: "_id")
   final String? id;

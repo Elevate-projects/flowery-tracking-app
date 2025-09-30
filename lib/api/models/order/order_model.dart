@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'order_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class OrderModel {
   @JsonKey(name: "_id")
   final String? id;
@@ -72,7 +72,9 @@ final class OrderModel {
       user: user?.toUserEntity(),
       orderItems: orderItems?.map((item) => item.toOrderItemEntity()).toList(),
       totalPrice: totalPrice,
-      shippingAddress: shippingAddress?.toShippingAddressEntity(),
+      shippingAddress:
+          shippingAddress?.toShippingAddressEntity() ??
+          ShippingAddressModel.dummy().toShippingAddressEntity(),
       paymentType: paymentType,
       isPaid: isPaid,
       isDelivered: isDelivered,

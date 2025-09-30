@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'shipping_address_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class ShippingAddressModel {
   @JsonKey(name: "street")
   final String? street;
@@ -23,6 +23,14 @@ class ShippingAddressModel {
     this.lat,
     this.long,
   });
+
+  static ShippingAddressModel dummy() => ShippingAddressModel(
+    phone: "01010518802",
+    city: "Cairo",
+    street: "Saqr-koresh",
+    long: "31.7195459",
+    lat: "31.7195459",
+  );
 
   factory ShippingAddressModel.fromJson(Map<String, dynamic> json) {
     return _$ShippingAddressModelFromJson(json);
