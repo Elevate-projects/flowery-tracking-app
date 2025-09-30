@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/core/di/di.dart';
-import 'package:flowery_tracking_app/presentation/auth/reset_password/views/widgets/reset_password_app_bar.dart';
 import 'package:flowery_tracking_app/presentation/profile/reset_password/views/profile_reset_password.dart';
+import 'package:flowery_tracking_app/presentation/profile/reset_password/views/widgets/profile_reset_password_app_bar.dart';
 import 'package:flowery_tracking_app/presentation/profile/reset_password/views/widgets/profile_reset_password_body.dart';
 import 'package:flowery_tracking_app/presentation/profile/reset_password/views_model/profile_reset_password_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/reset_password/views_model/profile_reset_password_state.dart';

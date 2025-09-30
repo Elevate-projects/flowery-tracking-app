@@ -1,8 +1,8 @@
 import 'package:flowery_tracking_app/core/di/di.dart';
+import 'package:flowery_tracking_app/presentation/auth/reset_password/views/widgets/reset_password_app_bar.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/widgets/reset_password_body.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views_model/reset_password_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views_model/reset_password_intent.dart';
-import 'package:flowery_tracking_app/presentation/profile/reset_password/views/widgets/profile_reset_password_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
