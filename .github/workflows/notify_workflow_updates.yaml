@@ -1,0 +1,58 @@
+name: Slack Notification
+
+on:
+  workflow_run:
+    workflows:
+      - "Flutter Linting"
+      - "Sonar Cube Analysis"
+      - "Flutter Unit Testing Action"
+      - "Validate Branch Name"
+      - "Pull Request Title & Branch Name Validator"
+    types:
+      - completed
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Determine Slack Status
+        id: status
+        run: |
+          if [ "${{ github.event.workflow_run.conclusion }}" == "success" ]; then
+            echo "emoji=✅" >> $GITHUB_OUTPUT
+            echo "color=#36a64f" >> $GITHUB_OUTPUT  
+          elif [ "${{ github.event.workflow_run.conclusion }}" == "failure" ]; then
+            echo "emoji=🔴" >> $GITHUB_OUTPUT
+            echo "color=#FF0000" >> $GITHUB_OUTPUT  
+          elif [ "${{ github.event.workflow_run.conclusion }}" == "cancelled" ]; then
+            echo "emoji=⚪" >> $GITHUB_OUTPUT
+            echo "color=#AAAAAA" >> $GITHUB_OUTPUT   
+          else
+            echo "emoji=❓" >> $GITHUB_OUTPUT
+            echo "color=#808080" >> $GITHUB_OUTPUT   
+          fi
+
+      - name: Send Slack Notification
+        run: |
+          curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+          -H "Content-type: application/json" \
+          --data "{
+            \"channel\": \"C09AHC1MVNH\", 
+            \"attachments\": [
+              {
+                \"color\": \"${{ steps.status.outputs.color }}\",
+                \"blocks\": [
+                  {
+                    \"type\": \"section\",
+                    \"text\": {
+                      \"type\": \"mrkdwn\",
+                      \"text\": \"${{ steps.status.outputs.emoji }} *Workflow:* \`${{ github.event.workflow_run.name }}\`\n*Status:* \`${{ github.event.workflow_run.conclusion }}\`\n*Branch:* \`${{ github.event.workflow_run.head_branch }}\`\n*Actor:* \`${{ github.event.workflow_run.actor.login }}\`\n➡️ *Check run:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}|View Logs>\"
+                    }
+                  }
+                ]
+              }
+            ]
+          }" \
+          https://slack.com/api/chat.postMessage
