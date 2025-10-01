@@ -37,6 +37,8 @@ dependencies:
   equatable: ^2.0.7
   dio: any
   easy_localization: ^3.0.8
+  firebase_core: ^4.1.1
+  cloud_firestore: ^6.0.2
 
 dev_dependencies:
   flutter_launcher_icons: "^0.14.4"

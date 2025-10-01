@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/api/responses/reset_password/reset_password_response.dart';
 import 'package:flowery_tracking_app/data/data_source/reset_password/reset_password_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/reset_password_request/reset_password_request_entity.dart';
