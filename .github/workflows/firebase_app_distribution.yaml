@@ -3,6 +3,7 @@ name: Firebase App Distribution
 on:
   pull_request:
     branches:
+      - main
       - development
     types:
       - closed
