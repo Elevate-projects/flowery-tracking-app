@@ -25,7 +25,12 @@ class AnimationLoaderWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset(animation, width: ScreenUtil().screenWidth * 0.8),
+          Flexible(
+            child: Lottie.asset(
+              animation,
+              width: ScreenUtil().screenWidth * 0.8,
+            ),
+          ),
           RPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(

@@ -4,7 +4,7 @@ import 'package:flowery_tracking_app/domain/repositories/home/home_repository.da
 import 'package:injectable/injectable.dart';
 
 @injectable
-final class FetchDriverPendingOrdersUseCase {
+class FetchDriverPendingOrdersUseCase {
   final HomeRepository _homeRepository;
   const FetchDriverPendingOrdersUseCase(this._homeRepository);
   Future<Result<List<OrderEntity>>> invoke() async {
