@@ -39,6 +39,10 @@ class ForgetPasswordBody extends StatelessWidget {
                 RouteNames.emailVerification,
                 arguments: cubit.emailController.text,
               );
+              Loaders.showSuccessMessage(
+                message: AppText.resendOtp,
+                context: context,
+              );
             }
           case Status.failure:
             Navigator.pop(context);
