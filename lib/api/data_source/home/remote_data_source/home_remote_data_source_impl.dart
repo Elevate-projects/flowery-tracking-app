@@ -13,7 +13,8 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: HomeRemoteDataSource)
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiClient _apiClient;
-  const HomeRemoteDataSourceImpl(this._apiClient);
+  final FirebaseFirestore _firestore;
+  const HomeRemoteDataSourceImpl(this._apiClient, this._firestore);
 
   @override
   Future<Result<List<OrderEntity>>> fetchAllDriverPendingOrders() async {
@@ -35,7 +36,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   Future<Result<void>> acceptOrder({
     required AcceptOrderRequestEntity request,
   }) async {
-    final db = FirebaseFirestore.instance;
     final OrderModel orderModel = RequestMapper.orderEntityToModel(
       orderEntity: request.orderData,
     );
@@ -44,7 +44,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         token: "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
         orderId: request.orderId,
       );
-      await db
+      await _firestore
           .collection(AppCollections.drivers)
           .doc(request.orderId)
           .set(orderModel.toJson());

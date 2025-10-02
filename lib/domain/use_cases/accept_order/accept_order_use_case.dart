@@ -4,7 +4,7 @@ import 'package:flowery_tracking_app/domain/repositories/home/home_repository.da
 import 'package:injectable/injectable.dart';
 
 @injectable
-final class AcceptOrderUseCase {
+class AcceptOrderUseCase {
   final HomeRepository _homeRepository;
   const AcceptOrderUseCase(this._homeRepository);
   Future<Result<void>> invoke({
