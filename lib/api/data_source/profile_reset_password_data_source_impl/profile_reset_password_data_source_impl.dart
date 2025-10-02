@@ -3,6 +3,7 @@ import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/api/client/request_maper.dart';
 import 'package:flowery_tracking_app/api/responses/profile_reset_password/profile_reset_password_response.dart';
+import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
 import 'package:flowery_tracking_app/data/data_source/profile_reset_password/profile_reset_password_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/profile_reset_password/profile_reset_password_entity.dart';
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
@@ -12,8 +13,9 @@ import 'package:injectable/injectable.dart';
 class ProfileResetPasswordDataSourceImpl
     implements ProfileResetPasswordDataSource {
   final ApiClient _apiClient;
+  final SecureStorage _secureStorage;
 
-  const ProfileResetPasswordDataSourceImpl(this._apiClient);
+  const ProfileResetPasswordDataSourceImpl(this._apiClient, this._secureStorage);
 
   @override
   Future<Result<ProfileResetPasswordResponse>> profileResetPassword({
@@ -22,8 +24,9 @@ class ProfileResetPasswordDataSourceImpl
     return executeApi(() async {
       final res = await _apiClient.profileResetPassword(
         token: "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
-        entity: RequestMapper.toProfileResetPasswordRequest(entity: request),
+        request: RequestMapper.toProfileResetPasswordRequest(entity: request),
       );
+      await _secureStorage.saveUserToken(token: res.token);
       FloweryDriverMethodHelper.currentUserToken = res.token;
       return res;
     });

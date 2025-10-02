@@ -8,6 +8,5 @@ class InitializeProfileResetPasswordFormIntent
 class OnProfileResetPasswordIntent extends ProfileResetPasswordIntent {
   final ProfileResetPasswordRequestEntity request;
 
-
   OnProfileResetPasswordIntent({required this.request});
 }

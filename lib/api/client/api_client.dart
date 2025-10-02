@@ -40,6 +40,6 @@ abstract class ApiClient {
   @PATCH(Endpoints.profileResetPassword)
   Future<ProfileResetPasswordResponse> profileResetPassword({
     @Header("Authorization") required String token,
-    @Body() required ProfileResetPasswordRequestModel entity,
+    @Body() required ProfileResetPasswordRequestModel request,
   });
 }

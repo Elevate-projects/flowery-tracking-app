@@ -15,8 +15,8 @@ class BuildProfileResetPasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<ProfileResetPasswordCubit>(context);
-    return Padding(
-      padding: REdgeInsets.all(16),
+    return RPadding(
+      padding: const EdgeInsets.all(16),
       child: Form(
         key: cubit.formKey,
         child: Column(
