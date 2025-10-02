@@ -19,8 +19,9 @@ abstract class FullScreenLoader {
           height: ScreenUtil().scaleHeight,
           child: Column(
             children: [
-              const RSizedBox(height: 200),
-              AnimationLoaderWidget(text: text, animation: animation),
+              Expanded(
+                child: AnimationLoaderWidget(text: text, animation: animation),
+              ),
             ],
           ),
         ),
