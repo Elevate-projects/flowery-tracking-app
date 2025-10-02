@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'order_item_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class OrderItemModel {
   @JsonKey(name: "product")
   final ProductModel? product;

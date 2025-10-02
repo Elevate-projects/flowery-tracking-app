@@ -9,6 +9,18 @@
   "continueText": "Continue",
   "loggingInMessage": "Logging you in ...",
 
+  "floweryRider": "Flowery rider",
+  "flowerOrder": "Flower order",
+  "pickupAddress": "Pickup address",
+  "userAddress": "User address",
+  "reject": "Reject",
+  "accept": "Accept",
+  "notProvided": "Not Provided",
+  "egp": "EGP",
+  "reloadedOrdersMessage": "Orders have been successfully reloaded",
+  "emptyOrdersMessage": "Your list of pending orders is currently empty. Would you like to refresh it?",
+  "reload": "Reload",
+
   "userNameValidation": "This user name is not valid",
   "emptyTextValidation": "This field is required",
   "phoneNumberValidation": "Phone number field is required",

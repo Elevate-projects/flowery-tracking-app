@@ -9,6 +9,18 @@
   "continueText": "متابعة",
   "loggingInMessage": "جاري تسجيل دخولك ...",
 
+  "floweryRider": "سائق فلويري",
+  "flowerOrder": "طلب ورد",
+  "pickupAddress": "عنوان الاستلام",
+  "userAddress": "عنوان المستخدم",
+  "reject": "رفض",
+  "accept": "قبول",
+  "notProvided": "غير متوفر",
+  "egp": "جنيه",
+  "reloadedOrdersMessage": "تم إعادة تحميل الطلبات بنجاح",
+  "emptyOrdersMessage": "قائمة الطلبات المعلقة فارغة حاليًا. هل ترغب في تحديثها؟",
+  "reload": "تحديث",
+
   "userNameValidation": "اسم المستخدم غير صالح",
   "emptyTextValidation": "هذا الحقل مطلوب",
   "phoneNumberValidation": "حقل رقم الهاتف مطلوب",

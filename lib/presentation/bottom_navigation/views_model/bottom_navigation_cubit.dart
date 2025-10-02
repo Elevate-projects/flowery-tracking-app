@@ -1,5 +1,6 @@
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_intent.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_state.dart';
+import 'package:flowery_tracking_app/presentation/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -10,7 +11,7 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
   final PageController pageController = PageController();
 
   final List<Widget> pages = const [
-    Center(child: Text("Home")),
+    HomeView(),
     Center(child: Text("Orders")),
     Center(child: Text("Profile")),
   ];

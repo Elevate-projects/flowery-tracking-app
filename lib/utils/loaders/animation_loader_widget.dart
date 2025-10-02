@@ -9,16 +9,14 @@ class AnimationLoaderWidget extends StatelessWidget {
     required this.text,
     required this.animation,
     this.showAction = false,
-    this.actionText,
-    this.onActionPressed,
+    this.actionWidget,
     this.style,
   });
 
   final String text;
   final String animation;
   final bool showAction;
-  final String? actionText;
-  final VoidCallback? onActionPressed;
+  final Widget? actionWidget;
   final TextStyle? style;
   @override
   Widget build(BuildContext context) {
@@ -44,23 +42,7 @@ class AnimationLoaderWidget extends StatelessWidget {
           const RSizedBox(height: 24),
           Visibility(
             visible: showAction,
-            child: Column(
-              children: [
-                RSizedBox(
-                  width: 250,
-                  child: OutlinedButton(
-                    onPressed: onActionPressed,
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.grey.shade700,
-                    ),
-                    child: Text(
-                      actionText ?? "",
-                      style: theme.textTheme.labelLarge,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            child: actionWidget ?? const RSizedBox(),
           ),
         ],
       ),
