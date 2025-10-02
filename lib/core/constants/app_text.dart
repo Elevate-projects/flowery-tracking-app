@@ -155,8 +155,6 @@ abstract final class AppText {
   static const String aborted = "aborted";
   static const String outOfRange = "outOfRange";
   static const String unknownErrorMessage = "unknownErrorMessage";
-}
-
   //profile
   static const String language="language";
   static const String logout="logout";

@@ -40,8 +40,7 @@ abstract class ApiClient {
 
   @GET(Endpoints.loggedUserData)
   Future<ProfileResponse>getUserData({@Header("Authorization") required String token});
-    @Body() ResetPasswordRequestModel request,
-  );
+
 
   @PATCH(Endpoints.profileResetPassword)
   Future<ProfileResetPasswordResponse> profileResetPassword({
