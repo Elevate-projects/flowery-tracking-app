@@ -77,6 +77,10 @@
   "confirmPasswordHint": "Confirm your password",
   "resendWord": "Resend",
   "confirmWord": "Confirm",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "update": "Update",
+  "passwordChanged": "Password Changed Successfully",
 
   "emailAlreadyInUse": "The email address is already registered. Please use a different email.",
   "invalidEmail": "The email address provided is invalid. Please enter a valid email.",

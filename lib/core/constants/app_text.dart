@@ -59,6 +59,7 @@ abstract final class AppText {
   static const String welcome = "welcome";
   static const String applyNow = "applyNow";
   static const String appVersion = "v 6.3.0 - (446)";
+
   //BottomNavigation
   static const String home = 'home';
   static const String order = 'order';
@@ -84,6 +85,10 @@ abstract final class AppText {
   static const String confirmPasswordHint = "confirmPasswordHint";
   static const String resendWord = "resendWord";
   static const String confirmWord = "confirmWord";
+  static const String currentPassword = "currentPassword";
+  static const String newPassword = "newPassword";
+  static const String update = "update";
+  static const String passwordChanged = "passwordChanged";
 
   // Firebase Exceptions
   static const String emailAlreadyInUse = "emailAlreadyInUse";

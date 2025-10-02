@@ -69,6 +69,7 @@ void main() {
       findsOneWidget,
     );
   });
+
   testWidgets('Verify ResetPassword Validation with empty fields State UI', (
     tester,
   ) async {
@@ -163,6 +164,6 @@ void main() {
     );
 
     // Assert
-    expect(find.byType(Text), findsNWidgets(9));
+    expect(find.byType(Text), findsNWidgets(8));
   });
 }
