@@ -8,7 +8,6 @@
   "forgetPassword": "Forget password?",
   "continueText": "Continue",
   "loggingInMessage": "Logging you in ...",
-
   "userNameValidation": "This user name is not valid",
   "emptyTextValidation": "This field is required",
   "phoneNumberValidation": "Phone number field is required",
@@ -26,7 +25,6 @@
   "passwordValidation7": "Password must contain a special character",
   "otpValidation": "The code sent to your email address is required",
   "otpValidation2": "You have to enter the 6-digit code",
-
   "connectionError": "Please check your internet connection and try again",
   "noResponseReceivedMessage": "No response received or response is not in expected format.",
   "error": "Error",
@@ -38,14 +36,11 @@
   "connectionTimeout": "Connection timeout, please try again later.",
   "networkError": "Something went wrong. Please check your internet connection.",
   "anUnknownErrorOccurred": "An unknown error occurred.",
-
   "applyNow": "Apply Now",
   "welcome": "welcome to\nFlowery rider app",
-
   "home": "Home",
   "order": "Order",
   "profile": "Profile",
-
   "resendOtp": "Otp has been resent Successfully",
   "forgetPasswordTitle": "Forget Password",
   "forgetPasswordSubTitle": "Please enter your email associated to your account",
@@ -64,5 +59,12 @@
   "confirmPassword": "Confirm Password",
   "confirmPasswordHint": "Confirm your password",
   "resendWord": "Resend",
-  "confirmWord": "Confirm"
+  "confirmWord": "Confirm",
+  "language": "Language",
+  "logout": "Logout",
+  "vehicleInfo": "Vehicle Info",
+  "arabic": "Arabic",
+  "english": "English",
+  "changeLanguage": "Change Language",
+  "appVersion": "v 6.3.0 - (446)"
 }

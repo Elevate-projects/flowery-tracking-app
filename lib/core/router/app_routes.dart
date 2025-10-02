@@ -5,6 +5,7 @@ import 'package:flowery_tracking_app/presentation/auth/reset_password/views/rese
 import 'package:flowery_tracking_app/presentation/auth/verification/views/email_verification.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views/bottom_navigation_view.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
+import 'package:flowery_tracking_app/presentation/profile/views/profile_views.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppRoutes {
@@ -30,6 +31,11 @@ abstract class AppRoutes {
       case RouteNames.resetPassword:
         return MaterialPageRoute(
           builder: (_) => ResetPassword(email: settings.arguments as String),
+        );
+
+      case RouteNames.profile:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileView(),
         );
 
       default:

@@ -61,5 +61,12 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
   "resendWord": "اعادة الارسال",
-  "confirmWord": "تأكيد"
+  "confirmWord": "تأكيد",
+  "language": "اللغة",
+  "logout": "تسجيل الخروج",
+  "vehicleInfo": "معلومات المركبة",
+  "arabic": "العربية",
+  "english": "الإنجليزية",
+  "changeLanguage": "تغيير اللغة",
+  "appVersion": "الإصدار 6.3.0 - (446)"
 }
