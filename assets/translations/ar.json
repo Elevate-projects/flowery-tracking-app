@@ -8,7 +8,6 @@
   "forgetPassword": "نسيت كلمة المرور؟",
   "continueText": "متابعة",
   "loggingInMessage": "جاري تسجيل دخولك ...",
-
   "userNameValidation": "اسم المستخدم غير صالح",
   "emptyTextValidation": "هذا الحقل مطلوب",
   "phoneNumberValidation": "حقل رقم الهاتف مطلوب",
@@ -26,7 +25,6 @@
   "passwordValidation7": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
   "otpValidation": "الرمز المرسل إلى بريدك الإلكتروني مطلوب",
   "otpValidation2": "يجب إدخال الرمز المكون من 6 أرقام",
-
   "connectionError": "يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى",
   "noResponseReceivedMessage": "لم يتم استلام استجابة أو الاستجابة ليست بالتنسيق المتوقع.",
   "error": "خطأ",
@@ -61,5 +59,9 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
   "resendWord": "اعادة الارسال",
-  "confirmWord": "تأكيد"
+  "confirmWord": "تأكيد",
+  "currentPassword": "كلمة المرور الحالية",
+  "newPassword": "كلمة المرور الجديدة",
+  "update": "تحديث",
+  "passwordChanged": "تم تغيير كلمة المرور بنجاح"
 }

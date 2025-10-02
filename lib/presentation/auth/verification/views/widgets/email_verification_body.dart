@@ -39,6 +39,10 @@ class EmailVerificationBody extends StatelessWidget {
                   RouteNames.resetPassword,
                   arguments: email,
                 );
+                Loaders.showSuccessMessage(
+                  message: AppText.verificationSuccess,
+                  context: context,
+                );
                 break;
               case Status.failure:
                 Navigator.pop(context);
