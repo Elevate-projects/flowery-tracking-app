@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/api/data_source/reset_password/reset_password_data_source_impl.dart';
 import 'package:flowery_tracking_app/api/responses/reset_password/reset_password_response.dart';
 import 'package:flowery_tracking_app/core/connection_manager/connection_manager.dart';

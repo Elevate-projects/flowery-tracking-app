@@ -1,7 +1,6 @@
-
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/api/responses/profile_reset_password/profile_reset_password_response.dart';
 import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
 import 'package:flowery_tracking_app/data/data_source/profile_reset_password/profile_reset_password_data_source.dart';
@@ -15,7 +14,10 @@ class ProfileResetPasswordDataSourceImpl
   final ApiClient _apiClient;
   final SecureStorage _secureStorage;
 
-  const ProfileResetPasswordDataSourceImpl(this._apiClient, this._secureStorage);
+  const ProfileResetPasswordDataSourceImpl(
+    this._apiClient,
+    this._secureStorage,
+  );
 
   @override
   Future<Result<ProfileResetPasswordResponse>> profileResetPassword({

@@ -1,4 +1,4 @@
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/api/requests/profile%20_reset_password/profile_reset_password_request.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/profile_reset_password/profile_reset_password_entity.dart';
 import 'package:flutter_test/flutter_test.dart';

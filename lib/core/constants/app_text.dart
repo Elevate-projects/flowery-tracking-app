@@ -10,6 +10,19 @@ abstract final class AppText {
   static const String continueText = "continueText";
   static const String loggingInMessage = "loggingInMessage";
 
+  // Home
+  static const String floweryRider = "floweryRider";
+  static const String flowerOrder = "flowerOrder";
+  static const String pickupAddress = "pickupAddress";
+  static const String userAddress = "userAddress";
+  static const String reject = "reject";
+  static const String accept = "accept";
+  static const String notProvided = "notProvided";
+  static const String egp = "egp";
+  static const String reloadedOrdersMessage = "reloadedOrdersMessage";
+  static const String emptyOrdersMessage = "emptyOrdersMessage";
+  static const String reload = "reload";
+
   // Validations
   static const String userNameValidation = "userNameValidation";
   static const String emptyTextValidation = "emptyTextValidation";
@@ -76,4 +89,70 @@ abstract final class AppText {
   static const String newPassword = "newPassword";
   static const String update = "update";
   static const String passwordChanged = "passwordChanged";
+
+  // Firebase Exceptions
+  static const String emailAlreadyInUse = "emailAlreadyInUse";
+  static const String invalidEmail = "invalidEmail";
+  static const String networkRequestFailed = "networkRequestFailed";
+  static const String weakPassword = "weakPassword";
+  static const String userDisabled = "userDisabled";
+  static const String userNotFound = "userNotFound";
+  static const String invalidVerificationCode = "invalidVerificationCode";
+  static const String invalidVerificationId = "invalidVerificationId";
+  static const String quotaExceeded = "quotaExceeded";
+  static const String emailAlreadyExists = "emailAlreadyExists";
+  static const String providerAlreadyLinked = "providerAlreadyLinked";
+  static const String requiresRecentLogin = "requiresRecentLogin";
+  static const String credentialAlreadyInUse = "credentialAlreadyInUse";
+  static const String userMismatch = "userMismatch";
+  static const String accountExistsWithDifferentCredential =
+      "accountExistsWithDifferentCredential";
+  static const String operationNotAllowed = "operationNotAllowed";
+  static const String expiredActionCode = "expiredActionCode";
+  static const String invalidActionCode = "invalidActionCode";
+  static const String missingActionCode = "missingActionCode";
+  static const String userTokenExpired = "userTokenExpired";
+  static const String wrongPassword = "wrongPassword";
+  static const String userTokenRevoked = "userTokenRevoked";
+  static const String invalidMessagePayload = "invalidMessagePayload";
+  static const String invalidSender = "invalidSender";
+  static const String invalidRecipientEmail = "invalidRecipientEmail";
+  static const String missingIframeStart = "missingIframeStart";
+  static const String missingIframeEnd = "missingIframeEnd";
+  static const String missingIframeSrc = "missingIframeSrc";
+  static const String authDomainConfigRequired = "authDomainConfigRequired";
+  static const String missingAppCredential = "missingAppCredential";
+  static const String invalidAppCredential = "invalidAppCredential";
+  static const String sessionCookieExpired = "sessionCookieExpired";
+  static const String uidAlreadyExists = "uidAlreadyExists";
+  static const String invalidCordovaConfiguration =
+      "invalidCordovaConfiguration";
+  static const String appDeleted = "appDeleted";
+  static const String userTokenMismatch = "userTokenMismatch";
+  static const String webStorageUnsupported = "webStorageUnsupported";
+  static const String invalidCredential = "invalidCredential";
+  static const String appNotAuthorized = "appNotAuthorized";
+  static const String keychainError = "keychainError";
+  static const String internalError = "internalError";
+  static const String invalidLoginCredentials = "invalidLoginCredentials";
+  static const String unknownAuthError = "unknownAuthError";
+  static const String unknownFirebaseError = "unknownFirebaseError";
+  static const String invalidCustomToken = "invalidCustomToken";
+  static const String customTokenMismatch = "customTokenMismatch";
+  static const String captchaCheckFailed = "captchaCheckFailed";
+  static const String googleLoginCanceled = "googleLoginCanceled";
+
+  // Firestore-related errors
+  static const String permissionDenied = "permissionDenied";
+  static const String unavailable = "unavailable";
+  static const String notFound = "notFound";
+  static const String alreadyExists = "alreadyExists";
+  static const String resourceExhausted = "resourceExhausted";
+  static const String cancelled = "cancelled";
+  static const String deadlineExceeded = "deadlineExceeded";
+  static const String dataLoss = "dataLoss";
+  static const String invalidArgument = "invalidArgument";
+  static const String aborted = "aborted";
+  static const String outOfRange = "outOfRange";
+  static const String unknownErrorMessage = "unknownErrorMessage";
 }
