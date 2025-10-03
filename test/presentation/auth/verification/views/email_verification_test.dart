@@ -41,9 +41,10 @@ void main() {
       builder: (context, child) {
         return MaterialApp(
           home: BlocProvider<VerificationScreenCubit>(
-            create: (_) => getIt.get<VerificationScreenCubit>()
-              ..doIntent(OnStartTimer())
-              ..doIntent(InitializeVerificationFormIntent()),
+            create: (_) =>
+            getIt.get<VerificationScreenCubit>()
+              ..doIntent(OnStartTimer())..doIntent(
+                InitializeVerificationFormIntent()),
             child: const EmailVerificationView(email: ''),
           ),
         );
@@ -67,18 +68,19 @@ void main() {
     await tester.pumpWidget(prepareWidget());
     await tester.pump();
     find.byWidgetPredicate(
-      (widget) => widget is Text && widget.selectionColor == AppColors.pink,
+          (widget) => widget is Text && widget.selectionColor == AppColors.pink,
     );
   });
   testWidgets('calls OnVerificationIntent when 6-digit code completed', (
-    tester,
-  ) async {
+      tester,) async {
     when(cubit.state).thenReturn(const VerificationScreenState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
     await tester.pumpWidget(prepareWidget());
 
     // Find the PinCodeTextFiledWidget and enter 6 digits
-    final pinFinder = find.byType(TextField).first;
+    final pinFinder = find
+        .byType(TextField)
+        .first;
     await tester.enterText(pinFinder, '123456');
     await tester.testTextInput.receiveAction(TextInputAction.done);
     // let debounce timers run
@@ -90,9 +92,8 @@ void main() {
     );
   });
 
-  testWidgets('calls OnResendCodeClickIntent when resend tapped', (
-    tester,
-  ) async {
+  testWidgets(
+      'calls OnResendCodeClickIntent when resend tapped', (tester,) async {
     when(
       cubit.state,
     ).thenReturn(const VerificationScreenState(secondsRemaining: 0));
@@ -101,7 +102,7 @@ void main() {
 
     // Tap the resend button (inside ResendCodeRow)
     final resendFinder = find.byWidgetPredicate(
-      (widget) => widget is Text && widget.data == AppText.resendWord,
+          (widget) => widget is Text && widget.data == AppText.resendWord,
     );
     await tester.tap(resendFinder);
     await tester.pump();

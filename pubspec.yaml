@@ -38,6 +38,8 @@ dependencies:
   equatable: ^2.0.7
   dio: any
   easy_localization: ^3.0.8
+  firebase_core: ^4.1.1
+  cloud_firestore: ^6.0.2
 
 dev_dependencies:
   flutter_launcher_icons: "^0.14.4"
@@ -45,6 +47,7 @@ dev_dependencies:
   retrofit_generator: ^9.2.0
   json_serializable: ^6.8.0
   build_runner: ^2.5.4
+  fake_cloud_firestore: ^4.0.0
   flutter_test:
     sdk: flutter
 
