@@ -73,7 +73,6 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
   "resendWord": "اعادة الارسال",
-  "confirmWord": "تأكيد",
   "currentPassword": "كلمة المرور الحالية",
   "newPassword": "كلمة المرور الجديدة",
   "update": "تحديث",
@@ -138,7 +137,7 @@
   "invalidArgument": "تم تقديم وسيط غير صالح.",
   "aborted": "تم إيقاف العملية.",
   "outOfRange": "القيمة المقدمة خارج النطاق المسموح به.",
-  "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:"
+  "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:",
   "confirmWord": "تأكيد",
   "editVehicle": "تعديل بيانات المركبة",
   "vehicleType": "نوع المركبة",
@@ -147,7 +146,6 @@
   "enterVehicleNumber": "أدخل رقم المركبة",
   "vehicleLicense": "رخصة المركبة",
   "enterVehicleLicense": "أدخل رخصة المركبة",
-  "update": "تحديث",
   "failure": "حدث خطأ، حاول مرة أخرى",
   "success": "تم التحديث بنجاح"
 }
