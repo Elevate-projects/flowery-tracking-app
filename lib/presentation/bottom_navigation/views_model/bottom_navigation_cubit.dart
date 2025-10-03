@@ -1,6 +1,5 @@
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_intent.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views_model/bottom_navigation_state.dart';
-import 'package:flowery_tracking_app/presentation/edit_vechile/view/view.dart';
 import 'package:flowery_tracking_app/presentation/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
