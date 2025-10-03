@@ -47,7 +47,7 @@ class CustomArrowDown extends StatelessWidget {
         );
       },
       child: Transform.rotate(
-        angle: math.pi / 2,
+        angle: math.pi / -2,
         child: Icon(
           Icons.arrow_back_ios,
           color: Theme.of(context).colorScheme.onSecondary,
