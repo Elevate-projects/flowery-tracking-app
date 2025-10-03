@@ -61,5 +61,13 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
   "resendWord": "اعادة الارسال",
-  "confirmWord": "تأكيد"
+  "confirmWord": "تأكيد",
+  "editProfile": "تعديل الملف الشخصي",
+  "failure": "فشل في تحديث الملف الشخصي",
+  "success": "تم تحديض الملف الشخصي بنجاح",
+  "phone": "رقم الهاتف",
+  "changePassword": "تغيير كلمه المرور",
+  "update": "تحديث",
+  "firstName": "الاسم الاول",
+  "lastName": "الاسم الاخير"
 }

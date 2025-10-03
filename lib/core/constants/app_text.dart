@@ -71,4 +71,16 @@ abstract final class AppText {
   static const String confirmPasswordHint = "confirmPasswordHint";
   static const String resendWord = "resendWord";
   static const String confirmWord = "confirmWord";
+  // edit profile
+  static const String editProfile = "Edit Profile";
+  static const String firstName = "First Name";
+  static const String lastName = "Last Name";
+  static const String phone = "Phone";
+  static const String gender = "Gender";
+  static const String genderMale = "Male";
+  static const String genderFemale = "Female";
+  static const String update = "Update";
+  static const String failure = "Failed to update profile";
+  static const String success = "success to update profile";
+  static const String changePassword = "change";
 }

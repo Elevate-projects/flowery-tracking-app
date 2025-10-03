@@ -64,5 +64,13 @@
   "confirmPassword": "Confirm Password",
   "confirmPasswordHint": "Confirm your password",
   "resendWord": "Resend",
-  "confirmWord": "Confirm"
+  "confirmWord": "Confirm",
+  "editProfile": "Edit Profile",
+  "failure": "Failed to update profile",
+  "success": "success to update profile",
+  "phone": "Phone",
+  "changePassword": "Change Password",
+  "update": "Update",
+  "firstName": "First Name",
+  "lastName": "Last Name"
 }
