@@ -15,6 +15,10 @@ class EditVehicleDataSourceImp implements EditVehicleDataSource {
   @override
   Future<Result<DriverDataEntity>> editVehicle(EditVehicleRequest request) async {
     return executeApi(() async {
+      final token = FloweryDriverMethodHelper.currentUserToken;
+      if (token == null) {
+        throw Exception('User token is missing');
+      }
       final result = await apiClient.editVehicle(
           token: "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
           request: request
