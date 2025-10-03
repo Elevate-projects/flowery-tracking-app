@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view/gender_viwe.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/widgets/gender.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/widgets/gender_cubit.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_profile/name_fields.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_profile/profile_image.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
@@ -108,14 +107,11 @@ class UserProfilePage extends StatelessWidget {
                       ),
                     ),
                     const RSizedBox(height: 24),
-                    Padding(
-                      padding: REdgeInsets.symmetric(horizontal: 16),
-                      child: BlocProvider(
-                        create: (_) => GenderCubit(),
-                        child: const GenderSection(),
+                      Padding(
+                        padding: REdgeInsets.symmetric(horizontal: 16),
+                        child: GenderViwe(),
                       ),
-                    ),
-                    const RSizedBox(height: 40),
+                      const RSizedBox(height: 40),
                 BlocBuilder<EditProfileCubit, EditProfileState>(
                   builder: (BuildContext context, EditProfileState state) {
                     final cubit = context.read<EditProfileCubit>();

@@ -58,7 +58,7 @@ abstract class ApiClient {
   });
   @PUT(Endpoints.editProfile)
   Future<DriverDataModel> editProfile({
-    @Header("Authorization") String? token,
-    @Body() EditProfileRequestModel? request,
+    @Header("Authorization") required String token,
+    @Body() required EditProfileRequestModel request,
   });
 }

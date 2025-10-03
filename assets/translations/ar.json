@@ -73,10 +73,8 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
   "resendWord": "اعادة الارسال",
-  "confirmWord": "تأكيد",
   "currentPassword": "كلمة المرور الحالية",
   "newPassword": "كلمة المرور الجديدة",
-  "update": "تحديث",
   "passwordChanged": "تم تغيير كلمة المرور بنجاح",
 
   "emailAlreadyInUse": "عنوان البريد الإلكتروني مسجل بالفعل. يرجى استخدام بريد إلكتروني مختلف.",
@@ -138,7 +136,7 @@
   "invalidArgument": "تم تقديم وسيط غير صالح.",
   "aborted": "تم إيقاف العملية.",
   "outOfRange": "القيمة المقدمة خارج النطاق المسموح به.",
-  "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:"
+  "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:",
   "confirmWord": "تأكيد",
   "editProfile": "تعديل الملف الشخصي",
   "failure": "فشل في تحديث الملف الشخصي",

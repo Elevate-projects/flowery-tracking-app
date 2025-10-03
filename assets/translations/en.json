@@ -141,14 +141,12 @@
   "invalidArgument": "Invalid argument provided.",
   "aborted": "The operation was aborted.",
   "outOfRange": "The value provided is out of range.",
-  "unknownErrorMessage": "An unknown error has occurred with the following message:"
-  "confirmWord": "Confirm",
+  "unknownErrorMessage": "An unknown error has occurred with the following message:",
   "editProfile": "Edit Profile",
   "failure": "Failed to update profile",
   "success": "success to update profile",
   "phone": "Phone",
   "changePassword": "Change Password",
-  "update": "Update",
   "firstName": "First Name",
   "lastName": "Last Name"
 }

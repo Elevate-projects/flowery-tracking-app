@@ -17,10 +17,8 @@ class GenderState {
     return other is GenderState &&
         other.selectedGender == selectedGender;
   }
-
   @override
-  int get hashCode => selectedGender.hashCode;
-
+  int get hashCode => selectedGender?.hashCode ?? 0;
   @override
   String toString() => 'GenderState(selectedGender: $selectedGender)';
 }

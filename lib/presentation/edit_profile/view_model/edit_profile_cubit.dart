@@ -27,6 +27,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emailController = TextEditingController();
     phoneController = TextEditingController();
     passwordController = TextEditingController();
+
+    // Listen to changes for form validation
     firstNameController.addListener(validateForm);
     lastNameController.addListener(validateForm);
     emailController.addListener(validateForm);
@@ -52,6 +54,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       ),
     );
   }
+
   void validateForm() {
     final isValid = firstNameController.text.isNotEmpty &&
         lastNameController.text.isNotEmpty &&
@@ -62,9 +65,9 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emit(state.copyWith(isFormValid: isValid));
   }
 
-
   Future<void> editProfile() async {
-    if (formKey.currentState!.validate()) {
+    final isValid = formKey.currentState?.validate() ?? false;
+    if (isValid) {
       emit(state.copyWith(editProfileStatus: const StateStatus.loading()));
 
       final userData = await _useCase.editProfile(
@@ -76,6 +79,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           password: passwordController.text,
         ),
       );
+
       switch (userData) {
         case Success<DriverDataEntity>(:final data):
           emit(
@@ -94,7 +98,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           );
           break;
       }
-
     }
   }
 
