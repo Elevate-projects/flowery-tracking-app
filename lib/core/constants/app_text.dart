@@ -155,4 +155,15 @@ abstract final class AppText {
   static const String aborted = "aborted";
   static const String outOfRange = "outOfRange";
   static const String unknownErrorMessage = "unknownErrorMessage";
+  // edit profile
+  static const String editProfile = "Edit Profile";
+  static const String firstName = "First Name";
+  static const String lastName = "Last Name";
+  static const String phone = "Phone";
+  static const String gender = "Gender";
+  static const String genderMale = "Male";
+  static const String genderFemale = "Female";
+  static const String failure = "Failed to update profile";
+  static const String success = "success to update profile";
+  static const String changePassword = "change";
 }
