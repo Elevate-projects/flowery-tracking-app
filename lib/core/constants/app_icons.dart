@@ -5,5 +5,7 @@ abstract final class AppIcons {
   static const String factCheck = "assets/icons/fact_check.svg";
   static const String home = "assets/icons/home.svg";
   static const String profile = "assets/icons/person.svg";
+  static const String miniLogout = "assets/icons/miniLogout.svg";
+  static const String notification ="assets/icons/notification.svg";
   static const String location = "assets/icons/location.svg";
 }
