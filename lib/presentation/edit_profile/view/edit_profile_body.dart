@@ -27,7 +27,6 @@ class UserProfilePage extends StatelessWidget {
             current.editProfileStatus.isLoading,
         listener: (context, state) {
           if (state.editProfileStatus.isLoading) {
-            const CircularProgressIndicator();
           }
           else if (state.editProfileStatus.isFailure) {
             Loaders.showErrorMessage(message: AppText.failure.tr(),
@@ -109,7 +108,7 @@ class UserProfilePage extends StatelessWidget {
                     const RSizedBox(height: 24),
                       Padding(
                         padding: REdgeInsets.symmetric(horizontal: 16),
-                        child: GenderViwe(),
+                        child: const GenderView(),
                       ),
                       const RSizedBox(height: 40),
                 BlocBuilder<EditProfileCubit, EditProfileState>(
