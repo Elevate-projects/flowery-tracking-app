@@ -141,5 +141,14 @@
   "invalidArgument": "Invalid argument provided.",
   "aborted": "The operation was aborted.",
   "outOfRange": "The value provided is out of range.",
-  "unknownErrorMessage": "An unknown error has occurred with the following message:"
+  "unknownErrorMessage": "An unknown error has occurred with the following message:",
+  "editVehicle": "Edit Vehicle Info",
+  "vehicleType": "Vehicle Type",
+  "enterVehicleType": "Enter vehicle type",
+  "vehicleNumber": "Vehicle Number",
+  "enterVehicleNumber": "Enter vehicle number",
+  "vehicleLicense": "Vehicle License",
+  "enterVehicleLicense": "Enter vehicle license",
+  "failure": "Something went wrong. Please try again.",
+  "success": "Updated successfully"
 }

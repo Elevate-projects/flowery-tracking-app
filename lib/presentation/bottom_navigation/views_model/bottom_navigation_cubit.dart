@@ -16,6 +16,14 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
     Center(child: Text("Profile")),
   ];
 
+  // Uncomment these once the actual screens are ready
+  // final List<Widget> pages = [
+  //   const HomeView(),
+  //   const OrderView(),
+  //   const ProfileView(),
+  //
+  // ];
+
   void doIntent(BottomNavigationIntent intent) {
     switch (intent) {
       case OnBottomTabsClick():
