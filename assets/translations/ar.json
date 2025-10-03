@@ -61,5 +61,15 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "confirmPasswordHint": "أدخل كلمة المرور مرة أخرى",
   "resendWord": "اعادة الارسال",
-  "confirmWord": "تأكيد"
+  "confirmWord": "تأكيد",
+  "editVehicle": "تعديل بيانات المركبة",
+  "vehicleType": "نوع المركبة",
+  "enterVehicleType": "أدخل نوع المركبة",
+  "vehicleNumber": "رقم المركبة",
+  "enterVehicleNumber": "أدخل رقم المركبة",
+  "vehicleLicense": "رخصة المركبة",
+  "enterVehicleLicense": "أدخل رخصة المركبة",
+  "update": "تحديث",
+  "failure": "حدث خطأ، حاول مرة أخرى",
+  "success": "تم التحديث بنجاح"
 }

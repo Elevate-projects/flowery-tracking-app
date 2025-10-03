@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flowery_tracking_app/api/models/driver_data/driver_data_model.dart';
+import 'package:flowery_tracking_app/api/requests/edit_vechicle/edit_vehicle_request.dart';
 import 'package:flowery_tracking_app/api/requests/forget_password_and_resend_code/forget_password_and_resend_code_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/login_request/login_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/reset_password/reset_password_request_model.dart';
@@ -33,5 +35,10 @@ abstract class ApiClient {
   @PUT(Endpoints.resetPassword)
   Future<ResetPasswordResponse> resetPassword(
     @Body() ResetPasswordRequestModel request,
+  );
+  @PUT(Endpoints.editVehicle)
+  Future<DriverDataModel> editVehicle(
+    @Header("Authorization") String token,
+      @Body() EditVehicleRequest request,
   );
 }

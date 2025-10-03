@@ -64,5 +64,15 @@
   "confirmPassword": "Confirm Password",
   "confirmPasswordHint": "Confirm your password",
   "resendWord": "Resend",
-  "confirmWord": "Confirm"
+  "confirmWord": "Confirm",
+  "editVehicle": "Edit Vehicle Info",
+  "vehicleType": "Vehicle Type",
+  "enterVehicleType": "Enter vehicle type",
+  "vehicleNumber": "Vehicle Number",
+  "enterVehicleNumber": "Enter vehicle number",
+  "vehicleLicense": "Vehicle License",
+  "enterVehicleLicense": "Enter vehicle license",
+  "update": "Update",
+  "failure": "Something went wrong. Please try again.",
+  "success": "Updated successfully"
 }

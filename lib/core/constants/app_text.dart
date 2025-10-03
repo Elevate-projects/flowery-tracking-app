@@ -71,4 +71,14 @@ abstract final class AppText {
   static const String confirmPasswordHint = "confirmPasswordHint";
   static const String resendWord = "resendWord";
   static const String confirmWord = "confirmWord";
+  static const String editVehicle = "editVehicle";
+  static const String vehicleType = "vehicleType";
+  static const String enterVehicleType = "enterVehicleType";
+  static const String vehicleNumber = "vehicleNumber";
+  static const String enterVehicleNumber = "enterVehicleNumber";
+  static const String vehicleLicense = "vehicleLicense";
+  static const String enterVehicleLicense = "enterVehicleLicense";
+  static const String update = "update";
+  static const String failure = "failure";
+  static const String success = "success";
 }
