@@ -4,9 +4,9 @@ import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart
 import 'package:flowery_tracking_app/domain/entities/vehicle/vehicle_entity.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/country_item.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/gender_section.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_cubit.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_intent.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_state.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_cubit.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_intent.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_state.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_dropdown_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
 import 'package:flowery_tracking_app/utils/validations.dart';

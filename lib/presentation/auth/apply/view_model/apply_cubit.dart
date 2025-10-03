@@ -4,15 +4,13 @@ import 'dart:io';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart';
-import 'package:flowery_tracking_app/domain/entities/gemini/license_plate_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/apply_request/apply_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/vehicle/vehicle_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/apply/apply_use_case.dart';
 import 'package:flowery_tracking_app/domain/use_cases/country/get_all_countries_use_case.dart';
-import 'package:flowery_tracking_app/domain/use_cases/gemini/gemini_use_case.dart';
 import 'package:flowery_tracking_app/domain/use_cases/vehicle/get_all_vehicles_use_case.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_intent.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_state.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_intent.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -25,12 +23,10 @@ class ApplyCubit extends Cubit<ApplyState> {
   final GetAllCountriesUseCase _getAllCountriesUseCase;
   final GetAllVehiclesUseCase _getAllVehiclesUseCase;
   final ApplyUseCase _applyUseCase;
-  final GeminiUseCase _geminiUseCase;
   ApplyCubit(
     this._getAllCountriesUseCase,
     this._getAllVehiclesUseCase,
     this._applyUseCase,
-    this._geminiUseCase,
   ) : super(const ApplyState());
 
   late final TextEditingController firstLegalNameController;
@@ -151,11 +147,7 @@ class ApplyCubit extends Cubit<ApplyState> {
       source: ImageSource.gallery,
     );
     if (pickedFile != null) {
-   // final bytes = await pickedFile.readAsBytes();
-   // final base64Image = base64Encode(bytes);
-   // final licensePlate = await _geminiUseCase.extractLicensePlate(base64Image);
       vehicleLicenseController.text = pickedFile.name;
-   //   vehicleNumberController.text = licensePlate.number;
       emit(state.copyWith(vehicleLicenseImage: pickedFile));
     }
   }
@@ -231,13 +223,4 @@ class ApplyCubit extends Cubit<ApplyState> {
     confirmPasswordController.dispose();
     return super.close();
   }
-
-  // Future<LicensePlateEntity> extractLicensePlate(XFile pickedFile) async {
-  //    final bytes = await pickedFile.readAsBytes();
-  //    final base64Image = base64Encode(bytes);
-  //   emit(state.copyWith(extractLicensePlateStatus: const StateStatus.loading()));
-  //   final result = await _geminiUseCase.extractLicensePlate(base64Image);
-  //   emit(state.copyWith(extractLicensePlateStatus: StateStatus.success(result)));
-  //   return result;
-  // }
 }

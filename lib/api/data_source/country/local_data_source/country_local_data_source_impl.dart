@@ -12,10 +12,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: CountryLocalDataSource)
 class CountryLocalDataSourceImpl implements CountryLocalDataSource {
+  final AssetBundle assetBundle;
+
+  CountryLocalDataSourceImpl({AssetBundle? assetBundle})
+      : assetBundle = assetBundle ?? rootBundle;
   @override
   Future<Result<List<CountryEntity>>> getAllCountries() async {
     try {
-      final jsonString = await rootBundle.loadString(JsonFiles.countries);
+      final jsonString = await assetBundle.loadString(JsonFiles.countries);
       final List<dynamic> data = json.decode(jsonString) as List<dynamic>;
       final List<CountryEntity> countries = data
           .map((json) => CountryModel.fromJson(json).toCountryEntity())

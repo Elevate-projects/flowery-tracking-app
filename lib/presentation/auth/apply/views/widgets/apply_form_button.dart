@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_cubit.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_intent.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_cubit.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_intent.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

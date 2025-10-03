@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/vehicle/vehicle_entity.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views_body/apply_cubit.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_cubit.dart';
 
 sealed class ApplyIntent {
   const ApplyIntent();
