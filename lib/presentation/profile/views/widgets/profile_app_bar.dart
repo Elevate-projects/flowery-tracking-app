@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+import 'package:flowery_tracking_app/presentation/profile/views/widgets/positioned_directional_widget.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_app_bar.dart';
@@ -43,29 +44,7 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
                         height: 24.r,
                       ),
                     ),
-                    PositionedDirectional(
-                      end: -2,
-                      top: -4,
-                      child: Container(
-                        width: 16.r,
-                        height: 16.r,
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.error,
-                          shape: BoxShape.circle,
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            "3",
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: theme.colorScheme.secondary,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    ),
+                    PositionedDirectionalWidget(theme: theme),
                   ],
                 ),
               ],
