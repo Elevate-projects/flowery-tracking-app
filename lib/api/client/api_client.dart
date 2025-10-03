@@ -57,8 +57,8 @@ abstract class ApiClient {
     @Header("Authorization") required String token,
   });
   @PUT(Endpoints.editVehicle)
-  Future<DriverDataModel> editVehicle(
-    @Header("Authorization") String token,
-      @Body() EditVehicleRequest request,
-  );
+  Future<DriverDataModel> editVehicle({
+    @Header("Authorization") required String token,
+    @Body() required EditVehicleRequest request,
+  });
 }

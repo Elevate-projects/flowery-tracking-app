@@ -58,15 +58,13 @@ class EditVehicleViewBody extends StatelessWidget {
                         controller: cubit.vehicleTypeController,
                         label: AppText.vehicleType.tr(),
                         hintText: AppText.enterVehicleType.tr(),
-                        suffixIcon: IconButton(onPressed: () {
-
-                        }, icon: CustomArrowDown(
-                          onSelect: (value) {
-                            cubit.vehicleTypeController.text = value;
-                          },
-                        )),
+                          suffixIcon: CustomArrowDown(
+                            onSelect: (value) {
+                              cubit.vehicleTypeController.text = value;
+                            },
+                          ),
+                       ),
                       ),
-                    ),
                     const RSizedBox(height: 24),
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
@@ -85,9 +83,9 @@ class EditVehicleViewBody extends StatelessWidget {
                         label: AppText.vehicleLicense.tr(),
                         hintText: AppText.enterVehicleLicense.tr(),
                         suffixIcon: Image.asset(
+                          AppIcons.upload,
                           height: 24.h,
                           width: 24.w,
-                          AppIcons.upload
                         ),
                       ),
                     ),

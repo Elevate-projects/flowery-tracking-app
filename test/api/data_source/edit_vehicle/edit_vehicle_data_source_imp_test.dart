@@ -52,8 +52,8 @@ void main() {
 
       // Mock apiClient
       when(mockApiClient.editVehicle(
-        any, // token
-        any, // request
+        token: anyNamed('token'),
+        request: anyNamed('request'),
       )).thenAnswer((_) async => diverModel);
 
       // Act
@@ -62,9 +62,9 @@ void main() {
       // Assert
       expect(result, isA<Success<DriverDataEntity>>());
       verify(mockApiClient.editVehicle(
-        "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
-        request,
+        token: anyNamed('token'),
+        request: anyNamed('request'),
       )).called(1);
-    },
+        },
   );
 }

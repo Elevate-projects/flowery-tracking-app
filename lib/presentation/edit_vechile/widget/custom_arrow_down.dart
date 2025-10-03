@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,9 +19,6 @@ class CustomArrowDown extends StatelessWidget {
     "Sports",
     "SUV",
     "Truck",
-    "676b31a45d05310ca82657ac",
-    "676b31a45d05310ca82657ac",
-    "676b31a45d05310ca82657ac"
   ];
 
   @override
@@ -48,7 +47,7 @@ class CustomArrowDown extends StatelessWidget {
         );
       },
       child: Transform.rotate(
-        angle: 90 * 3.1415926535 / 60,
+        angle: math.pi / 2,
         child: Icon(
           Icons.arrow_back_ios,
           color: Theme.of(context).colorScheme.onSecondary,
