@@ -1,7 +1,6 @@
 name: Slack Notifications for All Updates
 
 on:
-  push:
   pull_request:
     types:
       - opened

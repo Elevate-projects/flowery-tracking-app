@@ -1,10 +1,6 @@
 name: Firebase App Distribution
 
 on:
-  push:
-    branches:
-      - main
-      - development
   pull_request:
     branches:
       - main
