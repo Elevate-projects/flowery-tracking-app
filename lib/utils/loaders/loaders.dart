@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +14,7 @@ abstract class Loaders {
     Flushbar(
       titleText: title,
       messageText: Text(
-        message,
+        message.tr(),
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
           color: AppColors.white,
           fontWeight: FontWeight.w600,
@@ -45,7 +46,7 @@ abstract class Loaders {
     Flushbar(
       titleText: title,
       messageText: Text(
-        message,
+        message.tr(),
         style: Theme.of(context).textTheme.bodyLarge,
         textAlign: TextAlign.start,
       ),
@@ -74,7 +75,7 @@ abstract class Loaders {
     Flushbar(
       titleText: title,
       messageText: Text(
-        message,
+        message.tr(),
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
           color: AppColors.white,
           fontWeight: FontWeight.w600,

@@ -3,13 +3,18 @@ import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_intent.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_state.dart';
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
+import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class GlobalCubit extends Cubit<GlobalState> {
+  final SecureStorage _secureStorage;
   final SharedPreferencesHelper _sharedPreferencesHelper;
-  GlobalCubit(this._sharedPreferencesHelper) : super(GlobalInitial());
+  GlobalCubit(this._secureStorage, this._sharedPreferencesHelper)
+    : super(GlobalInitial());
   String? redirectedScreen;
   late bool isArLanguage;
   late int languageSelectedIndex;
@@ -24,8 +29,8 @@ class GlobalCubit extends Cubit<GlobalState> {
   }
 
   Future<void> _onInit() async {
-    redirectedScreen = RouteNames.onboarding;
     _getSelectedLanguage();
+    await _setRedirectedScreen();
   }
 
   void _getSelectedLanguage() {
@@ -33,6 +38,21 @@ class GlobalCubit extends Cubit<GlobalState> {
       key: ConstKeys.isArLanguage,
     );
     languageSelectedIndex = isArLanguage ? 1 : 0;
+  }
+
+  Future<void> _setRedirectedScreen() async {
+    final userToken = await _secureStorage.getData(key: ConstKeys.tokenKey);
+    final isRemembered = _sharedPreferencesHelper.getBool(
+      key: ConstKeys.rememberMe,
+    );
+    FlutterNativeSplash.remove();
+    if (userToken != null && isRemembered) {
+      FloweryDriverMethodHelper.currentUserToken = userToken;
+      redirectedScreen = RouteNames.bottomNavigation;
+    } else {
+      redirectedScreen = RouteNames.onboarding;
+    }
+    emit(LoadedRedirectedScreen());
   }
 
   Future<void> _changedLanguageIndex({required int index}) async {

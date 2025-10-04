@@ -14,13 +14,14 @@ abstract class FullScreenLoader {
       builder: (_) => PopScope(
         canPop: false,
         child: Container(
-          color: Theme.of(context).colorScheme.shadow,
+          color: Theme.of(context).colorScheme.secondary,
           width: ScreenUtil().screenWidth,
           height: ScreenUtil().scaleHeight,
           child: Column(
             children: [
-              const RSizedBox(height: 200),
-              AnimationLoaderWidget(text: text, animation: animation),
+              Expanded(
+                child: AnimationLoaderWidget(text: text, animation: animation),
+              ),
             ],
           ),
         ),
