@@ -32,6 +32,7 @@ class EditVehicleCubit extends Cubit<EditVehicleStatus> {
     vehicleTypeController.addListener(validateForm);
     vehicleNumberController.addListener(validateForm);
     vehicleLicenseController.addListener(validateForm);
+    validateForm();
   }
 
   Future<void> doIntent({required EditVehicleIntent intent}) async {
