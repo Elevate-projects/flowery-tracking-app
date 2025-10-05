@@ -5,6 +5,7 @@ import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_ent
 import 'package:flowery_tracking_app/domain/use_cases/edit_profile/edit_profile_use_case.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
+import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -22,10 +23,13 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   @factoryMethod
   EditProfileCubit(this._useCase) : super(const EditProfileState()) {
     formKey = GlobalKey<FormState>();
-    firstNameController = TextEditingController();
-    lastNameController = TextEditingController();
-    emailController = TextEditingController();
-    phoneController = TextEditingController();
+
+    final user = FloweryDriverMethodHelper.driverData;
+
+    firstNameController = TextEditingController(text: user?.firstName ?? "");
+    lastNameController = TextEditingController(text: user?.lastName ?? "");
+    emailController = TextEditingController(text: user?.email ?? "");
+    phoneController = TextEditingController(text: user?.phone ?? "");
     passwordController = TextEditingController();
 
     // Listen to changes for form validation

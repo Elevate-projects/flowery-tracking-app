@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view/gender_viwe.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_cubit.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_profile/name_fields.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_profile/profile_image.dart';
@@ -9,17 +11,31 @@ import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_cubit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cubit = context.read<EditProfileCubit>();
-    return Scaffold(
-      appBar: AppBar(title: Text(AppText.editProfile.tr())),
 
+    return Scaffold(
+      appBar: AppBar(
+        titleSpacing: 0,
+        title: Text(AppText.editProfile.tr()),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              "assets/icons/notification.svg",
+              height: 24,
+              width: 24,
+            ),
+          ),
+        ],
+      ),
       body: BlocListener<EditProfileCubit, EditProfileState>(
         listenWhen: (previous, current) =>
         current.editProfileStatus.isFailure ||
@@ -27,10 +43,9 @@ class UserProfilePage extends StatelessWidget {
             current.editProfileStatus.isLoading,
         listener: (context, state) {
           if (state.editProfileStatus.isLoading) {
-          }
-          else if (state.editProfileStatus.isFailure) {
-            Loaders.showErrorMessage(message: AppText.failure.tr(),
-                context: context);
+          } else if (state.editProfileStatus.isFailure) {
+            Loaders.showErrorMessage(
+                message: AppText.failure.tr(), context: context);
           } else if (state.editProfileStatus.isSuccess) {
             Loaders.showSuccessMessage(
               message: AppText.success.tr(),
@@ -43,6 +58,7 @@ class UserProfilePage extends StatelessWidget {
             if (state.editProfileStatus.isLoading) {
               return const Center(child: CircularProgressIndicator());
             }
+
             return SingleChildScrollView(
               child: Form(
                 key: cubit.formKey,
@@ -62,7 +78,7 @@ class UserProfilePage extends StatelessWidget {
                     ),
                     const RSizedBox(height: 24),
                     Padding(
-                      padding:  REdgeInsets.symmetric(horizontal: 16),
+                      padding: REdgeInsets.symmetric(horizontal: 16),
                       child: CustomTextFormField(
                         controller: cubit.emailController,
                         label: AppText.email.tr(),
@@ -70,7 +86,7 @@ class UserProfilePage extends StatelessWidget {
                     ),
                     const RSizedBox(height: 24),
                     Padding(
-                      padding:  REdgeInsets.symmetric(horizontal: 16),
+                      padding: REdgeInsets.symmetric(horizontal: 16),
                       child: CustomTextFormField(
                         controller: cubit.phoneController,
                         label: AppText.phone.tr(),
@@ -88,7 +104,7 @@ class UserProfilePage extends StatelessWidget {
                               obscureText: state.isObscure,
                               suffixIcon: GestureDetector(
                                 onTap: () {
-                                  /// Action here
+                                  cubit.doIntent(intent: EnterThePassword());
                                 },
                                 child: Padding(
                                   padding: REdgeInsets.only(right: 8),
@@ -106,28 +122,27 @@ class UserProfilePage extends StatelessWidget {
                       ),
                     ),
                     const RSizedBox(height: 24),
-                      Padding(
-                        padding: REdgeInsets.symmetric(horizontal: 16),
-                        child: const GenderView(),
-                      ),
-                      const RSizedBox(height: 40),
-                BlocBuilder<EditProfileCubit, EditProfileState>(
-                  builder: (BuildContext context, EditProfileState state) {
-                    final cubit = context.read<EditProfileCubit>();
-                    return Padding(
+                    Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
-                      child:  CustomElevatedButton(
-                        onPressed: state.isFormValid
-                            ? () {
-                          cubit.editProfile();
-                        }
-                            : null,
-                        buttonTitle: AppText.update.tr(),
-                      ),
-
-                    );
-                  },
-                  ),
+                      child: const GenderView(),
+                    ),
+                    const RSizedBox(height: 40),
+                    BlocBuilder<EditProfileCubit, EditProfileState>(
+                      builder: (BuildContext context, EditProfileState state) {
+                        final cubit = context.read<EditProfileCubit>();
+                        return Padding(
+                          padding: REdgeInsets.symmetric(horizontal: 16),
+                          child: CustomElevatedButton(
+                            onPressed: state.isFormValid
+                                ? () {
+                              cubit.editProfile();
+                            }
+                                : null,
+                            buttonTitle: AppText.update.tr(),
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -138,4 +153,3 @@ class UserProfilePage extends StatelessWidget {
     );
   }
 }
-/// Z1x2y3
