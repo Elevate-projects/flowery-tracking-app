@@ -23,6 +23,7 @@ class CustomArrowDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
@@ -34,9 +35,14 @@ class CustomArrowDown extends StatelessWidget {
                 itemCount: vehicleTypes.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(vehicleTypes[index]),
+                    title: Text(vehicleTypes[index],
+                      style: TextStyle(
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
                     onTap: () {
-                      onSelect(vehicleTypes[index]);
+                      onSelect(vehicleTypes[index],
+                      );
                       Navigator.of(context).pop();
                     },
                   );
