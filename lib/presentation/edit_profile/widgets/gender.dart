@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/widgets/enum.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/widgets/gender_cubit.dart';
@@ -15,7 +16,7 @@ class GenderSection extends StatelessWidget {
     return Row(
       children: [
         Text(
-          AppText.gender,
+          AppText.gender.tr(),
           style: theme.textTheme.headlineSmall?.copyWith(
             color: theme.colorScheme.shadow,
           ),
@@ -39,7 +40,7 @@ class GenderSection extends StatelessWidget {
                       splashFactory: NoSplash.splashFactory,
                     ),
                     child: Text(
-                      AppText.genderFemale,
+                      AppText.genderFemale.tr(),
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.colorScheme.onSecondary,
                       ),
@@ -64,7 +65,7 @@ class GenderSection extends StatelessWidget {
                     ),
 
                     child: Text(
-                      AppText.genderMale,
+                      AppText.genderMale.tr(),
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.colorScheme.onSecondary,
                       ),

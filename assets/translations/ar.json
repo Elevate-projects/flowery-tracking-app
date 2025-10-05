@@ -139,11 +139,15 @@
   "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:",
   "confirmWord": "تأكيد",
   "editProfile": "تعديل الملف الشخصي",
-  "failure": "فشل في تحديث الملف الشخصي",
-  "success": "تم تحديض الملف الشخصي بنجاح",
+  "firstName": "الاسم الأول",
+  "lastName": "اسم العائلة",
   "phone": "رقم الهاتف",
-  "changePassword": "تغيير كلمه المرور",
-  "update": "تحديث",
-  "firstName": "الاسم الاول",
-  "lastName": "الاسم الاخير"
+  "gender": "النوع",
+  "genderMale": "ذكر",
+  "genderFemale": "أنثى",
+  "failure": "فشل في تحديث الملف الشخصي",
+  "success": "تم تحديث الملف الشخصي بنجاح",
+  "changePassword": "تغيير كلمة المرور"
+
+
 }

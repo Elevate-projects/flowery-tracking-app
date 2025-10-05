@@ -143,10 +143,13 @@
   "outOfRange": "The value provided is out of range.",
   "unknownErrorMessage": "An unknown error has occurred with the following message:",
   "editProfile": "Edit Profile",
-  "failure": "Failed to update profile",
-  "success": "success to update profile",
-  "phone": "Phone",
-  "changePassword": "Change Password",
   "firstName": "First Name",
-  "lastName": "Last Name"
+  "lastName": "Last Name",
+  "phone": "Phone",
+  "gender": "Gender",
+  "genderMale": "Male",
+  "genderFemale": "Female",
+  "failure": "Failed to update profile",
+  "success": "Profile updated successfully",
+  "changePassword": "Change Password"
 }
