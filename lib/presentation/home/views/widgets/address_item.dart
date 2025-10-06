@@ -28,6 +28,7 @@ class AddressItem extends StatelessWidget {
             blurRadius: 4.r,
           ),
         ],
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

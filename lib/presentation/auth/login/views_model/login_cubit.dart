@@ -4,9 +4,11 @@ import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/login_request/login_request_entity.dart';
+import 'package:flowery_tracking_app/domain/use_cases/fetch_all_driver_orders/fetch_all_driver_orders_use_case.dart';
 import 'package:flowery_tracking_app/domain/use_cases/login/login_with_email_and_password_use_case.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_state.dart';
+import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flowery_tracking_app/utils/validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +17,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class LoginCubit extends Cubit<LoginState> {
   final LoginWithEmailAndPasswordUseCase _loginWithEmailAndPasswordUseCase;
+  final FetchAllDriverOrdersUseCase _fetchAllDriverOrdersUseCase;
   final SecureStorage _secureStorage;
   final SharedPreferencesHelper _sharedPreferencesHelper;
   @factoryMethod
@@ -22,6 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
     this._loginWithEmailAndPasswordUseCase,
     this._secureStorage,
     this._sharedPreferencesHelper,
+    this._fetchAllDriverOrdersUseCase,
   ) : super(const LoginState());
 
   late final TextEditingController emailController;
@@ -139,23 +143,42 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> _login() async {
     if (loginFormKey.currentState!.validate()) {
       emit(state.copyWith(loginStatus: const StateStatus.loading()));
-      final userData = await _loginWithEmailAndPasswordUseCase.invoke(
+      final loginResult = await _loginWithEmailAndPasswordUseCase.invoke(
         request: LoginRequestEntity(
           email: emailController.text,
           password: passwordController.text,
         ),
       );
-      switch (userData) {
+      switch (loginResult) {
         case Success<void>():
           {
             if (state.rememberMe) await _rememberUserData();
-            emit(state.copyWith(loginStatus: const StateStatus.success(null)));
+            if (!state.rememberMe) {
+              await _secureStorage.deleteData(key: ConstKeys.tokenKey);
+            }
+
+            final result = await _fetchAllDriverOrdersUseCase.invoke();
+            switch (result) {
+              case Success<String?>():
+                FloweryDriverMethodHelper.currentDriverOrderId = result.data;
+                emit(
+                  state.copyWith(loginStatus: const StateStatus.success(null)),
+                );
+                break;
+              case Failure<String?>():
+                emit(
+                  state.copyWith(
+                    loginStatus: StateStatus.failure(result.responseException),
+                  ),
+                );
+            }
+
             break;
           }
         case Failure<void>():
           emit(
             state.copyWith(
-              loginStatus: StateStatus.failure(userData.responseException),
+              loginStatus: StateStatus.failure(loginResult.responseException),
             ),
           );
           break;
