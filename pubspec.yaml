@@ -39,6 +39,9 @@ dependencies:
   easy_localization: ^3.0.8
   firebase_core: ^4.1.1
   cloud_firestore: ^6.0.2
+  step_progress_indicator: ^1.0.2
+  url_launcher: ^6.3.2
+  url_launcher_platform_interface: ^2.3.2
 
 dev_dependencies:
   flutter_launcher_icons: "^0.14.4"
