@@ -11,7 +11,7 @@ class CustomArrowDown extends StatelessWidget {
 
   final void Function(String) onSelect;
 
-  static const List<String> vehicleTypes = const [
+  static const List<String> vehicleTypes = [
     "Motor Cycle",
     "Compact",
     "Sedan",
