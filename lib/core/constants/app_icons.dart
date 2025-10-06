@@ -6,4 +6,6 @@ abstract final class AppIcons {
   static const String home = "assets/icons/home.svg";
   static const String profile = "assets/icons/person.svg";
   static const String location = "assets/icons/location.svg";
+  static const String phone = "assets/icons/phone.svg";
+  static const String whatsapp = "assets/icons/whatsapp.svg";
 }

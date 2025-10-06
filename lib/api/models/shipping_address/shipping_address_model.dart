@@ -25,11 +25,11 @@ class ShippingAddressModel {
   });
 
   static ShippingAddressModel dummy() => ShippingAddressModel(
-    phone: "01010518802",
+    phone: "+201116211489",
     city: "Cairo",
     street: "Saqr-koresh",
-    long: "31.7195459",
-    lat: "31.7195459",
+    lat: "29.98508582119217",
+    long: "31.27334386662929",
   );
 
   factory ShippingAddressModel.fromJson(Map<String, dynamic> json) {
