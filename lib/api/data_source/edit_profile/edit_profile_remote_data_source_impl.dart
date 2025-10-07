@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/models/adit_profile/edit_profile_request.dart';
+import 'package:flowery_tracking_app/api/models/edit_profile/edit_profile_request.dart';
 import 'package:flowery_tracking_app/data/data_source/edit_profile/edit_profile_remote_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';

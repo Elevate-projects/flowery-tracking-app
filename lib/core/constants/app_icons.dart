@@ -8,4 +8,5 @@ abstract final class AppIcons {
   static const String location = "assets/icons/location.svg";
   static const String phone = "assets/icons/phone.svg";
   static const String whatsapp = "assets/icons/whatsapp.svg";
+  static const String notification =  "assets/icons/notification.svg";
 }

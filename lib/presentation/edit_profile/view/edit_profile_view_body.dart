@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view/gender_viwe.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_cubit.dart';
@@ -29,7 +30,7 @@ class EditProfileViewBody extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
-              "assets/icons/notification.svg",
+             AppIcons.notification,
               height: 24,
               width: 24,
             ),
@@ -127,22 +128,17 @@ class EditProfileViewBody extends StatelessWidget {
                       child: const GenderView(),
                     ),
                     const RSizedBox(height: 40),
-                    BlocBuilder<EditProfileCubit, EditProfileState>(
-                      builder: (BuildContext context, EditProfileState state) {
-                        final cubit = context.read<EditProfileCubit>();
-                        return Padding(
-                          padding: REdgeInsets.symmetric(horizontal: 16),
-                          child: CustomElevatedButton(
-                            onPressed: state.isFormValid
-                                ? () {
-                              cubit.onIntent(SubmitEditProfile());
-                            }
-                                : null,
-                            buttonTitle: AppText.update.tr(),
-                          ),
-                        );
-                      },
-                    ),
+                    Padding(
+                      padding: REdgeInsets.symmetric(horizontal: 16),
+                      child: CustomElevatedButton(
+                          onPressed: state.isFormValid
+                              ? () {
+                            cubit.onIntent(SubmitEditProfile());
+                          }
+                              : null,
+                        buttonTitle: AppText.update.tr(),
+                      ),
+                    )
                   ],
                 ),
               ),

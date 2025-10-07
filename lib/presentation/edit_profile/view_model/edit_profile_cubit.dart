@@ -110,14 +110,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   // Public getter for formKey (UI needs it)
   GlobalKey<FormState> get formKey => _formKey;
-
-  // Optional: Public getters for controller text values (if UI needs direct access)
-  String get firstName => _firstNameController.text;
-  String get lastName => _lastNameController.text;
-  String get email => _emailController.text;
-  String get phone => _phoneController.text;
-  String get password => _passwordController.text;
-
   @override
   Future<void> close() {
     _firstNameController.dispose();
