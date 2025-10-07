@@ -1,7 +1,7 @@
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/requests/adit_profile/edit_profile_request.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/edit_profile/edit_profile_use_case.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
@@ -13,105 +13,119 @@ import 'package:injectable/injectable.dart';
 @injectable
 class EditProfileCubit extends Cubit<EditProfileState> {
   final EditProfileUseCase _useCase;
-  late final TextEditingController firstNameController;
-  late final TextEditingController lastNameController;
-  late final TextEditingController emailController;
-  late final TextEditingController phoneController;
-  late final TextEditingController passwordController;
-  late final GlobalKey<FormState> formKey;
+
+  // Private controllers
+  late final TextEditingController _firstNameController;
+  late final TextEditingController _lastNameController;
+  late final TextEditingController _emailController;
+  late final TextEditingController _phoneController;
+  late final TextEditingController _passwordController;
+  late final GlobalKey<FormState> _formKey;
+  TextEditingController get firstNameController => _firstNameController;
+  TextEditingController get lastNameController => _lastNameController;
+  TextEditingController get emailController => _emailController;
+  TextEditingController get phoneController => _phoneController;
+  TextEditingController get passwordController => _passwordController;
 
   @factoryMethod
   EditProfileCubit(this._useCase) : super(const EditProfileState()) {
-    formKey = GlobalKey<FormState>();
-
+    _formKey = GlobalKey<FormState>();
     final user = FloweryDriverMethodHelper.driverData;
 
-    firstNameController = TextEditingController(text: user?.firstName ?? "");
-    lastNameController = TextEditingController(text: user?.lastName ?? "");
-    emailController = TextEditingController(text: user?.email ?? "");
-    phoneController = TextEditingController(text: user?.phone ?? "");
-    passwordController = TextEditingController();
-
-    // Listen to changes for form validation
-    firstNameController.addListener(validateForm);
-    lastNameController.addListener(validateForm);
-    emailController.addListener(validateForm);
-    phoneController.addListener(validateForm);
-    passwordController.addListener(validateForm);
+    _firstNameController = TextEditingController(text: user?.firstName ?? "");
+    _lastNameController = TextEditingController(text: user?.lastName ?? "");
+    _emailController = TextEditingController(text: user?.email ?? "");
+    _phoneController = TextEditingController(text: user?.phone ?? "");
+    _passwordController = TextEditingController();
+    _firstNameController.addListener(_validateForm);
+    _lastNameController.addListener(_validateForm);
+    _emailController.addListener(_validateForm);
+    _phoneController.addListener(_validateForm);
+    _passwordController.addListener(_validateForm);
   }
 
-  Future<void> doIntent({required EditProfileIntent intent}) async {
+  /// Public API for UI
+  Future<void> onIntent(EditProfileIntent intent) async {
     switch (intent) {
       case EnterThePassword():
-        _enterThePassword();
+        _togglePasswordVisibility();
+        break;
+      case SubmitEditProfile():
+        await _submitEditProfile();
         break;
       default:
         break;
     }
   }
 
-  void _enterThePassword() {
-    emit(
-      state.copyWith(
-        isObscure: !state.isObscure,
-        editProfileStatus: const StateStatus.initial(),
-      ),
-    );
+  // Private helper functions
+  void _togglePasswordVisibility() {
+    emit(state.copyWith(
+      isObscure: !state.isObscure,
+      editProfileStatus: const StateStatus.initial(),
+    ));
   }
 
-  void validateForm() {
-    final isValid = firstNameController.text.isNotEmpty &&
-        lastNameController.text.isNotEmpty &&
-        emailController.text.isNotEmpty &&
-        phoneController.text.isNotEmpty &&
-        passwordController.text.isNotEmpty;
+  void _validateForm() {
+    final isValid = _firstNameController.text.isNotEmpty &&
+        _lastNameController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty &&
+        _phoneController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty;
 
     emit(state.copyWith(isFormValid: isValid));
   }
 
-  Future<void> editProfile() async {
-    final isValid = formKey.currentState?.validate() ?? false;
-    if (isValid) {
-      emit(state.copyWith(editProfileStatus: const StateStatus.loading()));
+  Future<void> _submitEditProfile() async {
+    final isValid = _formKey.currentState?.validate() ?? false;
+    if (!isValid) return;
 
-      final userData = await _useCase.editProfile(
-        EditProfileRequestModel(
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-          email: emailController.text,
-          phone: phoneController.text,
-          password: passwordController.text,
-        ),
-      );
+    emit(state.copyWith(editProfileStatus: const StateStatus.loading()));
 
-      switch (userData) {
-        case Success<DriverDataEntity>(:final data):
-          emit(
-            state.copyWith(
-              editProfileStatus: const StateStatus.success(null),
-              driverData: data,
-            ),
-          );
-          break;
+    final result = await _useCase.editProfile(
+      EditProfileRequestEntity(
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        email: _emailController.text,
+        phone: _phoneController.text,
+        password: _passwordController.text,
+      ),
+    );
 
-        case Failure<DriverDataEntity>():
-          emit(
-            state.copyWith(
-              editProfileStatus: StateStatus.failure(userData.responseException),
-            ),
-          );
-          break;
-      }
+    switch (result) {
+      case Success<DriverDataEntity>(:final data):
+        emit(state.copyWith(
+          editProfileStatus: const StateStatus.success(null),
+          driverData: data,
+        ));
+        break;
+
+      case Failure<DriverDataEntity>():
+        emit(state.copyWith(
+          editProfileStatus: StateStatus.failure(result.responseException),
+        ));
+        break;
     }
   }
 
+  // Public getter for formKey (UI needs it)
+  GlobalKey<FormState> get formKey => _formKey;
+
+  // Optional: Public getters for controller text values (if UI needs direct access)
+  String get firstName => _firstNameController.text;
+  String get lastName => _lastNameController.text;
+  String get email => _emailController.text;
+  String get phone => _phoneController.text;
+  String get password => _passwordController.text;
+
   @override
   Future<void> close() {
-    firstNameController.dispose();
-    lastNameController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
-    passwordController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
     return super.close();
   }
 }
+

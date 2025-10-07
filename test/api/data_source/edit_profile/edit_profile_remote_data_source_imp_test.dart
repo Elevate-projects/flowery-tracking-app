@@ -1,11 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/data_source/edit_profile/edit_profile_remote_data_source_imp.dart';
+import 'package:flowery_tracking_app/api/data_source/edit_profile/edit_profile_remote_data_source_impl.dart';
 import 'package:flowery_tracking_app/api/models/driver_data/driver_data_model.dart';
-import 'package:flowery_tracking_app/api/requests/adit_profile/edit_profile_request.dart';
 import 'package:flowery_tracking_app/core/connection_manager/connection_manager.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -23,10 +23,10 @@ void main() {
       final mockApiClient = MockApiClient();
       final mockedConnectivity = MockConnectivity();
       ConnectionManager.connectivity = mockedConnectivity;
-      final dataSource = EditProfileRemoteDataSourceImp(
+      final dataSource = EditProfileRemoteDataSourceImpl(
         mockApiClient,
       );
-      final request = EditProfileRequestModel(
+      final request = EditProfileRequestEntity(
         firstName: "Ahmed",
         lastName: "Ali",
         email: "ahmed@gmail.com",
@@ -69,7 +69,7 @@ void main() {
       // Verify apiClient was called with correct request
       verify(mockApiClient.editProfile(
         token: anyNamed("token"),
-        request: request,
+        request: anyNamed("request"),
       )).called(1);
     },
   );

@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-class UserProfilePage extends StatelessWidget {
-  const UserProfilePage({super.key});
+class EditProfileViewBody extends StatelessWidget {
+  const EditProfileViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class UserProfilePage extends StatelessWidget {
                               obscureText: state.isObscure,
                               suffixIcon: GestureDetector(
                                 onTap: () {
-                                  cubit.doIntent(intent: EnterThePassword());
+                                  cubit.onIntent(EnterThePassword());
                                 },
                                 child: Padding(
                                   padding: REdgeInsets.only(right: 8),
@@ -135,7 +135,7 @@ class UserProfilePage extends StatelessWidget {
                           child: CustomElevatedButton(
                             onPressed: state.isFormValid
                                 ? () {
-                              cubit.editProfile();
+                              cubit.onIntent(SubmitEditProfile());
                             }
                                 : null,
                             buttonTitle: AppText.update.tr(),

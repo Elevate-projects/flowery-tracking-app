@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'edit_profile_request.g.dart';
 
 @JsonSerializable()
-class EditProfileRequestModel {
+final class EditProfileRequestModel {
   @JsonKey(name: "lastName")
   final String? lastName;
   @JsonKey(name: "firstName")

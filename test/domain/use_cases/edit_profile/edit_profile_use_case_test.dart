@@ -1,9 +1,8 @@
+import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/requests/adit_profile/edit_profile_request.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/domain/repositories/edit_profile/edit_profile_repositories.dart';
 import 'package:flowery_tracking_app/domain/use_cases/edit_profile/edit_profile_use_case.dart';
@@ -21,7 +20,7 @@ void main() {
       final mockRepository = MockEditProfileRepositories();
       final useCase = EditProfileUseCase(mockRepository);
 
-      final request = EditProfileRequestModel(
+      final request = EditProfileRequestEntity(
         firstName: "Ahmed",
         lastName: "Ali",
         email: "ahmed@gmail.com",

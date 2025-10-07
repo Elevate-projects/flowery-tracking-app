@@ -1,9 +1,10 @@
-import 'package:flowery_tracking_app/data/repositories/edit_profile/edit_profile_repository_imp.dart';
+
+import 'package:flowery_tracking_app/data/repositories/edit_profile/edit_profile_repository_impl.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/requests/adit_profile/edit_profile_request.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/data/data_source/edit_profile/edit_profile_remote_data_source.dart';
 
@@ -18,9 +19,9 @@ void main() {
         () async {
       // Arrange
       final mockDataSource = MockEditProfileRemoteDataSource();
-      final repository = EditProfileRepositoriesImp(mockDataSource);
+      final repository = EditProfileRepositoriesImpl(mockDataSource);
 
-      final request = EditProfileRequestModel(
+      final request = EditProfileRequestEntity(
         firstName: "Ahmed",
         lastName: "Ali",
         email: "ahmed@gmail.com",
