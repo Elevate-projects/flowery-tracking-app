@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_cubit.dart';
+import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_status.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/widget/custom_arrow_down.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
@@ -95,7 +96,7 @@ class EditVehicleViewBody extends StatelessWidget {
                       child: CustomElevatedButton(
                         onPressed: state.isFormValid
                             ? () {
-                          cubit.editVehicle();
+                          cubit.onIntent(SubmitEditVehicle());
                         }
                             : null,
                         buttonTitle: AppText.update.tr(),

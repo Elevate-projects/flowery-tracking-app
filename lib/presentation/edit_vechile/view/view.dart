@@ -9,7 +9,7 @@ class EditVehicleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<EditVehicleCubit>(
-      create: (_) => getIt.get<EditVehicleCubit>(),
+      create: (context) => getIt.get<EditVehicleCubit>(),
       child: const EditVehicleViewBody(),
     );
   }

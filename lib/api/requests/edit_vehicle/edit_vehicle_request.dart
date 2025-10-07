@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'edit_vehicle_request.g.dart';
 @JsonSerializable()
-class EditVehicleRequest {
+final class EditVehicleRequest {
   @JsonKey(name: "vehicleType")
   final String? vehicleType;
   @JsonKey(name: "vehicleNumber")

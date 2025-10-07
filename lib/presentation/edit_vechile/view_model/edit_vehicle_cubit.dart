@@ -1,7 +1,7 @@
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/requests/edit_vehicle/edit_vehicle_request.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/edit_vehicle/edit_vehicle_use_case.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_status.dart';
@@ -11,83 +11,98 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
+@injectable
 class EditVehicleCubit extends Cubit<EditVehicleStatus> {
   final EditVehicleUseCase _useCase;
 
-  late final TextEditingController vehicleTypeController;
-  late final TextEditingController vehicleNumberController;
-  late final TextEditingController vehicleLicenseController;
-  late final GlobalKey<FormState> formKey;
+  // Private controllers
+  late final TextEditingController _vehicleTypeController;
+  late final TextEditingController _vehicleNumberController;
+  late final TextEditingController _vehicleLicenseController;
+  late final GlobalKey<FormState> _formKey;
 
   @factoryMethod
   EditVehicleCubit(this._useCase) : super(const EditVehicleStatus()) {
-    formKey = GlobalKey<FormState>();
+    _formKey = GlobalKey<FormState>();
     final user = FloweryDriverMethodHelper.driverData;
-    vehicleTypeController =
+
+    _vehicleTypeController =
         TextEditingController(text: user?.vehicleType ?? "");
-    vehicleNumberController =
+    _vehicleNumberController =
         TextEditingController(text: user?.vehicleNumber ?? "");
-    vehicleLicenseController =
+    _vehicleLicenseController =
         TextEditingController(text: user?.vehicleLicense ?? "");
-    vehicleTypeController.addListener(validateForm);
-    vehicleNumberController.addListener(validateForm);
-    vehicleLicenseController.addListener(validateForm);
-    validateForm();
+
+    _vehicleTypeController.addListener(_validateForm);
+    _vehicleNumberController.addListener(_validateForm);
+    _vehicleLicenseController.addListener(_validateForm);
+
+    _validateForm();
   }
 
-  Future<void> doIntent({required EditVehicleIntent intent}) async {
+  /// Public API for UI
+  Future<void> onIntent(EditVehicleIntent intent) async {
     switch (intent) {
+      case SubmitEditVehicle():
+        await _submitEditVehicle();
+        break;
       default:
         break;
     }
   }
 
-  Future<void> editVehicle() async {
-    final isValid = formKey.currentState?.validate() ?? false;
-    if (isValid) {
-      emit(state.copyWith(editVehicleStatus: const StateStatus.loading()));
+  // Private function to submit the edit vehicle request
+  Future<void> _submitEditVehicle() async {
+    final isValid = _formKey.currentState?.validate() ?? false;
+    if (!isValid) return;
 
-      final result = await _useCase.editVehicle(
-        EditVehicleRequest(
-          vehicleType: vehicleTypeController.text,
-          vehicleNumber: vehicleNumberController.text,
-          vehicleLicense: vehicleLicenseController.text,
-        ),
-      );
+    emit(state.copyWith(editVehicleStatus: const StateStatus.loading()));
 
-      switch (result) {
-        case Success<DriverDataEntity>(:final data):
-          emit(
-            state.copyWith(
-              editVehicleStatus: const StateStatus.success(null),
-              driverData: data,
-            ),
-          );
-          break;
+    final result = await _useCase.editVehicle(
+      EditVehicleEntity(
+        _vehicleTypeController.text,
+        _vehicleNumberController.text,
+        _vehicleLicenseController.text,
+      ),
+    );
 
-        case Failure<DriverDataEntity>():
-          emit(
-            state.copyWith(
-              editVehicleStatus: StateStatus.failure(result.responseException),
-            ),
-          );
-          break;
-      }
+    switch (result) {
+      case Success<DriverDataEntity>(:final data):
+        emit(state.copyWith(
+          editVehicleStatus: const StateStatus.success(null),
+          driverData: data,
+        ));
+        break;
+      case Failure<DriverDataEntity>():
+        emit(state.copyWith(
+          editVehicleStatus: StateStatus.failure(result.responseException),
+        ));
+        break;
     }
   }
 
-  void validateForm() {
-    final isValid = vehicleTypeController.text.isNotEmpty &&
-        vehicleNumberController.text.isNotEmpty &&
-        vehicleLicenseController.text.isNotEmpty;
+  // Private validation function
+  void _validateForm() {
+    final isValid = _vehicleTypeController.text.isNotEmpty &&
+        _vehicleNumberController.text.isNotEmpty &&
+        _vehicleLicenseController.text.isNotEmpty;
+
     emit(state.copyWith(isFormValid: isValid));
   }
 
+  // Public getters for UI binding
+  GlobalKey<FormState> get formKey => _formKey;
+  TextEditingController get vehicleTypeController => _vehicleTypeController;
+  TextEditingController get vehicleNumberController => _vehicleNumberController;
+  TextEditingController get vehicleLicenseController =>
+      _vehicleLicenseController;
+
   @override
   Future<void> close() {
-    vehicleTypeController.dispose();
-    vehicleNumberController.dispose();
-    vehicleLicenseController.dispose();
+    _vehicleTypeController.dispose();
+    _vehicleNumberController.dispose();
+    _vehicleLicenseController.dispose();
     return super.close();
   }
 }
+

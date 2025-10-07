@@ -1,4 +1,4 @@
-import 'package:flowery_tracking_app/api/requests/edit_vehicle/edit_vehicle_request.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -20,10 +20,10 @@ void main() {
       final mockRepository = MockEditVehicleRepositories();
       final useCase = EditVehicleUseCase(mockRepository);
 
-      final request = EditVehicleRequest(
-        vehicleType: "Sedan",
-        vehicleNumber: "12345",
-        vehicleLicense: "ABC-987",
+      final request = EditVehicleEntity(
+        "dummy_vehicle_type",
+        "dummy_vehicle_number",
+        "dummy_vehicle_license",
       );
 
       final driverDataEntity = DriverDataEntity(
