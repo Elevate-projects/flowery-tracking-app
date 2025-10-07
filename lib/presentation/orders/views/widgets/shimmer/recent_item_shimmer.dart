@@ -3,8 +3,8 @@ import 'package:flowery_tracking_app/utils/common_widgets/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OrderItemShimmer extends StatelessWidget {
-  const OrderItemShimmer({super.key});
+class RecentItemShimmer extends StatelessWidget {
+  const RecentItemShimmer({super.key});
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -25,28 +25,30 @@ class OrderItemShimmer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ShimmerEffect(width: 80.w, height: 14.h),
-          const RSizedBox(height: 16),
-          ShimmerEffect(width: 85.w, height: 12.h),
-          const RSizedBox(height: 8),
-          const AddressItemShimmer(),
-          const RSizedBox(height: 16),
-          ShimmerEffect(width: 85.w, height: 12.h),
-          const RSizedBox(height: 8),
-          const AddressItemShimmer(),
-          const RSizedBox(height: 16),
-          Row(
-            children: [
-              ShimmerEffect(width: 60.w, height: 16.h),
-              const RSizedBox(width: 8),
-              Expanded(
-                child: ShimmerEffect(width: 60.w, height: 36.h),
-              ),
-              const RSizedBox(width: 8),
-              Expanded(
-                child: ShimmerEffect(width: 60.w, height: 36.h),
-              ),
-            ],
+          RPadding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Row(
+              children: [
+                const Expanded(
+                  flex: 3,
+                  child: ShimmerEffect(width: 50, height: 16),
+                ),
+                RSizedBox(width: 0.35.sw),
+                const Expanded(
+                  flex: 1,
+                  child: ShimmerEffect(width: 50, height: 16),
+                ),
+              ],
+            ),
           ),
+          ShimmerEffect(width: 85.w, height: 12.h),
+          const RSizedBox(height: 8),
+          const AddressItemShimmer(),
+          const RSizedBox(height: 16),
+          ShimmerEffect(width: 85.w, height: 12.h),
+          const RSizedBox(height: 8),
+          const AddressItemShimmer(),
+          const RSizedBox(height: 16),
         ],
       ),
     );

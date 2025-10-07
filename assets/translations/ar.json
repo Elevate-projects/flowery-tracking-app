@@ -38,6 +38,12 @@
   "openPhoneFailureMessage": "تعذر فتح تطبيق الاتصال",
   "openWhatsappFailureMessage": "تعذر فتح واتساب",
 
+  "myOrders": "طلباتي",
+  "canceled": "تم الإلغاء",
+  "completed": "تم الاكتمال",
+  "recentOrders": "الطلبات الأخيرة",
+  "emptyDeliveredOrdersMessage": "لم تقم بتسليم أي طلبات بعد",
+
   "userNameValidation": "اسم المستخدم غير صالح",
   "emptyTextValidation": "هذا الحقل مطلوب",
   "phoneNumberValidation": "حقل رقم الهاتف مطلوب",
