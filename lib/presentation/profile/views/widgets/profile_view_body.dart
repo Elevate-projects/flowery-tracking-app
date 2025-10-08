@@ -20,8 +20,8 @@ class ProfileViewBody extends StatelessWidget {
     final theme = Theme.of(context);
 
     return BlocListener<ProfileCubit, ProfileState>(
-      listenWhen: (previous, current) => current.profileStatus.isFailure||
-          current.logoutStatus.isSuccess,
+      listenWhen: (previous, current) =>
+          current.profileStatus.isFailure || current.logoutStatus.isSuccess,
 
       listener: (BuildContext context, state) {
         if (state.profileStatus.isFailure) {
@@ -29,37 +29,40 @@ class ProfileViewBody extends StatelessWidget {
             message: state.profileStatus.error?.message ?? "",
             context: context,
           );
-        }else if(state.logoutStatus.isSuccess){
+        } else if (state.logoutStatus.isSuccess) {
           Navigator.of(
             context,
           ).pushNamedAndRemoveUntil(RouteNames.login, (route) => false);
         }
       },
-      child: RPadding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const UserCard(),
-            const RSizedBox(height: 25),
-            const VehicleCard(),
-            const RSizedBox(height: 30),
+      child: SingleChildScrollView(
+        child: RPadding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              const UserCard(),
+              const RSizedBox(height: 25),
+              const VehicleCard(),
+              const RSizedBox(height: 30),
 
-            const LanguageSection(),
-            const RSizedBox(height: 15),
+              const LanguageSection(),
+              const RSizedBox(height: 15),
 
-            const LogOutSection(),
-            const Spacer(),
-            RPadding(
-              padding: const EdgeInsets.only(top: 1),
-              child: Text(
-                AppText.appVersion.tr(),
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.shadow,
+              const LogOutSection(),
+              const RSizedBox(height: 250),
+
+              RPadding(
+                padding: const EdgeInsets.only(top: 1),
+                child: Text(
+                  AppText.appVersion.tr(),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.shadow,
+                  ),
                 ),
               ),
-            ),
-            const RSizedBox(height: 10),
-          ],
+              const RSizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );

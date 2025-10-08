@@ -1,10 +1,9 @@
 import 'dart:math' as math;
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_colors.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
@@ -27,15 +26,15 @@ class VehicleCard extends StatelessWidget {
           prev.profileStatus.data != curr.profileStatus.data,
       builder: (BuildContext context, state) {
         return Container(
-          key: const ValueKey(ConstKeys.vehicleCard),
+          key: const ValueKey(WidgetKeys.vehicleCard),
           decoration: BoxDecoration(
             color: theme.colorScheme.secondary,
 
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             boxShadow: [
               BoxShadow(
                 color: AppColors.black.withAlpha((0.1 * 255).round()),
-                blurRadius: 10,
+                blurRadius: 10.r,
               ),
             ],
           ),
@@ -48,29 +47,29 @@ class VehicleCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      key: const ValueKey(ConstKeys.vehicleInfo),
+                      key: const ValueKey(WidgetKeys.vehicleInfo),
                       AppText.vehicleInfo.tr(),
                       style: theme.textTheme.headlineSmall,
                       textAlign: TextAlign.start,
                     ),
                     const RSizedBox(height: 4),
                     Text(
-                      key: const ValueKey(ConstKeys.vehicleType),
+                      key: const ValueKey(WidgetKeys.vehicleType),
 
                       FloweryDriverMethodHelper.driverData?.vehicleType ?? "",
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 16.sp,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: AppColors.black
                       ),
                     ),
                     const RSizedBox(height: 2),
                     Text(
-                      key: const ValueKey(ConstKeys.vehicleNumber),
+                      key: const ValueKey(WidgetKeys.vehicleNumber),
 
                       FloweryDriverMethodHelper.driverData?.vehicleNumber ?? "",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 16.sp,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                          color: AppColors.black
                       ),
                     ),
                   ],
@@ -83,7 +82,7 @@ class VehicleCard extends StatelessWidget {
                   child: Transform.rotate(
                       angle:  globalCubit.isArLanguage ? math.pi : 0,
                       child: SvgPicture.asset(
-                        key: const ValueKey(ConstKeys.arrowRight),
+                        key: const ValueKey(WidgetKeys.arrowRight),
                     AppIcons.arrowRight,))
                 ),
               ],

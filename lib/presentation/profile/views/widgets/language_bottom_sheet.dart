@@ -1,21 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/core/constants/const_keys.dart';
-import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/widgets/language_radio_group.dart';
-import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LanguageBottomSheet extends StatelessWidget {
-  final ProfileCubit profileCubit;
-  final GlobalCubit globalCubit;
+
 
   const LanguageBottomSheet({
     super.key,
-    required this.profileCubit,
-    required this.globalCubit,
-  });
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +34,7 @@ class LanguageBottomSheet extends StatelessWidget {
           ),
           const RSizedBox(height: 16),
           Text(
-            key: const ValueKey(ConstKeys.changeLanguage),
+            key: const ValueKey(WidgetKeys.changeLanguage),
             AppText.changeLanguage.tr(),
             style: theme.textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.w700,
@@ -47,7 +42,7 @@ class LanguageBottomSheet extends StatelessWidget {
             ),
           ),
           const RSizedBox(height: 16),
-          LanguageRadioGroup(profileCubit: profileCubit, globalCubit: globalCubit),
+          const LanguageRadioGroup(),
         ],
       ),
     );

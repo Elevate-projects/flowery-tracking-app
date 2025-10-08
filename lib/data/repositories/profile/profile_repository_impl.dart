@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileRemoteDataSource _profileRemoteDataSource;
 
-  ProfileRepositoryImpl(this._profileRemoteDataSource);
+  const ProfileRepositoryImpl(this._profileRemoteDataSource);
 
   @override
   Future<Result<DriverDataEntity?>> fetchUserData() {

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+ import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_intent.dart';
@@ -11,19 +11,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LanguageRadioGroup extends StatelessWidget {
-  final ProfileCubit profileCubit;
-  final GlobalCubit globalCubit;
 
   const LanguageRadioGroup({
     super.key,
-    required this.profileCubit,
-    required this.globalCubit,
-  });
+    });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final globalCubit = BlocProvider.of<GlobalCubit>(context);
+    final profileCubit = BlocProvider.of<ProfileCubit>(context);
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return RadioGroup<Languages>(
@@ -47,10 +44,10 @@ class LanguageRadioGroup extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BottomSheetSelectionItem(
-                key: const ValueKey(ConstKeys.bottomSheetSelectionItem),
+                key: const ValueKey(WidgetKeys.bottomSheetSelectionItem),
                 itemTitle: AppText.english,
                 radioItem: Radio<Languages>(
-                  key: const ValueKey(ConstKeys.radioItemEn),
+                  key: const ValueKey(WidgetKeys.radioItemEn),
                   value: Languages.english,
                   activeColor: theme.colorScheme.primary,
                   toggleable: true,
@@ -71,7 +68,7 @@ class LanguageRadioGroup extends StatelessWidget {
               BottomSheetSelectionItem(
                 itemTitle: AppText.arabic,
                 radioItem: Radio<Languages>(
-                  key: const ValueKey(ConstKeys.radioItemAr),
+                  key: const ValueKey(WidgetKeys.radioItemAr),
                   value: Languages.arabic,
                   activeColor: theme.colorScheme.primary,
                   toggleable: true,

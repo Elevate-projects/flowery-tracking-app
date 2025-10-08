@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 class GetProfileDataUseCase {
   final ProfileRepository _profileRepository;
 
-  GetProfileDataUseCase(this._profileRepository);
+ const GetProfileDataUseCase(this._profileRepository);
 
   Future<Result<DriverDataEntity?>> call() {
     return _profileRepository.fetchUserData();

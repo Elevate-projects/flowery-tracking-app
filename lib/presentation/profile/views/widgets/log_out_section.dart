@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,12 +26,12 @@ class LogOutSection extends StatelessWidget {
             angle: globalCubit.isArLanguage ? math.pi : 0,
             child: SvgPicture.asset(
               AppIcons.miniLogout,
-              key: const ValueKey(ConstKeys.logout),
+              key: const ValueKey(WidgetKeys.logout),
             ),
           ),
           const RSizedBox(width: 5),
           Text(
-            key: const ValueKey(ConstKeys.logoutText),
+            key: const ValueKey(WidgetKeys.logoutText),
 
             AppText.logout.tr(),
             style: theme.textTheme.bodyMedium?.copyWith(),
@@ -45,7 +45,7 @@ class LogOutSection extends StatelessWidget {
               angle: globalCubit.isArLanguage ? math.pi : 0,
               child: SvgPicture.asset(
                 AppIcons.logout,
-                key: const ValueKey(ConstKeys.logout),
+                key: const ValueKey(WidgetKeys.logout),
               ),
             ),
           ),

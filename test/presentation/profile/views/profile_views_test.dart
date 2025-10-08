@@ -1,4 +1,4 @@
-import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/core/di/di.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_state.dart';
@@ -70,21 +70,21 @@ void main() async {
     await tester.pumpWidget(prepareWidget());
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const ValueKey(ConstKeys.profileAppBar)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.notification)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.userCard)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.photo)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.name)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.email)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.phone)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.arrowRight)), findsNWidgets(2));
-    expect(find.byKey(const ValueKey(ConstKeys.vehicleCard)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.vehicleInfo)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.vehicleType)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.vehicleNumber)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.langItem)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.logoutText)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.logout)), findsNWidgets(2));
+    expect(find.byKey(const ValueKey(WidgetKeys.profileAppBar)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.notification)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.userCard)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.photo)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.name)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.email)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.phone)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.arrowRight)), findsNWidgets(2));
+    expect(find.byKey(const ValueKey(WidgetKeys.vehicleCard)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.vehicleInfo)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.vehicleType)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.vehicleNumber)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.langItem)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.logoutText)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.logout)), findsNWidgets(2));
 
   });
   testWidgets("Verify bottom sheet opens when tapping language item", (
@@ -93,19 +93,19 @@ void main() async {
     await tester.pumpWidget(prepareWidget());
     await tester.pumpAndSettle();
 
-    final langItemFinder = find.byKey(const ValueKey(ConstKeys.langItem));
+    final langItemFinder = find.byKey(const ValueKey(WidgetKeys.langItem));
     expect(langItemFinder, findsOneWidget);
     await tester.tap(langItemFinder);
     await tester.pumpAndSettle();
 
     expect(
-      find.byKey(const ValueKey(ConstKeys.changeLanguage)),
+      find.byKey(const ValueKey(WidgetKeys.changeLanguage)),
       findsOneWidget,
     );
-    expect(find.byKey(const ValueKey(ConstKeys.radioItemEn)), findsOneWidget);
-    expect(find.byKey(const ValueKey(ConstKeys.radioItemAr)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.radioItemEn)), findsOneWidget);
+    expect(find.byKey(const ValueKey(WidgetKeys.radioItemAr)), findsOneWidget);
     expect(
-      find.byKey(const ValueKey(ConstKeys.bottomSheetSelectionItem)),
+      find.byKey(const ValueKey(WidgetKeys.bottomSheetSelectionItem)),
       findsOneWidget,
     );
   });

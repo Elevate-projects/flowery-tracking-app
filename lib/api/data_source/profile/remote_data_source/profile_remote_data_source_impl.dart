@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   final ApiClient _apiClient;
 
-  ProfileRemoteDataSourceImpl(this._apiClient);
+  const ProfileRemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<Result<DriverDataEntity?>> fetchUserData() async {
@@ -17,6 +17,8 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       final response = await _apiClient.getUserData(
         token: "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
       );
+       final entity = response.driver?.toDriverDataEntity();
+      FloweryDriverMethodHelper.driverData = entity;
       return response.driver?.toDriverDataEntity();
     });
   }

@@ -4,16 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PositionedDirectionalWidget extends StatelessWidget {
   const PositionedDirectionalWidget({
     super.key,
-    required this.theme,
-  });
+   });
 
-  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return PositionedDirectional(
-      end: -2,
-      top: -4,
+      end: -2.r,
+      top: -4.r,
       child: Container(
         width: 16.r,
         height: 16.r,

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+ import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/widgets/positioned_directional_widget.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
@@ -17,17 +17,16 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return BlocBuilder<ProfileCubit, ProfileState>(
+     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (BuildContext context, state) {
         return CustomAppBar(
-          key: const ValueKey(ConstKeys.profileAppBar),
+          key: const ValueKey(WidgetKeys.profileAppBar),
           isTitleWidget: true,
           titleWidget: RPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                const CustomBackArrow(key: ValueKey(ConstKeys.customBackArrow)),
+                const CustomBackArrow(key: ValueKey(WidgetKeys.customBackArrow)),
                 Text(AppText.profile.tr()),
                 const Spacer(),
                 Stack(
@@ -38,13 +37,13 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
                         // Navigator.pushNamed(context, RouteNames.notificationList);
                       },
                       child: SvgPicture.asset(
-                        key: const ValueKey(ConstKeys.notification),
+                        key: const ValueKey(WidgetKeys.notification),
                         AppIcons.notification,
                         width: 24.r,
                         height: 24.r,
                       ),
                     ),
-                    PositionedDirectionalWidget(theme: theme),
+                    const PositionedDirectionalWidget(),
                   ],
                 ),
               ],

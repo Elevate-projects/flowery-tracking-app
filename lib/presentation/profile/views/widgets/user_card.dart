@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flowery_tracking_app/core/constants/app_colors.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
@@ -25,7 +26,7 @@ class UserCard extends StatelessWidget {
       buildWhen: (prev, curr) => prev.profileStatus != curr.profileStatus,
       builder: (BuildContext context, state) {
         return Container(
-          key: const ValueKey(ConstKeys.userCard),
+          key: const ValueKey(WidgetKeys.userCard),
           decoration: BoxDecoration(
             color: theme.colorScheme.secondary,
 
@@ -43,7 +44,7 @@ class UserCard extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  key: const ValueKey(ConstKeys.photo),
+                  key: const ValueKey(WidgetKeys.photo),
                   radius: 26,
                   backgroundColor: theme.colorScheme.onPrimary,
 
@@ -59,7 +60,7 @@ class UserCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      key: const ValueKey(ConstKeys.name),
+                      key: const ValueKey(WidgetKeys.name),
                       "${FloweryDriverMethodHelper.driverData?.firstName} ${FloweryDriverMethodHelper.driverData?.lastName}",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -71,17 +72,17 @@ class UserCard extends StatelessWidget {
                       key: const ValueKey(ConstKeys.email),
 
                       FloweryDriverMethodHelper.driverData?.email ?? "",
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 16.sp,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                          color: AppColors.black
                       ),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      key: const ValueKey(ConstKeys.phone),
+                      key: const ValueKey(WidgetKeys.phone),
 
                       FloweryDriverMethodHelper.driverData?.phone ?? "",
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 16.sp,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                          color: AppColors.black
                       ),
                     ),
                   ],
@@ -95,7 +96,7 @@ class UserCard extends StatelessWidget {
                   child: Transform.rotate(
                     angle: globalCubit.isArLanguage ? math.pi : 0,
                     child: SvgPicture.asset(
-                      key: const ValueKey(ConstKeys.arrowRight),
+                      key: const ValueKey(WidgetKeys.arrowRight),
                       AppIcons.arrowRight,
                     ),
                   ),
