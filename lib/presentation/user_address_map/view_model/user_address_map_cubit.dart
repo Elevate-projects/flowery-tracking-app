@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,7 +110,7 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
         emit(state.copyWith(polylinePoints: coords));
       }
     } catch (e) {
-      print('🚨 Route error: $e');
+      log('🚨 Route error: $e');
     }
   }
 
