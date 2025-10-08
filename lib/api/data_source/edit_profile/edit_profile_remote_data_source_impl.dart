@@ -16,6 +16,7 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
       final result = await apiClient.editProfile(
         request: EditProfileRequestModel(
           lastName: request.lastName,
+          password: request.password,
           firstName: request.firstName,
           phone: request.phone,
           email: request.email
