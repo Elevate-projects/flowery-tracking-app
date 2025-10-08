@@ -45,7 +45,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         orderId: request.orderId,
       );
       await _firestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(request.orderId)
           .set(orderModel.toJson());
     });

@@ -86,7 +86,7 @@ void main() async {
       };
 
       await fakeFirestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(orderId)
           .set(orderJson);
 
@@ -143,7 +143,7 @@ void main() async {
       ).thenAnswer((_) async {});
 
       await fakeFirestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(request.orderId)
           .set({"state": "inProgress"});
 
@@ -162,7 +162,7 @@ void main() async {
       ).called(1);
 
       final updatedDoc = await fakeFirestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(request.orderId)
           .get();
 

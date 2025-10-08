@@ -50,10 +50,13 @@ class AddressItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.shadow,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    title,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.shadow,
+                    ),
                   ),
                 ),
                 const RSizedBox(height: 8),
