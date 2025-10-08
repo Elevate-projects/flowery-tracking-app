@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_address.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
@@ -31,8 +32,12 @@ class OrderDetailsAddresses extends StatelessWidget {
                 AppText.notProvided.tr(),
             phone: state.orderStatus.data?.store?.phoneNumber ?? "",
             onAddressTaped: () {
-              // Navigate to Google maps
-            },
+              final orderData = state.orderStatus.data;
+              Navigator.pushNamed(
+                context,
+                RouteNames.pickUpAddress,
+                arguments: orderData,
+              );            },
           ),
           const RSizedBox(height: 16),
           Text(AppText.userAddress.tr(), style: theme.textTheme.headlineSmall),

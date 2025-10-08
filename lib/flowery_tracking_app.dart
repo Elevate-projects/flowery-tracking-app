@@ -28,7 +28,7 @@ class FloweryTrackingApp extends StatelessWidget {
                 theme: AppTheme.lightTheme,
                 themeMode: ThemeMode.light,
                 onGenerateRoute: AppRoutes.onGenerateRoute,
-                initialRoute: globalCubit.redirectedScreen,
+                 initialRoute: globalCubit.redirectedScreen,
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
