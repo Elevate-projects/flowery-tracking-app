@@ -5,6 +5,7 @@ import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/api/models/driver_order/driver_order_model.dart';
 import 'package:flowery_tracking_app/api/models/order/order_model.dart';
 import 'package:flowery_tracking_app/core/constants/app_collections.dart';
+import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/data/data_source/order_details/remote_data_source/order_details_remote_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/order_details/update_order_status_request_entity.dart';
@@ -27,7 +28,9 @@ class OrderDetailsRemoteDataSourceImpl implements OrderDetailsRemoteDataSource {
       final currentOrderId = result.orders
           ?.firstWhere(
             (orderData) =>
-                orderData.order?.state == CurrentOrderState.inProgress.name,
+                orderData.order?.state == CurrentOrderState.inProgress.name ||
+                (orderData.order?.state == ConstKeys.completed &&
+                    orderData.order?.isDelivered == false),
             orElse: () => DriverOrderModel.empty(),
           )
           .order
