@@ -1,4 +1,5 @@
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
+import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_cubit.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_state.dart';
 import 'package:flutter/material.dart';
@@ -7,25 +8,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 
-class MapSection extends StatefulWidget {
-  const MapSection({super.key, this.orderData});
+class MapSection extends StatelessWidget {
+  const MapSection({super.key, required this.orderData});
 
-  final dynamic orderData;
-
-  @override
-  State<MapSection> createState() => _MapSectionState();
-}
-
-class _MapSectionState extends State<MapSection> {
-  @override
-  void initState() {
-    super.initState();
-    final userLocation = LatLng(
-      double.parse(widget.orderData.shippingAddress.lat.toString()),
-      double.parse(widget.orderData.shippingAddress.long.toString()),
-    );
-    context.read<UserAddressMapCubit>().initMap(userLocation: userLocation);
-  }
+  final OrderEntity orderData;
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +93,11 @@ class _MapSectionState extends State<MapSection> {
                     color: theme.primaryColor,
                     shape: BoxShape.circle,
                   ),
-                  padding:  const EdgeInsets.all(8),
-                  child: const Icon(Icons.arrow_back_ios, color: Colors.white),
+                  padding: const EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: theme.colorScheme.secondary,
+                  ),
                 ),
               ),
             ),

@@ -1,3 +1,7 @@
+import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/shipping_address/shipping_address_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/store/store_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/user/user_entity.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_address.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
@@ -11,82 +15,34 @@ import 'package:mockito/mockito.dart';
 
 import 'map_addresses_details_test.mocks.dart';
 
-/// Fake models matching the widget structure
-class _FakeUser {
-  final String firstName;
-  final String lastName;
-  final String photo;
-  final String phone;
-
-  _FakeUser({
-    required this.firstName,
-    required this.lastName,
-    required this.photo,
-    required this.phone,
-  });
-}
-
-class _FakeShippingAddress {
-  final String city;
-  final String street;
-
-  _FakeShippingAddress({required this.city, required this.street});
-}
-
-class _FakeStore {
-  final String name;
-  final String image;
-  final String address;
-  final String phoneNumber;
-
-  _FakeStore({
-    required this.name,
-    required this.image,
-    required this.address,
-    required this.phoneNumber,
-  });
-}
-
-class _FakeOrderData {
-  final _FakeUser user;
-  final _FakeShippingAddress shippingAddress;
-  final _FakeStore store;
-
-  _FakeOrderData({
-    required this.user,
-    required this.shippingAddress,
-    required this.store,
-  });
-}
-
 @GenerateMocks([OrderDetailsCubit])
 void main() {
   provideDummy<OrderDetailsState>(const OrderDetailsState());
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  late _FakeOrderData fakeOrderData;
+  late OrderEntity fakeOrderData;
   late MockOrderDetailsCubit cubit;
   setUp(() {
     cubit = MockOrderDetailsCubit();
-    fakeOrderData = _FakeOrderData(
-      user: _FakeUser(
+    fakeOrderData = const OrderEntity(
+      user: UserEntity(
         firstName: 'John',
         lastName: 'Doe',
-        photo: 'user_photo.png',
         phone: '+201234567890',
+        photo: 'user_photo.png',
       ),
-      shippingAddress: _FakeShippingAddress(
+      shippingAddress: ShippingAddressEntity(
         city: 'Cairo',
         street: 'Tahrir Street',
       ),
-      store: _FakeStore(
+      store: StoreEntity(
         name: 'Flower Store',
         image: 'store_photo.png',
         address: 'Nasr City, Cairo',
         phoneNumber: '+20987654321',
       ),
+      // add other required fields from your OrderEntity constructor if any
     );
-
     when(cubit.state).thenReturn(const OrderDetailsState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
   });

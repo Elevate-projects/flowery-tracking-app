@@ -1,4 +1,5 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views/forget_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/reset_password.dart';
@@ -40,7 +41,8 @@ abstract class AppRoutes {
         return MaterialPageRoute(builder: (_) => const OrderDetailsView());
       case RouteNames.userAddressMap:
         return MaterialPageRoute(
-          builder: (_) => UserAddressMapView(orderData: settings.arguments),
+          builder: (_) =>
+              UserAddressMapView(orderData: settings.arguments as OrderEntity),
         );
       default:
         return null;

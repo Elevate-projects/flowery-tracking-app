@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_intent.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -19,7 +20,19 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
 
   UserAddressMapCubit() : super(const UserAddressMapState(currentZoom: 15));
 
-  Future<void> initMap({required LatLng userLocation}) async {
+  Future<void> doIntent(UserAddressMapIntent intent) {
+    switch (intent) {
+      case UserAddressMapInitializationIntent():
+        return _initMap(
+          userLocation: LatLng(
+            double.parse(intent.orderData.shippingAddress!.lat.toString()),
+            double.parse(intent.orderData.shippingAddress!.long.toString()),
+          ),
+        );
+    }
+  }
+
+  Future<void> _initMap({required LatLng userLocation}) async {
     _userLocation = userLocation;
 
     emit(state.copyWith(userLocation: _userLocation));

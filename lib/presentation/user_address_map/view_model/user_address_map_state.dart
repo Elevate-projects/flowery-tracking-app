@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:latlong2/latlong.dart';
 
-class UserAddressMapState extends Equatable {
+final class UserAddressMapState extends Equatable {
   final LatLng? driverLocation;
   final LatLng? userLocation;
   final List<LatLng> polylinePoints;
