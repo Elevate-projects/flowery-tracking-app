@@ -85,7 +85,6 @@ abstract final class AppText {
   static const String welcome = "welcome";
   static const String applyNow = "applyNow";
   static const String appVersion = "v 6.3.0 - (446)";
-
   //BottomNavigation
   static const String home = 'home';
   static const String order = 'order';
@@ -181,4 +180,13 @@ abstract final class AppText {
   static const String aborted = "aborted";
   static const String outOfRange = "outOfRange";
   static const String unknownErrorMessage = "unknownErrorMessage";
+  static const String editVehicle = "editVehicle";
+  static const String vehicleType = "vehicleType";
+  static const String enterVehicleType = "enterVehicleType";
+  static const String vehicleNumber = "vehicleNumber";
+  static const String enterVehicleNumber = "enterVehicleNumber";
+  static const String vehicleLicense = "vehicleLicense";
+  static const String enterVehicleLicense = "enterVehicleLicense";
+  static const String failure = "failure";
+  static const String success = "success";
 }
