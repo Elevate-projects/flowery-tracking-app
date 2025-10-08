@@ -10,4 +10,5 @@ abstract class Endpoints {
   static const String startOrder = '/api/v1/orders/start/{orderId}';
   static const String allDriverOrders = '/api/v1/orders/driver-orders';
   static const String updateOrderStatus = '/api/v1/orders/state/{orderId}';
+  static const String editProfile = '/api/v1/drivers/editProfile';
 }

@@ -158,5 +158,15 @@
   "invalidArgument": "Invalid argument provided.",
   "aborted": "The operation was aborted.",
   "outOfRange": "The value provided is out of range.",
-  "unknownErrorMessage": "An unknown error has occurred with the following message:"
+  "unknownErrorMessage": "An unknown error has occurred with the following message:",
+  "editProfile": "Edit Profile",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phone": "Phone",
+  "gender": "Gender",
+  "genderMale": "Male",
+  "genderFemale": "Female",
+  "failure": "Failed to update profile",
+  "success": "Profile updated successfully",
+  "changePassword": "Change Password"
 }
