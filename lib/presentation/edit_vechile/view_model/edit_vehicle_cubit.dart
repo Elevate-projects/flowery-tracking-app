@@ -9,8 +9,6 @@ import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-
-@injectable
 @injectable
 class EditVehicleCubit extends Cubit<EditVehicleStatus> {
   final EditVehicleUseCase _useCase;
