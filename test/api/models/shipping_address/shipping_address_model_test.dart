@@ -34,11 +34,11 @@ void main() {
       () {
         // Arrange
         final ShippingAddressModel model = ShippingAddressModel(
-          street: "Saqr-koresh",
+          phone: "+201116211489",
           city: "Cairo",
-          phone: "01010518802",
-          lat: "31.7195459",
-          long: "31.7195459",
+          street: "Saqr-koresh",
+          lat: "29.98508582119217",
+          long: "31.27334386662929",
         );
 
         // Act
@@ -59,11 +59,11 @@ void main() {
     test("toJson and fromJson should work correctly", () {
       // Arrange
       final model = ShippingAddressModel(
-        street: "Saqr-koresh",
+        phone: "+201116211489",
         city: "Cairo",
-        phone: "01010518802",
-        lat: "31.7195459",
-        long: "31.7195459",
+        street: "Saqr-koresh",
+        lat: "29.98508582119217",
+        long: "31.27334386662929",
       );
 
       // Act
@@ -85,11 +85,11 @@ void main() {
       final dummy = ShippingAddressModel.dummy();
 
       // Assert
-      expect(dummy.phone, equals("01010518802"));
+      expect(dummy.phone, equals("+201116211489"));
       expect(dummy.city, equals("Cairo"));
       expect(dummy.street, equals("Saqr-koresh"));
-      expect(dummy.lat, equals("31.7195459"));
-      expect(dummy.long, equals("31.7195459"));
+      expect(dummy.lat, equals("29.98508582119217"));
+      expect(dummy.long, equals("31.27334386662929"));
     });
   });
 }
