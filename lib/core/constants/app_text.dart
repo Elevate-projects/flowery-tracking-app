@@ -41,6 +41,14 @@ abstract final class AppText {
   static const String openPhoneFailureMessage = "openPhoneFailureMessage";
   static const String openWhatsappFailureMessage = "openWhatsappFailureMessage";
 
+  // Orders
+  static const String myOrders = "myOrders";
+  static const String canceled = "canceled";
+  static const String completed = "completed";
+  static const String recentOrders = "recentOrders";
+  static const String emptyDeliveredOrdersMessage =
+      "emptyDeliveredOrdersMessage";
+
   // Validations
   static const String userNameValidation = "userNameValidation";
   static const String emptyTextValidation = "emptyTextValidation";

@@ -36,15 +36,12 @@ abstract class AppRoutes {
         );
       case RouteNames.profileResetPassword:
         return MaterialPageRoute(builder: (_) => const ProfileResetPassword());
+      case RouteNames.orderDetails:
+        return MaterialPageRoute(builder: (_) => const OrderDetailsView());
       case RouteNames.userAddressMap:
         return MaterialPageRoute(
           builder: (_) => UserAddressMapView(orderData: settings.arguments),
         );
-      case RouteNames.orderDetails:
-        return MaterialPageRoute(builder: (_) => const OrderDetailsView());
-      // case RouteNames.successScreen:
-      //   return MaterialPageRoute(builder: (_) => const SuccessScreen());
-
       default:
         return null;
     }

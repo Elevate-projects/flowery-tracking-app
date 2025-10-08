@@ -38,6 +38,12 @@
   "openPhoneFailureMessage": "Could not open phone dialer",
   "openWhatsappFailureMessage": "Could not open WhatsApp",
 
+  "myOrders": "My orders",
+  "canceled": "Canceled",
+  "completed": "Completed",
+  "recentOrders": "Recent orders",
+  "emptyDeliveredOrdersMessage": "You haven't delivered any orders yet",
+
   "userNameValidation": "This user name is not valid",
   "emptyTextValidation": "This field is required",
   "phoneNumberValidation": "Phone number field is required",

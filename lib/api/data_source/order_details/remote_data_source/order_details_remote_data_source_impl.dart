@@ -42,7 +42,7 @@ class OrderDetailsRemoteDataSourceImpl implements OrderDetailsRemoteDataSource {
   }) {
     return executeApi(() async {
       final orderSnapshot = await _firestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(orderId)
           .get();
       final orderData = OrderModel.fromJson(orderSnapshot.data()!);
@@ -63,7 +63,7 @@ class OrderDetailsRemoteDataSourceImpl implements OrderDetailsRemoteDataSource {
         ),
       );
       await _firestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(request.orderId)
           .update({"state": request.orderStatus});
     });

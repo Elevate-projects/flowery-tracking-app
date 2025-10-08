@@ -19,6 +19,7 @@ class OrderItemShimmer extends StatelessWidget {
             blurRadius: 4.r,
           ),
         ],
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
