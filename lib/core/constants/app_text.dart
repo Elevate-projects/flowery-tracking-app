@@ -181,8 +181,8 @@ abstract final class AppText {
   static const String gender = "gender";
   static const String genderMale = "genderMale";
   static const String genderFemale = "genderFemale";
+  static const String changePassword = "changePassword";
   static const String failure = "failure";
   static const String success = "success";
-  static const String changePassword = "changePassword";
 
 }

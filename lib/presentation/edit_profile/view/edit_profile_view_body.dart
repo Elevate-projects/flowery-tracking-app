@@ -110,7 +110,8 @@ class EditProfileViewBody extends StatelessWidget {
                                 child: Padding(
                                   padding: REdgeInsets.only(right: 8),
                                   child: Text(
-                                    AppText.changePassword.tr(),
+                                    overflow: TextOverflow.ellipsis,
+                                      AppText.changePassword.tr(),
                                     style: theme.textTheme.bodyLarge?.copyWith(
                                       color: theme.colorScheme.shadow,
                                     ),
