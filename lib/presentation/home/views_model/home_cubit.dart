@@ -6,6 +6,7 @@ import 'package:flowery_tracking_app/domain/use_cases/accept_order/accept_order_
 import 'package:flowery_tracking_app/domain/use_cases/fetch_driver_pending_orders/fetch_driver_pending_orders_use_case.dart';
 import 'package:flowery_tracking_app/presentation/home/views_model/home_intent.dart';
 import 'package:flowery_tracking_app/presentation/home/views_model/home_state.dart';
+import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -72,6 +73,7 @@ class HomeCubit extends Cubit<HomeState> {
     if (isClosed) return;
     switch (result) {
       case Success<void>():
+        FloweryDriverMethodHelper.currentDriverOrderId = request.orderId;
         emit(
           state.copyWith(
             acceptOrderStatus: const StateStatus.success(null),

@@ -57,7 +57,7 @@ void main() {
         (widget) =>
             widget is Column &&
             widget.crossAxisAlignment == CrossAxisAlignment.start &&
-            widget.children.first is Text,
+            widget.children.first is FittedBox,
       ),
       findsOneWidget,
     );

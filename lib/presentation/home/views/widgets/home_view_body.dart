@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/home/views/widgets/orders_list.dart';
 import 'package:flowery_tracking_app/presentation/home/views_model/home_cubit.dart';
 import 'package:flowery_tracking_app/presentation/home/views_model/home_state.dart';
@@ -42,12 +43,7 @@ class HomeViewBody extends StatelessWidget {
             context: context,
           );
         } else if (state.acceptOrderStatus.isSuccess) {
-          // Delete the Loader and navigate to Order Details screen
-          // Navigator.of(context).pushReplacementNamed(RouteNames.orderDetails);
-          Loaders.showSuccessMessage(
-            message: "The Order has been accepted Successfully",
-            context: context,
-          );
+          Navigator.of(context).pushReplacementNamed(RouteNames.orderDetails);
         }
       },
       child: Column(

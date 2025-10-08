@@ -7,5 +7,6 @@ abstract class RouteNames {
   static const String emailVerification = "/emailVerificationView";
   static const String resetPassword = "/resetPasswordView";
   static const String profileResetPassword = "/profileResetPasswordView";
+  static const String orderDetails = "/orderDetailsView";
   static const String profile="/profileView";
 }

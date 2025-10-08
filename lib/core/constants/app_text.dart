@@ -23,6 +23,32 @@ abstract final class AppText {
   static const String emptyOrdersMessage = "emptyOrdersMessage";
   static const String reload = "reload";
 
+  // Order Details
+  static const String accepted = "accepted";
+  static const String picked = "picked";
+  static const String outForDelivery = "outForDelivery";
+  static const String arrived = "arrived";
+  static const String delivered = "delivered";
+  static const String orderDetails = "orderDetails";
+  static const String status = "status";
+  static const String orderId = "orderId";
+  static const String total = "total";
+  static const String paymentMethod = "paymentMethod";
+  static const String arrivedAtPickupPoint = "arrivedAtPickupPoint";
+  static const String startDeliver = "startDeliver";
+  static const String arrivedToTheUser = "arrivedToTheUser";
+  static const String deliveredToTheUser = "deliveredToTheUser";
+  static const String openPhoneFailureMessage = "openPhoneFailureMessage";
+  static const String openWhatsappFailureMessage = "openWhatsappFailureMessage";
+
+  // Orders
+  static const String myOrders = "myOrders";
+  static const String canceled = "canceled";
+  static const String completed = "completed";
+  static const String recentOrders = "recentOrders";
+  static const String emptyDeliveredOrdersMessage =
+      "emptyDeliveredOrdersMessage";
+
   // Validations
   static const String userNameValidation = "userNameValidation";
   static const String emptyTextValidation = "emptyTextValidation";

@@ -4,6 +4,7 @@ import 'package:flowery_tracking_app/core/cache/shared_preferences_helper.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
+import 'package:flowery_tracking_app/domain/use_cases/fetch_all_driver_orders/fetch_all_driver_orders_use_case.dart';
 import 'package:flowery_tracking_app/domain/use_cases/login/login_with_email_and_password_use_case.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_intent.dart';
@@ -17,6 +18,7 @@ import 'login_cubit_test.mocks.dart';
 
 @GenerateMocks([
   LoginWithEmailAndPasswordUseCase,
+  FetchAllDriverOrdersUseCase,
   SecureStorage,
   SharedPreferencesHelper,
 ])
@@ -25,15 +27,18 @@ void main() {
 
   late MockLoginWithEmailAndPasswordUseCase
   mockLoginWithEmailAndPasswordUseCase;
+  late MockFetchAllDriverOrdersUseCase mockFetchAllDriverOrdersUseCase;
   late MockSecureStorage mockSecureStorage;
   late MockSharedPreferencesHelper mockSharedPreferencesHelper;
   late LoginCubit cubit;
   late Result<void> expectedSuccessResult;
+  late Result<String?> expectedSuccessResult2;
   late Failure<void> expectedFailureResult;
 
   setUpAll(() {
     mockLoginWithEmailAndPasswordUseCase =
         MockLoginWithEmailAndPasswordUseCase();
+    mockFetchAllDriverOrdersUseCase = MockFetchAllDriverOrdersUseCase();
     mockSecureStorage = MockSecureStorage();
     mockSharedPreferencesHelper = MockSharedPreferencesHelper();
     when(
@@ -51,6 +56,7 @@ void main() {
       mockLoginWithEmailAndPasswordUseCase,
       mockSecureStorage,
       mockSharedPreferencesHelper,
+      mockFetchAllDriverOrdersUseCase,
     );
     cubit.doIntent(intent: InitializeLoginFormIntent());
     cubit.loginFormKey = FakeGlobalKey(FakeFormState());
@@ -61,12 +67,17 @@ void main() {
       'emits [Loading, Success] when LoginWithEmailAndPasswordIntent succeeds',
       build: () {
         expectedSuccessResult = Success<void>(null);
+        expectedSuccessResult2 = Success<String?>("123450");
         provideDummy<Result<void>>(expectedSuccessResult);
+        provideDummy<Result<String?>>(expectedSuccessResult2);
         when(
           mockLoginWithEmailAndPasswordUseCase.invoke(
             request: anyNamed("request"),
           ),
-        ).thenAnswer((_) async => expectedSuccessResult); // success
+        ).thenAnswer((_) async => expectedSuccessResult);
+        when(
+          mockFetchAllDriverOrdersUseCase.invoke(),
+        ).thenAnswer((_) async => expectedSuccessResult2);
         return cubit;
       },
       act: (cubit) => cubit.doIntent(intent: LoginWithEmailAndPasswordIntent()),
@@ -88,6 +99,7 @@ void main() {
             request: anyNamed("request"),
           ),
         ).called(1);
+        verify(mockFetchAllDriverOrdersUseCase.invoke()).called(1);
       },
     );
 

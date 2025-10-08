@@ -8,4 +8,8 @@ abstract final class AppIcons {
   static const String miniLogout = "assets/icons/miniLogout.svg";
   static const String notification ="assets/icons/notification.svg";
   static const String location = "assets/icons/location.svg";
+  static const String phone = "assets/icons/phone.svg";
+  static const String whatsapp = "assets/icons/whatsapp.svg";
+  static const String canceled = "assets/icons/canceled.svg";
+  static const String completed = "assets/icons/completed.svg";
 }

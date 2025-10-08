@@ -1,3 +1,3 @@
 abstract final class AppCollections {
-  static const String drivers = "Drivers";
+  static const String orders = "Orders";
 }

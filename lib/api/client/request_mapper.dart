@@ -6,15 +6,18 @@ import 'package:flowery_tracking_app/api/models/store/store_model.dart';
 import 'package:flowery_tracking_app/api/models/user/user_model.dart';
 import 'package:flowery_tracking_app/api/requests/forget_password_and_resend_code/forget_password_and_resend_code_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/login_request/login_request_model.dart';
+import 'package:flowery_tracking_app/api/requests/order_details/update_order_status_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/profile%20_reset_password/profile_reset_password_request.dart';
 import 'package:flowery_tracking_app/api/requests/reset_password/reset_password_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/verification/verify_request_model.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/forget_password_and_resend_code_request/forget_password_and_resend_code_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/login_request/login_request_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/requests/order_details/update_order_status_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/profile_reset_password/profile_reset_password_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/reset_password_request/reset_password_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/verify_request/verify_requset_entity.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
 
 abstract final class RequestMapper {
   static LoginRequestModel toLoginRequestModel({
@@ -114,5 +117,16 @@ abstract final class RequestMapper {
       password: entity.password,
       newPassword: entity.newPassword,
     );
+  }
+
+  static UpdateOrderStatusRequestModel toUpdateOrderStatusRequestModel({
+    required UpdateOrderStatusRequestEntity updateOrderStatusRequestEntity,
+  }) {
+    if (updateOrderStatusRequestEntity.orderStatus ==
+        CurrentOrderState.deliveredToTheUser.name) {
+      return UpdateOrderStatusRequestModel(state: "completed");
+    } else {
+      return UpdateOrderStatusRequestModel(state: "inProgress");
+    }
   }
 }

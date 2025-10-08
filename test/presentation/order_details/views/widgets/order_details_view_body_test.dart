@@ -1,0 +1,68 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/di/di.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_addresses.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_app_bar.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_list.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_view_body.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_information.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_intent.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+
+import 'order_details_addresses_test.mocks.dart';
+
+@GenerateMocks([OrderDetailsCubit])
+void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  late MockOrderDetailsCubit mockOrderDetailsCubit;
+  setUp(() {
+    mockOrderDetailsCubit = MockOrderDetailsCubit();
+    getIt.registerFactory<OrderDetailsCubit>(() => mockOrderDetailsCubit);
+    provideDummy<OrderDetailsState>(const OrderDetailsState());
+    when(mockOrderDetailsCubit.state).thenReturn(const OrderDetailsState());
+    when(
+      mockOrderDetailsCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([const OrderDetailsState()]));
+  });
+  // Arrange
+  Widget prepareWidget() {
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, child) {
+        return MaterialApp(
+          home: BlocProvider<OrderDetailsCubit>.value(
+            value: mockOrderDetailsCubit
+              ..doIntent(intent: const OrderDetailsInitializationIntent()),
+            child: const Scaffold(body: OrderDetailsViewBody()),
+          ),
+        );
+      },
+    );
+  }
+
+  testWidgets("Verifying OrderDetailsViewBody Widgets", (tester) async {
+    // Act
+    await tester.pumpWidget(prepareWidget());
+    // Assert
+    expect(find.byType(CustomScrollView), findsOneWidget);
+    expect(find.byType(OrderDetailsAppBar), findsOneWidget);
+    expect(find.byType(SliverPadding), findsNWidgets(2));
+    expect(find.byType(SliverToBoxAdapter), findsOneWidget);
+    expect(find.byType(OrderInformation), findsOneWidget);
+    expect(find.byType(OrderDetailsAddresses), findsOneWidget);
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is Text && widget.data == AppText.orderDetails.tr(),
+      ),
+      findsNWidgets(2),
+    );
+    expect(find.byType(OrderDetailsList), findsOneWidget);
+  });
+}
