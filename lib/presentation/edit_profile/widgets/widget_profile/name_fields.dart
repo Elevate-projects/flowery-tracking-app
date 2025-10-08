@@ -16,25 +16,22 @@ class NameFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: REdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: CustomTextFormField(
-              controller: firstNameController,
-              label: AppText.firstName.tr(),
-            ),
+    return Row(
+      children: [
+        Expanded(
+          child: CustomTextFormField(
+            controller: firstNameController,
+            label: AppText.firstName.tr(),
           ),
-          const RSizedBox(width: 17),
-          Expanded(
-            child: CustomTextFormField(
-              controller: lastNameController,
-              label: AppText.lastName.tr(),
-            ),
+        ),
+        const RSizedBox(width: 17),
+        Expanded(
+          child: CustomTextFormField(
+            controller: lastNameController,
+            label: AppText.lastName.tr(),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -59,44 +59,37 @@ class EditProfileViewBody extends StatelessWidget {
             if (state.editProfileStatus.isLoading) {
               return const Center(child: CircularProgressIndicator());
             }
-
             return SingleChildScrollView(
-              child: Form(
-                key: cubit.formKey,
-                child: Column(
-                  children: [
-                    const RSizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ProfileImage(imageUrl: state.driverData?.photo),
-                      ],
-                    ),
-                    const RSizedBox(height: 24),
-                    NameFields(
-                      firstNameController: cubit.firstNameController,
-                      lastNameController: cubit.lastNameController,
-                    ),
-                    const RSizedBox(height: 24),
-                    Padding(
-                      padding: REdgeInsets.symmetric(horizontal: 16),
-                      child: CustomTextFormField(
+              child: Padding(
+                padding: REdgeInsets.symmetric(horizontal: 16),
+                child: Form(
+                  key: cubit.formKey,
+                  child: Column(
+                    children: [
+                      const RSizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ProfileImage(imageUrl: state.driverData?.photo),
+                        ],
+                      ),
+                      const RSizedBox(height: 24),
+                      NameFields(
+                        firstNameController: cubit.firstNameController,
+                        lastNameController: cubit.lastNameController,
+                      ),
+                      const RSizedBox(height: 24),
+                      CustomTextFormField(
                         controller: cubit.emailController,
                         label: AppText.email.tr(),
                       ),
-                    ),
-                    const RSizedBox(height: 24),
-                    Padding(
-                      padding: REdgeInsets.symmetric(horizontal: 16),
-                      child: CustomTextFormField(
+                      const RSizedBox(height: 24),
+                      CustomTextFormField(
                         controller: cubit.phoneController,
                         label: AppText.phone.tr(),
                       ),
-                    ),
-                    const RSizedBox(height: 24),
-                    Padding(
-                      padding: REdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
+                      const RSizedBox(height: 24),
+                      Row(
                         children: [
                           Expanded(
                             child: CustomTextFormField(
@@ -111,7 +104,7 @@ class EditProfileViewBody extends StatelessWidget {
                                   padding: REdgeInsets.only(right: 8),
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                      AppText.changePassword.tr(),
+                                    AppText.changePassword.tr(),
                                     style: theme.textTheme.bodyLarge?.copyWith(
                                       color: theme.colorScheme.shadow,
                                     ),
@@ -122,25 +115,19 @@ class EditProfileViewBody extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                    const RSizedBox(height: 24),
-                    Padding(
-                      padding: REdgeInsets.symmetric(horizontal: 16),
-                      child: const GenderView(),
-                    ),
-                    const RSizedBox(height: 40),
-                    Padding(
-                      padding: REdgeInsets.symmetric(horizontal: 16),
-                      child: CustomElevatedButton(
-                          onPressed: state.isFormValid
-                              ? () {
-                            cubit.onIntent(SubmitEditProfile());
-                          }
-                              : null,
+                      const RSizedBox(height: 24),
+                      const GenderView(),
+                      const RSizedBox(height: 40),
+                      CustomElevatedButton(
+                        onPressed: state.isFormValid
+                            ? () {
+                          cubit.onIntent(SubmitEditProfile());
+                        }
+                            : null,
                         buttonTitle: AppText.update.tr(),
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
