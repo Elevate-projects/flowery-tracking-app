@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
- import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
- import 'package:flowery_tracking_app/presentation/profile/views/widgets/language_bottom_sheet.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
+import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
+import 'package:flowery_tracking_app/presentation/profile/views/widgets/language_bottom_sheet.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/widgets/profile_navigation_item.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
@@ -16,7 +17,7 @@ class LanguageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final profileCubit = BlocProvider.of<ProfileCubit>(context);
-     return BlocBuilder<ProfileCubit, ProfileState>(
+    return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return ProfileNavigationItem(
           key: const ValueKey(WidgetKeys.langItem),
@@ -33,14 +34,18 @@ class LanguageSection extends StatelessWidget {
             ),
           ),
           onTap: () {
+            final globalCubit = BlocProvider.of<GlobalCubit>(context);
+
             showModalBottomSheet(
               isScrollControlled: true,
               backgroundColor: theme.colorScheme.secondary,
               context: context,
-              builder: (context) => BlocProvider.value(
-                value: profileCubit,
-                child: const LanguageBottomSheet(
-                 ),
+              builder: (context) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: profileCubit),
+                  BlocProvider.value(value: globalCubit),
+                ],
+                child: const LanguageBottomSheet(),
               ),
             );
           },

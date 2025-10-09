@@ -98,15 +98,10 @@ void main() async {
     await tester.tap(langItemFinder);
     await tester.pumpAndSettle();
 
-    expect(
-      find.byKey(const ValueKey(WidgetKeys.changeLanguage)),
-      findsOneWidget,
-    );
+    expect(find.byKey(const ValueKey(WidgetKeys.changeLanguage)),findsOneWidget,);
     expect(find.byKey(const ValueKey(WidgetKeys.radioItemEn)), findsOneWidget);
     expect(find.byKey(const ValueKey(WidgetKeys.radioItemAr)), findsOneWidget);
-    expect(
-      find.byKey(const ValueKey(WidgetKeys.bottomSheetSelectionItem)),
-      findsOneWidget,
+    expect(find.byKey(const ValueKey(WidgetKeys.bottomSheetSelectionItem)), findsOneWidget,
     );
   });
 }
