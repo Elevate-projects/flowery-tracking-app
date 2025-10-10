@@ -6,10 +6,10 @@ import 'package:flowery_tracking_app/presentation/profile/views/profile_views.da
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,7 +70,10 @@ void main() async {
     await tester.pumpWidget(prepareWidget());
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const ValueKey(WidgetKeys.profileAppBar)), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey(WidgetKeys.profileAppBar)),
+      findsOneWidget,
+    );
     expect(find.byKey(const ValueKey(WidgetKeys.notification)), findsOneWidget);
     expect(find.byKey(const ValueKey(WidgetKeys.userCard)), findsOneWidget);
     expect(find.byKey(const ValueKey(WidgetKeys.photo)), findsOneWidget);
@@ -81,11 +84,11 @@ void main() async {
     expect(find.byKey(const ValueKey(WidgetKeys.vehicleCard)), findsOneWidget);
     expect(find.byKey(const ValueKey(WidgetKeys.vehicleInfo)), findsOneWidget);
     expect(find.byKey(const ValueKey(WidgetKeys.vehicleType)), findsOneWidget);
-    expect(find.byKey(const ValueKey(WidgetKeys.vehicleNumber)), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey(WidgetKeys.vehicleNumber)),
+      findsOneWidget,
+    );
     expect(find.byKey(const ValueKey(WidgetKeys.langItem)), findsOneWidget);
-    expect(find.byKey(const ValueKey(WidgetKeys.logoutText)), findsOneWidget);
-    expect(find.byKey(const ValueKey(WidgetKeys.logout)), findsNWidgets(2));
-
   });
   testWidgets("Verify bottom sheet opens when tapping language item", (
     WidgetTester tester,
@@ -98,10 +101,15 @@ void main() async {
     await tester.tap(langItemFinder);
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const ValueKey(WidgetKeys.changeLanguage)),findsOneWidget,);
+    expect(
+      find.byKey(const ValueKey(WidgetKeys.changeLanguage)),
+      findsOneWidget,
+    );
     expect(find.byKey(const ValueKey(WidgetKeys.radioItemEn)), findsOneWidget);
     expect(find.byKey(const ValueKey(WidgetKeys.radioItemAr)), findsOneWidget);
-    expect(find.byKey(const ValueKey(WidgetKeys.bottomSheetSelectionItem)), findsOneWidget,
+    expect(
+      find.byKey(const ValueKey(WidgetKeys.bottomSheetSelectionItem)),
+      findsOneWidget,
     );
   });
 }

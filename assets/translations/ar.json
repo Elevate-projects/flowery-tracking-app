@@ -168,5 +168,8 @@
   "arabic": "العربية",
   "english": "الإنجليزية",
   "changeLanguage": "تغيير اللغة",
-  "appVersion": "الإصدار 6.3.0 - (446)"
+  "appVersion": "الإصدار 6.3.0 - (446)",
+  "logoutCapital": "تسجيل الخروج",
+  "confirmLogout": "تأكيد تسجيل الخروج!!",
+  "cancel": "إلغاء"
 }

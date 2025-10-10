@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
- import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
+import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/widgets/positioned_directional_widget.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_app_bar.dart';
-import 'package:flowery_tracking_app/utils/common_widgets/custom_back_arrow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +16,8 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-     return BlocBuilder<ProfileCubit, ProfileState>(
+    final theme = Theme.of(context);
+    return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (BuildContext context, state) {
         return CustomAppBar(
           key: const ValueKey(WidgetKeys.profileAppBar),
@@ -26,9 +26,17 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                const CustomBackArrow(key: ValueKey(WidgetKeys.customBackArrow)),
-                Text(AppText.profile.tr()),
-                const Spacer(),
+                Expanded(
+                  child: FittedBox(
+                    alignment: AlignmentDirectional.centerStart,
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      AppText.profile.tr(),
+                      style: theme.textTheme.headlineMedium,
+                    ),
+                  ),
+                ),
+
                 Stack(
                   clipBehavior: Clip.none,
                   children: [

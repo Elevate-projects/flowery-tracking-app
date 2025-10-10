@@ -6,8 +6,4 @@ abstract final class ConstKeys {
   static const String password = "password";
   static const String completed = "completed";
   static const String canceled = "canceled";
-
-
-
-
 }
