@@ -10,4 +10,6 @@ abstract final class AppIcons {
   static const String whatsapp = "assets/icons/whatsapp.svg";
   static const String canceled = "assets/icons/canceled.svg";
   static const String completed = "assets/icons/completed.svg";
+  static const String userLocation = "assets/icons/Flowery location.png";
+  static const String driveLocation = "assets/icons/driver location.png";
 }
