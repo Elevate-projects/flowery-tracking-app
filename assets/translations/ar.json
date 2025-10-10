@@ -161,5 +161,15 @@
   "invalidArgument": "تم تقديم وسيط غير صالح.",
   "aborted": "تم إيقاف العملية.",
   "outOfRange": "القيمة المقدمة خارج النطاق المسموح به.",
-  "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:"
+  "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:",
+   "language": "اللغة",
+  "logout": "تسجيل الخروج",
+  "vehicleInfo": "معلومات المركبة",
+  "arabic": "العربية",
+  "english": "الإنجليزية",
+  "changeLanguage": "تغيير اللغة",
+  "appVersion": "الإصدار 6.3.0 - (446)",
+  "logoutCapital": "تسجيل الخروج",
+  "confirmLogout": "تأكيد تسجيل الخروج!!",
+  "cancel": "إلغاء"
 }

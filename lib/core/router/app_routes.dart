@@ -8,6 +8,7 @@ import 'package:flowery_tracking_app/presentation/bottom_navigation/views/bottom
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/profile/reset_password/views/profile_reset_password.dart';
+import 'package:flowery_tracking_app/presentation/profile/views/profile_views.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view/user_address_map_view.dart';
 import 'package:flutter/material.dart';
 
@@ -37,13 +38,19 @@ abstract class AppRoutes {
         );
       case RouteNames.profileResetPassword:
         return MaterialPageRoute(builder: (_) => const ProfileResetPassword());
+
       case RouteNames.orderDetails:
         return MaterialPageRoute(builder: (_) => const OrderDetailsView());
+
       case RouteNames.userAddressMap:
         return MaterialPageRoute(
           builder: (_) =>
               UserAddressMapView(orderData: settings.arguments as OrderEntity),
         );
+
+      case RouteNames.profile:
+        return MaterialPageRoute(builder: (_) => const ProfileView());
+
       default:
         return null;
     }

@@ -1,4 +1,7 @@
-class DriverDataEntity {
+import 'package:equatable/equatable.dart';
+
+// ignore: must_be_immutable
+class DriverDataEntity extends Equatable {
   DriverDataEntity({
     this.country,
     this.firstName,
@@ -30,4 +33,22 @@ class DriverDataEntity {
   String? photo;
   String? role;
   String? id;
+
+  @override
+  List<Object?> get props => [
+    country,
+    firstName,
+    lastName,
+    vehicleType,
+    vehicleNumber,
+    vehicleLicense,
+    nid,
+    nIDImg,
+    email,
+    gender,
+    phone,
+    photo,
+    role,
+    id,
+  ];
 }
