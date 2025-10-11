@@ -19,7 +19,7 @@ class SuccessScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset(AppImages.successImage, width: 150.h, height: 150.h),
+            Image.asset(AppImages.successImage, width: 150.w, height: 150.h),
             const RSizedBox(height: 32),
             Text(
               textAlign: TextAlign.center,
