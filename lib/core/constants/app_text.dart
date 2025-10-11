@@ -191,4 +191,8 @@ abstract final class AppText {
   static const String logoutCapital = "logoutCapital";
   static const String confirmLogout = "confirmLogout";
   static const String cancel = "cancel";
+
+  static const String thankYou = 'thankYou';
+  static const String theOrderDelivered = 'theOrderDelivered';
+  static const String done = 'done';
 }

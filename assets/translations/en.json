@@ -8,7 +8,6 @@
   "forgetPassword": "Forget password?",
   "continueText": "Continue",
   "loggingInMessage": "Logging you in ...",
-
   "floweryRider": "Flowery rider",
   "flowerOrder": "Flower order",
   "pickupAddress": "Pickup address",
@@ -20,7 +19,6 @@
   "reloadedOrdersMessage": "Orders have been successfully reloaded",
   "emptyOrdersMessage": "Your list of pending orders is currently empty. Would you like to refresh it?",
   "reload": "Reload",
-
   "accepted": "Accepted",
   "picked": "Picked",
   "outForDelivery": "Out for delivery",
@@ -37,13 +35,11 @@
   "deliveredToTheUser": "Delivered to the user",
   "openPhoneFailureMessage": "Could not open phone dialer",
   "openWhatsappFailureMessage": "Could not open WhatsApp",
-
   "myOrders": "My orders",
   "canceled": "Canceled",
   "completed": "Completed",
   "recentOrders": "Recent orders",
   "emptyDeliveredOrdersMessage": "You haven't delivered any orders yet",
-
   "userNameValidation": "This user name is not valid",
   "emptyTextValidation": "This field is required",
   "phoneNumberValidation": "Phone number field is required",
@@ -106,11 +102,10 @@
   "logoutCapital": "LOGOUT",
   "confirmLogout": "Confirm logout!!",
   "cancel": "Cancel",
-   "currentPassword": "Current Password",
+  "currentPassword": "Current Password",
   "newPassword": "New Password",
   "update": "Update",
   "passwordChanged": "Password Changed Successfully",
-
   "emailAlreadyInUse": "The email address is already registered. Please use a different email.",
   "invalidEmail": "The email address provided is invalid. Please enter a valid email.",
   "networkRequestFailed": "There is a network problem, Please check your network connection and try again.",
@@ -170,5 +165,8 @@
   "invalidArgument": "Invalid argument provided.",
   "aborted": "The operation was aborted.",
   "outOfRange": "The value provided is out of range.",
-  "unknownErrorMessage": "An unknown error has occurred with the following message:"
+  "unknownErrorMessage": "An unknown error has occurred with the following message:",
+  "thankYou": "Thank you!!",
+  "theOrderDelivered": "The order delivered successfully",
+  "done": "Done"
 }

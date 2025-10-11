@@ -8,7 +8,6 @@
   "forgetPassword": "نسيت كلمة المرور؟",
   "continueText": "متابعة",
   "loggingInMessage": "جاري تسجيل دخولك ...",
-
   "floweryRider": "سائق فلويري",
   "flowerOrder": "طلب ورد",
   "pickupAddress": "عنوان الاستلام",
@@ -20,7 +19,6 @@
   "reloadedOrdersMessage": "تم إعادة تحميل الطلبات بنجاح",
   "emptyOrdersMessage": "قائمة الطلبات المعلقة فارغة حاليًا. هل ترغب في تحديثها؟",
   "reload": "تحديث",
-
   "accepted": "تم القبول",
   "picked": "تم الاستلام",
   "outForDelivery": "في طريق التسليم",
@@ -37,13 +35,11 @@
   "deliveredToTheUser": "تم التسليم للمستخدم",
   "openPhoneFailureMessage": "تعذر فتح تطبيق الاتصال",
   "openWhatsappFailureMessage": "تعذر فتح واتساب",
-
   "myOrders": "طلباتي",
   "canceled": "تم الإلغاء",
   "completed": "تم الاكتمال",
   "recentOrders": "الطلبات الأخيرة",
   "emptyDeliveredOrdersMessage": "لم تقم بتسليم أي طلبات بعد",
-
   "userNameValidation": "اسم المستخدم غير صالح",
   "emptyTextValidation": "هذا الحقل مطلوب",
   "phoneNumberValidation": "حقل رقم الهاتف مطلوب",
@@ -61,7 +57,6 @@
   "passwordValidation7": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
   "otpValidation": "الرمز المرسل إلى بريدك الإلكتروني مطلوب",
   "otpValidation2": "يجب إدخال الرمز المكون من 6 أرقام",
-
   "connectionError": "يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى",
   "noResponseReceivedMessage": "لم يتم استلام استجابة أو الاستجابة ليست بالتنسيق المتوقع.",
   "error": "خطأ",
@@ -101,7 +96,6 @@
   "newPassword": "كلمة المرور الجديدة",
   "update": "تحديث",
   "passwordChanged": "تم تغيير كلمة المرور بنجاح",
-
   "emailAlreadyInUse": "عنوان البريد الإلكتروني مسجل بالفعل. يرجى استخدام بريد إلكتروني مختلف.",
   "invalidEmail": "عنوان البريد الإلكتروني غير صالح. يرجى إدخال بريد إلكتروني صالح.",
   "networkRequestFailed": "حدثت مشكلة في الشبكة، يرجى التحقق من اتصالك بالشبكة والمحاولة مرة أخرى.",
@@ -162,7 +156,7 @@
   "aborted": "تم إيقاف العملية.",
   "outOfRange": "القيمة المقدمة خارج النطاق المسموح به.",
   "unknownErrorMessage": "حدث خطأ غير معروف بالرسالة التالية:",
-   "language": "اللغة",
+  "language": "اللغة",
   "logout": "تسجيل الخروج",
   "vehicleInfo": "معلومات المركبة",
   "arabic": "العربية",
@@ -171,5 +165,8 @@
   "appVersion": "الإصدار 6.3.0 - (446)",
   "logoutCapital": "تسجيل الخروج",
   "confirmLogout": "تأكيد تسجيل الخروج!!",
-  "cancel": "إلغاء"
+  "cancel": "إلغاء",
+  "thankYou": "شكراً لك!!",
+  "theOrderDelivered": "تم توصيل الطلب بنجاح",
+  "done": "تم"
 }
