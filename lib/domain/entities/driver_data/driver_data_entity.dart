@@ -17,6 +17,8 @@ class DriverDataEntity extends Equatable {
     this.photo,
     this.role,
     this.id,
+    this.longitude,
+    this.latitude,
   });
 
   String? country;
@@ -33,6 +35,8 @@ class DriverDataEntity extends Equatable {
   String? photo;
   String? role;
   String? id;
+  num? latitude;
+  num? longitude;
 
   @override
   List<Object?> get props => [
@@ -50,5 +54,7 @@ class DriverDataEntity extends Equatable {
     photo,
     role,
     id,
+    latitude,
+    longitude,
   ];
 }

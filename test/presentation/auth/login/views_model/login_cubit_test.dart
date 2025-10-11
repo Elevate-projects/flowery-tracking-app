@@ -4,8 +4,10 @@ import 'package:flowery_tracking_app/core/cache/shared_preferences_helper.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
+import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/fetch_all_driver_orders/fetch_all_driver_orders_use_case.dart';
 import 'package:flowery_tracking_app/domain/use_cases/login/login_with_email_and_password_use_case.dart';
+import 'package:flowery_tracking_app/domain/use_cases/profile/get_profile_data_use_case.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_state.dart';
@@ -21,6 +23,7 @@ import 'login_cubit_test.mocks.dart';
   FetchAllDriverOrdersUseCase,
   SecureStorage,
   SharedPreferencesHelper,
+  GetProfileDataUseCase,
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -29,10 +32,12 @@ void main() {
   mockLoginWithEmailAndPasswordUseCase;
   late MockFetchAllDriverOrdersUseCase mockFetchAllDriverOrdersUseCase;
   late MockSecureStorage mockSecureStorage;
+  late MockGetProfileDataUseCase mockGetProfileDataUseCase;
   late MockSharedPreferencesHelper mockSharedPreferencesHelper;
   late LoginCubit cubit;
   late Result<void> expectedSuccessResult;
   late Result<String?> expectedSuccessResult2;
+  late Result<DriverDataEntity?> expectedSuccessResult3;
   late Failure<void> expectedFailureResult;
 
   setUpAll(() {
@@ -40,6 +45,7 @@ void main() {
         MockLoginWithEmailAndPasswordUseCase();
     mockFetchAllDriverOrdersUseCase = MockFetchAllDriverOrdersUseCase();
     mockSecureStorage = MockSecureStorage();
+    mockGetProfileDataUseCase = MockGetProfileDataUseCase();
     mockSharedPreferencesHelper = MockSharedPreferencesHelper();
     when(
       mockSharedPreferencesHelper.getBool(key: ConstKeys.rememberMe),
@@ -57,6 +63,7 @@ void main() {
       mockSecureStorage,
       mockSharedPreferencesHelper,
       mockFetchAllDriverOrdersUseCase,
+      mockGetProfileDataUseCase,
     );
     cubit.doIntent(intent: InitializeLoginFormIntent());
     cubit.loginFormKey = FakeGlobalKey(FakeFormState());
@@ -68,8 +75,16 @@ void main() {
       build: () {
         expectedSuccessResult = Success<void>(null);
         expectedSuccessResult2 = Success<String?>("123450");
+        expectedSuccessResult3 = Success<DriverDataEntity?>(
+          DriverDataEntity(
+            id: "driver1",
+            firstName: "ahmed",
+            lastName: "tarek",
+          ),
+        );
         provideDummy<Result<void>>(expectedSuccessResult);
         provideDummy<Result<String?>>(expectedSuccessResult2);
+        provideDummy<Result<DriverDataEntity?>>(expectedSuccessResult3);
         when(
           mockLoginWithEmailAndPasswordUseCase.invoke(
             request: anyNamed("request"),
@@ -78,6 +93,9 @@ void main() {
         when(
           mockFetchAllDriverOrdersUseCase.invoke(),
         ).thenAnswer((_) async => expectedSuccessResult2);
+        when(
+          mockGetProfileDataUseCase.call(),
+        ).thenAnswer((_) async => expectedSuccessResult3);
         return cubit;
       },
       act: (cubit) => cubit.doIntent(intent: LoginWithEmailAndPasswordIntent()),
@@ -100,6 +118,7 @@ void main() {
           ),
         ).called(1);
         verify(mockFetchAllDriverOrdersUseCase.invoke()).called(1);
+        verify(mockGetProfileDataUseCase.call()).called(1);
       },
     );
 

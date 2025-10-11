@@ -4,7 +4,7 @@ import 'package:flowery_tracking_app/domain/entities/requests/order_details/upda
 
 abstract interface class OrderDetailsRemoteDataSource {
   Future<Result<String?>> fetchAllDriverOrders();
-  Future<Result<OrderEntity>> fetchCurrentDriverOrder({
+  Stream<Result<OrderEntity>> fetchCurrentDriverOrder({
     required String orderId,
   });
   Future<Result<void>> updateCurrentDriverOrderStatus({
