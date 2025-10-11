@@ -1,14 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/api/models/driver_order/driver_order_model.dart';
 import 'package:flowery_tracking_app/api/models/order/order_model.dart';
+import 'package:flowery_tracking_app/core/connection_manager/connection_manager.dart';
 import 'package:flowery_tracking_app/core/constants/app_collections.dart';
+import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/exceptions/firebase_exceptions.dart';
+import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/data/data_source/order_details/remote_data_source/order_details_remote_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/order_details/update_order_status_request_entity.dart';
-import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:injectable/injectable.dart';
 
@@ -37,17 +41,41 @@ class OrderDetailsRemoteDataSourceImpl implements OrderDetailsRemoteDataSource {
   }
 
   @override
-  Future<Result<OrderEntity>> fetchCurrentDriverOrder({
+  Stream<Result<OrderEntity>> fetchCurrentDriverOrder({
     required String orderId,
-  }) {
-    return executeApi(() async {
-      final orderSnapshot = await _firestore
-          .collection(AppCollections.orders)
-          .doc(orderId)
-          .get();
-      final orderData = OrderModel.fromJson(orderSnapshot.data()!);
-      return orderData.toOrderEntity();
-    });
+  }) async* {
+    try {
+      final bool connection = await ConnectionManager.checkConnection();
+      if (connection) {
+        yield* _firestore
+            .collection(AppCollections.orders)
+            .doc(orderId)
+            .snapshots()
+            .map(
+              (orderSnapshot) => Success(
+                OrderModel.fromJson(orderSnapshot.data()!).toOrderEntity(),
+              ),
+            );
+      } else {
+        yield Failure(
+          responseException: ResponseException(
+            message: AppText.connectionError.tr(),
+          ),
+        );
+      }
+    } on FirebaseException catch (error) {
+      yield Failure(
+        responseException: FirebaseExceptions.firebaseExceptions(
+          error,
+        ).responseException,
+      );
+    } catch (error) {
+      yield Failure(
+        responseException: ResponseException(
+          message: "${AppText.unknownErrorMessage.tr()} ${error.toString()}",
+        ),
+      );
+    }
   }
 
   @override
@@ -62,10 +90,46 @@ class OrderDetailsRemoteDataSourceImpl implements OrderDetailsRemoteDataSource {
           updateOrderStatusRequestEntity: request,
         ),
       );
+      await _updateOrderStateFireStore(request: request);
+    });
+  }
+
+  Future<void> _updateOrderStateFireStore({
+    required UpdateOrderStatusRequestEntity request,
+  }) async {
+    if (CurrentOrderState.arrivedAtPickupPoint.name == request.orderStatus) {
       await _firestore
           .collection(AppCollections.orders)
           .doc(request.orderId)
-          .update({"state": request.orderStatus});
-    });
+          .update({
+            "state": request.orderStatus,
+            "PreparingYourOrderAt": DateTime.now().toString(),
+          });
+    } else if (CurrentOrderState.startDeliver.name == request.orderStatus) {
+      await _firestore
+          .collection(AppCollections.orders)
+          .doc(request.orderId)
+          .update({
+            "state": request.orderStatus,
+            "OutForDeliveryAt": DateTime.now().toString(),
+          });
+    } else if (CurrentOrderState.arrivedToTheUser.name == request.orderStatus) {
+      await _firestore
+          .collection(AppCollections.orders)
+          .doc(request.orderId)
+          .update({
+            "state": request.orderStatus,
+            "ArrivedAt": DateTime.now().toString(),
+          });
+    } else if (CurrentOrderState.deliveredToTheUser.name ==
+        request.orderStatus) {
+      await _firestore
+          .collection(AppCollections.orders)
+          .doc(request.orderId)
+          .update({
+            "state": request.orderStatus,
+            "DeliveredAt": DateTime.now().toString(),
+          });
+    }
   }
 }

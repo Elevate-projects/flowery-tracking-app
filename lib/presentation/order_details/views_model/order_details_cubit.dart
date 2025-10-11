@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flowery_tracking_app/api/client/api_result.dart';
+import 'package:flowery_tracking_app/core/cache/shared_preferences_helper.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
@@ -11,24 +15,22 @@ import 'package:flowery_tracking_app/presentation/order_details/views_model/orde
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-enum CurrentOrderState {
-  inProgress,
-  arrivedAtPickupPoint,
-  startDeliver,
-  arrivedToTheUser,
-  deliveredToTheUser,
-}
 
 @injectable
 class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   final FetchCurrentDriverOrderUseCase _fetchCurrentDriverOrderUseCase;
   final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
+  final SharedPreferencesHelper _sharedPreferencesHelper;
   OrderDetailsCubit(
     this._fetchCurrentDriverOrderUseCase,
     this._updateOrderStatusUseCase,
+    this._sharedPreferencesHelper,
   ) : super(const OrderDetailsState());
+
+  late final bool isArLanguage;
+  StreamSubscription<Result<OrderEntity>>? _driverOrderSubscription;
 
   Future<void> doIntent({required OrderDetailsIntent intent}) async {
     switch (intent) {
@@ -48,32 +50,43 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   }
 
   Future<void> _onInit() async {
-    await _fetchDriverOrder();
+    isArLanguage = _sharedPreferencesHelper.getBool(
+      key: ConstKeys.isArLanguage,
+    );
+    _fetchDriverOrder();
   }
 
-  Future<void> _fetchDriverOrder() async {
+  void _fetchDriverOrder() {
     emit(state.copyWith(orderStatus: const StateStatus.loading()));
-    final result = await _fetchCurrentDriverOrderUseCase.invoke(
-      orderId: FloweryDriverMethodHelper.currentDriverOrderId ?? "",
-    );
-    switch (result) {
-      case Success<OrderEntity>():
-        emit(
-          state.copyWith(
-            orderStatus: StateStatus.success(result.data),
-            currentOrderState: FloweryDriverMethodHelper.getCurrentOrderState(
-              currentOrderState: result.data.state ?? "",
-            ),
-          ),
-        );
-      case Failure<OrderEntity>():
-        emit(
-          state.copyWith(
-            orderStatus: StateStatus.failure(result.responseException),
-          ),
-        );
-        emit(state.copyWith(orderStatus: const StateStatus.initial()));
-    }
+    _driverOrderSubscription = _fetchCurrentDriverOrderUseCase
+        .invoke(orderId: FloweryDriverMethodHelper.currentDriverOrderId ?? "")
+        .listen((driverOrder) {
+          switch (driverOrder) {
+            case Success<OrderEntity>():
+              {
+                final orderState = _getCurrentOrderState(
+                  orderData: driverOrder.data,
+                );
+                emit(
+                  state.copyWith(
+                    orderStatus: StateStatus.success(driverOrder.data),
+                    currentOrderState: orderState,
+                  ),
+                );
+              }
+              break;
+            case Failure<OrderEntity>():
+              emit(
+                state.copyWith(
+                  orderStatus: StateStatus.failure(
+                    driverOrder.responseException,
+                  ),
+                ),
+              );
+              emit(state.copyWith(orderStatus: const StateStatus.initial()));
+              break;
+          }
+        });
   }
 
   Future<void> _updateOrderState() async {
@@ -114,8 +127,13 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   CurrentOrderState _getNextOrderState({
     required CurrentOrderState currentOrderState,
   }) {
-    final nextOrderState = CurrentOrderState
-        .values[CurrentOrderState.values.indexOf(currentOrderState) + 1];
+    late final CurrentOrderState nextOrderState;
+    if (currentOrderState.name != CurrentOrderState.completed.name) {
+      nextOrderState = CurrentOrderState
+          .values[CurrentOrderState.values.indexOf(currentOrderState) + 1];
+    } else {
+      nextOrderState = CurrentOrderState.completed;
+    }
     return nextOrderState;
   }
 
@@ -209,5 +227,67 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         ),
       );
     }
+  }
+
+  CurrentOrderState _getCurrentOrderState({required OrderEntity orderData}) {
+    if (CurrentOrderState.inProgress.name == orderData.state) {
+      emit(
+        state.copyWith(
+          orderState: AppText.accepted,
+          orderStateDate: _dateFormatter(orderData.orderAcceptedAt),
+        ),
+      );
+      return CurrentOrderState.inProgress;
+    } else if (CurrentOrderState.arrivedAtPickupPoint.name == orderData.state) {
+      emit(
+        state.copyWith(
+          orderState: AppText.picked,
+          orderStateDate: _dateFormatter(orderData.preparingYourOrderAt),
+        ),
+      );
+      return CurrentOrderState.arrivedAtPickupPoint;
+    } else if (CurrentOrderState.startDeliver.name == orderData.state) {
+      emit(
+        state.copyWith(
+          orderState: AppText.outForDelivery,
+          orderStateDate: _dateFormatter(orderData.outForDeliveryAt),
+        ),
+      );
+      return CurrentOrderState.startDeliver;
+    } else if (CurrentOrderState.arrivedToTheUser.name == orderData.state) {
+      emit(
+        state.copyWith(
+          orderState: AppText.arrived,
+          orderStateDate: _dateFormatter(orderData.arrivedAt),
+        ),
+      );
+      return CurrentOrderState.arrivedToTheUser;
+    } else {
+      emit(
+        state.copyWith(
+          orderState: AppText.delivered,
+          orderStateDate: _dateFormatter(orderData.deliveredAt),
+        ),
+      );
+      return CurrentOrderState.deliveredToTheUser;
+    }
+  }
+
+  String? _dateFormatter(String? date) {
+    if (date?.trim().isNotEmpty ?? false) {
+      final dateTime = DateTime.parse(date!);
+      final formattedDate = DateFormat(
+        'E, dd MMM yyyy, hh:mm a',
+        isArLanguage ? "ar" : "en",
+      ).format(dateTime);
+      return formattedDate;
+    }
+    return date;
+  }
+
+  @override
+  Future<void> close() {
+    _driverOrderSubscription?.cancel();
+    return super.close();
   }
 }

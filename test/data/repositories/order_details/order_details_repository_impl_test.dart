@@ -62,12 +62,12 @@ void main() {
         mockOrderDetailsRemoteDataSource.fetchCurrentDriverOrder(
           orderId: anyNamed("orderId"),
         ),
-      ).thenAnswer((_) async => expectedSuccessResult);
+      ).thenAnswer((_) => Stream.value(expectedSuccessResult));
 
       // Act
-      final result = await orderDetailsRepositoryImpl.fetchCurrentDriverOrder(
-        orderId: orderId,
-      );
+      final result = await orderDetailsRepositoryImpl
+          .fetchCurrentDriverOrder(orderId: orderId)
+          .first;
 
       // Assert
       verify(

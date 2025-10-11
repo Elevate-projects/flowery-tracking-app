@@ -3,9 +3,11 @@ import 'package:flowery_tracking_app/core/cache/shared_preferences_helper.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
+import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/login_request/login_request_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/fetch_all_driver_orders/fetch_all_driver_orders_use_case.dart';
 import 'package:flowery_tracking_app/domain/use_cases/login/login_with_email_and_password_use_case.dart';
+import 'package:flowery_tracking_app/domain/use_cases/profile/get_profile_data_use_case.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_state.dart';
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
@@ -20,12 +22,14 @@ class LoginCubit extends Cubit<LoginState> {
   final FetchAllDriverOrdersUseCase _fetchAllDriverOrdersUseCase;
   final SecureStorage _secureStorage;
   final SharedPreferencesHelper _sharedPreferencesHelper;
+  final GetProfileDataUseCase _getProfileDataUseCase;
   @factoryMethod
   LoginCubit(
     this._loginWithEmailAndPasswordUseCase,
     this._secureStorage,
     this._sharedPreferencesHelper,
     this._fetchAllDriverOrdersUseCase,
+    this._getProfileDataUseCase,
   ) : super(const LoginState());
 
   late final TextEditingController emailController;
@@ -156,23 +160,44 @@ class LoginCubit extends Cubit<LoginState> {
             if (!state.rememberMe) {
               await _secureStorage.deleteData(key: ConstKeys.tokenKey);
             }
-
-            final result = await _fetchAllDriverOrdersUseCase.invoke();
-            switch (result) {
-              case Success<String?>():
-                FloweryDriverMethodHelper.currentDriverOrderId = result.data;
-                emit(
-                  state.copyWith(loginStatus: const StateStatus.success(null)),
-                );
-                break;
-              case Failure<String?>():
+            final driverDataResult = await _getProfileDataUseCase.call();
+            switch (driverDataResult) {
+              case Success<DriverDataEntity?>():
+                {
+                  FloweryDriverMethodHelper.driverData = driverDataResult.data;
+                  final result = await _fetchAllDriverOrdersUseCase.invoke();
+                  switch (result) {
+                    case Success<String?>():
+                      FloweryDriverMethodHelper.currentDriverOrderId =
+                          result.data;
+                      emit(
+                        state.copyWith(
+                          loginStatus: const StateStatus.success(null),
+                        ),
+                      );
+                      break;
+                    case Failure<String?>():
+                      emit(
+                        state.copyWith(
+                          loginStatus: StateStatus.failure(
+                            result.responseException,
+                          ),
+                        ),
+                      );
+                      break;
+                  }
+                  break;
+                }
+              case Failure<DriverDataEntity?>():
                 emit(
                   state.copyWith(
-                    loginStatus: StateStatus.failure(result.responseException),
+                    loginStatus: StateStatus.failure(
+                      driverDataResult.responseException,
+                    ),
                   ),
                 );
+                break;
             }
-
             break;
           }
         case Failure<void>():
