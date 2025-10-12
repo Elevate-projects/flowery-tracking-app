@@ -16,10 +16,10 @@ class OrderDetailsRepositoryImpl implements OrderDetailsRepository {
   }
 
   @override
-  Future<Result<OrderEntity>> fetchCurrentDriverOrder({
+  Stream<Result<OrderEntity>> fetchCurrentDriverOrder({
     required String orderId,
-  }) async {
-    return await _orderDetailsRemoteDataSource.fetchCurrentDriverOrder(
+  }) async* {
+    yield* _orderDetailsRemoteDataSource.fetchCurrentDriverOrder(
       orderId: orderId,
     );
   }

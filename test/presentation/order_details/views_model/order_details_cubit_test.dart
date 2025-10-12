@@ -1,6 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
+import 'package:flowery_tracking_app/core/cache/shared_preferences_helper.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/order_item/order_item_entity.dart';
@@ -13,6 +15,7 @@ import 'package:flowery_tracking_app/domain/use_cases/update_order_status/update
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_intent.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
+import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -21,13 +24,18 @@ import 'package:url_launcher_platform_interface/url_launcher_platform_interface.
 import '../../../fake_url_launcher.dart';
 import 'order_details_cubit_test.mocks.dart';
 
-@GenerateMocks([FetchCurrentDriverOrderUseCase, UpdateOrderStatusUseCase])
+@GenerateMocks([
+  FetchCurrentDriverOrderUseCase,
+  UpdateOrderStatusUseCase,
+  SharedPreferencesHelper,
+])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late final MockFetchCurrentDriverOrderUseCase
   mockFetchCurrentDriverOrderUseCase;
   late final MockUpdateOrderStatusUseCase mockUpdateOrderStatusUseCase;
+  late final MockSharedPreferencesHelper mockSharedPreferencesHelper;
   late OrderDetailsCubit cubit;
   late final OrderEntity expectedCurrentOrder;
   late final String testPhone;
@@ -35,6 +43,7 @@ void main() {
 
   setUpAll(() {
     mockFetchCurrentDriverOrderUseCase = MockFetchCurrentDriverOrderUseCase();
+    mockSharedPreferencesHelper = MockSharedPreferencesHelper();
     mockUpdateOrderStatusUseCase = MockUpdateOrderStatusUseCase();
     expectedCurrentOrder = const OrderEntity(
       id: "order_2",
@@ -66,6 +75,9 @@ void main() {
       store: StoreEntity(name: "Flower Hub", address: "Mall of Egypt"),
     );
     testPhone = "+201234567890";
+    when(
+      mockSharedPreferencesHelper.getBool(key: ConstKeys.isArLanguage),
+    ).thenAnswer((_) => false);
   });
   setUp(() {
     fakeLauncher = FakeUrlLauncher();
@@ -73,6 +85,7 @@ void main() {
     cubit = OrderDetailsCubit(
       mockFetchCurrentDriverOrderUseCase,
       mockUpdateOrderStatusUseCase,
+      mockSharedPreferencesHelper,
     );
   });
 
@@ -88,7 +101,7 @@ void main() {
           mockFetchCurrentDriverOrderUseCase.invoke(
             orderId: anyNamed("orderId"),
           ),
-        ).thenAnswer((_) async => expectedSuccessResult);
+        ).thenAnswer((_) => Stream.value(expectedSuccessResult));
         return cubit;
       },
       act: (cubit) async => await cubit.doIntent(
@@ -152,7 +165,7 @@ void main() {
           mockFetchCurrentDriverOrderUseCase.invoke(
             orderId: anyNamed("orderId"),
           ),
-        ).thenAnswer((_) async => expectedFailureResult);
+        ).thenAnswer((_) => Stream.value(expectedFailureResult));
         return cubit;
       },
       act: (cubit) async => await cubit.doIntent(
