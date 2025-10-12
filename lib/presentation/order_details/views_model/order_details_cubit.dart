@@ -100,6 +100,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         orderStatus: nextOrderState.name,
       ),
     );
+    if (isClosed) return;
     switch (result) {
       case Success<void>():
         emit(
@@ -262,6 +263,14 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         ),
       );
       return CurrentOrderState.arrivedToTheUser;
+    } else if (CurrentOrderState.completed.name == orderData.state) {
+      emit(
+        state.copyWith(
+          orderState: AppText.delivered,
+          orderStateDate: _dateFormatter(orderData.deliveredAt),
+        ),
+      );
+      return CurrentOrderState.completed;
     } else {
       emit(
         state.copyWith(
