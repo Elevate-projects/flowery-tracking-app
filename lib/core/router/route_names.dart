@@ -10,4 +10,5 @@ abstract class RouteNames {
   static const String userAddressMap = "/userAddressMapView";
   static const String successScreen = "/SuccessScreenView";
   static const String profile = "/profileView";
+  static const String completedOrderDetails = "/completedOrderDetailsView";
 }
