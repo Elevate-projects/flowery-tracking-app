@@ -54,8 +54,10 @@ abstract class AppRoutes {
 
       case RouteNames.userAddressMap:
         return MaterialPageRoute(
-          builder: (_) =>
-              UserAddressMapView(orderData: settings.arguments as OrderEntity),
+          builder: (_) => UserAddressMapView(
+            userAddressMapArguments:
+                settings.arguments as UserAddressMapArguments,
+          ),
         );
       case RouteNames.successScreen:
         return MaterialPageRoute(builder: (_) => const SuccessScreen());
