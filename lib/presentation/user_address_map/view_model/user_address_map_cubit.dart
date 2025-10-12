@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flowery_tracking_app/domain/entities/update_driver_loc/update_driver_loc.dart';
+import 'package:flowery_tracking_app/domain/use_cases/update_driver_location/update_driver_location_usecase.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_intent.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,10 +17,13 @@ import 'package:latlong2/latlong.dart';
 class UserAddressMapCubit extends Cubit<UserAddressMapState> {
   final MapController mapController = MapController();
   StreamSubscription<Position>? _locationSubscription;
+  final GetUpdateDriverLocationUseCase _updateDriverLocationUseCase;
 
   LatLng? _userLocation;
+  String? _orderId;
 
-  UserAddressMapCubit() : super(const UserAddressMapState(currentZoom: 15));
+  UserAddressMapCubit(this._updateDriverLocationUseCase)
+    : super(const UserAddressMapState(currentZoom: 15));
 
   Future<void> doIntent(UserAddressMapIntent intent) {
     switch (intent) {
@@ -28,12 +33,17 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
             double.parse(intent.orderData.shippingAddress!.lat.toString()),
             double.parse(intent.orderData.shippingAddress!.long.toString()),
           ),
+          orderId: intent.orderData.id!,
         );
     }
   }
 
-  Future<void> _initMap({required LatLng userLocation}) async {
+  Future<void> _initMap({
+    required LatLng userLocation,
+    required String orderId,
+  }) async {
     _userLocation = userLocation;
+    _orderId = orderId;
 
     emit(state.copyWith(userLocation: _userLocation));
 
@@ -64,6 +74,8 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
 
     final driver = LatLng(position.latitude, position.longitude);
 
+    await _updateDriverLocationInFirebase(driver);
+
     emit(state.copyWith(driverLocation: driver));
     mapController.move(driver, 15.0);
 
@@ -75,22 +87,40 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
     // 🔁 Live updates
     _locationSubscription =
         Geolocator.getPositionStream(
-          locationSettings: const LocationSettings(
+          locationSettings: AndroidSettings(
             accuracy: LocationAccuracy.bestForNavigation,
-            distanceFilter: 5,
+            distanceFilter: 0,
+            intervalDuration: const Duration(seconds: 3),
           ),
         ).listen((pos) async {
           final newDriver = LatLng(pos.latitude, pos.longitude);
+
+          await _updateDriverLocationInFirebase(newDriver);
+          log(
+            '📍 [${DateTime.now().toIso8601String()}] Location SENT: $newDriver',
+          );
+
           emit(state.copyWith(driverLocation: newDriver));
 
-          // Move map to follow driver
           mapController.move(newDriver, state.currentZoom);
 
-          // Update polyline
           if (_userLocation != null) {
             await _updatePolyline(newDriver, _userLocation!);
           }
         });
+  }
+
+  Future<void> _updateDriverLocationInFirebase(LatLng driverLocation) async {
+    try {
+      final entity = UpdateDriverLocationEntity(
+        orderId: _orderId!,
+        lat: driverLocation.latitude,
+        long: driverLocation.longitude,
+      );
+      await _updateDriverLocationUseCase.execute(entity);
+    } catch (e) {
+      log(' Firebase update error: $e');
+    }
   }
 
   void _listenToZoom() {
