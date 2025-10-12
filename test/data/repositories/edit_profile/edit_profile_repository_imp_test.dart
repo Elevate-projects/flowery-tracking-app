@@ -19,7 +19,7 @@ void main() {
         () async {
       // Arrange
       final mockDataSource = MockEditProfileRemoteDataSource();
-      final repository = EditProfileRepositoriesImpl(mockDataSource);
+      final repository = EditProfileRepositoryImpl(mockDataSource);
 
       final request = EditProfileRequestEntity(
         firstName: "Ahmed",

@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/models/edit_profile/edit_profile_request.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/data/data_source/edit_profile/edit_profile_remote_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
@@ -14,13 +14,7 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
   Future<Result<DriverDataEntity>> editProfile(EditProfileRequestEntity request)async {
     return executeApi(()async {
       final result = await apiClient.editProfile(
-        request: EditProfileRequestModel(
-          lastName: request.lastName,
-          password: request.password,
-          firstName: request.firstName,
-          phone: request.phone,
-          email: request.email
-        ),
+        request: RequestMapper.toEditProfileRequestModel(request: request),
         token: "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
       );
       final entity = result.toDriverDataEntity();
