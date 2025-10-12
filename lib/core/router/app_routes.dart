@@ -5,6 +5,7 @@ import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.da
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/reset_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/verification/views/email_verification.dart';
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views/bottom_navigation_view.dart';
+import 'package:flowery_tracking_app/presentation/completed_order_details/views/completed_order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/success_screen.dart';
@@ -43,13 +44,22 @@ abstract class AppRoutes {
       case RouteNames.orderDetails:
         return MaterialPageRoute(builder: (_) => const OrderDetailsView());
 
+      case RouteNames.completedOrderDetails:
+        return MaterialPageRoute(
+          builder: (_) => CompletedOrderDetailsView(
+            orderData: settings.arguments as OrderEntity,
+          ),
+        );
+
       case RouteNames.userAddressMap:
         return MaterialPageRoute(
           builder: (_) =>
               UserAddressMapView(orderData: settings.arguments as OrderEntity),
         );
+
       case RouteNames.successScreen:
         return MaterialPageRoute(builder: (_) => const SuccessScreen());
+
       case RouteNames.profile:
         return MaterialPageRoute(builder: (_) => const ProfileView());
 

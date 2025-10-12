@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_images.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/presentation/home/views/widgets/address_item.dart';
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
@@ -19,7 +20,9 @@ class RecentOrderItem extends StatelessWidget {
         orderData?.state == CurrentOrderState.deliveredToTheUser.name;
     return InkWell(
       onTap: () {
-        // Navigate to Order Details
+        Navigator.of(
+          context,
+        ).pushNamed(RouteNames.completedOrderDetails, arguments: orderData);
       },
       borderRadius: BorderRadius.circular(10.r),
       highlightColor: theme.colorScheme.onPrimary.withValues(alpha: 0.5),
