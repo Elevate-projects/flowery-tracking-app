@@ -7,9 +7,7 @@ import 'package:injectable/injectable.dart';
 class FetchCurrentDriverOrderUseCase {
   final OrderDetailsRepository _orderDetailsRepository;
   const FetchCurrentDriverOrderUseCase(this._orderDetailsRepository);
-  Future<Result<OrderEntity>> invoke({required String orderId}) async {
-    return await _orderDetailsRepository.fetchCurrentDriverOrder(
-      orderId: orderId,
-    );
+  Stream<Result<OrderEntity>> invoke({required String orderId}) async* {
+    yield* _orderDetailsRepository.fetchCurrentDriverOrder(orderId: orderId);
   }
 }

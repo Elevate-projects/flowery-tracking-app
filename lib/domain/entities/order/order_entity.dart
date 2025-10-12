@@ -16,6 +16,16 @@ final class OrderEntity extends Equatable {
   final String? state;
   final String? orderNumber;
   final StoreEntity? store;
+  final String? driverName;
+  final String? driverPhone;
+  final num? driverLatitude;
+  final num? driverLongitude;
+  final String? orderAcceptedAt;
+  final String? estimatedArrival;
+  final String? preparingYourOrderAt;
+  final String? outForDeliveryAt;
+  final String? arrivedAt;
+  final String? deliveredAt;
 
   const OrderEntity({
     this.id,
@@ -29,6 +39,16 @@ final class OrderEntity extends Equatable {
     this.state,
     this.orderNumber,
     this.store,
+    this.driverName,
+    this.driverPhone,
+    this.driverLatitude,
+    this.driverLongitude,
+    this.orderAcceptedAt,
+    this.estimatedArrival,
+    this.preparingYourOrderAt,
+    this.outForDeliveryAt,
+    this.arrivedAt,
+    this.deliveredAt,
   });
 
   @override
@@ -44,5 +64,15 @@ final class OrderEntity extends Equatable {
     state,
     orderNumber,
     store,
+    driverName,
+    driverPhone,
+    driverLatitude,
+    driverLongitude,
+    orderAcceptedAt,
+    estimatedArrival,
+    preparingYourOrderAt,
+    outForDeliveryAt,
+    arrivedAt,
+    deliveredAt,
   ];
 }

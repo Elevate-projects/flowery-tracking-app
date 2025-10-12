@@ -100,7 +100,8 @@ void main() async {
 
       // Act
       final result = await orderDetailsRemoteDataSourceImpl
-          .fetchCurrentDriverOrder(orderId: orderId);
+          .fetchCurrentDriverOrder(orderId: orderId)
+          .first;
 
       // Assert
       expect(result, isA<Success<OrderEntity>>());
@@ -129,7 +130,7 @@ void main() async {
       // Arrange
       const request = UpdateOrderStatusRequestEntity(
         orderId: "1234",
-        orderStatus: "completed",
+        orderStatus: "deliveredToTheUser",
       );
 
       provideDummy<Result<void>>(Success(null));
