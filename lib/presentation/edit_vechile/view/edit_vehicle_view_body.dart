@@ -18,9 +18,15 @@ class EditVehicleViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<EditVehicleCubit>();
-
     return Scaffold(
-      appBar: AppBar(title: Text(AppText.editVehicle.tr())),
+      appBar: AppBar(
+        titleSpacing: 0,
+        leading: IconButton(onPressed: () {
+          Navigator.pop(context);
+        },
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
+          title: Text(AppText.editVehicle.tr())),
       body: BlocListener<EditVehicleCubit, EditVehicleStatus>(
         listenWhen: (previous, current) =>
         current.editVehicleStatus.isFailure ||
