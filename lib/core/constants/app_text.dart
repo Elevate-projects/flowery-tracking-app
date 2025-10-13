@@ -41,6 +41,14 @@ abstract final class AppText {
   static const String openPhoneFailureMessage = "openPhoneFailureMessage";
   static const String openWhatsappFailureMessage = "openWhatsappFailureMessage";
 
+  // Orders
+  static const String myOrders = "myOrders";
+  static const String canceled = "canceled";
+  static const String completed = "completed";
+  static const String recentOrders = "recentOrders";
+  static const String emptyDeliveredOrdersMessage =
+      "emptyDeliveredOrdersMessage";
+
   // Validations
   static const String userNameValidation = "userNameValidation";
   static const String emptyTextValidation = "emptyTextValidation";
@@ -77,6 +85,7 @@ abstract final class AppText {
   static const String welcome = "welcome";
   static const String applyNow = "applyNow";
   static const String appVersion = "v 6.3.0 - (446)";
+
   //BottomNavigation
   static const String home = 'home';
   static const String order = 'order';
@@ -172,6 +181,20 @@ abstract final class AppText {
   static const String aborted = "aborted";
   static const String outOfRange = "outOfRange";
   static const String unknownErrorMessage = "unknownErrorMessage";
+  //profile
+  static const String language = "language";
+  static const String logout = "logout";
+  static const String vehicleInfo = "vehicleInfo";
+  static const String arabic = "arabic";
+  static const String english = "english";
+  static const String changeLanguage = "changeLanguage";
+  static const String logoutCapital = "logoutCapital";
+  static const String confirmLogout = "confirmLogout";
+  static const String cancel = "cancel";
+
+  static const String thankYou = 'thankYou';
+  static const String theOrderDelivered = 'theOrderDelivered';
+  static const String done = 'done';
   static const String editVehicle = "editVehicle";
   static const String vehicleType = "vehicleType";
   static const String enterVehicleType = "enterVehicleType";

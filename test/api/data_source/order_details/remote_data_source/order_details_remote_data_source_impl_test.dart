@@ -86,7 +86,7 @@ void main() async {
       };
 
       await fakeFirestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(orderId)
           .set(orderJson);
 
@@ -100,7 +100,8 @@ void main() async {
 
       // Act
       final result = await orderDetailsRemoteDataSourceImpl
-          .fetchCurrentDriverOrder(orderId: orderId);
+          .fetchCurrentDriverOrder(orderId: orderId)
+          .first;
 
       // Assert
       expect(result, isA<Success<OrderEntity>>());
@@ -129,7 +130,7 @@ void main() async {
       // Arrange
       const request = UpdateOrderStatusRequestEntity(
         orderId: "1234",
-        orderStatus: "completed",
+        orderStatus: "deliveredToTheUser",
       );
 
       provideDummy<Result<void>>(Success(null));
@@ -143,7 +144,7 @@ void main() async {
       ).thenAnswer((_) async {});
 
       await fakeFirestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(request.orderId)
           .set({"state": "inProgress"});
 
@@ -162,7 +163,7 @@ void main() async {
       ).called(1);
 
       final updatedDoc = await fakeFirestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(request.orderId)
           .get();
 

@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'driver_data_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class DriverDataModel {
   @JsonKey(name: "country")
   final String? country;
@@ -35,6 +35,10 @@ class DriverDataModel {
   final String? id;
   @JsonKey(name: "createdAt")
   final String? createdAt;
+  @JsonKey(name: "latitude")
+  final num? latitude;
+  @JsonKey(name: "longitude")
+  final num? longitude;
 
   DriverDataModel({
     this.country,
@@ -52,6 +56,8 @@ class DriverDataModel {
     this.role,
     this.id,
     this.createdAt,
+    this.latitude,
+    this.longitude,
   });
 
   factory DriverDataModel.fromJson(Map<String, dynamic> json) {
@@ -78,6 +84,8 @@ class DriverDataModel {
       nid: nID,
       nIDImg: nIDImg,
       email: email,
+      latitude: latitude,
+      longitude: longitude,
     );
   }
 }

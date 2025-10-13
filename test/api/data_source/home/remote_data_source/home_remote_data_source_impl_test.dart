@@ -216,7 +216,7 @@ void main() async {
         ),
       ).called(1);
       final snapshot = await fakeFirestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc("order_1")
           .get();
 

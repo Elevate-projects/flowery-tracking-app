@@ -25,6 +25,7 @@ class OrderItem extends StatelessWidget {
             blurRadius: 4.r,
           ),
         ],
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,10 +40,13 @@ class OrderItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const RSizedBox(height: 16),
-          Text(
-            AppText.pickupAddress.tr(),
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.shadow,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              AppText.pickupAddress.tr(),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.shadow,
+              ),
             ),
           ),
           const RSizedBox(height: 8),
@@ -52,10 +56,13 @@ class OrderItem extends StatelessWidget {
             address: orderData?.store?.address ?? AppText.notProvided.tr(),
           ),
           const RSizedBox(height: 16),
-          Text(
-            AppText.userAddress.tr(),
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.shadow,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              AppText.userAddress.tr(),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.shadow,
+              ),
             ),
           ),
           const RSizedBox(height: 8),

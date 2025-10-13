@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_addresses.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_app_bar.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_list.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_information.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_payment_details_section.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_intent.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +21,9 @@ class OrderDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final orderDetailsCubit = BlocProvider.of<OrderDetailsCubit>(context);
     return BlocListener<OrderDetailsCubit, OrderDetailsState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.updateOrderStateStatus.isFailure) {
           Loaders.showErrorMessage(
             message: state.updateOrderStateStatus.error?.message ?? "",
@@ -40,6 +44,16 @@ class OrderDetailsViewBody extends StatelessWidget {
             message: state.openWhatsappStatus.error?.message ?? "",
             context: context,
           );
+        } else if (state.orderStatus.isSuccess &&
+            state.currentOrderState.name == ConstKeys.completed) {
+          await orderDetailsCubit.doIntent(
+            intent: const UpdateOrderStateIntent(),
+          );
+          if (context.mounted) {
+            Navigator.of(
+              context,
+            ).pushReplacementNamed(RouteNames.successScreen);
+          }
         }
       },
       child: CustomScrollView(

@@ -34,12 +34,12 @@ void main() {
         mockOrderDetailsRepository.fetchCurrentDriverOrder(
           orderId: anyNamed("orderId"),
         ),
-      ).thenAnswer((_) async => expectedSuccessResult);
+      ).thenAnswer((_) => Stream.value(expectedSuccessResult));
 
       // Act
-      final result = await fetchCurrentDriverOrderUseCase.invoke(
-        orderId: orderId,
-      );
+      final result = await fetchCurrentDriverOrderUseCase
+          .invoke(orderId: orderId)
+          .first;
 
       // Assert
       verify(
