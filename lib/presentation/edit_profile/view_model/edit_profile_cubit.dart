@@ -1,10 +1,13 @@
 import 'package:flowery_tracking_app/api/client/api_result.dart';
+import 'package:flowery_tracking_app/core/di/di.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/edit_profile/edit_profile_use_case.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
+import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
+import 'package:flowery_tracking_app/presentation/profile/views_model/profile_intent.dart';
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,7 +84,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
 
 
-  Future<void> _submitEditProfile() async {
+  Future<DriverDataEntity?> _submitEditProfile() async {
     if (formKey.currentState!.validate()) {
       emit(state.copyWith(editProfileStatus: const StateStatus.loading()));
       final result = await _useCase.editProfile(
@@ -93,30 +96,34 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           password: passwordController.text,
         ),
       );
+
       switch (result) {
         case Success<DriverDataEntity>():
-          {
-            FloweryDriverMethodHelper.driverData = result.data;
-            emit(
-              state.copyWith(
-                editProfileStatus: const StateStatus.success(null),
-              ),
-            );
-            break;
-          }
+          final driverData = result.data;
+          FloweryDriverMethodHelper.driverData = driverData;
+          emit(
+            state.copyWith(
+              editProfileStatus: const StateStatus.success(null),
+            ),
+          );
+          try {
+            final profileCubit = getIt<ProfileCubit>();
+            await profileCubit.doIntent(GetUserProfileDataIntent());
+          } catch (_) {}
+          return driverData;
+
         case Failure<DriverDataEntity>():
-          {
-            emit(
-              state.copyWith(
-                editProfileStatus: StateStatus.failure(
-                  result.responseException,
-                ),
+          emit(
+            state.copyWith(
+              editProfileStatus: StateStatus.failure(
+                result.responseException,
               ),
-            );
-            break;
-          }
+            ),
+          );
+          return null;
       }
     }
+    return null;
   }
   @override
   Future<void> close() {
