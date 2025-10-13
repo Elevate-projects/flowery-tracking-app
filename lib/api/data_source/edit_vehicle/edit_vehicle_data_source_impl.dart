@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/requests/edit_vehicle/edit_vehicle_request.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/data/data_source/edit_vehicle/edit_vehicle_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
@@ -23,11 +23,7 @@ class EditVehicleDataSourceImpl implements EditVehicleDataSource {
       }
       final result = await apiClient.editVehicle(
           token: "Bearer ${FloweryDriverMethodHelper.currentUserToken}",
-          request: EditVehicleRequest(
-            vehicleType: request.vehicleType,
-            vehicleNumber: request.vehicleNumber,
-            vehicleLicense: request.vehicleLicense,
-          )
+          request: RequestMapper.toEditVehicleRequest(request)
       );
       final entity =  result.toDriverDataEntity();
       FloweryDriverMethodHelper.driverData = entity;

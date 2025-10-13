@@ -1,15 +1,15 @@
 import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
+import 'package:flowery_tracking_app/domain/repositories/edit_vehicle/edit_vehicle_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
-import 'package:flowery_tracking_app/domain/repositories/edit_vehicle/edit_vehicle_repositories.dart';
 import 'package:flowery_tracking_app/domain/use_cases/edit_vehicle/edit_vehicle_use_case.dart';
 
 import 'edit_vehicle_use_case_test.mocks.dart';
 
-@GenerateMocks([EditVehicleRepositories])
+@GenerateMocks([EditVehicleRepository])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -17,7 +17,7 @@ void main() {
     'when calling editVehicle, it should call EditVehicleRepositories and return DriverDataEntity',
         () async {
       // Arrange
-      final mockRepository = MockEditVehicleRepositories();
+      final mockRepository = MockEditVehicleRepository();
       final useCase = EditVehicleUseCase(mockRepository);
 
       final request = EditVehicleEntity(

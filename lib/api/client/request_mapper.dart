@@ -4,12 +4,14 @@ import 'package:flowery_tracking_app/api/models/product/product_model.dart';
 import 'package:flowery_tracking_app/api/models/shipping_address/shipping_address_model.dart';
 import 'package:flowery_tracking_app/api/models/store/store_model.dart';
 import 'package:flowery_tracking_app/api/models/user/user_model.dart';
+import 'package:flowery_tracking_app/api/requests/edit_vehicle/edit_vehicle_request.dart';
 import 'package:flowery_tracking_app/api/requests/forget_password_and_resend_code/forget_password_and_resend_code_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/login_request/login_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/order_details/update_order_status_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/profile%20_reset_password/profile_reset_password_request.dart';
 import 'package:flowery_tracking_app/api/requests/reset_password/reset_password_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/verification/verify_request_model.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/forget_password_and_resend_code_request/forget_password_and_resend_code_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/login_request/login_request_entity.dart';
@@ -128,5 +130,12 @@ abstract final class RequestMapper {
     } else {
       return UpdateOrderStatusRequestModel(state: "inProgress");
     }
+  }
+  static EditVehicleRequest toEditVehicleRequest(EditVehicleEntity entity) {
+    return EditVehicleRequest(
+      vehicleLicense: entity.vehicleLicense,
+      vehicleNumber: entity.vehicleNumber,
+      vehicleType: entity.vehicleType,
+    );
   }
 }

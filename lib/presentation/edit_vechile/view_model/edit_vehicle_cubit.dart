@@ -23,7 +23,6 @@ class EditVehicleCubit extends Cubit<EditVehicleStatus> {
   EditVehicleCubit(this._useCase) : super(const EditVehicleStatus()) {
     _formKey = GlobalKey<FormState>();
     final user = FloweryDriverMethodHelper.driverData;
-
     _vehicleTypeController =
         TextEditingController(text: user?.vehicleType ?? "");
     _vehicleNumberController =
