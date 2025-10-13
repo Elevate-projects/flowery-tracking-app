@@ -20,9 +20,11 @@ class EditProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cubit = context.read<EditProfileCubit>();
-
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: () {
+          Navigator.pop(context);
+        }, icon: const Icon(Icons.arrow_back_ios_new_rounded)),
         titleSpacing: 0,
         title: Text(AppText.editProfile.tr()),
       ),
