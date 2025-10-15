@@ -1,6 +1,5 @@
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/api/models/vehicle/vehicle_model.dart';
-import 'package:flowery_tracking_app/api/responses/vehicles_response/vehicles_response.dart';
 import 'package:flowery_tracking_app/data/data_source/vehicle/remote_data_source/vehicle_remote_data_source.dart';
 import 'package:flowery_tracking_app/data/repositories/vehicle/vehicle_repository_impl.dart';
 import 'package:flowery_tracking_app/domain/entities/vehicle/vehicle_entity.dart';
@@ -16,7 +15,6 @@ void main(){
     final mockRemoteDataSource = MockVehicleRemoteDataSource();
     final repository = VehicleRepositoryImpl(mockRemoteDataSource);
      final VehicleModel vehicleModel =  VehicleModel(id: '1', type: 'sedan');
-        final vehiclesResponse =VehiclesResponse(message: "success", vehicles: [VehicleModel(id: '1', type: 'sedan')]);
         final vehicleEntity = vehicleModel.toVehicleEntity();
         final expectedVehicleResponse = Success([vehicleEntity]);
         provideDummy<Result<List<VehicleEntity>>>(expectedVehicleResponse);

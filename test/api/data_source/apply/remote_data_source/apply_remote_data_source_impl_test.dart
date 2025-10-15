@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/src/form_data.dart';
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
 import 'package:flowery_tracking_app/api/data_source/apply/remote_data_source/apply_remote_data_source_impl.dart';
 import 'package:flowery_tracking_app/core/connection_manager/connection_manager.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/apply_request/apply_request_entity.dart';

@@ -28,6 +28,7 @@ class GenderSection extends StatelessWidget {
             child: Row(
               children: [
                 Flexible(
+                  key: const Key("femaleRadio"),
                   child: RadioMenuButton<Gender>(
                     value: Gender.female,
                     groupValue: state.selectedGender,
@@ -49,6 +50,7 @@ class GenderSection extends StatelessWidget {
                 ),
                 SizedBox(width: 12.w),
                 Flexible(
+                  key: const Key("maleRadio"),
                   child: RadioMenuButton<Gender>(
                     value: Gender.male,
                     groupValue: state.selectedGender,

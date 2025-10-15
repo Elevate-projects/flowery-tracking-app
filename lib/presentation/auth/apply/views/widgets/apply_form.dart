@@ -33,6 +33,7 @@ class ApplyForm extends StatelessWidget {
                   current.countryStatus.isLoading ||
                   current.countryStatus.isSuccess,
               builder: (context, state) => CustomDropdownButton<CountryEntity>(
+                key: const Key("countryDropdown"),
                 hint: AppText.countryHint,
                 value: state.selectedCountry,
                 dropdownItems: state.countryStatus.data
@@ -52,6 +53,7 @@ class ApplyForm extends StatelessWidget {
             ),
             const RSizedBox(height: 25),
             CustomTextFormField(
+              key: const Key("firstLegalName"),
               controller: applyCubit.firstLegalNameController,
               label: AppText.firstLegalName,
               hintText: AppText.firstLegalNameHint,
@@ -62,6 +64,7 @@ class ApplyForm extends StatelessWidget {
             ),
             const RSizedBox(height: 25),
             CustomTextFormField(
+              key: const Key("secondLegalName"),
               controller: applyCubit.secondLegalNameController,
               label: AppText.secondLegalName,
               textInputAction: TextInputAction.next,
@@ -72,6 +75,7 @@ class ApplyForm extends StatelessWidget {
             ),
             const RSizedBox(height: 25),
             CustomDropdownButton<VehicleEntity>(
+              key: const Key("vehicleDropdown"),
               hint: AppText.vehicleTypeHint,
               value: state.selectedVehicle,
               dropdownItems: state.vehicleStatus.data
@@ -95,6 +99,7 @@ class ApplyForm extends StatelessWidget {
             ),
             const RSizedBox(height: 25),
             CustomTextFormField(
+              key: const Key("vehicleNumber"),
               controller: applyCubit.vehicleNumberController,
               label: AppText.vehicleNumber,
               hintText: AppText.vehicleNumberHint,
@@ -109,6 +114,7 @@ class ApplyForm extends StatelessWidget {
                 intent: const PickVehicleLicenseImageIntent(),
               ),
               child: CustomTextFormField(
+                key: const Key("vehicleLicense"),
                 controller: applyCubit.vehicleLicenseController,
                 label: AppText.vehicleLicense,
                 hintText: AppText.vehicleLicenseHint,
@@ -123,6 +129,7 @@ class ApplyForm extends StatelessWidget {
             ),
             const RSizedBox(height: 25),
             CustomTextFormField(
+              key: const Key("email"),
               controller: applyCubit.emailController,
               label: AppText.email,
               hintText: AppText.emailHint,
@@ -133,6 +140,7 @@ class ApplyForm extends StatelessWidget {
             ),
             const RSizedBox(height: 25),
             CustomTextFormField(
+              key: const Key("phoneNumber"),
               controller: applyCubit.phoneNumberController,
               label: AppText.phoneNumber,
               hintText: AppText.phoneNumberHint,
@@ -144,6 +152,7 @@ class ApplyForm extends StatelessWidget {
             ),
             const RSizedBox(height: 25),
             CustomTextFormField(
+              key: const Key("idNumber"),
               controller: applyCubit.idNumberController,
               label: AppText.idNumber,
               keyboardType: TextInputType.number,
@@ -157,6 +166,7 @@ class ApplyForm extends StatelessWidget {
               onTap: () async =>
                   await applyCubit.doIntent(intent: const PickIdImageIntent()),
               child: CustomTextFormField(
+                key: const Key("idImage"),
                 controller: applyCubit.idImageController,
                 label: AppText.idImage,
                 hintText: AppText.idImageHint,
@@ -174,6 +184,7 @@ class ApplyForm extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomTextFormField(
+                    key: const Key("password"),
                     controller: applyCubit.passwordController,
                     label: AppText.password,
                     hintText: AppText.passwordHint2,
@@ -203,6 +214,7 @@ class ApplyForm extends StatelessWidget {
                 const RSizedBox(width: 16),
                 Expanded(
                   child: CustomTextFormField(
+                    key: const Key("confirmPassword"),
                     controller: applyCubit.confirmPasswordController,
                     label: AppText.confirmPassword,
                     hintText: AppText.confirmPassword,

@@ -12,6 +12,7 @@ class ApplyFormButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final applyCubit = BlocProvider.of<ApplyCubit>(context);
     return CustomElevatedButton(
+      key: const Key("applyFormButton"),
       onPressed: () async {
         await applyCubit.doIntent(intent: const ApplyFormIntent());
       },

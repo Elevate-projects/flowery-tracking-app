@@ -1,6 +1,5 @@
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/api/models/vehicle/vehicle_model.dart';
-import 'package:flowery_tracking_app/api/responses/vehicles_response/vehicles_response.dart';
 import 'package:flowery_tracking_app/domain/entities/vehicle/vehicle_entity.dart';
 import 'package:flowery_tracking_app/domain/repositories/vehicle/vehicle_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +13,6 @@ test('when call fetchAllVehicle from VehicleRepository ', ()async{
   // Arrange
   final mockVehicleRepository = MockVehicleRepository();
     final VehicleModel vehicleModel =  VehicleModel(id: '1', type: 'sedan');
-        final vehiclesResponse =VehiclesResponse(message: "success", vehicles: [VehicleModel(id: '1', type: 'sedan')]);
         final vehicleEntity = vehicleModel.toVehicleEntity();
         final expectedVehicleResponse = Success([vehicleEntity]);
         provideDummy<Result<List<VehicleEntity>>>(expectedVehicleResponse);

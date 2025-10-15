@@ -5,7 +5,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart';
-import 'package:flowery_tracking_app/domain/entities/requests/apply_request/apply_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/vehicle/vehicle_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/apply/apply_use_case.dart';
 import 'package:flowery_tracking_app/domain/use_cases/country/get_all_countries_use_case.dart';
@@ -52,21 +51,6 @@ late File licenseFile;
       tempDir.deleteSync(recursive: true);
     });
    
-    final ApplyRequestEntity applyRequestEntity = ApplyRequestEntity(
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com',
-      phone: '1234567890',
-      password: 'password123',
-      rePassword: 'password123',
-      country: 'USA',
-      gender: 'male',
-      nid: '12345678901234',
-      nidImg: nidFile,
-      vehicleType: 'Sedan',
-      vehicleNumber: 'ABC-123',
-      vehicleLicense: licenseFile,
-    );
     final VehicleEntity vehicleEntity = const VehicleEntity(id: '1', type: 'Car');
     final CountryEntity countryEntity= const CountryEntity(
       countryName: 'USA',
@@ -101,7 +85,7 @@ late File licenseFile;
         vehicleLicenseImage: XFile(licenseFile.path),
       ),
     );
-    applyCubit.doIntent(intent:  ApplyInitializationIntent());
+    applyCubit.doIntent(intent:  const ApplyInitializationIntent());
     applyCubit.applyFormKey =FakeGlobalKey(FakeFormState());
   });
   group('ApplyCubit', (){
@@ -112,7 +96,7 @@ late File licenseFile;
         .thenAnswer((_) async => expectedApplySuccessResult);
       return applyCubit;
     },act:(cubit) =>[
-       cubit.doIntent(intent: ApplyFormIntent())],
+       cubit.doIntent(intent: const ApplyFormIntent())],
     expect: ()=>[
       isA<ApplyState>().having((state)=>state.applyStatus.isLoading, 
       'isLoading', equals(true)),
@@ -130,7 +114,7 @@ late File licenseFile;
         .thenAnswer((_) async => expectedApplyFailureResult);
       return applyCubit;
     },act:(cubit) =>[
-       cubit.doIntent(intent: ApplyFormIntent())],
+       cubit.doIntent(intent: const ApplyFormIntent())],
     expect: ()=>[
       isA<ApplyState>().having((state)=>state.applyStatus.isLoading, 
       'isLoading', equals(true)),
@@ -162,7 +146,7 @@ late File licenseFile;
         mockApplyUseCase,
       );
     },
-    act: (cubit) => cubit.doIntent(intent: ApplyInitializationIntent()),
+    act: (cubit) => cubit.doIntent(intent: const ApplyInitializationIntent()),
     skip: 2, // Skip the first 2 emissions (countries loading, vehicles loading)
     expect: () => [
       isA<ApplyState>()
@@ -203,7 +187,7 @@ late File licenseFile;
         mockApplyUseCase,
       );
     },
-    act: (cubit) => cubit.doIntent(intent: ApplyInitializationIntent()),
+    act: (cubit) => cubit.doIntent(intent: const ApplyInitializationIntent()),
     skip: 2, // Skip the first 2 emissions (countries loading, vehicles loading)
     expect: () => [
       isA<ApplyState>()
@@ -239,7 +223,7 @@ group('ApplyCubit - Vehicles', () {
         mockApplyUseCase,
       );
     },
-    act: (cubit) => cubit.doIntent(intent: ApplyInitializationIntent()),
+    act: (cubit) => cubit.doIntent(intent: const ApplyInitializationIntent()),
     skip: 2, // Skip the first 2 emissions (countries loading, vehicles loading)
     expect: () => [
       isA<ApplyState>()
@@ -276,7 +260,7 @@ group('ApplyCubit - Vehicles', () {
         mockApplyUseCase,
       );
     },
-    act: (cubit) => cubit.doIntent(intent: ApplyInitializationIntent()),
+    act: (cubit) => cubit.doIntent(intent: const ApplyInitializationIntent()),
     skip: 2, // Skip the first 2 emissions (countries loading, vehicles loading)
     expect: () => [
       isA<ApplyState>()

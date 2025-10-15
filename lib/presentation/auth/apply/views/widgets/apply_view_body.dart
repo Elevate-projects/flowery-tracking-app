@@ -46,6 +46,7 @@ class ApplyViewBody extends StatelessWidget {
         }
       },
       child: SingleChildScrollView(
+        key: const Key("applyViewBodyScrollView"),
         child: RPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
