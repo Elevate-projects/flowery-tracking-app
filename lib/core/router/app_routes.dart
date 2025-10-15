@@ -9,6 +9,7 @@ import 'package:flowery_tracking_app/presentation/completed_order_details/views/
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/success_screen.dart';
+import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_addresses.dart';
 import 'package:flowery_tracking_app/presentation/profile/reset_password/views/profile_reset_password.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/profile_views.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view/user_address_map_view.dart';
@@ -53,13 +54,13 @@ abstract class AppRoutes {
 
       case RouteNames.userAddressMap:
         return MaterialPageRoute(
-          builder: (_) =>
-              UserAddressMapView(orderData: settings.arguments as OrderEntity),
+          builder: (_) => UserAddressMapView(
+            userAddressMapArguments:
+                settings.arguments as UserAddressMapArguments,
+          ),
         );
-
       case RouteNames.successScreen:
         return MaterialPageRoute(builder: (_) => const SuccessScreen());
-
       case RouteNames.profile:
         return MaterialPageRoute(builder: (_) => const ProfileView());
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flowery_tracking_app/domain/use_cases/update_driver_location/update_driver_location_usecase.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_cubit.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_state.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -14,12 +15,15 @@ import 'package:mockito/mockito.dart';
 
 import 'user_address_map_cubit_test.mocks.dart';
 
-@GenerateMocks([MapController, http.Client], customMocks: [])
+@GenerateMocks([
+  MapController,
+  http.Client,
+  GetUpdateDriverLocationUseCase,
+], customMocks: [])
 void main() {
-
   late MockMapController mockMapController;
   late MockClient mockHttpClient;
-
+  late MockGetUpdateDriverLocationUseCase mockUpdateDriverLocationUseCase;
 
   final userLocation = const LatLng(30.0444, 31.2357); // Cairo
   final initialDriverLatLng = const LatLng(29.9792, 31.1342); // Giza
@@ -41,9 +45,12 @@ void main() {
   setUp(() {
     mockMapController = MockMapController();
     mockHttpClient = MockClient();
+    mockUpdateDriverLocationUseCase = MockGetUpdateDriverLocationUseCase();
 
     // Stub the MapController's stream
-    when(mockMapController.mapEventStream).thenAnswer((_) => const Stream.empty());
+    when(
+      mockMapController.mapEventStream,
+    ).thenAnswer((_) => const Stream.empty());
 
     // Stub the MapController's camera with all required parameters
     when(mockMapController.camera).thenReturn(
@@ -61,7 +68,7 @@ void main() {
   group('UserAddressMapCubit with Mockito', () {
     test('initial state is correct', () {
       expect(
-        UserAddressMapCubit().state,
+        UserAddressMapCubit(mockUpdateDriverLocationUseCase).state,
         const UserAddressMapState(currentZoom: 15),
       );
     });
@@ -71,12 +78,11 @@ void main() {
         'emits polylinePoints on successful API call',
 
         setUp: () {
-
           when(
             mockHttpClient.get(any, headers: anyNamed('headers')),
           ).thenAnswer((_) async => http.Response(mockRouteJson, 200));
         },
-        build: () => UserAddressMapCubit(),
+        build: () => UserAddressMapCubit(mockUpdateDriverLocationUseCase),
         // ACT: Call the method being tested
         act: (cubit) async {
           cubit.emit(
