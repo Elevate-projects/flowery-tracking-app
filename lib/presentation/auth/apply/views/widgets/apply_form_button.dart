@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_intent.dart';
@@ -16,7 +17,7 @@ class ApplyFormButton extends StatelessWidget {
       onPressed: () async {
         await applyCubit.doIntent(intent: const ApplyFormIntent());
       },
-      buttonTitle: AppText.continueText,
+      buttonTitle: AppText.continueText.tr(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +14,7 @@ class CountryItem extends StatelessWidget {
         Text(countryData.flag),
         const RSizedBox(width: 8),
         Text(
-          countryData.countryName,
+          countryData.countryName.tr(),
           style: theme.textTheme.bodyLarge?.copyWith(
             color: theme.colorScheme.onSecondary,
           ),

@@ -17,7 +17,7 @@ class GenderSection extends StatelessWidget {
     return Row(
       children: [
         Text(
-          AppText.gender,
+          AppText.gender.tr(),
           style: theme.textTheme.headlineSmall?.copyWith(
             color: theme.colorScheme.shadow,
           ),

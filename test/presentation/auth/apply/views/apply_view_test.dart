@@ -77,4 +77,7 @@ void main(){
       expect(find.byType(ApplyAppBar), findsOneWidget);
       expect(find.byType(ApplyViewBody), findsOneWidget);
   });
+   tearDown(() {  
+    getIt.reset();  
+  });  
 }

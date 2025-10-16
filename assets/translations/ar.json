@@ -39,5 +39,36 @@
   "networkError": "حدث خطأ ما. يرجى التحقق من اتصال الإنترنت.",
   "anUnknownErrorOccurred": "حدث خطأ غير معروف.",
   "applyNow": "سجل الان",
-  "welcome": "مرحبا بك في تطبيق ركاب فلاوري"
+  "welcome": "مرحبا بك في تطبيق ركاب فلاوري",
+
+  "apply": "تقديم",
+  "welcomeApply": "أهلا بك!!",
+  "applyWelcomeMessage": "هل تريد أن تكون سائق توصيل؟\nأنضم إلى فريقنا",
+
+  "country": "الدولة",
+  "countryHint": "اختر دولتك",
+  "firstLegalName": "الاسم القانوني الأول",
+  "firstLegalNameHint": "أدخل الاسم القانوني الأول",
+  "secondLegalName": "الاسم القانوني الثاني",
+  "secondLegalNameHint": "أدخل الاسم القانوني الثاني",
+  "vehicleType": "نوع المركبة",
+  "vehicleTypeHint": "اختر نوع مركبتك",
+  "vehicleNumber": "رقم المركبة",
+  "vehicleNumberHint": "أدخل رقم المركبة",
+  "vehicleLicense": "رخصة المركبة",
+  "vehicleLicenseHint": "قم بتحميل صورة الرخصة",
+  "phoneNumber": "رقم الهاتف",
+  "phoneNumberHint": "أدخل رقم الهاتف",
+  "idNumber": "رقم الهوية",
+  "idNumberHint": "أدخل رقم الهوية الوطنية",
+  "idImage": "صورة الهوية",
+  "idImageHint": "قم بتحميل صورة الهوية",
+  "passwordHint2": "أدخل كلمة المرور",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "gender": "الجنس",
+  "female": "أنثى",
+  "male": "ذكر",
+  "loadingCountriesFailureMessage": "فشل تحميل الدول",
+  "signingYouUpMessage": "جاري تسجيلك..."
+
 }

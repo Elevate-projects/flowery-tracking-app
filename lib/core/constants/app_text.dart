@@ -11,36 +11,34 @@ abstract final class AppText {
   static const String loggingInMessage = "loggingInMessage";
 
   // Apply
-  static const String apply = "Apply";
-  static const String welcomeApply = "Welcome!!";
-  static const String applyWelcomeMessage =
-      "You want to be a delivery man?\nJoin our team";
-  static const String country = "Country";
-  static const String countryHint = "Select your country";
-  static const String firstLegalName = "First legal name";
-  static const String firstLegalNameHint = "Enter first legal name";
-  static const String secondLegalName = "Second legal name";
-  static const String secondLegalNameHint = "Enter second legal name";
-  static const String vehicleType = "Vehicle type";
-  static const String vehicleTypeHint = "Select your vehicle type";
-  static const String vehicleNumber = "Vehicle number";
-  static const String vehicleNumberHint = "Enter vehicle number";
-  static const String vehicleLicense = "Vehicle license";
-  static const String vehicleLicenseHint = "Upload license photo";
-  static const String phoneNumber = "Phone number";
-  static const String phoneNumberHint = "Enter phone number";
-  static const String idNumber = "ID number";
-  static const String idNumberHint = "Enter national ID number";
-  static const String idImage = "ID image";
-  static const String idImageHint = "Upload ID image";
-  static const String passwordHint2 = "Enter password";
-  static const String confirmPassword = "Confirm password";
-  static const String gender = "Gender";
-  static const String female = "Female";
-  static const String male = "Male";
-  static const String loadingCountriesFailureMessage =
-      "Failed to load countries";
-  static const String signingYouUpMessage = "Signing you up...";
+  static const String apply = "apply";
+  static const String welcomeApply = "welcomeApply";
+  static const String applyWelcomeMessage = "applyWelcomeMessage";
+  static const String country = "country";
+  static const String countryHint = "countryHint";
+  static const String firstLegalName = "firstLegalName";
+  static const String firstLegalNameHint = "firstLegalNameHint";
+  static const String secondLegalName = "secondLegalName";
+  static const String secondLegalNameHint = "secondLegalNameHint";
+  static const String vehicleType = "vehicleType";
+  static const String vehicleTypeHint = "vehicleTypeHint";
+  static const String vehicleNumber = "vehicleNumber";
+  static const String vehicleNumberHint = "vehicleNumberHint";
+  static const String vehicleLicense = "vehicleLicense";
+  static const String vehicleLicenseHint = "vehicleLicenseHint";
+  static const String phoneNumber = "phoneNumber";
+  static const String phoneNumberHint = "phoneNumberHint";
+  static const String idNumber = "idNumber";
+  static const String idNumberHint = "idNumberHint";
+  static const String idImage = "idImage";
+  static const String idImageHint = "idImageHint";
+  static const String passwordHint2 = "passwordHint2";
+  static const String confirmPassword = "confirmPassword";
+  static const String gender = "gender";
+  static const String female = "female";
+  static const String male = "male";
+  static const String loadingCountriesFailureMessage = "loadingCountriesFailureMessage";
+  static const String signingYouUpMessage = "signingYouUpMessage";
 
   // Validations
   static const String fieldValidation = "fieldValidation";

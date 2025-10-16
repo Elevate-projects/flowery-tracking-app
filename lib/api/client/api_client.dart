@@ -21,7 +21,6 @@ abstract class ApiClient {
   Future<VehiclesResponse> getAllVehicles();
 
   @POST(Endpoints.apply)
-  @MultiPart()
   Future<void> apply(@Body() FormData applyRequestModel);
   
 }

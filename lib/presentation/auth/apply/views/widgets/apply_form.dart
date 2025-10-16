@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart';
@@ -34,7 +35,7 @@ class ApplyForm extends StatelessWidget {
                   current.countryStatus.isSuccess,
               builder: (context, state) => CustomDropdownButton<CountryEntity>(
                 key: const Key("countryDropdown"),
-                hint: AppText.countryHint,
+                hint: AppText.countryHint.tr(),
                 value: state.selectedCountry,
                 dropdownItems: state.countryStatus.data
                     ?.map(
@@ -55,8 +56,8 @@ class ApplyForm extends StatelessWidget {
             CustomTextFormField(
               key: const Key("firstLegalName"),
               controller: applyCubit.firstLegalNameController,
-              label: AppText.firstLegalName,
-              hintText: AppText.firstLegalNameHint,
+              label: AppText.firstLegalName.tr(),
+              hintText: AppText.firstLegalNameHint.tr(),
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.next,
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -66,17 +67,17 @@ class ApplyForm extends StatelessWidget {
             CustomTextFormField(
               key: const Key("secondLegalName"),
               controller: applyCubit.secondLegalNameController,
-              label: AppText.secondLegalName,
+              label: AppText.secondLegalName.tr(),
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.name,
-              hintText: AppText.secondLegalNameHint,
+              hintText: AppText.secondLegalNameHint.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               validator: (value) => Validations.fieldValidation(value: value),
             ),
             const RSizedBox(height: 25),
             CustomDropdownButton<VehicleEntity>(
               key: const Key("vehicleDropdown"),
-              hint: AppText.vehicleTypeHint,
+              hint: AppText.vehicleTypeHint.tr(),
               value: state.selectedVehicle,
               dropdownItems: state.vehicleStatus.data
                   ?.map(
@@ -101,8 +102,8 @@ class ApplyForm extends StatelessWidget {
             CustomTextFormField(
               key: const Key("vehicleNumber"),
               controller: applyCubit.vehicleNumberController,
-              label: AppText.vehicleNumber,
-              hintText: AppText.vehicleNumberHint,
+              label: AppText.vehicleNumber.tr(),
+              hintText: AppText.vehicleNumberHint.tr(),
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -116,8 +117,8 @@ class ApplyForm extends StatelessWidget {
               child: CustomTextFormField(
                 key: const Key("vehicleLicense"),
                 controller: applyCubit.vehicleLicenseController,
-                label: AppText.vehicleLicense,
-                hintText: AppText.vehicleLicenseHint,
+                label: AppText.vehicleLicense.tr(),
+                hintText: AppText.vehicleLicenseHint.tr(),
                 enabled: false,
                 suffixIcon: RPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -131,8 +132,8 @@ class ApplyForm extends StatelessWidget {
             CustomTextFormField(
               key: const Key("email"),
               controller: applyCubit.emailController,
-              label: AppText.email,
-              hintText: AppText.emailHint,
+              label: AppText.email.tr(),
+              hintText: AppText.emailHint.tr(),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -142,8 +143,8 @@ class ApplyForm extends StatelessWidget {
             CustomTextFormField(
               key: const Key("phoneNumber"),
               controller: applyCubit.phoneNumberController,
-              label: AppText.phoneNumber,
-              hintText: AppText.phoneNumberHint,
+              label: AppText.phoneNumber.tr(),
+              hintText: AppText.phoneNumberHint.tr(),
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.next,
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -154,10 +155,10 @@ class ApplyForm extends StatelessWidget {
             CustomTextFormField(
               key: const Key("idNumber"),
               controller: applyCubit.idNumberController,
-              label: AppText.idNumber,
+              label: AppText.idNumber.tr(),
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
-              hintText: AppText.idNumberHint,
+              hintText: AppText.idNumberHint.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               validator: (value) => Validations.fieldValidation(value: value),
             ),
@@ -168,8 +169,8 @@ class ApplyForm extends StatelessWidget {
               child: CustomTextFormField(
                 key: const Key("idImage"),
                 controller: applyCubit.idImageController,
-                label: AppText.idImage,
-                hintText: AppText.idImageHint,
+                label: AppText.idImage.tr(),
+                hintText: AppText.idImageHint.tr(),
                 enabled: false,
                 suffixIcon: RPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -186,8 +187,8 @@ class ApplyForm extends StatelessWidget {
                   child: CustomTextFormField(
                     key: const Key("password"),
                     controller: applyCubit.passwordController,
-                    label: AppText.password,
-                    hintText: AppText.passwordHint2,
+                    label: AppText.password.tr(),
+                    hintText: AppText.passwordHint2.tr(),
                     keyboardType: TextInputType.visiblePassword,
                     textInputAction: TextInputAction.next,
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -216,8 +217,8 @@ class ApplyForm extends StatelessWidget {
                   child: CustomTextFormField(
                     key: const Key("confirmPassword"),
                     controller: applyCubit.confirmPasswordController,
-                    label: AppText.confirmPassword,
-                    hintText: AppText.confirmPassword,
+                    label: AppText.confirmPassword.tr(),
+                    hintText: AppText.confirmPassword.tr(),
                     keyboardType: TextInputType.visiblePassword,
                     textInputAction: TextInputAction.done,
                     floatingLabelBehavior: FloatingLabelBehavior.always,
