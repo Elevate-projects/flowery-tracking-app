@@ -29,6 +29,7 @@ class ApplicationApprovedViewBody extends StatelessWidget {
                 const RSizedBox(height: 44),
                 FittedBox(
                   child: Text(
+                    key: const Key('applicationApprovedTitle'),
                     AppText.applicationApproved.tr(),
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -37,6 +38,7 @@ class ApplicationApprovedViewBody extends StatelessWidget {
                 ),
                 const RSizedBox(height: 16),
                 Text(
+                  key: const Key('applicationApprovedSubTitle'),
                   AppText.applicationApprovedSubTitle.tr(),
                   textAlign: TextAlign.center,
                   style: theme.textTheme.labelLarge?.copyWith(
@@ -46,6 +48,7 @@ class ApplicationApprovedViewBody extends StatelessWidget {
                 ),
                 const RSizedBox(height: 24),
                 CustomElevatedButton(
+                  key: const Key('loginApproveButton'),
                   onPressed: () {
                     Navigator.of(context).pushNamed(RouteNames.login);
                   },
