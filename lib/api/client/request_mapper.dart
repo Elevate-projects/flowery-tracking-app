@@ -1,3 +1,4 @@
+import 'package:flowery_tracking_app/api/models/edit_profile/edit_profile_request.dart';
 import 'package:flowery_tracking_app/api/models/order/order_model.dart';
 import 'package:flowery_tracking_app/api/models/order_item/order_item_model.dart';
 import 'package:flowery_tracking_app/api/models/product/product_model.dart';
@@ -13,6 +14,7 @@ import 'package:flowery_tracking_app/api/requests/reset_password/reset_password_
 import 'package:flowery_tracking_app/api/requests/verification/verify_request_model.dart';
 import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/forget_password_and_resend_code_request/forget_password_and_resend_code_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/login_request/login_request_entity.dart';
@@ -137,6 +139,17 @@ abstract final class RequestMapper {
       vehicleLicense: entity.vehicleLicense,
       vehicleNumber: entity.vehicleNumber,
       vehicleType: entity.vehicleType,
+    );
+  }
+  static EditProfileRequestModel toEditProfileRequestModel({
+    required EditProfileRequestEntity request,
+  }) {
+    return EditProfileRequestModel(
+      lastName: request.lastName,
+      password: request.password,
+      firstName: request.firstName,
+      phone: request.phone,
+      email: request.email,
     );
   }
 }

@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  radio_button:
   flutter_screenutil: ^5.9.3
   flutter_bloc: ^9.1.1
   flutter_svg: ^2.1.0

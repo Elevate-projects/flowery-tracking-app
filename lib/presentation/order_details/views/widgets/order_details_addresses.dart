@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_address.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
@@ -13,6 +14,7 @@ class OrderDetailsAddresses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orderDetailsCubit = context.read<OrderDetailsCubit>();
     final theme = Theme.of(context);
     return BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
       builder: (context, state) => Column(
@@ -50,7 +52,10 @@ class OrderDetailsAddresses extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 RouteNames.userAddressMap,
-                arguments: orderData,
+                arguments: UserAddressMapArguments(
+                  orderData: orderData,
+                  orderDetailsCubit: orderDetailsCubit,
+                ),
               );
             },
           ),
@@ -58,4 +63,14 @@ class OrderDetailsAddresses extends StatelessWidget {
       ),
     );
   }
+}
+
+class UserAddressMapArguments {
+  final OrderEntity? orderData;
+  final OrderDetailsCubit orderDetailsCubit;
+
+  const UserAddressMapArguments({
+    required this.orderData,
+    required this.orderDetailsCubit,
+  });
 }
