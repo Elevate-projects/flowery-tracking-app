@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flowery_tracking_app/core/constants/app_images.dart';
+import 'package:flowery_tracking_app/core/constants/app_colors.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
@@ -12,19 +12,14 @@ class ApplicationApprovedViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Column(
+    return Stack(
       children: [
-        const RSizedBox(height: 101),
-        Image.asset(
-          AppImages.applicationSubmitted,
-          fit: BoxFit.contain,
-          height: 115.h,
-        ),
-        const RSizedBox(height: 45),
-        Expanded(
-          child: RPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+        // Main content
+        Padding(
+          padding:  REdgeInsets.all(30),
+          child: Center(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 RSizedBox(
                   height: 120,
@@ -40,7 +35,6 @@ class ApplicationApprovedViewBody extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  textAlign: TextAlign.center,
                 ),
                 const RSizedBox(height: 16),
                 Text(
@@ -49,28 +43,33 @@ class ApplicationApprovedViewBody extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontWeight: FontWeight.w400,
-                    color: theme.colorScheme.shadow,
+                    color: AppColors.black[30],
                   ),
                 ),
                 const RSizedBox(height: 24),
                 CustomElevatedButton(
                   key: const Key('loginApproveButton'),
                   onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pushReplacementNamed(RouteNames.login);
+                    Navigator.of(context).pushNamed(RouteNames.login);
                   },
                   buttonTitle: AppText.loginButton.tr(),
                 ),
+                const RSizedBox( height: 84),
               ],
             ),
           ),
         ),
-        Image.asset(
-          width: ScreenUtil().screenWidth,
-          AppImages.bottomWave,
-          fit: BoxFit.contain,
-          color: theme.colorScheme.primary.withValues(alpha: 0.4),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: RSizedBox(
+            height: 321.h,
+            child: Image.asset(
+              "assets/images/wavey_application_approved.png",
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ],
     );
