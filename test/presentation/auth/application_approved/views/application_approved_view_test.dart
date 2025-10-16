@@ -1,4 +1,3 @@
-import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/auth/application_approved/views/application_approved_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/application_approved/views/widgets/application_approved_view_body.dart';
 import 'package:flutter/material.dart';
