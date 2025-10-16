@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_colors.dart';
+import 'package:flowery_tracking_app/core/constants/app_images.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
@@ -24,7 +25,7 @@ class ApplicationApprovedViewBody extends StatelessWidget {
                 RSizedBox(
                   height: 120,
                   width: 120,
-                  child: Image.asset("assets/images/application_approved.png"),
+                  child: Image.asset(AppImages.applicationSubmitted),
                 ),
                 const RSizedBox(height: 44),
                 FittedBox(
@@ -50,7 +51,7 @@ class ApplicationApprovedViewBody extends StatelessWidget {
                 CustomElevatedButton(
                   key: const Key('loginApproveButton'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(RouteNames.login);
+                    Navigator.of(context).pushReplacementNamed(RouteNames.login);
                   },
                   buttonTitle: AppText.loginButton.tr(),
                 ),
@@ -66,7 +67,7 @@ class ApplicationApprovedViewBody extends StatelessWidget {
           child: RSizedBox(
             height: 321.h,
             child: Image.asset(
-              "assets/images/wavey_application_approved.png",
+              AppImages.bottomWave,
               fit: BoxFit.cover,
             ),
           ),
