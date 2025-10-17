@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/di/di.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_intent.dart';
@@ -90,7 +92,6 @@ void main() {
       DropdownButtonHideUnderline,
     );
     final radioMenuButtonFinder = find.byType(RadioMenuButton<Gender>);
-    final textGender = find.text('Gender');
 
     //assert
     expect(formFinder, findsOneWidget);
@@ -99,7 +100,7 @@ void main() {
     expect(textFormFieldFinder, findsNWidgets(10));
     expect(dropdownButtonHideUnderlineFinder, findsNWidgets(2));
     expect(radioMenuButtonFinder, findsNWidgets(2));
-    expect(textGender, findsOneWidget);
+    expect(find.text(tr(AppText.gender)), findsOneWidget);
   });
 
   testWidgets('Verify empty fields', (WidgetTester tester) async {
