@@ -39,6 +39,26 @@ final class OrderModel {
   final int? v;
   @JsonKey(name: "store")
   final StoreModel? store;
+  @JsonKey(name: "DriverName")
+  final String? driverName;
+  @JsonKey(name: "DriverPhone")
+  final String? driverPhone;
+  @JsonKey(name: "DriverLatitude")
+  final num? driverLatitude;
+  @JsonKey(name: "DriverLongitude")
+  final num? driverLongitude;
+  @JsonKey(name: "OrderAcceptedAt")
+  final String? orderAcceptedAt;
+  @JsonKey(name: "EstimatedArrival")
+  final String? estimatedArrival;
+  @JsonKey(name: "PreparingYourOrderAt")
+  final String? preparingYourOrderAt;
+  @JsonKey(name: "OutForDeliveryAt")
+  final String? outForDeliveryAt;
+  @JsonKey(name: "ArrivedAt")
+  final String? arrivedAt;
+  @JsonKey(name: "DeliveredAt")
+  final String? deliveredAt;
 
   OrderModel({
     this.id,
@@ -56,6 +76,16 @@ final class OrderModel {
     this.orderNumber,
     this.v,
     this.store,
+    this.driverName,
+    this.driverPhone,
+    this.driverLatitude,
+    this.driverLongitude,
+    this.orderAcceptedAt,
+    this.estimatedArrival,
+    this.preparingYourOrderAt,
+    this.outForDeliveryAt,
+    this.arrivedAt,
+    this.deliveredAt,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -81,6 +111,16 @@ final class OrderModel {
       state: state,
       orderNumber: orderNumber,
       store: store?.toStoreEntity(),
+      deliveredAt: deliveredAt,
+      arrivedAt: arrivedAt,
+      driverLatitude: driverLatitude,
+      driverLongitude: driverLongitude,
+      driverName: driverName,
+      driverPhone: driverPhone,
+      estimatedArrival: estimatedArrival,
+      orderAcceptedAt: orderAcceptedAt,
+      outForDeliveryAt: outForDeliveryAt,
+      preparingYourOrderAt: preparingYourOrderAt,
     );
   }
 }

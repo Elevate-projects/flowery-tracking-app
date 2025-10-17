@@ -49,8 +49,39 @@ abstract final class AppText {
   static const String emptyDeliveredOrdersMessage =
       "emptyDeliveredOrdersMessage";
 
+  // Apply
+  static const String apply = "apply";
+  static const String welcomeApply = "welcomeApply";
+  static const String applyWelcomeMessage = "applyWelcomeMessage";
+  static const String country = "country";
+  static const String countryHint = "countryHint";
+  static const String firstLegalName = "firstLegalName";
+  static const String firstLegalNameHint = "firstLegalNameHint";
+  static const String secondLegalName = "secondLegalName";
+  static const String secondLegalNameHint = "secondLegalNameHint";
+  static const String vehicleType = "vehicleType";
+  static const String vehicleTypeHint = "vehicleTypeHint";
+  static const String vehicleNumber = "vehicleNumber";
+  static const String vehicleNumberHint = "vehicleNumberHint";
+  static const String vehicleLicense = "vehicleLicense";
+  static const String vehicleLicenseHint = "vehicleLicenseHint";
+  static const String phoneNumber = "phoneNumber";
+  static const String phoneNumberHint = "phoneNumberHint";
+  static const String idNumber = "idNumber";
+  static const String idNumberHint = "idNumberHint";
+  static const String idImage = "idImage";
+  static const String idImageHint = "idImageHint";
+  static const String passwordHint2 = "passwordHint2";
+  static const String confirmPassword = "confirmPassword";
+  static const String gender = "gender";
+  static const String female = "female";
+  static const String male = "male";
+  static const String loadingCountriesFailureMessage =
+      "loadingCountriesFailureMessage";
+  static const String signingYouUpMessage = "signingYouUpMessage";
+
   // Validations
-  static const String userNameValidation = "userNameValidation";
+  static const String fieldValidation = "fieldValidation";
   static const String emptyTextValidation = "emptyTextValidation";
   static const String phoneNumberValidation = "phoneNumberValidation";
   static const String phoneNumberValidation2 = "phoneNumberValidation2";
@@ -107,10 +138,15 @@ abstract final class AppText {
   static const String otpResentedSuccessfully = "otpResentedSuccessfully";
   static const String verificationSuccess = "verificationSuccess";
   static const String passwordRested = "passwordRested";
-  static const String confirmPassword = "confirmPassword";
   static const String confirmPasswordHint = "confirmPasswordHint";
   static const String resendWord = "resendWord";
   static const String confirmWord = "confirmWord";
+
+  // Application Approved
+  static const String applicationApproved = "applicationApproved";
+  static const String applicationApprovedSubTitle =
+      "applicationApprovedSubTitle";
+  static const String loginButton = "loginButton";
   static const String currentPassword = "currentPassword";
   static const String newPassword = "newPassword";
   static const String update = "update";
@@ -181,6 +217,36 @@ abstract final class AppText {
   static const String aborted = "aborted";
   static const String outOfRange = "outOfRange";
   static const String unknownErrorMessage = "unknownErrorMessage";
+  // edit profile
+  static const String editProfile = "editProfile";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String phone = "phone";
+  static const String genderMale = "genderMale";
+  static const String genderFemale = "genderFemale";
+  static const String changePassword = "changePassword";
+  static const String failure = "failure";
+  static const String success = "success";
+
+  //profile
+  static const String language = "language";
+  static const String logout = "logout";
+  static const String vehicleInfo = "vehicleInfo";
+  static const String arabic = "arabic";
+  static const String english = "english";
+  static const String changeLanguage = "changeLanguage";
+  static const String logoutCapital = "logoutCapital";
+  static const String confirmLogout = "confirmLogout";
+  static const String cancel = "cancel";
+
+  static const String thankYou = 'thankYou';
+  static const String theOrderDelivered = 'theOrderDelivered';
+  static const String done = 'done';
+  static const String editVehicle = "editVehicle";
+  static const String enterVehicleType = "enterVehicleType";
+  static const String enterVehicleNumber = "enterVehicleNumber";
+  static const String enterVehicleLicense = "enterVehicleLicense";
+}
   static const String flower= "flower";
   static const String userLocation="userLocation";
 
