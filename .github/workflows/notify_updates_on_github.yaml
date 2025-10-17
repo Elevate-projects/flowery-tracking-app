@@ -1,0 +1,82 @@
+name: Slack Notifications for All Updates
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+      - closed
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine Event Info
+        id: info
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            COMMIT_MSG="${{ github.event.head_commit.message }}"
+            SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+            echo "title=🚀 Push Event" >> $GITHUB_OUTPUT
+            echo "details=• Repo: *${{ github.repository }}*\n• Branch: *${{ github.ref_name }}*\n• Actor: *${{ github.actor }}*\n• Commit: <${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${SHORT_SHA}>\n• Message: ${COMMIT_MSG}" >> $GITHUB_OUTPUT
+            echo "color=#439FE0" >> $GITHUB_OUTPUT
+
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            PR_ACTION="${{ github.event.action }}"
+            PR_NUMBER="${{ github.event.number }}"
+            PR_BRANCH="${{ github.event.pull_request.head.ref }}"
+            PR_BASE="${{ github.event.pull_request.base.ref }}"
+            PR_ACTOR="${{ github.event.pull_request.user.login }}"
+
+            if [ "$PR_ACTION" == "closed" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+              EMOJI="✅"
+              COLOR="#2eb886"
+            elif [ "$PR_ACTION" == "closed" ]; then
+              EMOJI="🔴"
+              COLOR="#e01e5a"
+            else
+              EMOJI="🔀"
+              COLOR="#6f42c1"
+            fi
+
+            echo "title=${EMOJI} Pull Request *${PR_ACTION}*" >> $GITHUB_OUTPUT
+            echo "details=• Repo: *${{ github.repository }}*\n• PR: <${{ github.event.pull_request.html_url }}|#${PR_NUMBER}>\n• From: *${PR_BRANCH}* → To: *${PR_BASE}*\n• Actor: *${PR_ACTOR}*" >> $GITHUB_OUTPUT
+            echo "color=$COLOR" >> $GITHUB_OUTPUT
+
+          else
+            echo "title=❓ Unknown event" >> $GITHUB_OUTPUT
+            echo "details=• Event: ${{ github.event_name }}" >> $GITHUB_OUTPUT
+            echo "color=#808080" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Slack Notification
+        run: |
+          COLOR="${{ steps.info.outputs.color || '#439FE0' }}"
+          TITLE="${{ steps.info.outputs.title }}"
+          DETAILS="${{ steps.info.outputs.details }}"
+
+          curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+          -H "Content-type: application/json" \
+          --data "{
+            \"channel\": \"C09AHC1MVNH\",
+            \"attachments\": [
+              {
+                \"color\": \"${COLOR}\",
+                \"blocks\": [
+                  { \"type\": \"divider\" },
+                  {
+                    \"type\": \"section\",
+                    \"text\": { \"type\": \"mrkdwn\", \"text\": \"${TITLE}\" }
+                  },
+                  {
+                    \"type\": \"section\",
+                    \"text\": { \"type\": \"mrkdwn\", \"text\": \"${DETAILS}\" }
+                  },
+                  { \"type\": \"divider\" }
+                ]
+              }
+            ]
+          }" \
+          https://slack.com/api/chat.postMessage

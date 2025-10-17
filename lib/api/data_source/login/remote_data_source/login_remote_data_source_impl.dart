@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/core/secure_storage/secure_storage.dart';
 import 'package:flowery_tracking_app/data/data_source/login/remote_data_source/login_remote_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/login_request/login_request_entity.dart';

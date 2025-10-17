@@ -10,6 +10,45 @@ abstract final class AppText {
   static const String continueText = "continueText";
   static const String loggingInMessage = "loggingInMessage";
 
+  // Home
+  static const String floweryRider = "floweryRider";
+  static const String flowerOrder = "flowerOrder";
+  static const String pickupAddress = "pickupAddress";
+  static const String userAddress = "userAddress";
+  static const String reject = "reject";
+  static const String accept = "accept";
+  static const String notProvided = "notProvided";
+  static const String egp = "egp";
+  static const String reloadedOrdersMessage = "reloadedOrdersMessage";
+  static const String emptyOrdersMessage = "emptyOrdersMessage";
+  static const String reload = "reload";
+
+  // Order Details
+  static const String accepted = "accepted";
+  static const String picked = "picked";
+  static const String outForDelivery = "outForDelivery";
+  static const String arrived = "arrived";
+  static const String delivered = "delivered";
+  static const String orderDetails = "orderDetails";
+  static const String status = "status";
+  static const String orderId = "orderId";
+  static const String total = "total";
+  static const String paymentMethod = "paymentMethod";
+  static const String arrivedAtPickupPoint = "arrivedAtPickupPoint";
+  static const String startDeliver = "startDeliver";
+  static const String arrivedToTheUser = "arrivedToTheUser";
+  static const String deliveredToTheUser = "deliveredToTheUser";
+  static const String openPhoneFailureMessage = "openPhoneFailureMessage";
+  static const String openWhatsappFailureMessage = "openWhatsappFailureMessage";
+
+  // Orders
+  static const String myOrders = "myOrders";
+  static const String canceled = "canceled";
+  static const String completed = "completed";
+  static const String recentOrders = "recentOrders";
+  static const String emptyDeliveredOrdersMessage =
+      "emptyDeliveredOrdersMessage";
+
   // Apply
   static const String apply = "apply";
   static const String welcomeApply = "welcomeApply";
@@ -71,8 +110,143 @@ abstract final class AppText {
   static const String connectionTimeout = "connectionTimeout";
   static const String networkError = "networkError";
   static const String anUnknownErrorOccurred = "anUnknownErrorOccurred";
+
   // On Boarding
   static const String welcome = "welcome";
   static const String applyNow = "applyNow";
   static const String appVersion = "v 6.3.0 - (446)";
+
+  //BottomNavigation
+  static const String home = 'home';
+  static const String order = 'order';
+  static const String profile = 'profile';
+
+  // Forget Password
+  static const String resendOtp = "resendOtp";
+  static const String forgetPasswordTitle = 'forgetPasswordTitle';
+  static const String forgetPasswordSubTitle = 'forgetPasswordSubTitle';
+  static const String emailVerificationTitle = 'emailVerificationTitle';
+  static const String emailVerificationSubTitle = 'emailVerificationSubTitle';
+  static const String resetPasswordTitle = 'resetPasswordTitle';
+  static const String resetPasswordSubTitle = 'resetPasswordSubTitle';
+  static const String continueWord = 'continueWord';
+  static const String enter6DigitCode = "enter6DigitCode";
+  static const String resendAvailableStatement = "resendAvailableStatement";
+  static const String invalidCode = 'invalidCode';
+  static const String notReceivedCodeStatement = 'notReceivedCodeStatement';
+  static const String otpResentedSuccessfully = "otpResentedSuccessfully";
+  static const String verificationSuccess = "verificationSuccess";
+  static const String passwordRested = "passwordRested";
+  static const String confirmPassword = "confirmPassword";
+  static const String confirmPasswordHint = "confirmPasswordHint";
+  static const String resendWord = "resendWord";
+  static const String confirmWord = "confirmWord";
+
+  // Application Approved
+  static const String applicationApproved = "applicationApproved";
+  static const String applicationApprovedSubTitle = "applicationApprovedSubTitle";
+  static const String loginButton = "loginButton";
+  static const String currentPassword = "currentPassword";
+  static const String newPassword = "newPassword";
+  static const String update = "update";
+  static const String passwordChanged = "passwordChanged";
+
+  // Firebase Exceptions
+  static const String emailAlreadyInUse = "emailAlreadyInUse";
+  static const String invalidEmail = "invalidEmail";
+  static const String networkRequestFailed = "networkRequestFailed";
+  static const String weakPassword = "weakPassword";
+  static const String userDisabled = "userDisabled";
+  static const String userNotFound = "userNotFound";
+  static const String invalidVerificationCode = "invalidVerificationCode";
+  static const String invalidVerificationId = "invalidVerificationId";
+  static const String quotaExceeded = "quotaExceeded";
+  static const String emailAlreadyExists = "emailAlreadyExists";
+  static const String providerAlreadyLinked = "providerAlreadyLinked";
+  static const String requiresRecentLogin = "requiresRecentLogin";
+  static const String credentialAlreadyInUse = "credentialAlreadyInUse";
+  static const String userMismatch = "userMismatch";
+  static const String accountExistsWithDifferentCredential =
+      "accountExistsWithDifferentCredential";
+  static const String operationNotAllowed = "operationNotAllowed";
+  static const String expiredActionCode = "expiredActionCode";
+  static const String invalidActionCode = "invalidActionCode";
+  static const String missingActionCode = "missingActionCode";
+  static const String userTokenExpired = "userTokenExpired";
+  static const String wrongPassword = "wrongPassword";
+  static const String userTokenRevoked = "userTokenRevoked";
+  static const String invalidMessagePayload = "invalidMessagePayload";
+  static const String invalidSender = "invalidSender";
+  static const String invalidRecipientEmail = "invalidRecipientEmail";
+  static const String missingIframeStart = "missingIframeStart";
+  static const String missingIframeEnd = "missingIframeEnd";
+  static const String missingIframeSrc = "missingIframeSrc";
+  static const String authDomainConfigRequired = "authDomainConfigRequired";
+  static const String missingAppCredential = "missingAppCredential";
+  static const String invalidAppCredential = "invalidAppCredential";
+  static const String sessionCookieExpired = "sessionCookieExpired";
+  static const String uidAlreadyExists = "uidAlreadyExists";
+  static const String invalidCordovaConfiguration =
+      "invalidCordovaConfiguration";
+  static const String appDeleted = "appDeleted";
+  static const String userTokenMismatch = "userTokenMismatch";
+  static const String webStorageUnsupported = "webStorageUnsupported";
+  static const String invalidCredential = "invalidCredential";
+  static const String appNotAuthorized = "appNotAuthorized";
+  static const String keychainError = "keychainError";
+  static const String internalError = "internalError";
+  static const String invalidLoginCredentials = "invalidLoginCredentials";
+  static const String unknownAuthError = "unknownAuthError";
+  static const String unknownFirebaseError = "unknownFirebaseError";
+  static const String invalidCustomToken = "invalidCustomToken";
+  static const String customTokenMismatch = "customTokenMismatch";
+  static const String captchaCheckFailed = "captchaCheckFailed";
+  static const String googleLoginCanceled = "googleLoginCanceled";
+
+  // Firestore-related errors
+  static const String permissionDenied = "permissionDenied";
+  static const String unavailable = "unavailable";
+  static const String notFound = "notFound";
+  static const String alreadyExists = "alreadyExists";
+  static const String resourceExhausted = "resourceExhausted";
+  static const String cancelled = "cancelled";
+  static const String deadlineExceeded = "deadlineExceeded";
+  static const String dataLoss = "dataLoss";
+  static const String invalidArgument = "invalidArgument";
+  static const String aborted = "aborted";
+  static const String outOfRange = "outOfRange";
+  static const String unknownErrorMessage = "unknownErrorMessage";
+  // edit profile
+  static const String editProfile = "editProfile";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String phone = "phone";
+  static const String gender = "gender";
+  static const String genderMale = "genderMale";
+  static const String genderFemale = "genderFemale";
+  static const String changePassword = "changePassword";
+  static const String failure = "failure";
+  static const String success = "success";
+
+  //profile
+  static const String language = "language";
+  static const String logout = "logout";
+  static const String vehicleInfo = "vehicleInfo";
+  static const String arabic = "arabic";
+  static const String english = "english";
+  static const String changeLanguage = "changeLanguage";
+  static const String logoutCapital = "logoutCapital";
+  static const String confirmLogout = "confirmLogout";
+  static const String cancel = "cancel";
+
+  static const String thankYou = 'thankYou';
+  static const String theOrderDelivered = 'theOrderDelivered';
+  static const String done = 'done';
+  static const String editVehicle = "editVehicle";
+  static const String vehicleType = "vehicleType";
+  static const String enterVehicleType = "enterVehicleType";
+  static const String vehicleNumber = "vehicleNumber";
+  static const String enterVehicleNumber = "enterVehicleNumber";
+  static const String vehicleLicense = "vehicleLicense";
+  static const String enterVehicleLicense = "enterVehicleLicense";
 }

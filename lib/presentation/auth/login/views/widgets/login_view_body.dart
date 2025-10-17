@@ -1,10 +1,12 @@
 import 'package:flowery_tracking_app/core/constants/app_animations.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/widgets/login_button.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/widgets/login_form.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/widgets/remember_me_and_forget_pass_row.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views_model/login_state.dart';
+import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flowery_tracking_app/utils/loaders/full_screen_loader.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';
@@ -36,15 +38,17 @@ class LoginViewBody extends StatelessWidget {
           );
         } else if (state.loginStatus.isSuccess) {
           FullScreenLoader.stopLoading(context: context);
-          // this Loader will be deleted after we having the home screen
-          Loaders.showSuccessMessage(
-            message: "Logged in successfully",
-            context: context,
-          );
-          // Navigator.of(context).pushNamedAndRemoveUntil(
-          //   RouteNames.floweryTrackingBottomNavBar,
-          //   (route) => false,
-          // );
+          if (FloweryDriverMethodHelper.currentDriverOrderId != null) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              RouteNames.orderDetails,
+              (route) => false,
+            );
+          } else {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              RouteNames.bottomNavigation,
+              (route) => false,
+            );
+          }
         }
       },
       child: SingleChildScrollView(

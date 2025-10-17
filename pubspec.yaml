@@ -13,8 +13,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  radio_button:
+  mocktail:
   flutter_screenutil: ^5.9.3
-  flutter_bloc: ^9.1.0
+  flutter_bloc: ^9.1.1
   flutter_svg: ^2.1.0
   shared_preferences: ^2.5.3
   flutter_secure_storage: ^9.2.4
@@ -37,6 +39,21 @@ dependencies:
   equatable: ^2.0.7
   dio: any
   easy_localization: ^3.0.8
+  firebase_core: ^4.1.1
+  cloud_firestore: ^6.0.2
+  step_progress_indicator: ^1.0.2
+  url_launcher: ^6.3.2
+  url_launcher_platform_interface: ^2.3.2
+  google_maps_flutter: ^2.13.1
+  geocoding: ^4.0.0
+  location: ^8.0.1
+  geolocator: ^14.0.2
+  flutter_polyline_points: ^2.0.0
+  flutter_map: ^8.2.2
+  flutter_map_location_marker: ^10.1.0
+  http: ^1.5.0
+  latlong2: ^0.9.1
+  intl: ^0.20.2
   image_picker: ^1.2.0
   dropdown_button2: ^2.3.9
   path: ^1.9.1
@@ -47,6 +64,7 @@ dev_dependencies:
   retrofit_generator: ^9.2.0
   json_serializable: ^6.8.0
   build_runner: ^2.5.4
+  fake_cloud_firestore: ^4.0.0
   flutter_test:
     sdk: flutter
 
