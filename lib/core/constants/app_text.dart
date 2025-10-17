@@ -214,6 +214,4 @@ abstract final class AppText {
   static const String enterVehicleNumber = "enterVehicleNumber";
   static const String vehicleLicense = "vehicleLicense";
   static const String enterVehicleLicense = "enterVehicleLicense";
-  static const String failure = "failure";
-  static const String success = "success";
 }

@@ -85,7 +85,7 @@ class EditVehicleViewBody extends StatelessWidget {
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
                       child: CustomTextFormField(
-                         // isReadOnly: true,
+                        isReadOnly: true,
                         controller: cubit.vehicleLicenseController,
                         label: AppText.vehicleLicense.tr(),
                         hintText: AppText.enterVehicleLicense.tr(),

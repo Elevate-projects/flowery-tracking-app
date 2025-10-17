@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flowery_tracking_app/api/models/driver_data/driver_data_model.dart';
 import 'package:flowery_tracking_app/api/models/edit_profile/edit_profile_request.dart';
-import 'package:flowery_tracking_app/api/models/driver_data/driver_data_model.dart';
 import 'package:flowery_tracking_app/api/requests/edit_vehicle/edit_vehicle_request.dart';
 import 'package:flowery_tracking_app/api/requests/forget_password_and_resend_code/forget_password_and_resend_code_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/login_request/login_request_model.dart';

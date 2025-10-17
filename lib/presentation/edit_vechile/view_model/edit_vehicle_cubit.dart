@@ -43,8 +43,6 @@ class EditVehicleCubit extends Cubit<EditVehicleStatus> {
       case SubmitEditVehicle():
         await _submitEditVehicle();
         break;
-      default:
-        break;
     }
   }
 
