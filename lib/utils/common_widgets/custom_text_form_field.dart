@@ -78,13 +78,16 @@ class CustomTextFormField extends StatelessWidget {
         floatingLabelBehavior: floatingLabelBehavior,
         contentPadding: contentPadding ?? REdgeInsets.all(16),
         filled: false,
-        label: Text(
-          label.tr(),
-          style:
-              labelStyle ??
-              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
+        label: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            label.tr(),
+            style:
+                labelStyle ??
+                Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+          ),
         ),
         hintStyle:
             hintStyle ??
@@ -92,6 +95,7 @@ class CustomTextFormField extends StatelessWidget {
               context,
             ).textTheme.bodyLarge?.copyWith(color: AppColors.white[70]),
         hintText: hintText?.tr(),
+
         focusedBorder: buildOutlinedBorder(
           borderColor: Theme.of(context).colorScheme.primary,
           borderRadius: borderRadius,
@@ -122,7 +126,7 @@ class CustomTextFormField extends StatelessWidget {
             BoxConstraints(maxWidth: 60.r, maxHeight: 60.r),
         suffixIcon: suffixIcon,
         errorStyle: Theme.of(context).textTheme.bodySmall,
-        errorMaxLines: 2,
+        errorMaxLines: 3,
       ),
       maxLength: maxLength,
       onChanged: onChanged,

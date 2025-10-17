@@ -48,7 +48,7 @@ class BuildResetPasswordForm extends StatelessWidget {
               textInputAction: TextInputAction.next,
               validator: (value) => Validations.confirmPasswordValidation(
                 password: cubit.passwordController.text,
-                conformPassword: value,
+                confirmPassword: value,
               ),
             ),
             const SizedBox(height: 50),

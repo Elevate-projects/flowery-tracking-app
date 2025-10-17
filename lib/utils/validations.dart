@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 
 abstract class Validations {
-  static String? userNameValidation({required String? name}) {
-    if ((name?.isEmpty ?? true) || name?.trim() == "") {
-      return AppText.userNameValidation.tr();
+  static String? fieldValidation({required String? value}) {
+    if ((value?.isEmpty ?? true) || value?.trim() == "") {
+      return AppText.fieldValidation.tr();
     }
     return null;
   }
@@ -64,16 +64,16 @@ abstract class Validations {
   }
 
   static String? confirmPasswordValidation({
-    required String? conformPassword,
+    required String? confirmPassword,
     required String? password,
   }) {
-    if ((conformPassword?.isEmpty ?? true) ||
-        conformPassword?.trim() == "" ||
-        conformPassword == null) {
+    if ((confirmPassword?.isEmpty ?? true) ||
+        confirmPassword?.trim() == "" ||
+        confirmPassword == null) {
       return AppText.confirmPasswordValidation.tr();
-    } else if (conformPassword != password) {
+    } else if (confirmPassword != password) {
       return AppText.confirmPasswordValidation2.tr();
-    } else if (RegExp(r'\s').hasMatch(conformPassword)) {
+    } else if (RegExp(r'\s').hasMatch(confirmPassword)) {
       return AppText.passwordValidation3.tr();
     }
     return null;

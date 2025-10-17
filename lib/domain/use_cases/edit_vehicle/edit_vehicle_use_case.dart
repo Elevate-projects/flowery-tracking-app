@@ -1,0 +1,13 @@
+import 'package:flowery_tracking_app/api/client/api_result.dart';
+import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
+import 'package:flowery_tracking_app/domain/repositories/edit_vehicle/edit_vehicle_repository.dart';
+import 'package:injectable/injectable.dart';
+@injectable
+class EditVehicleUseCase{
+  final EditVehicleRepository _repositories;
+  EditVehicleUseCase(this._repositories);
+  Future<Result<DriverDataEntity>> editVehicle(EditVehicleEntity request)async{
+    return await _repositories.editVehicle(request);
+  }
+}

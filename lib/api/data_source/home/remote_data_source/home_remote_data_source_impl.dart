@@ -36,6 +36,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   Future<Result<void>> acceptOrder({
     required AcceptOrderRequestEntity request,
   }) async {
+    final driverData = FloweryDriverMethodHelper.driverData;
     final OrderModel orderModel = RequestMapper.orderEntityToModel(
       orderEntity: request.orderData,
     );
@@ -45,9 +46,23 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         orderId: request.orderId,
       );
       await _firestore
-          .collection(AppCollections.drivers)
+          .collection(AppCollections.orders)
           .doc(request.orderId)
-          .set(orderModel.toJson());
+          .set({
+            ...orderModel.toJson(),
+            "DriverName": "${driverData?.firstName} ${driverData?.lastName}",
+            "DriverPhone": driverData?.phone,
+            "DriverLatitude": driverData?.latitude,
+            "DriverLongitude": driverData?.longitude,
+            "OrderAcceptedAt": DateTime.now().toString(),
+            "EstimatedArrival": DateTime.now()
+                .add(const Duration(days: 3))
+                .toString(),
+            "PreparingYourOrderAt": "",
+            "OutForDeliveryAt": "",
+            "ArrivedAt": "",
+            "DeliveredAt": "",
+          });
     });
   }
 }
