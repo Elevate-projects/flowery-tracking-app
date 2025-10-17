@@ -36,7 +36,6 @@ void main() {
       },
     );
   }
-
   group('EditVehicleViewBody', () {
     testWidgets('renders initial UI correctly', (WidgetTester tester) async {
       when(() => mockEditVehicleCubit.state).thenReturn(const EditVehicleStatus());
