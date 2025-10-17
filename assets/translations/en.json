@@ -167,8 +167,6 @@
   "outOfRange": "The value provided is out of range.",
   "thankYou": "Thank you!!",
   "theOrderDelivered": "The order delivered successfully",
-  "done": "Done",
-  "unknownErrorMessage": "An unknown error has occurred with the following message:",
   "editProfile": "Edit Profile",
   "firstName": "First Name",
   "lastName": "Last Name",
@@ -176,7 +174,16 @@
   "gender": "Gender",
   "genderMale": "Male",
   "genderFemale": "Female",
-  "failure": "Failed to update profile",
-  "success": "Profile updated successfully",
-  "changePassword": "Change Password"
+  "changePassword": "Change Password",
+  "done": "Done",
+  "unknownErrorMessage": "An unknown error has occurred with the following message:",
+  "editVehicle": "Edit Vehicle Info",
+  "vehicleType": "Vehicle Type",
+  "enterVehicleType": "Enter vehicle type",
+  "vehicleNumber": "Vehicle Number",
+  "enterVehicleNumber": "Enter vehicle number",
+  "vehicleLicense": "Vehicle License",
+  "enterVehicleLicense": "Enter vehicle license",
+  "failure": "Something went wrong. Please try again.",
+  "success": "Updated successfully"
 }

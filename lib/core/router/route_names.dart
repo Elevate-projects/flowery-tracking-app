@@ -11,5 +11,6 @@ abstract class RouteNames {
   static const String successScreen = "/SuccessScreenView";
   static const String profile = "/profileView";
   static const String editProfile = "/editProfileView";
+  static const String editVehicle = "/editVehicleView";
   static const String completedOrderDetails = "/completedOrderDetailsView";
 }

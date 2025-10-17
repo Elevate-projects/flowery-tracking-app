@@ -7,6 +7,7 @@ import 'package:flowery_tracking_app/presentation/auth/verification/views/email_
 import 'package:flowery_tracking_app/presentation/bottom_navigation/views/bottom_navigation_view.dart';
 import 'package:flowery_tracking_app/presentation/completed_order_details/views/completed_order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view/edit_profile_view.dart';
+import 'package:flowery_tracking_app/presentation/edit_vechile/view/view.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/success_screen.dart';
@@ -25,6 +26,8 @@ abstract class AppRoutes {
           return MaterialPageRoute(builder: (_) => const EditProfileView());
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
+        case RouteNames.editVehicle:
+          return MaterialPageRoute(builder: (_) => const EditVehicleView());
 
       case RouteNames.bottomNavigation:
         return MaterialPageRoute(builder: (_) => const BottomNavigationView());

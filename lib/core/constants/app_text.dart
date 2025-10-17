@@ -207,4 +207,11 @@ abstract final class AppText {
   static const String thankYou = 'thankYou';
   static const String theOrderDelivered = 'theOrderDelivered';
   static const String done = 'done';
+  static const String editVehicle = "editVehicle";
+  static const String vehicleType = "vehicleType";
+  static const String enterVehicleType = "enterVehicleType";
+  static const String vehicleNumber = "vehicleNumber";
+  static const String enterVehicleNumber = "enterVehicleNumber";
+  static const String vehicleLicense = "vehicleLicense";
+  static const String enterVehicleLicense = "enterVehicleLicense";
 }

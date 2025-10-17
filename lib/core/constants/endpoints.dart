@@ -9,6 +9,7 @@ abstract class Endpoints {
   static const String profileResetPassword = '/api/v1/drivers/change-password';
   static const String driverPendingOrders = '/api/v1/orders/pending-orders';
   static const String startOrder = '/api/v1/orders/start/{orderId}';
+  static const String editVehicle = '/api/v1/drivers/editProfile';
   static const String allDriverOrders = '/api/v1/orders/driver-orders';
   static const String updateOrderStatus = '/api/v1/orders/state/{orderId}';
   static const String logout = '/api/v1/drivers/logout';

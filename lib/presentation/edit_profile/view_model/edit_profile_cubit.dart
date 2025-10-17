@@ -85,7 +85,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
 
   Future<DriverDataEntity?> _submitEditProfile() async {
-    if (formKey.currentState!.validate()) {
+    if (formKey.currentState?.validate() ?? false) {
       emit(state.copyWith(editProfileStatus: const StateStatus.loading()));
       final result = await _useCase.editProfile(
         EditProfileRequestEntity(
