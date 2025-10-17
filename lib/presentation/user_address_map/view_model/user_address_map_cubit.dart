@@ -96,9 +96,6 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
           final newDriver = LatLng(pos.latitude, pos.longitude);
 
           await _updateDriverLocationInFirebase(newDriver);
-          log(
-            '📍 [${DateTime.now().toIso8601String()}] Location SENT: $newDriver',
-          );
 
           emit(state.copyWith(driverLocation: newDriver));
 
