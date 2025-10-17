@@ -59,9 +59,9 @@ void main() {
       when(() => mockEditVehicleCubit.vehicleTypeController).thenReturn(TextEditingController());
       when(() => mockEditVehicleCubit.vehicleNumberController).thenReturn(TextEditingController());
       when(() => mockEditVehicleCubit.vehicleLicenseController).thenReturn(TextEditingController());
-
-
       await tester.pumpWidget(createWidgetUnderTest());
+      await tester.pump();
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets('shows success message when state is success', (WidgetTester tester) async {

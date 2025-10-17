@@ -57,7 +57,7 @@ void main() {
       expect(cubit.state.isObscure, isFalse);
     },);
     test("testing submitEditProfile method", () {
-      /// for inzaltion of password controller
+      /// for initialization of password controller
       cubit.doIntent(intent: InitializeEditProfile());
       cubit.doIntent(intent: SubmitEditProfile());
       expect(cubit.state.isFormValid, isFalse);

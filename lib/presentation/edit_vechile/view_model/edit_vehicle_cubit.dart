@@ -63,6 +63,7 @@ class EditVehicleCubit extends Cubit<EditVehicleStatus> {
 
     switch (result) {
       case Success<DriverDataEntity>(:final data):
+        FloweryDriverMethodHelper.driverData = data;
         emit(state.copyWith(
           editVehicleStatus: const StateStatus.success(null),
           driverData: data,
@@ -81,8 +82,9 @@ class EditVehicleCubit extends Cubit<EditVehicleStatus> {
     final isValid = _vehicleTypeController.text.isNotEmpty &&
         _vehicleNumberController.text.isNotEmpty &&
         _vehicleLicenseController.text.isNotEmpty;
-
-    emit(state.copyWith(isFormValid: isValid));
+     if (state.isFormValid != isValid) {
+       emit(state.copyWith(isFormValid: isValid));
+      }
   }
 
   // Public getters for UI binding
