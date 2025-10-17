@@ -1,5 +1,7 @@
 
 import 'package:another_flushbar/flushbar.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/di/di.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart'
     show ResponseException;
@@ -99,9 +101,9 @@ void main() {
     expect(applyFormFinder, findsOneWidget);
     expect(applyFormButtonFinder, findsOneWidget);
     expect(find.byType(Text), findsNWidgets(28));
-    expect(find.text('Welcome!!'), findsOneWidget);
+    expect(find.text(tr(AppText.welcomeApply)), findsOneWidget);
     expect(
-      find.text('You want to be a delivery man?\nJoin our team'),
+      find.text(tr(AppText.applyWelcomeMessage)),
       findsOneWidget,
     );
   });
