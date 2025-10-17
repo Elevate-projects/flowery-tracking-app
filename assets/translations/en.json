@@ -92,6 +92,10 @@
   "confirmPasswordHint": "Confirm your password",
   "resendWord": "Resend",
   "confirmWord": "Confirm",
+
+  "applicationApproved": "Your application has been submitted!",
+  "applicationApprovedSubTitle": "Thank you for providing your application, we will review your application and will get back to you soon.",
+  "loginButton": "Login",
   "language": "Language",
   "logout": "Logout",
   "vehicleInfo": "Vehicle Info",

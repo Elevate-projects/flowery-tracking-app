@@ -1,4 +1,5 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/presentation/auth/application_approved/views/application_approved_view.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views/forget_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
@@ -69,6 +70,11 @@ abstract class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SuccessScreen());
       case RouteNames.profile:
         return MaterialPageRoute(builder: (_) => const ProfileView());
+
+      case RouteNames.applicationApproved:
+        return MaterialPageRoute(
+          builder: (_) => const ApplicationApprovedView(),
+        );
 
       default:
         return null;

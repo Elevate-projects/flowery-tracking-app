@@ -111,6 +111,11 @@ abstract final class AppText {
   static const String confirmPasswordHint = "confirmPasswordHint";
   static const String resendWord = "resendWord";
   static const String confirmWord = "confirmWord";
+
+  // Application Approved
+  static const String applicationApproved = "applicationApproved";
+  static const String applicationApprovedSubTitle = "applicationApprovedSubTitle";
+  static const String loginButton = "loginButton";
   static const String currentPassword = "currentPassword";
   static const String newPassword = "newPassword";
   static const String update = "update";
