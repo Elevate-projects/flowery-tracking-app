@@ -76,7 +76,8 @@ abstract final class AppText {
   static const String gender = "gender";
   static const String female = "female";
   static const String male = "male";
-  static const String loadingCountriesFailureMessage = "loadingCountriesFailureMessage";
+  static const String loadingCountriesFailureMessage =
+      "loadingCountriesFailureMessage";
   static const String signingYouUpMessage = "signingYouUpMessage";
 
   // Validations
@@ -137,14 +138,14 @@ abstract final class AppText {
   static const String otpResentedSuccessfully = "otpResentedSuccessfully";
   static const String verificationSuccess = "verificationSuccess";
   static const String passwordRested = "passwordRested";
-  static const String confirmPassword = "confirmPassword";
   static const String confirmPasswordHint = "confirmPasswordHint";
   static const String resendWord = "resendWord";
   static const String confirmWord = "confirmWord";
 
   // Application Approved
   static const String applicationApproved = "applicationApproved";
-  static const String applicationApprovedSubTitle = "applicationApprovedSubTitle";
+  static const String applicationApprovedSubTitle =
+      "applicationApprovedSubTitle";
   static const String loginButton = "loginButton";
   static const String currentPassword = "currentPassword";
   static const String newPassword = "newPassword";
@@ -221,7 +222,6 @@ abstract final class AppText {
   static const String firstName = "firstName";
   static const String lastName = "lastName";
   static const String phone = "phone";
-  static const String gender = "gender";
   static const String genderMale = "genderMale";
   static const String genderFemale = "genderFemale";
   static const String changePassword = "changePassword";
@@ -243,10 +243,7 @@ abstract final class AppText {
   static const String theOrderDelivered = 'theOrderDelivered';
   static const String done = 'done';
   static const String editVehicle = "editVehicle";
-  static const String vehicleType = "vehicleType";
   static const String enterVehicleType = "enterVehicleType";
-  static const String vehicleNumber = "vehicleNumber";
   static const String enterVehicleNumber = "enterVehicleNumber";
-  static const String vehicleLicense = "vehicleLicense";
   static const String enterVehicleLicense = "enterVehicleLicense";
 }

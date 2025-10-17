@@ -5,6 +5,7 @@ import 'package:flowery_tracking_app/api/models/product/product_model.dart';
 import 'package:flowery_tracking_app/api/models/shipping_address/shipping_address_model.dart';
 import 'package:flowery_tracking_app/api/models/store/store_model.dart';
 import 'package:flowery_tracking_app/api/models/user/user_model.dart';
+import 'package:flowery_tracking_app/api/requests/apply_request/apply_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/edit_vehicle/edit_vehicle_request.dart';
 import 'package:flowery_tracking_app/api/requests/forget_password_and_resend_code/forget_password_and_resend_code_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/login_request/login_request_model.dart';
@@ -12,10 +13,11 @@ import 'package:flowery_tracking_app/api/requests/order_details/update_order_sta
 import 'package:flowery_tracking_app/api/requests/profile%20_reset_password/profile_reset_password_request.dart';
 import 'package:flowery_tracking_app/api/requests/reset_password/reset_password_request_model.dart';
 import 'package:flowery_tracking_app/api/requests/verification/verify_request_model.dart';
-import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/edit_vehicle/edit_vehicle_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/requests/apply_request/apply_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/forget_password_and_resend_code_request/forget_password_and_resend_code_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/login_request/login_request_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/order_details/update_order_status_request_entity.dart';
@@ -134,6 +136,7 @@ abstract final class RequestMapper {
       return UpdateOrderStatusRequestModel(state: ConstKeys.inProgress);
     }
   }
+
   static EditVehicleRequest toEditVehicleRequest(EditVehicleEntity entity) {
     return EditVehicleRequest(
       vehicleLicense: entity.vehicleLicense,
@@ -141,6 +144,7 @@ abstract final class RequestMapper {
       vehicleType: entity.vehicleType,
     );
   }
+
   static EditProfileRequestModel toEditProfileRequestModel({
     required EditProfileRequestEntity request,
   }) {
@@ -150,6 +154,26 @@ abstract final class RequestMapper {
       firstName: request.firstName,
       phone: request.phone,
       email: request.email,
+    );
+  }
+
+  static ApplyRequestModel toApplyRequestModel({
+    required ApplyRequestEntity applyRequestEntity,
+  }) {
+    return ApplyRequestModel(
+      country: applyRequestEntity.country,
+      firstName: applyRequestEntity.firstName,
+      lastName: applyRequestEntity.lastName,
+      vehicleType: applyRequestEntity.vehicleType,
+      vehicleNumber: applyRequestEntity.vehicleNumber,
+      vehicleLicense: applyRequestEntity.vehicleLicense,
+      nid: applyRequestEntity.nid,
+      nidImg: applyRequestEntity.nidImg,
+      email: applyRequestEntity.email,
+      password: applyRequestEntity.password,
+      rePassword: applyRequestEntity.rePassword,
+      gender: applyRequestEntity.gender,
+      phone: applyRequestEntity.phone,
     );
   }
 }

@@ -9,11 +9,11 @@ abstract final class AppIcons {
   static const String upload = "assets/icons/upload_03.png";
   static const String phone = "assets/icons/phone.svg";
   static const String whatsapp = "assets/icons/whatsapp.svg";
-  static const String notification =  "assets/icons/notification.svg";
+  static const String notification = "assets/icons/notification.svg";
   static const String canceled = "assets/icons/canceled.svg";
   static const String completed = "assets/icons/completed.svg";
   static const String userLocation = "assets/icons/Flowery location.png";
   static const String driveLocation = "assets/icons/driver location.png";
   static const String arrowDown = "assets/icons/arrow_down.svg";
-  static const String upload = "assets/icons/upload.svg";
+  static const String upload2 = "assets/icons/upload.svg";
 }

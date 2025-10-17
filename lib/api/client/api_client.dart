@@ -15,12 +15,14 @@ import 'package:flowery_tracking_app/api/responses/login_response/login_response
 import 'package:flowery_tracking_app/api/responses/profile_reset_password/profile_reset_password_response.dart';
 import 'package:flowery_tracking_app/api/responses/profile_response/profile_response.dart';
 import 'package:flowery_tracking_app/api/responses/reset_password/reset_password_response.dart';
-import 'package:flowery_tracking_app/api/responses/verification/verify_response.dart';
 import 'package:flowery_tracking_app/api/responses/vehicles_response/vehicles_response.dart';
+import 'package:flowery_tracking_app/api/responses/verification/verify_response.dart';
 import 'package:flowery_tracking_app/core/constants/endpoints.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+
 part 'api_client.g.dart';
+
 @injectable
 @RestApi(baseUrl: Endpoints.baseUrl)
 abstract class ApiClient {
@@ -95,5 +97,4 @@ abstract class ApiClient {
 
   @POST(Endpoints.apply)
   Future<void> apply(@Body() FormData applyRequestModel);
-
 }

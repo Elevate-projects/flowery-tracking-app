@@ -3,11 +3,11 @@ import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/domain/entities/country/country_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/vehicle/vehicle_entity.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/country_item.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/gender_section.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_intent.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_state.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/country_item.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/gender_section.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_dropdown_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
 import 'package:flowery_tracking_app/utils/validations.dart';
@@ -122,7 +122,10 @@ class ApplyForm extends StatelessWidget {
                 enabled: false,
                 suffixIcon: RPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SvgPicture.asset(AppIcons.upload, fit: BoxFit.contain),
+                  child: SvgPicture.asset(
+                    AppIcons.upload2,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 validator: (value) => Validations.fieldValidation(value: value),
@@ -174,7 +177,10 @@ class ApplyForm extends StatelessWidget {
                 enabled: false,
                 suffixIcon: RPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SvgPicture.asset(AppIcons.upload, fit: BoxFit.contain),
+                  child: SvgPicture.asset(
+                    AppIcons.upload2,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 validator: (value) => Validations.fieldValidation(value: value),

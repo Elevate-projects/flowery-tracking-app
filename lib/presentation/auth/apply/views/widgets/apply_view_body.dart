@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_animations.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/apply_form.dart';
-import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/apply_form_button.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_cubit.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/view_model/apply_state.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/apply_form.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/views/widgets/apply_form_button.dart';
 import 'package:flowery_tracking_app/utils/loaders/full_screen_loader.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,9 @@ class ApplyViewBody extends StatelessWidget {
           );
         } else if (state.applyStatus.isSuccess) {
           FullScreenLoader.stopLoading(context: context);
+          Navigator.of(
+            context,
+          ).pushReplacementNamed(RouteNames.applicationApproved);
         }
       },
       child: SingleChildScrollView(
@@ -53,7 +57,10 @@ class ApplyViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const RSizedBox(height: 24),
-              Text(AppText.welcomeApply.tr(), style: theme.textTheme.headlineMedium),
+              Text(
+                AppText.welcomeApply.tr(),
+                style: theme.textTheme.headlineMedium,
+              ),
               const RSizedBox(height: 8),
               Text(
                 AppText.applyWelcomeMessage.tr(),

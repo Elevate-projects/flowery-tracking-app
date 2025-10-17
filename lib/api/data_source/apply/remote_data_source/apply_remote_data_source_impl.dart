@@ -1,6 +1,6 @@
 import 'package:flowery_tracking_app/api/client/api_client.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
-import 'package:flowery_tracking_app/api/client/request_maper.dart';
+import 'package:flowery_tracking_app/api/client/request_mapper.dart';
 import 'package:flowery_tracking_app/data/data_source/apply/remote_data_source/apply_remote_data_source.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/apply_request/apply_request_entity.dart';
 import 'package:injectable/injectable.dart';
