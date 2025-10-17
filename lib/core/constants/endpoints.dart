@@ -14,4 +14,6 @@ abstract class Endpoints {
   static const String updateOrderStatus = '/api/v1/orders/state/{orderId}';
   static const String logout = '/api/v1/drivers/logout';
   static const String editProfile = '/api/v1/drivers/editProfile';
+  static const String vehicles = '/api/v1/vehicles';
+  static const String apply = '/api/v1/drivers/apply';
 }

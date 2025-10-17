@@ -14,4 +14,5 @@ abstract class RouteNames {
   static const String editProfile = "/editProfileView";
   static const String editVehicle = "/editVehicleView";
   static const String completedOrderDetails = "/completedOrderDetailsView";
+  static const String apply = "/applyView";
 }

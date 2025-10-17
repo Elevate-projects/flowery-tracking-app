@@ -1,6 +1,7 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
-import 'package:flowery_tracking_app/presentation/auth/application_approved/views/application_approved_view.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
+import 'package:flowery_tracking_app/presentation/auth/application_approved/views/application_approved_view.dart';
+import 'package:flowery_tracking_app/presentation/auth/apply/views/apply_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views/forget_password.dart';
 import 'package:flowery_tracking_app/presentation/auth/login/views/login_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/reset_password/views/reset_password.dart';
@@ -23,12 +24,12 @@ abstract class AppRoutes {
     switch (settings.name) {
       case RouteNames.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingView());
-        case RouteNames.editProfile:
-          return MaterialPageRoute(builder: (_) => const EditProfileView());
+      case RouteNames.editProfile:
+        return MaterialPageRoute(builder: (_) => const EditProfileView());
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
-        case RouteNames.editVehicle:
-          return MaterialPageRoute(builder: (_) => const EditVehicleView());
+      case RouteNames.editVehicle:
+        return MaterialPageRoute(builder: (_) => const EditVehicleView());
 
       case RouteNames.bottomNavigation:
         return MaterialPageRoute(builder: (_) => const BottomNavigationView());
@@ -76,6 +77,8 @@ abstract class AppRoutes {
           builder: (_) => const ApplicationApprovedView(),
         );
 
+      case RouteNames.apply:
+        return MaterialPageRoute(builder: (_) => const ApplyView());
       default:
         return null;
     }
