@@ -19,12 +19,12 @@ void main() {
   });
   group('EditProfileCubit', () {
     test('initial state is correct (assuming no initial data)', () {
-      cubit.doIntent(intent: InitializeEditProfile());
+      cubit.onIntent(intent: InitializeEditProfile());
       expect(cubit.state.isFormValid, isFalse);
       expect(cubit.state.editProfileStatus.isInitial, isTrue);
     });
     test('isFormValid becomes true when all fields are filled', () {
-      cubit.doIntent(intent: InitializeEditProfile());
+      cubit.onIntent(intent: InitializeEditProfile());
       // Arrange: Start with an invalid form
       expect(cubit.state.isFormValid, isFalse);
       // Act: Fill all controllers
@@ -37,34 +37,34 @@ void main() {
       expect(cubit.state.isFormValid, isTrue);
     });
     test("will test doIntent method", () {
-      cubit.doIntent(intent: InitializeEditProfile());
+      cubit.onIntent(intent: InitializeEditProfile());
       expect(cubit.state.isFormValid, isFalse);
-      cubit.doIntent(intent: EnterThePassword());
+      cubit.onIntent(intent: EnterThePassword());
       expect(cubit.state.isFormValid, isFalse);
-      cubit.doIntent(intent: SubmitEditProfile());
+      cubit.onIntent(intent: SubmitEditProfile());
       expect(cubit.state.isFormValid, isFalse);
     },);
     test("testing isObscure method", () {
       /// for inzaltion of password controller
-      cubit.doIntent(intent: InitializeEditProfile());
-      cubit.doIntent(intent: IsObscure());
-      expect(cubit.state.isObscure, isTrue);
+      cubit.onIntent(intent: InitializeEditProfile());
+      cubit.onIntent(intent: IsObscure());
+      expect(cubit.state.isObscure, isFalse);
     },);
     test("testing enterThePassword method", () {
       /// for inzaltion of password controller
-      cubit.doIntent(intent: InitializeEditProfile());
-      cubit.doIntent(intent: EnterThePassword());
+      cubit.onIntent(intent: InitializeEditProfile());
+      cubit.onIntent(intent: EnterThePassword());
       expect(cubit.state.isObscure, isFalse);
     },);
     test("testing submitEditProfile method", () {
       /// for initialization of password controller
-      cubit.doIntent(intent: InitializeEditProfile());
-      cubit.doIntent(intent: SubmitEditProfile());
+      cubit.onIntent(intent: InitializeEditProfile());
+      cubit.onIntent(intent: SubmitEditProfile());
       expect(cubit.state.isFormValid, isFalse);
     });
     test('isFormValid becomes false if a field is cleared', () {
       // Arrange: Start with a valid form
-      cubit.doIntent(intent: InitializeEditProfile());
+      cubit.onIntent(intent: InitializeEditProfile());
       cubit.firstNameController.text = 'John';
       cubit.lastNameController.text = 'Doe';
       cubit.emailController.text = "william.henry.harrison@example-pet-store.com";

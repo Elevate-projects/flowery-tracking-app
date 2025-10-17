@@ -8,6 +8,7 @@ import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_pr
 import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_profile/profile_image.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
+import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,7 +68,9 @@ class EditProfileViewBody extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ProfileImage(imageUrl: context.watch<EditProfileCubit>().state.driverData?.photo),
+                      ProfileImage(
+                        imageUrl: FloweryDriverMethodHelper.driverData?.photo,
+                      ),
                     ],
                   ),
                   const RSizedBox(height: 24),
@@ -95,7 +98,7 @@ class EditProfileViewBody extends StatelessWidget {
                           obscureText: context.watch<EditProfileCubit>().state.isObscure,
                           suffixIcon: GestureDetector(
                             onTap: () {
-                              cubit.doIntent(intent: EnterThePassword());
+                              cubit.onIntent(intent: EnterThePassword());
                             },
                             child: Padding(
                               padding: REdgeInsets.only(right: 8),
@@ -121,7 +124,7 @@ class EditProfileViewBody extends StatelessWidget {
                     builder: (context, state) {
                       return CustomElevatedButton(
                         onPressed: state.isFormValid
-                            ? () => cubit.doIntent(intent: SubmitEditProfile())
+                            ? () => cubit.onIntent(intent: SubmitEditProfile())
                             : null,
                         buttonTitle: AppText.update.tr(),
                       );

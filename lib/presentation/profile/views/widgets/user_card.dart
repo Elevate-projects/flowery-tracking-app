@@ -52,7 +52,6 @@ class UserCard extends StatelessWidget {
                         key: const ValueKey(WidgetKeys.photo),
                         radius: 26,
                         backgroundColor: theme.colorScheme.onPrimary,
-
                         backgroundImage: CachedNetworkImageProvider(
                           FloweryDriverMethodHelper.driverData?.photo ?? "",
                         ),

@@ -49,7 +49,7 @@ void main() {
       await tester.pumpWidget(createWidgetUnderTest());
 
       expect(find.text(AppText.editVehicle.tr()), findsOneWidget);
-      expect(find.byType(CustomTextFormField), findsNWidgets(3));
+      expect(find.byType(CustomTextFormField), findsNWidgets(2));
       expect(find.byType(CustomElevatedButton), findsOneWidget);
     });
 

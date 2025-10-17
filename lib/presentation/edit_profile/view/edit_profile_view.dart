@@ -11,7 +11,7 @@ class EditProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<EditProfileCubit>(
       create: (context) =>
-          getIt.get<EditProfileCubit>()..doIntent(intent: InitializeEditProfile()),
+          getIt.get<EditProfileCubit>()..onIntent(intent: InitializeEditProfile()),
       child: const EditProfileViewBody(),
     );
   }
