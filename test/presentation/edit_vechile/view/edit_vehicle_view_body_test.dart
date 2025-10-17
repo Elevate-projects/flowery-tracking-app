@@ -36,7 +36,6 @@ void main() {
       },
     );
   }
-
   group('EditVehicleViewBody', () {
     testWidgets('renders initial UI correctly', (WidgetTester tester) async {
       when(() => mockEditVehicleCubit.state).thenReturn(const EditVehicleStatus());
@@ -49,7 +48,7 @@ void main() {
       await tester.pumpWidget(createWidgetUnderTest());
 
       expect(find.text(AppText.editVehicle.tr()), findsOneWidget);
-      expect(find.byType(CustomTextFormField), findsNWidgets(3));
+      expect(find.byType(CustomTextFormField), findsNWidgets(2));
       expect(find.byType(CustomElevatedButton), findsOneWidget);
     });
 

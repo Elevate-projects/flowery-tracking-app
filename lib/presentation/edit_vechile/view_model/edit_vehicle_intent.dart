@@ -1,4 +1,8 @@
-sealed class EditVehicleEvent{}
-class EditVehicleIntent extends EditVehicleEvent  {}
-class EditVehicleEventClick extends EditVehicleIntent{}
-class SubmitEditVehicle extends EditVehicleIntent{}
+sealed class EditVehicleIntent {}
+
+class SubmitEditVehicle extends EditVehicleIntent {}
+
+class SelectVehicleType extends EditVehicleIntent {
+  final String vehicleType;
+  SelectVehicleType(this.vehicleType);
+}

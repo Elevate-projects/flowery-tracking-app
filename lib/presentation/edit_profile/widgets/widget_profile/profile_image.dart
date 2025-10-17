@@ -9,7 +9,7 @@ class ProfileImage extends StatelessWidget {
 
   const ProfileImage({
     super.key,
-    required this.imageUrl,
+    this.imageUrl,
     this.width = 74,
     this.height = 79,
   });
@@ -17,16 +17,20 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (imageUrl != null && imageUrl!.isNotEmpty) {
-      return CachedNetworkImage(
-        imageUrl: imageUrl!,
-        width: width,
-        height: height,
-        fit: BoxFit.cover,
-        placeholder: (context, url) => const CircularProgressIndicator(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: CachedNetworkImage(
+          imageUrl: imageUrl!,
+          width: width,
+          height: height,
+          fit: BoxFit.cover,
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
       );
     } else {
       return Icon(Icons.account_circle, size: width);
     }
   }
 }
+

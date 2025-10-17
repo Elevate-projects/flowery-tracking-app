@@ -4,7 +4,7 @@ import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_cubit.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view_model/edit_vehicle_status.dart';
-import 'package:flowery_tracking_app/presentation/edit_vechile/widget/custom_arrow_down.dart';
+import 'package:flowery_tracking_app/utils/common_widgets/custom_dropdown_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
@@ -17,23 +17,26 @@ class EditVehicleViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final cubit = context.read<EditVehicleCubit>();
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 0,
-        leading: IconButton(onPressed: () {
-          Navigator.pop(context);
-        },
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-        ),
+          titleSpacing: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          ),
           title: Text(AppText.editVehicle.tr())),
       body: BlocListener<EditVehicleCubit, EditVehicleStatus>(
         listenWhen: (previous, current) =>
-        current.editVehicleStatus.isFailure ||
+            current.editVehicleStatus.isFailure ||
             current.editVehicleStatus.isSuccess ||
             current.editVehicleStatus.isLoading,
         listener: (context, state) {
           if (state.editVehicleStatus.isLoading) {
+            // Optional: Show a loader overlay
           } else if (state.editVehicleStatus.isFailure) {
             Loaders.showErrorMessage(
               message: AppText.failure.tr(),
@@ -60,18 +63,48 @@ class EditVehicleViewBody extends StatelessWidget {
                     const RSizedBox(height: 24),
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
-                      child: CustomTextFormField(
-                        isReadOnly: true,
-                        controller: cubit.vehicleTypeController,
-                        label: AppText.vehicleType.tr(),
-                        hintText: AppText.enterVehicleType.tr(),
-                          suffixIcon: CustomArrowDown(
-                            onSelect: (value) {
-                              cubit.vehicleTypeController.text = value;
-                            },
+                      child: CustomDropdownButton<String>(
+                        hint: AppText.vehicleType.tr(),
+                        value: state.selectedVehicleType,
+                        dropdownItems: state.vehicleTypes
+                            .map(
+                              (type) => DropdownMenuItem<String>(
+                                value: type,
+                                child: Text(
+                                  type,
+                                  style: theme.textTheme.bodyLarge?.copyWith(
+                                    color: theme.colorScheme.onSecondary,
+                                  ),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          if (value != null) {
+                            cubit.onIntent(SelectVehicleType(value));
+                          }
+                        },
+                        buttonDecoration: BoxDecoration(
+                          border: Border.all(color: theme.colorScheme.shadow),
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        buttonPadding:
+                            REdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        icon: Transform.rotate(
+                          angle: 180 * (3.141592653589793 / 350),
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: theme.colorScheme.onSecondary,
+                            size: 22,
                           ),
-                       ),
+                        ),
+                        dropdownHeight: 220.h,
+                        dropdownDecoration: BoxDecoration(
+                          color: theme.colorScheme.secondary,
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
                       ),
+                    ),
                     const RSizedBox(height: 24),
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
@@ -102,8 +135,8 @@ class EditVehicleViewBody extends StatelessWidget {
                       child: CustomElevatedButton(
                         onPressed: state.isFormValid
                             ? () {
-                          cubit.onIntent(SubmitEditVehicle());
-                        }
+                                cubit.onIntent(SubmitEditVehicle());
+                              }
                             : null,
                         buttonTitle: AppText.update.tr(),
                       ),
