@@ -22,8 +22,6 @@ class MapSection extends StatelessWidget {
         final theme = Theme.of(context);
         final driver = state.driverLocation;
         final user = state.userLocation;
-        final zoom = state.currentZoom;
-        final scale = (1.4 - (zoom - 13) * 0.08).clamp(0.8, 3.0);
 
         return Stack(
           children: [
@@ -55,28 +53,18 @@ class MapSection extends StatelessWidget {
                       if (user != null)
                         Marker(
                           point: user,
-                          width: 30 * scale,
-                          height: 30 * scale,
+                          width: 150.w,
+                          height: 90.h,
                           alignment: Alignment.center,
-                          child: AnimatedScale(
-                            scale: scale,
-                            duration: const Duration(milliseconds: 200),
-                            curve: Curves.easeOut,
-                            child: Image.asset(AppIcons.userLocation),
-                          ),
+                          child: Image.asset(AppIcons.userLocation),
                         ),
                       if (driver != null)
                         Marker(
                           point: driver,
-                          width: 30 * scale,
-                          height: 30 * scale,
+                          width: 150.w,
+                          height: 90.h,
                           alignment: Alignment.center,
-                          child: AnimatedScale(
-                            scale: scale,
-                            duration: const Duration(milliseconds: 200),
-                            curve: Curves.easeOut,
-                            child: Image.asset(AppIcons.driveLocation),
-                          ),
+                          child: Image.asset(AppIcons.driveLocation),
                         ),
                     ],
                   ),

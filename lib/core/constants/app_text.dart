@@ -186,6 +186,18 @@ abstract final class AppText {
   static const String aborted = "aborted";
   static const String outOfRange = "outOfRange";
   static const String unknownErrorMessage = "unknownErrorMessage";
+  // edit profile
+  static const String editProfile = "editProfile";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String phone = "phone";
+  static const String gender = "gender";
+  static const String genderMale = "genderMale";
+  static const String genderFemale = "genderFemale";
+  static const String changePassword = "changePassword";
+  static const String failure = "failure";
+  static const String success = "success";
+
   //profile
   static const String language = "language";
   static const String logout = "logout";
@@ -200,4 +212,11 @@ abstract final class AppText {
   static const String thankYou = 'thankYou';
   static const String theOrderDelivered = 'theOrderDelivered';
   static const String done = 'done';
+  static const String editVehicle = "editVehicle";
+  static const String vehicleType = "vehicleType";
+  static const String enterVehicleType = "enterVehicleType";
+  static const String vehicleNumber = "vehicleNumber";
+  static const String enterVehicleNumber = "enterVehicleNumber";
+  static const String vehicleLicense = "vehicleLicense";
+  static const String enterVehicleLicense = "enterVehicleLicense";
 }

@@ -6,6 +6,7 @@ import 'package:flowery_tracking_app/core/constants/app_icons.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/constants/widget_keys.dart';
 import 'package:flowery_tracking_app/core/global_cubit/global_cubit.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/widgets/shimmer/profile_item_shimmer.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_state.dart';
@@ -105,7 +106,7 @@ class UserCard extends StatelessWidget {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.pushNamed(context, RouteNames.editProfile) ;
+                           Navigator.pushNamed(context, RouteNames.editProfile) ;
                         },
                         child: Transform.rotate(
                           angle: globalCubit.isArLanguage ? math.pi : 0,
