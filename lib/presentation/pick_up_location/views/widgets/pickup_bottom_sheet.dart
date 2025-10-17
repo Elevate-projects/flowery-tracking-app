@@ -16,7 +16,7 @@ class PickupBottomSheet extends StatelessWidget {
     final theme = Theme.of(context);
 
     return DraggableScrollableSheet(
-      maxChildSize: 0.38, // Changed to match model
+      maxChildSize: 0.38,
       minChildSize: 0.04,
       initialChildSize: 0.38,
       builder: (context, scrollController) {
@@ -24,7 +24,7 @@ class PickupBottomSheet extends StatelessWidget {
           color: theme.scaffoldBackgroundColor,
           child: SingleChildScrollView(
             controller: scrollController,
-            padding: const EdgeInsets.all(16),
+            padding:  REdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -3,14 +3,14 @@ import 'package:latlong2/latlong.dart';
 
 final class PickupAddressState extends Equatable {
   final LatLng? driverLocation;
-  final LatLng? userLocation;
+  final LatLng? storeLocation;
   final List<LatLng> routePoints;
   final double currentZoom;
   final String? error;
 
   const PickupAddressState({
     this.driverLocation,
-    this.userLocation,
+    this.storeLocation,
     this.routePoints = const [],
     this.currentZoom = 15,
     this.error,
@@ -18,14 +18,14 @@ final class PickupAddressState extends Equatable {
 
   PickupAddressState copyWith({
     LatLng? driverLocation,
-    LatLng? userLocation,
-    List<LatLng>? routePoints,
+     LatLng? storeLocation,
+     List<LatLng>? routePoints,
     double? currentZoom,
     String? error,
   }) {
     return PickupAddressState(
       driverLocation: driverLocation ?? this.driverLocation,
-      userLocation: userLocation ?? this.userLocation,
+      storeLocation: storeLocation ?? this.storeLocation,
       routePoints: routePoints ?? this.routePoints,
       currentZoom: currentZoom ?? this.currentZoom,
       error: error ?? this.error,
@@ -35,7 +35,7 @@ final class PickupAddressState extends Equatable {
   @override
   List<Object?> get props => [
     driverLocation,
-    userLocation,
+    storeLocation,
     routePoints,
     currentZoom,
     error, // Add error to props for Equatable

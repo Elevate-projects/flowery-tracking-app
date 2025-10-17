@@ -1,40 +1,46 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
-@injectable
-class LocationService {
-  Future<bool> checkPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return false;
-    }
 
-    permission = await Geolocator.checkPermission();
+enum LocationPermissionResult {
+  granted,
+  serviceDisabled,
+  denied,
+  permanentlyDenied,
+}
+
+@lazySingleton
+class LocationService {
+  Future<LocationPermissionResult> checkPermission() async {
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return LocationPermissionResult.serviceDisabled;
+    }
+    LocationPermission permission = await Geolocator.checkPermission();
+
     if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+        permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return false;
+        return LocationPermissionResult.denied;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return false;
+      return LocationPermissionResult.permanentlyDenied;
     }
 
-    return true;
+    return LocationPermissionResult.granted;
   }
 
   Future<Position?> getCurrentLocation() async {
-    final hasPermission = await checkPermission();
-    if (!hasPermission) return null;
+    final permissionResult = await checkPermission();
+    if (permissionResult != LocationPermissionResult.granted) return null;
 
     return await Geolocator.getCurrentPosition(
       locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
     );
   }
 
-  Stream<Position>? getLocationStream() {
+  Stream<Position> getLocationStream() {
     final locationSettings = const LocationSettings(
       accuracy: LocationAccuracy.high,
       distanceFilter: 5,

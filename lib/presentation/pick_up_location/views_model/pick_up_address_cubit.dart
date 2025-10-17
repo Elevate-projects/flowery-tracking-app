@@ -17,7 +17,10 @@ class PickUpAddressCubit extends Cubit<PickupAddressState> {
 
   final MapController mapController = MapController();
   StreamSubscription<Position>? _locationSubscription;
-  LatLng? _userLocation;
+  LatLng? _storeLocation;
+  LatLng? _driverLocation;
+  Position? _lastPolylineUpdatePosition;
+  DateTime _lastPolylineUpdateTime = DateTime.now();
 
   PickUpAddressCubit(this._locationService)
     : super(const PickupAddressState(currentZoom: 15));
@@ -25,8 +28,8 @@ class PickUpAddressCubit extends Cubit<PickupAddressState> {
   Future<void> doIntent(PickupAddressIntent intent) async {
     switch (intent) {
       case PickupAddressInitIntent():
-        _handleInit(
-          userLocation: LatLng(
+      await _handleInit(
+        storeLocation: LatLng(
             double.parse(intent.orderData.shippingAddress!.lat.toString()),
             double.parse(intent.orderData.shippingAddress!.long.toString()),
           ),
@@ -35,19 +38,19 @@ class PickUpAddressCubit extends Cubit<PickupAddressState> {
     }
   }
 
-  Future<void> _handleInit({required LatLng userLocation}) async {
+  Future<void> _handleInit({required LatLng storeLocation}) async {
 
-    _userLocation = userLocation;
+    _storeLocation = storeLocation;
 
-    emit(state.copyWith(userLocation: _userLocation));
+    emit(state.copyWith(storeLocation: _storeLocation));
 
     await _initDriverLocation();
     _listenToZoom();
   }
 
   Future<void> _initDriverLocation() async {
-    final hasPermission = await _locationService.checkPermission();
-    if (!hasPermission) {
+    final permissionResult = await _locationService.checkPermission();
+    if (permissionResult != LocationPermissionResult.granted) {
       emit(state.copyWith(error: "Location permission denied or services disabled."));
       return;
     }
@@ -58,23 +61,36 @@ class PickUpAddressCubit extends Cubit<PickupAddressState> {
       return;
     }
 
-    final driver = LatLng(position.latitude, position.longitude);
-    emit(state.copyWith(driverLocation: driver));
-    mapController.move(driver, 15.0);
+    _driverLocation  = LatLng(position.latitude, position.longitude);
+    emit(state.copyWith(driverLocation: _driverLocation ));
+    mapController.move(_driverLocation!, 15.0);
 
-    if (_userLocation != null) {
-      await _updatePolyline(driver, _userLocation!);
+    if (_storeLocation != null) {
+      await _updatePolyline(_driverLocation!, _storeLocation!);
     }
 
-     _locationSubscription = _locationService.getLocationStream()?.listen((pos) async {
-      final driver = LatLng(pos.latitude, pos.longitude);
-      emit(state.copyWith(driverLocation: driver));
+     _locationSubscription = _locationService.getLocationStream().listen((pos) async {
+       _driverLocation = LatLng(pos.latitude, pos.longitude);
+      emit(state.copyWith(driverLocation: _driverLocation));
 
-       mapController.move(driver, state.currentZoom);
+       mapController.move(_driverLocation!, state.currentZoom);
 
-       if (_userLocation != null) {
-        await _updatePolyline(driver, _userLocation!);
-      }
+       if (_storeLocation  != null) {
+         final distanceMoved = _lastPolylineUpdatePosition == null
+             ? double.infinity
+             : Geolocator.distanceBetween(
+           _lastPolylineUpdatePosition!.latitude,
+           _lastPolylineUpdatePosition!.longitude,
+           pos.latitude,
+           pos.longitude,
+         );
+         final secondsSinceLast = DateTime.now().difference(_lastPolylineUpdateTime).inSeconds;
+         if (distanceMoved > 50 || secondsSinceLast > 10) {
+           await _updatePolyline(_driverLocation!, _storeLocation!);
+           _lastPolylineUpdatePosition = pos;
+           _lastPolylineUpdateTime = DateTime.now();
+         }
+       }
     });
   }
 

@@ -17,4 +17,6 @@ abstract final class AppIcons {
   static const String driveLocation = "assets/icons/driver location.png";
   static const String arrowDown = "assets/icons/arrow_down.svg";
   static const String upload2 = "assets/icons/upload.svg";
+  static const String location2 = "assets/icons/location2.svg";
+
 }

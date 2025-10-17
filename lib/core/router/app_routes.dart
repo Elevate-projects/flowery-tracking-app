@@ -1,6 +1,5 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
-import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/presentation/auth/application_approved/views/application_approved_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/views/apply_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/forget_password/views/forget_password.dart';

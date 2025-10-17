@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flowery_tracking_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,13 +21,13 @@ class MapMarkers {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          RPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: color,
-              ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: color,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(4),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -45,10 +47,10 @@ class MapMarkers {
           ),
           Positioned(
             top: 2,
-            bottom: 3,
-            left: 45.w,
+            bottom:3,
+            left: 35.w,
             child: Transform.rotate(
-              angle: 3.14,
+              angle: math.pi,
               child: const Icon(
                 Icons.arrow_drop_up,
                 color: AppColors.pink,
