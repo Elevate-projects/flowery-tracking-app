@@ -246,4 +246,8 @@ abstract final class AppText {
   static const String enterVehicleType = "enterVehicleType";
   static const String enterVehicleNumber = "enterVehicleNumber";
   static const String enterVehicleLicense = "enterVehicleLicense";
+  static const String flowery= "flowery";
+  static const String yourLocation="your Location";
+  static const String ok="ok";
+
 }

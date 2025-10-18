@@ -7,6 +7,7 @@ abstract class RouteNames {
   static const String resetPassword = "/resetPasswordView";
   static const String applicationApproved = "/applicationApprovedView";
   static const String profileResetPassword = "/profileResetPasswordView";
+  static const String pickUpAddress = "/pickUpAddressView";
   static const String orderDetails = "/orderDetailsView";
   static const String userAddressMap = "/userAddressMapView";
   static const String successScreen = "/SuccessScreenView";

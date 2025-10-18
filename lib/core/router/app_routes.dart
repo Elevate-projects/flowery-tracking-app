@@ -11,6 +11,7 @@ import 'package:flowery_tracking_app/presentation/completed_order_details/views/
 import 'package:flowery_tracking_app/presentation/edit_profile/view/edit_profile_view.dart';
 import 'package:flowery_tracking_app/presentation/edit_vechile/view/view.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
+import 'package:flowery_tracking_app/presentation/pick_up_location/views/pick_up_address_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/success_screen.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_addresses.dart';
@@ -52,6 +53,10 @@ abstract class AppRoutes {
 
       case RouteNames.orderDetails:
         return MaterialPageRoute(builder: (_) => const OrderDetailsView());
+
+      case RouteNames.pickUpAddress:
+        return MaterialPageRoute(builder: (_) => PickUpAddressView(
+          orderData: settings.arguments as OrderEntity,));
 
       case RouteNames.completedOrderDetails:
         return MaterialPageRoute(

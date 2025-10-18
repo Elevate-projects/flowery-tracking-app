@@ -12,8 +12,11 @@ abstract final class AppIcons {
   static const String notification = "assets/icons/notification.svg";
   static const String canceled = "assets/icons/canceled.svg";
   static const String completed = "assets/icons/completed.svg";
+  static const String flower = "assets/icons/Flower.svg";
   static const String userLocation = "assets/icons/Flowery location.png";
   static const String driveLocation = "assets/icons/driver location.png";
   static const String arrowDown = "assets/icons/arrow_down.svg";
   static const String upload2 = "assets/icons/upload.svg";
+  static const String location2 = "assets/icons/location2.svg";
+
 }

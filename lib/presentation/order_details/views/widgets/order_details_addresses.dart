@@ -34,8 +34,12 @@ class OrderDetailsAddresses extends StatelessWidget {
                 AppText.notProvided.tr(),
             phone: state.orderStatus.data?.store?.phoneNumber ?? "",
             onAddressTaped: () {
-              // Navigate to Google maps
-            },
+              final orderData = state.orderStatus.data;
+              Navigator.pushNamed(
+                context,
+                RouteNames.pickUpAddress,
+                arguments: orderData,
+              );            },
           ),
           const RSizedBox(height: 16),
           Text(AppText.userAddress.tr(), style: theme.textTheme.headlineSmall),
