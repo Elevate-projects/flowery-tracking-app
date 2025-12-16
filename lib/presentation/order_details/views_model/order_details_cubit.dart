@@ -60,19 +60,29 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     emit(state.copyWith(orderStatus: const StateStatus.loading()));
     _driverOrderSubscription = _fetchCurrentDriverOrderUseCase
         .invoke(orderId: FloweryDriverMethodHelper.currentDriverOrderId ?? "")
-        .listen((driverOrder) {
+        .listen((driverOrder) async {
           switch (driverOrder) {
             case Success<OrderEntity>():
               {
                 final orderState = _getCurrentOrderState(
                   orderData: driverOrder.data,
                 );
-                emit(
-                  state.copyWith(
-                    orderStatus: StateStatus.success(driverOrder.data),
-                    currentOrderState: orderState,
-                  ),
-                );
+                if (orderState.name == ConstKeys.completed) {
+                  await _updateOrderState();
+                  emit(
+                    state.copyWith(
+                      orderStatus: StateStatus.success(driverOrder.data),
+                      currentOrderState: orderState,
+                    ),
+                  );
+                } else {
+                  emit(
+                    state.copyWith(
+                      orderStatus: StateStatus.success(driverOrder.data),
+                      currentOrderState: orderState,
+                    ),
+                  );
+                }
               }
               break;
             case Failure<OrderEntity>():
