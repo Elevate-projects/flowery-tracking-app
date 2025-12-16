@@ -50,8 +50,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   String _getCompletedOrders({required List<OrderEntity>? orders}) {
     final completedOrders = orders
         ?.where(
-          (orderData) =>
-              orderData.state == CurrentOrderState.deliveredToTheUser.name,
+          (orderData) => orderData.state == CurrentOrderState.completed.name,
         )
         .toList()
         .length;
@@ -61,8 +60,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   String _getCanceledOrders({required List<OrderEntity>? orders}) {
     final canceledOrders = orders
         ?.where(
-          (orderData) =>
-              orderData.state != CurrentOrderState.deliveredToTheUser.name,
+          (orderData) => orderData.state != CurrentOrderState.completed.name,
         )
         .toList()
         .length;

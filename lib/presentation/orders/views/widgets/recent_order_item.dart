@@ -17,7 +17,7 @@ class RecentOrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final bool isCompleted =
-        orderData?.state == CurrentOrderState.deliveredToTheUser.name;
+        orderData?.state == CurrentOrderState.completed.name;
     return InkWell(
       onTap: () {
         Navigator.of(

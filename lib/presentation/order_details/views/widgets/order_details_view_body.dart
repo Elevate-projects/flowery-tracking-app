@@ -8,7 +8,6 @@ import 'package:flowery_tracking_app/presentation/order_details/views/widgets/or
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_information.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_payment_details_section.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
-import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_intent.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +20,8 @@ class OrderDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final orderDetailsCubit = BlocProvider.of<OrderDetailsCubit>(context);
     return BlocListener<OrderDetailsCubit, OrderDetailsState>(
+      listenWhen: (previous, current) => current != previous,
       listener: (context, state) async {
         if (state.updateOrderStateStatus.isFailure) {
           Loaders.showErrorMessage(
@@ -46,14 +45,7 @@ class OrderDetailsViewBody extends StatelessWidget {
           );
         } else if (state.orderStatus.isSuccess &&
             state.currentOrderState.name == ConstKeys.completed) {
-          await orderDetailsCubit.doIntent(
-            intent: const UpdateOrderStateIntent(),
-          );
-          if (context.mounted) {
-            Navigator.of(
-              context,
-            ).pushReplacementNamed(RouteNames.successScreen);
-          }
+          Navigator.of(context).pushReplacementNamed(RouteNames.successScreen);
         }
       },
       child: CustomScrollView(

@@ -28,14 +28,17 @@ class OrdersList extends StatelessWidget {
               intent: const FetchDriverPendingOrdersIntent(),
             ),
             child: (state.pendingOrdersStatus.data?.isNotEmpty ?? false)
-                ? ListView.separated(
-                    padding: REdgeInsets.symmetric(vertical: 20),
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (_, index) => OrderItem(
-                      orderData: state.pendingOrdersStatus.data?[index],
+                ? AbsorbPointer(
+                    absorbing: state.acceptOrderStatus.isLoading,
+                    child: ListView.separated(
+                      padding: REdgeInsets.symmetric(vertical: 20),
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (_, index) => OrderItem(
+                        orderData: state.pendingOrdersStatus.data?[index],
+                      ),
+                      separatorBuilder: (_, __) => const RSizedBox(height: 24),
+                      itemCount: state.pendingOrdersStatus.data!.length,
                     ),
-                    separatorBuilder: (_, __) => const RSizedBox(height: 24),
-                    itemCount: state.pendingOrdersStatus.data!.length,
                   )
                 : AnimationLoaderWidget(
                     text: AppText.emptyOrdersMessage,

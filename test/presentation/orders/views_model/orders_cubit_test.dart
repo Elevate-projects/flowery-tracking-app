@@ -55,7 +55,7 @@ void main() {
         paymentType: "Cash",
         isPaid: true,
         isDelivered: true,
-        state: "deliveredToTheUser",
+        state: "completed",
         orderNumber: "ORD-001",
         store: StoreEntity(name: "Flowery", address: "Downtown Cairo"),
       ),
