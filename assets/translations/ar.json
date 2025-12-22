@@ -187,11 +187,14 @@
   "genderFemale": "أنثى",
   "failure": "فشل في تحديث الملف الشخصي",
   "success": "تم تحديث الملف الشخصي بنجاح",
-  "changePassword": "تغيير كلمة المرور",
+  "changePassword": "تغيير",
 
   "apply": "تقديم",
   "welcomeApply": "أهلا بك!!",
   "applyWelcomeMessage": "هل تريد أن تكون سائق توصيل؟\nأنضم إلى فريقنا",
+  "pickingImageFailureMessage": "فشل في اختيار الصورة: ",
+  "profilePicSuccessMessage": "تم تحديث صورة الملف الشخصي بنجاح",
+  "profileUpdateSuccessMessage": "تم تحديث الملف الشخصي بنجاح",
 
   "country": "الدولة",
   "countryHint": "اختر دولتك",

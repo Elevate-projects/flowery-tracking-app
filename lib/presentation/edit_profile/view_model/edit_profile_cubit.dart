@@ -1,9 +1,16 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
+import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/di/di.dart';
+import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/edit_profile/edit_profile_entity.dart';
+import 'package:flowery_tracking_app/domain/upload_photo_response_entity/upload_photo_response_entity.dart';
 import 'package:flowery_tracking_app/domain/use_cases/edit_profile/edit_profile_use_case.dart';
+import 'package:flowery_tracking_app/domain/use_cases/edit_profile/upload_photo_use_case.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
@@ -11,13 +18,17 @@ import 'package:flowery_tracking_app/presentation/profile/views_model/profile_in
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class EditProfileCubit extends Cubit<EditProfileState> {
   final EditProfileUseCase _useCase;
+  final UploadPhotoUseCase _uploadPhotoUseCase;
+  final ImagePicker _imagePicker = ImagePicker();
+  File _imageFile = File('');
   @factoryMethod
-  EditProfileCubit(this._useCase) : super(const EditProfileState());
+  EditProfileCubit(this._useCase, this._uploadPhotoUseCase) : super(const EditProfileState());
   late final TextEditingController firstNameController;
   late final TextEditingController lastNameController;
   late final TextEditingController emailController;
@@ -38,6 +49,9 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         case IsObscure():
         _isObscure();
         break;
+      case UploadPhotoIntent():
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 
@@ -133,5 +147,48 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     phoneController.dispose();
     passwordController.dispose();
     return super.close();
+  }
+
+   Future<void> _pickAndUploadPhoto() async {
+    try {
+      final pickedFile = await _imagePicker.pickImage(
+        source: ImageSource.gallery,
+        maxWidth: 1080,
+        maxHeight: 1080,
+        imageQuality: 8,
+      );
+
+      if (pickedFile != null) {
+        _imageFile = File(pickedFile.path);
+        await _uploadProfilePhoto(_imageFile);
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(
+          uploadPhotoState: StateStatus.failure(
+            ResponseException(
+              message: '${AppText.pickingImageFailureMessage.tr()} $e',
+            ),
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _uploadProfilePhoto(File photoFile) async {
+    emit(state.copyWith(uploadPhotoState: const StateStatus.loading()));
+
+    final result = await _uploadPhotoUseCase.invoke(photoFile: photoFile);
+
+    switch (result) {
+      case Success<UploadPhotoResponseEntity>():
+        emit(state.copyWith(uploadPhotoState: StateStatus.success(photoFile)));
+      case Failure<UploadPhotoResponseEntity>():
+        emit(
+          state.copyWith(
+            uploadPhotoState: StateStatus.failure(result.responseException),
+          ),
+        );
+    }
   }
 }

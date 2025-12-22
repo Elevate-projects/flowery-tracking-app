@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flowery_tracking_app/api/models/driver_data/driver_data_model.dart';
 import 'package:flowery_tracking_app/api/models/edit_profile/edit_profile_request.dart';
@@ -15,6 +17,7 @@ import 'package:flowery_tracking_app/api/responses/login_response/login_response
 import 'package:flowery_tracking_app/api/responses/profile_reset_password/profile_reset_password_response.dart';
 import 'package:flowery_tracking_app/api/responses/profile_response/profile_response.dart';
 import 'package:flowery_tracking_app/api/responses/reset_password/reset_password_response.dart';
+import 'package:flowery_tracking_app/api/responses/upload_photo_response/upload_photo_response.dart';
 import 'package:flowery_tracking_app/api/responses/vehicles_response/vehicles_response.dart';
 import 'package:flowery_tracking_app/api/responses/verification/verify_response.dart';
 import 'package:flowery_tracking_app/core/constants/endpoints.dart';
@@ -97,4 +100,11 @@ abstract class ApiClient {
 
   @POST(Endpoints.apply)
   Future<void> apply(@Body() FormData applyRequestModel);
+
+  @PUT(Endpoints.uploadProfileImage)
+  @MultiPart()
+  Future<UploadPhotoResponse> uploadProfilePhoto({
+    @Header("Authorization") required String token,
+    @Part(name: "photo") required File photo,
+  });
 }

@@ -26,7 +26,7 @@ void main(){
     when(
       mockApplyCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const ApplyState()]));
-     when(mockApplyCubit.doIntent(intent: anyNamed('intent')))
+     when(mockApplyCubit.doIntent(intent: ApplyInitializationIntent()))
         .thenAnswer((_) async {});
         
           when(mockApplyCubit.applyFormKey).thenReturn(GlobalKey<FormState>());

@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_tracking_app/core/constants/app_colors.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
+import 'package:flowery_tracking_app/core/router/route_names.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
@@ -22,40 +24,43 @@ class EditProfileViewBody extends StatelessWidget {
     final cubit = context.read<EditProfileCubit>();
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {
-          Navigator.pop(context);
-        }, icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
         titleSpacing: 0,
         title: Text(AppText.editProfile.tr()),
       ),
       body: BlocListener<EditProfileCubit, EditProfileState>(
         listenWhen: (previous, current) =>
-        current.editProfileStatus != previous.editProfileStatus,
-          listener: (context, state) {
-            if (state.editProfileStatus.isLoading) {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            } else {
-              if (Navigator.canPop(context)) {
-                Navigator.pop(context);
-              }
-              if (state.editProfileStatus.isFailure) {
-                Loaders.showErrorMessage(
-                    message: state.editProfileStatus.error?.message ?? "", context: context
-                );
-              } else if (state.editProfileStatus.isSuccess) {
-                Loaders.showSuccessMessage(
-                  message: AppText.success.tr(),
-                  context: context,
-                );
-              }
+            current.editProfileStatus != previous.editProfileStatus,
+        listener: (context, state) {
+          if (state.editProfileStatus.isLoading) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) =>
+                  const Center(child: CircularProgressIndicator()),
+            );
+          } else {
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
             }
-          },
+            if (state.editProfileStatus.isFailure) {
+              Loaders.showErrorMessage(
+                message: state.editProfileStatus.error?.message ?? "",
+                context: context,
+              );
+            } else if (state.editProfileStatus.isSuccess) {
+              Loaders.showSuccessMessage(
+                message: AppText.success.tr(),
+                context: context,
+              );
+            }
+          }
+        },
         child: SingleChildScrollView(
           child: Padding(
             padding: REdgeInsets.symmetric(horizontal: 16),
@@ -64,11 +69,12 @@ class EditProfileViewBody extends StatelessWidget {
               child: Column(
                 children: [
                   const RSizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ProfileImage(imageUrl: context.watch<EditProfileCubit>().state.driverData?.photo),
-                    ],
+                  ProfileImage(
+                    imageUrl: context
+                        .watch<EditProfileCubit>()
+                        .state
+                        .driverData
+                        ?.photo,
                   ),
                   const RSizedBox(height: 24),
                   NameFields(
@@ -89,26 +95,47 @@ class EditProfileViewBody extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: CustomTextFormField(
-                          controller: cubit.passwordController,
-                          label: AppText.password.tr(),
-                          obscureText: context.watch<EditProfileCubit>().state.isObscure,
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              cubit.doIntent(intent: EnterThePassword());
-                            },
-                            child: Padding(
-                              padding: REdgeInsets.only(right: 8),
-                              child: Text(
-                                overflow: TextOverflow.ellipsis,
-                                AppText.changePassword.tr(),
-                                style: theme.textTheme.bodyLarge?.copyWith(
-                                  color: theme.colorScheme.shadow,
-                                ),
+                        child: Stack(
+                          children:[ IgnorePointer(
+                            child: CustomTextFormField(
+                              controller: cubit.passwordController,
+                              label: AppText.password.tr(),
+                              hintText: "★★★★★★",
+                              hintStyle: theme.textTheme.labelLarge?.copyWith(
+                                color: AppColors.black,
+                              ),
+                              isReadOnly: true,
+                              keyboardType: TextInputType.visiblePassword,
+                              textInputAction: TextInputAction.done,
+                              obscuringCharacter: '★',
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              obscureText: true,
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  cubit.doIntent(intent: EnterThePassword());
+                                },
                               ),
                             ),
                           ),
+                           PositionedDirectional(
+                    end: 16.r,
+                    top: 20.r,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(
+                          context,
+                        ).pushNamed(RouteNames.profileResetPassword);
+                      },
+                      child: Text(
+                        AppText.changePassword.tr(),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w600,
                         ),
+                      ),
+                    ),
+                  )
+                    ]),
                       ),
                     ],
                   ),
@@ -117,7 +144,7 @@ class EditProfileViewBody extends StatelessWidget {
                   const RSizedBox(height: 40),
                   BlocBuilder<EditProfileCubit, EditProfileState>(
                     buildWhen: (previous, current) =>
-                    previous.isFormValid != current.isFormValid,
+                        previous.isFormValid != current.isFormValid,
                     builder: (context, state) {
                       return CustomElevatedButton(
                         onPressed: state.isFormValid
