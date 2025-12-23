@@ -15,11 +15,7 @@ class EditProfileView extends StatelessWidget {
       create: (context) =>
           getIt.get<EditProfileCubit>()
             ..doIntent(intent: InitializeEditProfile()),
-<<<<<<< HEAD
       child: EditProfileViewBody(profileCubit:profileCubit,),
-=======
-      child: const EditProfileViewBody(),
->>>>>>> 6c822904059ec14f2229a729dbe759badebe7731
     );
   }
 }
