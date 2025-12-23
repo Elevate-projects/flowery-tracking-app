@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/widgets/enum.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view/widgets/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GenderSection extends StatelessWidget {
-
   GenderSection({super.key});
 
   final ValueNotifier<Gender?> selectedGender = ValueNotifier(null);

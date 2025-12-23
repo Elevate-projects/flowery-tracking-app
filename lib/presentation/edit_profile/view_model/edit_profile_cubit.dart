@@ -28,7 +28,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   final ImagePicker _imagePicker = ImagePicker();
   File _imageFile = File('');
   @factoryMethod
-  EditProfileCubit(this._useCase, this._uploadPhotoUseCase) : super(const EditProfileState());
+  EditProfileCubit(this._useCase, this._uploadPhotoUseCase)
+    : super(const EditProfileState());
   late final TextEditingController firstNameController;
   late final TextEditingController lastNameController;
   late final TextEditingController emailController;
@@ -46,12 +47,11 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       case SubmitEditProfile():
         await _submitEditProfile();
         break;
-        case IsObscure():
+      case IsObscure():
         _isObscure();
         break;
       case UploadPhotoIntent():
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        await _pickAndUploadPhoto();
     }
   }
 
@@ -75,14 +75,17 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     }
     emit(state.copyWith(isObscure: !state.isObscure));
   }
+
   bool _isObscure() {
     if (state.isObscure) {
       passwordController.text = '';
     }
     return state.isObscure;
   }
+
   void _checkFormValidation() {
-    final isValid = firstNameController.text.isNotEmpty &&
+    final isValid =
+        firstNameController.text.isNotEmpty &&
         lastNameController.text.isNotEmpty &&
         emailController.text.isNotEmpty &&
         phoneController.text.isNotEmpty &&
@@ -95,8 +98,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       ),
     );
   }
-
-
 
   Future<DriverDataEntity?> _submitEditProfile() async {
     if (formKey.currentState?.validate() ?? false) {
@@ -116,9 +117,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           final driverData = result.data;
           FloweryDriverMethodHelper.driverData = driverData;
           emit(
-            state.copyWith(
-              editProfileStatus: const StateStatus.success(null),
-            ),
+            state.copyWith(editProfileStatus: const StateStatus.success(null)),
           );
           try {
             final profileCubit = getIt<ProfileCubit>();
@@ -129,9 +128,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         case Failure<DriverDataEntity>():
           emit(
             state.copyWith(
-              editProfileStatus: StateStatus.failure(
-                result.responseException,
-              ),
+              editProfileStatus: StateStatus.failure(result.responseException),
             ),
           );
           return null;
@@ -139,6 +136,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     }
     return null;
   }
+
   @override
   Future<void> close() {
     firstNameController.dispose();
@@ -149,7 +147,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     return super.close();
   }
 
-   Future<void> _pickAndUploadPhoto() async {
+  Future<void> _pickAndUploadPhoto() async {
     try {
       final pickedFile = await _imagePicker.pickImage(
         source: ImageSource.gallery,

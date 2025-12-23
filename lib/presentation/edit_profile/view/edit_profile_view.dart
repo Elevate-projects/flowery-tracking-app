@@ -1,5 +1,5 @@
 import 'package:flowery_tracking_app/core/di/di.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/view/edit_profile_view_body.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view/widgets/edit_profile_view_body.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +11,9 @@ class EditProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<EditProfileCubit>(
       create: (context) =>
-          getIt.get<EditProfileCubit>()..doIntent(intent: InitializeEditProfile()),
+          getIt.get<EditProfileCubit>()
+            ..doIntent(intent: InitializeEditProfile()),
       child: const EditProfileViewBody(),
     );
   }
 }
-
