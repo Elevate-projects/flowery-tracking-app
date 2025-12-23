@@ -43,6 +43,12 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       case SubmitEditProfile():
         await _submitEditProfile();
         break;
+<<<<<<< HEAD
+=======
+      case IsObscure():
+        _isObscure();
+        break;
+>>>>>>> 6c822904059ec14f2229a729dbe759badebe7731
       case UploadPhotoIntent():
         await _pickAndUploadPhoto();
     }
@@ -65,6 +71,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     phoneController.addListener(_checkFormValidation);
   }
 
+<<<<<<< HEAD
   
 
 
@@ -74,6 +81,29 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         lastNameController.text.isNotEmpty ||
         emailController.text.isNotEmpty ||
         phoneController.text.isNotEmpty;
+=======
+  void _enterThePassword() {
+    if (state.isObscure) {
+      passwordController.text = '';
+    }
+    emit(state.copyWith(isObscure: !state.isObscure));
+  }
+
+  bool _isObscure() {
+    if (state.isObscure) {
+      passwordController.text = '';
+    }
+    return state.isObscure;
+  }
+
+  void _checkFormValidation() {
+    final isValid =
+        firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty;
+>>>>>>> 6c822904059ec14f2229a729dbe759badebe7731
 
     emit(
       state.copyWith(

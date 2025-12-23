@@ -8,8 +8,11 @@ import 'package:flowery_tracking_app/presentation/edit_profile/view/widgets/widg
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
+<<<<<<< HEAD
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_intent.dart';
+=======
+>>>>>>> 6c822904059ec14f2229a729dbe759badebe7731
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
@@ -103,6 +106,10 @@ class EditProfileViewBody extends StatelessWidget {
                           children: [
                             IgnorePointer(
                               child: CustomTextFormField(
+<<<<<<< HEAD
+=======
+                                controller: cubit.passwordController,
+>>>>>>> 6c822904059ec14f2229a729dbe759badebe7731
                                 label: AppText.password.tr(),
                                 hintText: "★★★★★★",
                                 hintStyle: theme.textTheme.labelLarge?.copyWith(
@@ -115,7 +122,15 @@ class EditProfileViewBody extends StatelessWidget {
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.always,
                                 obscureText: true,
+<<<<<<< HEAD
                               
+=======
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    cubit.doIntent(intent: EnterThePassword());
+                                  },
+                                ),
+>>>>>>> 6c822904059ec14f2229a729dbe759badebe7731
                               ),
                             ),
                             PositionedDirectional(
