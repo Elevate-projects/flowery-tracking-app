@@ -150,7 +150,6 @@ abstract final class RequestMapper {
   }) {
     return EditProfileRequestModel(
       lastName: request.lastName,
-      password: request.password,
       firstName: request.firstName,
       phone: request.phone,
       email: request.email,

@@ -25,7 +25,6 @@ void main() {
         lastName: "Ali",
         email: "ahmed@gmail.com",
         phone: "01000000000",
-        password: "Ahmed\$123",
       );
 
       final driverDataEntity = DriverDataEntity(

@@ -11,15 +11,12 @@ final class EditProfileRequestModel {
   final String? phone;
   @JsonKey(name: "email")
   final String? email;
-  @JsonKey(name: "password")
-  final String? password;
 
   EditProfileRequestModel ({
     this.lastName,
     this.firstName,
     this.phone,
     this.email,
-    this.password,
   });
 
   factory EditProfileRequestModel.fromJson(Map<String, dynamic> json) {

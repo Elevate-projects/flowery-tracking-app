@@ -15,7 +15,7 @@ import 'package:mockito/mockito.dart';
 import 'apply_view_test.mocks.dart';
 
 @GenerateMocks([ApplyCubit])
-void main(){
+void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late MockApplyCubit mockApplyCubit;
   setUp(() {
@@ -26,34 +26,37 @@ void main(){
     when(
       mockApplyCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const ApplyState()]));
-     when(mockApplyCubit.doIntent(intent: ApplyInitializationIntent()))
-        .thenAnswer((_) async {});
-        
-          when(mockApplyCubit.applyFormKey).thenReturn(GlobalKey<FormState>());
+    when(
+      mockApplyCubit.doIntent(intent: const ApplyInitializationIntent()),
+    ).thenAnswer((_) async {});
 
-    when(mockApplyCubit.firstLegalNameController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.secondLegalNameController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.vehicleTypeLegalNameController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.vehicleNumberController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.vehicleLicenseController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.emailController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.phoneNumberController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.idNumberController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.idImageController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.passwordController)
-        .thenReturn(TextEditingController());
-    when(mockApplyCubit.confirmPasswordController)
-        .thenReturn(TextEditingController());
+    when(mockApplyCubit.applyFormKey).thenReturn(GlobalKey<FormState>());
 
+    when(
+      mockApplyCubit.firstLegalNameController,
+    ).thenReturn(TextEditingController());
+    when(
+      mockApplyCubit.secondLegalNameController,
+    ).thenReturn(TextEditingController());
+    when(
+      mockApplyCubit.vehicleTypeLegalNameController,
+    ).thenReturn(TextEditingController());
+    when(
+      mockApplyCubit.vehicleNumberController,
+    ).thenReturn(TextEditingController());
+    when(
+      mockApplyCubit.vehicleLicenseController,
+    ).thenReturn(TextEditingController());
+    when(mockApplyCubit.emailController).thenReturn(TextEditingController());
+    when(
+      mockApplyCubit.phoneNumberController,
+    ).thenReturn(TextEditingController());
+    when(mockApplyCubit.idNumberController).thenReturn(TextEditingController());
+    when(mockApplyCubit.idImageController).thenReturn(TextEditingController());
+    when(mockApplyCubit.passwordController).thenReturn(TextEditingController());
+    when(
+      mockApplyCubit.confirmPasswordController,
+    ).thenReturn(TextEditingController());
   });
 
   Widget prepareWidget() {
@@ -72,12 +75,12 @@ void main(){
   }
 
   testWidgets('Verify ApplyView Structure', (WidgetTester tester) async {
-      await tester.pumpWidget(prepareWidget());
-        await tester.pump();
-      expect(find.byType(ApplyAppBar), findsOneWidget);
-      expect(find.byType(ApplyViewBody), findsOneWidget);
+    await tester.pumpWidget(prepareWidget());
+    await tester.pump();
+    expect(find.byType(ApplyAppBar), findsOneWidget);
+    expect(find.byType(ApplyViewBody), findsOneWidget);
   });
-   tearDown(() {  
-    getIt.reset();  
-  });  
+  tearDown(() {
+    getIt.reset();
+  });
 }

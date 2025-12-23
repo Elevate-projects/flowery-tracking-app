@@ -2,12 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_colors.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view/widgets/gender_section.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view/widgets/widget_profile/name_fields.dart';
+import 'package:flowery_tracking_app/presentation/edit_profile/view/widgets/widget_profile/profile_image.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_cubit.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/widgets/gender_section.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_profile/name_fields.dart';
-import 'package:flowery_tracking_app/presentation/edit_profile/widgets/widget_profile/profile_image.dart';
+import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
+import 'package:flowery_tracking_app/presentation/profile/views_model/profile_intent.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_elevated_button.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/custom_text_form_field.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
@@ -16,7 +18,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditProfileViewBody extends StatelessWidget {
-  const EditProfileViewBody({super.key});
+  const EditProfileViewBody({super.key,required this.profileCubit});
+  final ProfileCubit profileCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +57,11 @@ class EditProfileViewBody extends StatelessWidget {
                 context: context,
               );
             } else if (state.editProfileStatus.isSuccess) {
-              Loaders.showSuccessMessage(
-                message: AppText.success.tr(),
-                context: context,
-              );
+             Navigator.pop(context);
+             profileCubit.doIntent(GetUserProfileDataIntent());
+            }
+            if (state.uploadPhotoState.isSuccess){
+                profileCubit.doIntent(GetUserProfileDataIntent());
             }
           }
         },
@@ -96,46 +100,44 @@ class EditProfileViewBody extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Stack(
-                          children:[ IgnorePointer(
-                            child: CustomTextFormField(
-                              controller: cubit.passwordController,
-                              label: AppText.password.tr(),
-                              hintText: "★★★★★★",
-                              hintStyle: theme.textTheme.labelLarge?.copyWith(
-                                color: AppColors.black,
-                              ),
-                              isReadOnly: true,
-                              keyboardType: TextInputType.visiblePassword,
-                              textInputAction: TextInputAction.done,
-                              obscuringCharacter: '★',
-                              floatingLabelBehavior: FloatingLabelBehavior.always,
-                              obscureText: true,
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  cubit.doIntent(intent: EnterThePassword());
-                                },
+                          children: [
+                            IgnorePointer(
+                              child: CustomTextFormField(
+                                label: AppText.password.tr(),
+                                hintText: "★★★★★★",
+                                hintStyle: theme.textTheme.labelLarge?.copyWith(
+                                  color: AppColors.black,
+                                ),
+                                isReadOnly: true,
+                                keyboardType: TextInputType.visiblePassword,
+                                textInputAction: TextInputAction.done,
+                                obscuringCharacter: '★',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                obscureText: true,
+                              
                               ),
                             ),
-                          ),
-                           PositionedDirectional(
-                    end: 16.r,
-                    top: 20.r,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(
-                          context,
-                        ).pushNamed(RouteNames.profileResetPassword);
-                      },
-                      child: Text(
-                        AppText.changePassword.tr(),
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w600,
+                            PositionedDirectional(
+                              end: 16.r,
+                              top: 20.r,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(
+                                    context,
+                                  ).pushNamed(RouteNames.profileResetPassword);
+                                },
+                                child: Text(
+                                  AppText.changePassword.tr(),
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: AppColors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  )
-                    ]),
                       ),
                     ],
                   ),

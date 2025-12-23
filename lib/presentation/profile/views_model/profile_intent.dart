@@ -20,3 +20,5 @@ class ToggleLanguageIntent extends ProfileIntent {
 class GetUserProfileDataIntent extends ProfileIntent {}
 
 class LogoutIntent extends ProfileIntent {}
+
+final class UpdateProfileIntent extends ProfileIntent {}
