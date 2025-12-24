@@ -67,7 +67,6 @@ class PickUpMapCubit extends Cubit<PickUpMapState> {
     emit(state.copyWith(driverLocation: driver));
     await _updatePolyline(driver, state.storeLocation);
     emit(state.copyWith(mapStatus: const StateStatus.success(null)));
-    mapController.move(driver, 15.0);
 
     _locationSubscription =
         Geolocator.getPositionStream(
