@@ -1,4 +1,5 @@
 import 'package:flowery_tracking_app/core/router/route_names.dart';
+import 'package:flowery_tracking_app/domain/entities/arguments/address_map_arguments.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/presentation/auth/application_approved/views/application_approved_view.dart';
 import 'package:flowery_tracking_app/presentation/auth/apply/views/apply_view.dart';
@@ -13,7 +14,7 @@ import 'package:flowery_tracking_app/presentation/edit_vechile/view/view.dart';
 import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/success_screen.dart';
-import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_addresses.dart';
+import 'package:flowery_tracking_app/presentation/pick_up_map/views/pick_up_map_view.dart';
 import 'package:flowery_tracking_app/presentation/profile/reset_password/views/profile_reset_password.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/profile_views.dart';
 import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
@@ -64,8 +65,7 @@ abstract class AppRoutes {
       case RouteNames.userAddressMap:
         return MaterialPageRoute(
           builder: (_) => UserAddressMapView(
-            userAddressMapArguments:
-                settings.arguments as UserAddressMapArguments,
+            userAddressMapArguments: settings.arguments as AddressMapArguments,
           ),
         );
       case RouteNames.successScreen:
@@ -80,6 +80,12 @@ abstract class AppRoutes {
 
       case RouteNames.apply:
         return MaterialPageRoute(builder: (_) => const ApplyView());
+      case RouteNames.pickUpMap:
+        return MaterialPageRoute(
+          builder: (_) => PickUpMapView(
+            storeAddressMapArguments: settings.arguments as AddressMapArguments,
+          ),
+        );
       default:
         return null;
     }

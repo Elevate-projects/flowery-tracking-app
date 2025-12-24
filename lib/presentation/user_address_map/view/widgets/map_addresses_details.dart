@@ -15,9 +15,9 @@ class MapAddressesDetails extends StatelessWidget {
     final theme = Theme.of(context);
 
     return DraggableScrollableSheet(
-      maxChildSize: 0.38.sp,
+      maxChildSize: 0.34.sp,
       minChildSize: 0.04.sp,
-      initialChildSize: 0.38.sp,
+      initialChildSize: 0.04.sp,
       snap: true,
       builder: (context, scrollController) {
         return Container(
@@ -60,12 +60,10 @@ class MapAddressesDetails extends StatelessWidget {
                   const RSizedBox(height: 8),
                   OrderDetailsAddress(
                     title:
-                    "${orderData.user?.firstName ?? ''} ${orderData.user
-                        ?.lastName ?? ''}",
+                        "${orderData.user?.firstName ?? ''} ${orderData.user?.lastName ?? ''}",
                     image: orderData.user?.photo ?? "",
                     address:
-                    "${orderData.shippingAddress?.city ?? ''}, ${orderData
-                        .shippingAddress?.street ?? ''}",
+                        "${orderData.shippingAddress?.city ?? ''}, ${orderData.shippingAddress?.street ?? ''}",
                     phone: orderData.user?.phone ?? "",
                   ),
                   const RSizedBox(height: 16),
@@ -78,7 +76,8 @@ class MapAddressesDetails extends StatelessWidget {
                   OrderDetailsAddress(
                     title: orderData.store?.name ?? AppText.notProvided.tr(),
                     image: orderData.store?.image ?? "",
-                    address: orderData.store?.address ?? AppText.notProvided.tr(),
+                    address:
+                        orderData.store?.address ?? AppText.notProvided.tr(),
                     phone: orderData.store?.phoneNumber ?? "",
                   ),
                 ],

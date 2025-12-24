@@ -80,6 +80,10 @@ abstract final class AppText {
       "loadingCountriesFailureMessage";
   static const String signingYouUpMessage = "signingYouUpMessage";
 
+  // Pick up map
+  static const String yourLocation = "Your location";
+  static const String user = "User";
+
   // Validations
   static const String fieldValidation = "fieldValidation";
   static const String emptyTextValidation = "emptyTextValidation";

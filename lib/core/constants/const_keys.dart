@@ -9,4 +9,6 @@ abstract final class ConstKeys {
   static const String canceled = "canceled";
   static const String googleMapsApiKey =
       "AIzaSyBg6TTmWE_5cYDDq6XQvmKSeIK39f2Tp9E";
+  static const String mapUrlTemplate =
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 }
