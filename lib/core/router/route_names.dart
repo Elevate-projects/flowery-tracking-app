@@ -15,4 +15,5 @@ abstract class RouteNames {
   static const String editVehicle = "/editVehicleView";
   static const String completedOrderDetails = "/completedOrderDetailsView";
   static const String apply = "/applyView";
+  static const String pickUpMap = "/pickUpMapView";
 }

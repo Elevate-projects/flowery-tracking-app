@@ -5,10 +5,11 @@ import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/core/services/location_service.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
+import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/update_driver_loc/update_driver_loc.dart';
 import 'package:flowery_tracking_app/domain/use_cases/update_driver_location/update_driver_location_usecase.dart';
-import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_intent.dart';
-import 'package:flowery_tracking_app/presentation/user_address_map/view_model/user_address_map_state.dart';
+import 'package:flowery_tracking_app/presentation/pick_up_map/views_model/pick_up_map_intent.dart';
+import 'package:flowery_tracking_app/presentation/pick_up_map/views_model/pick_up_map_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
@@ -17,46 +18,28 @@ import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
 
 @injectable
-class UserAddressMapCubit extends Cubit<UserAddressMapState> {
-  final MapController mapController = MapController();
+class PickUpMapCubit extends Cubit<PickUpMapState> {
+  PickUpMapCubit(this._updateDriverLocationUseCase, this._locationService)
+    : super(const PickUpMapState());
+
+  late final MapController mapController;
   StreamSubscription<Position>? _locationSubscription;
   final GetUpdateDriverLocationUseCase _updateDriverLocationUseCase;
   final LocationService _locationService;
 
-  LatLng? _userLocation;
-  String? _orderId;
-
-  UserAddressMapCubit(this._updateDriverLocationUseCase, this._locationService)
-    : super(const UserAddressMapState(currentZoom: 15));
-
-  Future<void> doIntent(UserAddressMapIntent intent) async {
+  Future<void> doIntent({required PickUpMapIntent intent}) async {
     switch (intent) {
-      case UserAddressMapInitializationIntent():
-        await _initMap(
-          userLocation: LatLng(
-            double.parse(intent.orderData.shippingAddress!.lat.toString()),
-            double.parse(intent.orderData.shippingAddress!.long.toString()),
-          ),
-          orderId: intent.orderData.id!,
-        );
-        break;
+      case PickUpMapInitializationIntent():
+        await _onInit(orderData: intent.orderData);
       case RecenterCameraOnDriverIntent():
         _recenterCameraOnDriver();
-        break;
     }
   }
 
-  Future<void> _initMap({
-    required LatLng userLocation,
-    required String orderId,
-  }) async {
-    _userLocation = userLocation;
-    _orderId = orderId;
-
-    emit(state.copyWith(userLocation: _userLocation));
-
+  Future<void> _onInit({required OrderEntity orderData}) async {
+    emit(state.copyWith(orderData: orderData));
+    mapController = MapController();
     await _initDriverLocation();
-    // _listenToZoom();
   }
 
   Future<void> _initDriverLocation() async {
@@ -71,8 +54,6 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
       emit(state.copyWith(mapStatus: const StateStatus.initial()));
       return;
     }
-
-    // 🚗 Initial driver position
     final position = await Geolocator.getCurrentPosition(
       locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.bestForNavigation,
@@ -84,15 +65,10 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
     await _updateDriverLocationInFirebase(driver);
 
     emit(state.copyWith(driverLocation: driver));
-
-    // Draw route to user
-    if (_userLocation != null) {
-      await _updatePolyline(driver, _userLocation!);
-    }
+    await _updatePolyline(driver, state.storeLocation);
     emit(state.copyWith(mapStatus: const StateStatus.success(null)));
     mapController.move(driver, 15.0);
 
-    // 🔁 Live updates
     _locationSubscription =
         Geolocator.getPositionStream(
           locationSettings: AndroidSettings(
@@ -107,15 +83,13 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
 
           emit(state.copyWith(driverLocation: newDriver));
 
-          if (_userLocation != null) {
-            await _updatePolyline(newDriver, _userLocation!);
-          }
+          await _updatePolyline(newDriver, state.storeLocation);
         });
   }
 
   Future<void> _updateDriverLocationInFirebase(LatLng driverLocation) async {
     final entity = UpdateDriverLocationEntity(
-      orderId: _orderId!,
+      orderId: state.orderData?.id ?? "",
       lat: driverLocation.latitude,
       long: driverLocation.longitude,
     );
@@ -134,7 +108,6 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
     }
   }
 
-  /// 🛣️ Draw route between driver and user
   Future<void> _updatePolyline(LatLng start, LatLng end) async {
     try {
       final url = Uri.parse(
@@ -167,26 +140,13 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
   void _recenterCameraOnDriver() {
     final driver = state.driverLocation;
 
-    if ((driver?.latitude == 0 && driver?.longitude == 0) ||
+    if ((driver.latitude == 0 && driver.longitude == 0) ||
         state.mapStatus.isLoading) {
       return;
     }
 
-    mapController.move(driver!, 17);
+    mapController.move(driver, 17);
   }
-
-  // UpComing feature: listen to zoom changes
-
-  // void _listenToZoom() {
-  //   mapController.mapEventStream.listen((event) {
-  //     // We listen to *any* event that affects the camera
-  //     final newZoom =
-  //         mapController.camera.zoom; // Only emit when zoom actually changes
-  //     if ((state.currentZoom - newZoom).abs() > 0.01) {
-  //       emit(state.copyWith(currentZoom: newZoom));
-  //     }
-  //   });
-  // }
 
   @override
   Future<void> close() {

@@ -9,3 +9,7 @@ final class UserAddressMapInitializationIntent extends UserAddressMapIntent {
 
   final OrderEntity orderData;
 }
+
+final class RecenterCameraOnDriverIntent extends UserAddressMapIntent {
+  const RecenterCameraOnDriverIntent();
+}

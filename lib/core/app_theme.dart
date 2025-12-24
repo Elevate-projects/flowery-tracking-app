@@ -55,6 +55,11 @@ abstract class AppTheme {
         fontWeight: FontWeight.w400,
         color: AppColors.red,
       ),
+      labelSmall: TextStyle(
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.white,
+      ),
     ),
     appBarTheme: AppBarTheme(
       scrolledUnderElevation: 0,

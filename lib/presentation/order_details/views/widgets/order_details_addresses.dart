@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/router/route_names.dart';
-import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/arguments/address_map_arguments.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/widgets/order_details_address.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_cubit.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
@@ -34,7 +34,13 @@ class OrderDetailsAddresses extends StatelessWidget {
                 AppText.notProvided.tr(),
             phone: state.orderStatus.data?.store?.phoneNumber ?? "",
             onAddressTaped: () {
-              // Navigate to Google maps
+              Navigator.of(context).pushNamed(
+                RouteNames.pickUpMap,
+                arguments: AddressMapArguments(
+                  orderData: state.orderStatus.data,
+                  orderDetailsCubit: orderDetailsCubit,
+                ),
+              );
             },
           ),
           const RSizedBox(height: 16),
@@ -48,12 +54,11 @@ class OrderDetailsAddresses extends StatelessWidget {
                 "${state.orderStatus.data?.shippingAddress?.city}, ${state.orderStatus.data?.shippingAddress?.street}",
             phone: state.orderStatus.data?.user?.phone ?? "",
             onAddressTaped: () {
-              final orderData = state.orderStatus.data;
               Navigator.pushNamed(
                 context,
                 RouteNames.userAddressMap,
-                arguments: UserAddressMapArguments(
-                  orderData: orderData,
+                arguments: AddressMapArguments(
+                  orderData: state.orderStatus.data,
                   orderDetailsCubit: orderDetailsCubit,
                 ),
               );
@@ -63,14 +68,4 @@ class OrderDetailsAddresses extends StatelessWidget {
       ),
     );
   }
-}
-
-class UserAddressMapArguments {
-  final OrderEntity? orderData;
-  final OrderDetailsCubit orderDetailsCubit;
-
-  const UserAddressMapArguments({
-    required this.orderData,
-    required this.orderDetailsCubit,
-  });
 }
