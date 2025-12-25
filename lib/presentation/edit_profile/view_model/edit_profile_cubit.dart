@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_tracking_app/api/client/api_result.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
-import 'package:flowery_tracking_app/core/di/di.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/driver_data/driver_data_entity.dart';
@@ -13,8 +12,6 @@ import 'package:flowery_tracking_app/domain/use_cases/edit_profile/edit_profile_
 import 'package:flowery_tracking_app/domain/use_cases/edit_profile/upload_photo_use_case.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_intent.dart';
 import 'package:flowery_tracking_app/presentation/edit_profile/view_model/edit_profile_status.dart';
-import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
-import 'package:flowery_tracking_app/presentation/profile/views_model/profile_intent.dart';
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +51,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     lastNameController = TextEditingController();
     emailController = TextEditingController();
     phoneController = TextEditingController();
-     final currentUserData = FloweryDriverMethodHelper.driverData;
+    final currentUserData = FloweryDriverMethodHelper.driverData;
     firstNameController.text = currentUserData?.firstName ?? '';
     lastNameController.text = currentUserData?.lastName ?? '';
     emailController.text = currentUserData?.email ?? '';
@@ -64,9 +61,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emailController.addListener(_checkFormValidation);
     phoneController.addListener(_checkFormValidation);
   }
-
-  
-
 
   void _checkFormValidation() {
     final isValid =
@@ -83,7 +77,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     );
   }
 
-  Future<DriverDataEntity?> _submitEditProfile() async {
+  Future<void> _submitEditProfile() async {
     if (formKey.currentState?.validate() ?? false) {
       emit(state.copyWith(editProfileStatus: const StateStatus.loading()));
       final result = await _useCase.editProfile(
@@ -102,22 +96,17 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           emit(
             state.copyWith(editProfileStatus: const StateStatus.success(null)),
           );
-          try {
-            final profileCubit = getIt<ProfileCubit>();
-            await profileCubit.doIntent(GetUserProfileDataIntent());
-          } catch (_) {}
-          return driverData;
-
+          break;
         case Failure<DriverDataEntity>():
           emit(
             state.copyWith(
               editProfileStatus: StateStatus.failure(result.responseException),
             ),
           );
-          return null;
+          emit(state.copyWith(editProfileStatus: const StateStatus.initial()));
+          break;
       }
     }
-    return null;
   }
 
   @override

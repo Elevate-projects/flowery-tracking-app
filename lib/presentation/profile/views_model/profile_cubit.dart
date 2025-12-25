@@ -44,9 +44,6 @@ class ProfileCubit extends Cubit<ProfileState> {
       case LogoutIntent():
         await _logout();
         break;
-      case UpdateProfileIntent():
-        _updateProfileData();
-        break;
     }
   }
 
@@ -70,7 +67,12 @@ class ProfileCubit extends Cubit<ProfileState> {
       switch (result) {
         case Success<DriverDataEntity?>():
           FloweryDriverMethodHelper.driverData = result.data;
-          emit(state.copyWith(profileStatus: StateStatus.success(result.data)));
+          emit(
+            state.copyWith(
+              profileStatus: StateStatus.success(result.data),
+              userData: result.data,
+            ),
+          );
         case Failure<DriverDataEntity?>():
           emit(
             state.copyWith(
@@ -115,9 +117,5 @@ class ProfileCubit extends Cubit<ProfileState> {
     await _secureStorage.deleteData(key: ConstKeys.tokenKey);
     FloweryDriverMethodHelper.currentUserToken = null;
     FloweryDriverMethodHelper.driverData = null;
-  }
-
-  void _updateProfileData() {
-    emit(state.copyWith(userData: FloweryDriverMethodHelper.driverData));
   }
 }

@@ -18,7 +18,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditProfileViewBody extends StatelessWidget {
-  const EditProfileViewBody({super.key,required this.profileCubit});
+  const EditProfileViewBody({super.key, required this.profileCubit});
   final ProfileCubit profileCubit;
 
   @override
@@ -37,9 +37,7 @@ class EditProfileViewBody extends StatelessWidget {
         title: Text(AppText.editProfile.tr()),
       ),
       body: BlocListener<EditProfileCubit, EditProfileState>(
-        listenWhen: (previous, current) =>
-            current.editProfileStatus != previous.editProfileStatus,
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.editProfileStatus.isLoading) {
             showDialog(
               context: context,
@@ -47,22 +45,17 @@ class EditProfileViewBody extends StatelessWidget {
               builder: (context) =>
                   const Center(child: CircularProgressIndicator()),
             );
-          } else {
-            if (Navigator.canPop(context)) {
-              Navigator.pop(context);
-            }
-            if (state.editProfileStatus.isFailure) {
-              Loaders.showErrorMessage(
-                message: state.editProfileStatus.error?.message ?? "",
-                context: context,
-              );
-            } else if (state.editProfileStatus.isSuccess) {
-             Navigator.pop(context);
-             profileCubit.doIntent(GetUserProfileDataIntent());
-            }
-            if (state.uploadPhotoState.isSuccess){
-                profileCubit.doIntent(GetUserProfileDataIntent());
-            }
+          } else if (state.editProfileStatus.isFailure) {
+            Loaders.showErrorMessage(
+              message: state.editProfileStatus.error?.message ?? "",
+              context: context,
+            );
+          } else if (state.editProfileStatus.isSuccess) {
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+            await profileCubit.doIntent(GetUserProfileDataIntent());
+          } else if (state.uploadPhotoState.isSuccess) {
+            await profileCubit.doIntent(GetUserProfileDataIntent());
           }
         },
         child: SingleChildScrollView(
@@ -115,7 +108,6 @@ class EditProfileViewBody extends StatelessWidget {
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.always,
                                 obscureText: true,
-                              
                               ),
                             ),
                             PositionedDirectional(
