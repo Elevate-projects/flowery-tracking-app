@@ -53,6 +53,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         selectedLanguage: globalCubit.isArLanguage
             ? Languages.arabic
             : Languages.english,
+        userData: FloweryDriverMethodHelper.driverData,
       ),
     );
     await _getUserProfileData();
@@ -66,7 +67,12 @@ class ProfileCubit extends Cubit<ProfileState> {
       switch (result) {
         case Success<DriverDataEntity?>():
           FloweryDriverMethodHelper.driverData = result.data;
-          emit(state.copyWith(profileStatus: StateStatus.success(result.data)));
+          emit(
+            state.copyWith(
+              profileStatus: StateStatus.success(result.data),
+              userData: result.data,
+            ),
+          );
         case Failure<DriverDataEntity?>():
           emit(
             state.copyWith(

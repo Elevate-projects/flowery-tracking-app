@@ -180,7 +180,7 @@
   "gender": "Gender",
   "genderMale": "Male",
   "genderFemale": "Female",
-  "changePassword": "Change Password",
+  "changePassword": "Change",
   "done": "Done",
   "unknownErrorMessage": "An unknown error has occurred with the following message:",
   "editVehicle": "Edit Vehicle Info",
@@ -195,6 +195,9 @@
   "apply": "Apply",
   "welcomeApply": "Welcome!!",
   "applyWelcomeMessage": "You want to be a delivery man?\nJoin our team",
+  "pickingImageFailureMessage": "Failed to pick image: ",
+  "profilePicSuccessMessage": "Profile picture updated successfully",
+  "profileUpdateSuccessMessage": "Profile updated successfully",
 
   "country": "Country",
   "countryHint": "Select your country",

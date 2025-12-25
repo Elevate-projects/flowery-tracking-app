@@ -42,7 +42,10 @@ class MapSection extends StatelessWidget {
                   initialZoom: 13.sp,
                 ),
                 children: [
-                  TileLayer(urlTemplate: ConstKeys.mapUrlTemplate),
+                  TileLayer(
+                    urlTemplate: ConstKeys.mapUrlTemplate,
+                    userAgentPackageName: ConstKeys.appPackageName,
+                  ),
                   CurrentLocationLayer(
                     style: LocationMarkerStyle(
                       accuracyCircleColor: theme.colorScheme.primary.withValues(

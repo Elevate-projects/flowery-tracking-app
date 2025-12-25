@@ -90,7 +90,6 @@ class UserAddressMapCubit extends Cubit<UserAddressMapState> {
       await _updatePolyline(driver, _userLocation!);
     }
     emit(state.copyWith(mapStatus: const StateStatus.success(null)));
-    mapController.move(driver, 15.0);
 
     // 🔁 Live updates
     _locationSubscription =

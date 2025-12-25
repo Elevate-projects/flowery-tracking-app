@@ -33,7 +33,10 @@ class PickUpMapSection extends StatelessWidget {
                 initialZoom: state.currentZoom,
               ),
               children: [
-                TileLayer(urlTemplate: ConstKeys.mapUrlTemplate),
+                TileLayer(
+                  urlTemplate: ConstKeys.mapUrlTemplate,
+                  userAgentPackageName: ConstKeys.appPackageName,
+                ),
                 CurrentLocationLayer(
                   style: LocationMarkerStyle(
                     accuracyCircleColor: theme.colorScheme.primary.withValues(

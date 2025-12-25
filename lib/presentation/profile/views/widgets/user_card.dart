@@ -23,6 +23,7 @@ class UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final globalCubit = BlocProvider.of<GlobalCubit>(context);
+    final profileCubit = BlocProvider.of<ProfileCubit>(context);
 
     return BlocBuilder<ProfileCubit, ProfileState>(
       buildWhen: (previous, current) =>
@@ -46,77 +47,80 @@ class UserCard extends StatelessWidget {
 
                 child: RPadding(
                   padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        key: const ValueKey(WidgetKeys.photo),
-                        radius: 26,
-                        backgroundColor: theme.colorScheme.onPrimary,
+                  child: GestureDetector(
+                    onTap:  (!state.profileStatus.isLoading &&
+                        FloweryDriverMethodHelper.driverData != null)
+                    ?() {
+                      Navigator.pushNamed(context, RouteNames.editProfile
+                      ,arguments: profileCubit);
+                    } : (){},
+                    child: Row(
+                      children: [
+                        BlocBuilder<ProfileCubit, ProfileState>(
+                          builder: (context, state) => CircleAvatar(
+                            key: const ValueKey(WidgetKeys.photo),
+                            radius: 26,
+                            backgroundColor: theme.colorScheme.onPrimary,
 
-                        backgroundImage: CachedNetworkImageProvider(
-                          FloweryDriverMethodHelper.driverData?.photo ?? "",
-                        ),
-                        onBackgroundImageError: (exception, stackTrace) =>
-                            const Icon(Icons.info),
-                      ),
-
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                key: const ValueKey(WidgetKeys.name),
-                                "${FloweryDriverMethodHelper.driverData?.firstName} ${FloweryDriverMethodHelper.driverData?.lastName}",
-                                style: theme.textTheme.headlineSmall,
-                                textAlign: TextAlign.start,
-                              ),
+                            backgroundImage: CachedNetworkImageProvider(
+                             FloweryDriverMethodHelper.driverData?.photo ?? "",
                             ),
-                            const SizedBox(height: 4),
-                            FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                key: const ValueKey(ConstKeys.email),
+                            onBackgroundImageError: (exception, stackTrace) =>
+                                const Icon(Icons.info),
+                          ),
+                        ),
 
-                                FloweryDriverMethodHelper.driverData?.email ??
-                                    "",
-                                style: theme.textTheme.labelLarge?.copyWith(
-                                  color: AppColors.black,
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  key: const ValueKey(WidgetKeys.name),
+                                  "${state.userData?.firstName} ${state.userData?.lastName}",
+                                  style: theme.textTheme.headlineSmall,
+                                  textAlign: TextAlign.start,
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 2),
-                            FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                key: const ValueKey(WidgetKeys.phone),
+                              const SizedBox(height: 4),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  key: const ValueKey(ConstKeys.email),
 
-                                FloweryDriverMethodHelper.driverData?.phone ??
-                                    "",
-                                style: theme.textTheme.labelLarge?.copyWith(
-                                  color: AppColors.black,
+                                  state.userData?.email ?? "",
+                                  style: theme.textTheme.labelLarge?.copyWith(
+                                    color: AppColors.black,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
+                              const SizedBox(height: 2),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  key: const ValueKey(WidgetKeys.phone),
 
-                      InkWell(
-                        onTap: () {
-                           Navigator.pushNamed(context, RouteNames.editProfile) ;
-                        },
-                        child: Transform.rotate(
+                                  state.userData?.phone ?? "",
+                                  style: theme.textTheme.labelLarge?.copyWith(
+                                    color: AppColors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Transform.rotate(
                           angle: globalCubit.isArLanguage ? math.pi : 0,
                           child: SvgPicture.asset(
                             key: const ValueKey(WidgetKeys.arrowRight),
                             AppIcons.arrowRight,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

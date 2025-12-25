@@ -1,8 +1,8 @@
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
-import 'package:flowery_tracking_app/presentation/profile/reset_password/views/widgets/build_profile_reset_password_form.dart';
-import 'package:flowery_tracking_app/presentation/profile/reset_password/views_model/profile_reset_password_cubit.dart';
-import 'package:flowery_tracking_app/presentation/profile/reset_password/views_model/profile_reset_password_state.dart';
+import 'package:flowery_tracking_app/presentation/reset_password/views/widgets/build_profile_reset_password_form.dart';
+import 'package:flowery_tracking_app/presentation/reset_password/views_model/profile_reset_password_cubit.dart';
+import 'package:flowery_tracking_app/presentation/reset_password/views_model/profile_reset_password_state.dart';
 import 'package:flowery_tracking_app/utils/common_widgets/loading_dialog.dart';
 import 'package:flowery_tracking_app/utils/loaders/loaders.dart';
 import 'package:flutter/material.dart';

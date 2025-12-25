@@ -231,6 +231,10 @@ abstract final class AppText {
   static const String changePassword = "changePassword";
   static const String failure = "failure";
   static const String success = "success";
+  static const String pickingImageFailureMessage = "pickingImageFailureMessage";
+  static const String profilePicSuccessMessage = "profilePicSuccessMessage";
+  static const String profileUpdateSuccessMessage =
+      "profileUpdateSuccessMessage";
 
   //profile
   static const String language = "language";

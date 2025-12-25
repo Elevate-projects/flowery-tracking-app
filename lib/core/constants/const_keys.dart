@@ -11,4 +11,5 @@ abstract final class ConstKeys {
       "AIzaSyBg6TTmWE_5cYDDq6XQvmKSeIK39f2Tp9E";
   static const String mapUrlTemplate =
       "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+  static const String appPackageName = "com.example.flowery_tracking_app";
 }

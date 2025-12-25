@@ -131,7 +131,6 @@ late File licenseFile;
   blocTest<ApplyCubit, ApplyState>(
     'emits [loading,success] when fetching countries is successful',
     setUp: () {
-      // Reset mocks to clear previous calls
       reset(mockGetAllCountriesUseCase);
       reset(mockGetAllVehiclesUseCase);
     },

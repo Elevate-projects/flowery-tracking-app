@@ -15,8 +15,9 @@ import 'package:flowery_tracking_app/presentation/onboarding/views/onboarding_vi
 import 'package:flowery_tracking_app/presentation/order_details/views/order_details_view.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views/success_screen.dart';
 import 'package:flowery_tracking_app/presentation/pick_up_map/views/pick_up_map_view.dart';
-import 'package:flowery_tracking_app/presentation/profile/reset_password/views/profile_reset_password.dart';
 import 'package:flowery_tracking_app/presentation/profile/views/profile_views.dart';
+import 'package:flowery_tracking_app/presentation/profile/views_model/profile_cubit.dart';
+import 'package:flowery_tracking_app/presentation/reset_password/views/profile_reset_password.dart';
 import 'package:flowery_tracking_app/presentation/user_address_map/view/user_address_map_view.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,10 @@ abstract class AppRoutes {
       case RouteNames.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingView());
       case RouteNames.editProfile:
-        return MaterialPageRoute(builder: (_) => const EditProfileView());
+        return MaterialPageRoute(
+          builder: (_) =>
+              EditProfileView(profileCubit: settings.arguments as ProfileCubit),
+        );
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteNames.editVehicle:

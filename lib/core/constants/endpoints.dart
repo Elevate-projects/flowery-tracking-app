@@ -16,4 +16,5 @@ abstract class Endpoints {
   static const String editProfile = '/api/v1/drivers/editProfile';
   static const String vehicles = '/api/v1/vehicles';
   static const String apply = '/api/v1/drivers/apply';
+  static const String uploadProfileImage = '/api/v1/drivers/upload-photo';
 }
