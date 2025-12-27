@@ -5,17 +5,22 @@ import 'package:flowery_tracking_app/core/cache/shared_preferences_helper.dart';
 import 'package:flowery_tracking_app/core/constants/app_text.dart';
 import 'package:flowery_tracking_app/core/constants/const_keys.dart';
 import 'package:flowery_tracking_app/core/exceptions/response_exception.dart';
+import 'package:flowery_tracking_app/core/services/location_service.dart';
 import 'package:flowery_tracking_app/core/state_status/state_status.dart';
 import 'package:flowery_tracking_app/domain/entities/order/order_entity.dart';
 import 'package:flowery_tracking_app/domain/entities/requests/order_details/update_order_status_request_entity.dart';
+import 'package:flowery_tracking_app/domain/entities/update_driver_loc/update_driver_loc.dart';
 import 'package:flowery_tracking_app/domain/use_cases/fetch_current_driver_order/fetch_current_driver_order_use_case.dart';
+import 'package:flowery_tracking_app/domain/use_cases/update_driver_location/update_driver_location_usecase.dart';
 import 'package:flowery_tracking_app/domain/use_cases/update_order_status/update_order_status_use_case.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_intent.dart';
 import 'package:flowery_tracking_app/presentation/order_details/views_model/order_details_state.dart';
 import 'package:flowery_tracking_app/utils/flowery_driver_method_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 @injectable
@@ -23,10 +28,14 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   final FetchCurrentDriverOrderUseCase _fetchCurrentDriverOrderUseCase;
   final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
   final SharedPreferencesHelper _sharedPreferencesHelper;
+  final GetUpdateDriverLocationUseCase _updateDriverLocationUseCase;
+  final LocationService _locationService;
   OrderDetailsCubit(
     this._fetchCurrentDriverOrderUseCase,
     this._updateOrderStatusUseCase,
     this._sharedPreferencesHelper,
+    this._updateDriverLocationUseCase,
+    this._locationService,
   ) : super(const OrderDetailsState());
 
   late final bool isArLanguage;
@@ -101,6 +110,28 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
 
   Future<void> _updateOrderState() async {
     emit(state.copyWith(updateOrderStateStatus: const StateStatus.loading()));
+    final failure = await _locationService.checkAvailability();
+    if (failure != null) {
+      emit(
+        state.copyWith(
+          updateOrderStateStatus: StateStatus.failure(
+            failure.responseException,
+          ),
+        ),
+      );
+      emit(state.copyWith(updateOrderStateStatus: const StateStatus.initial()));
+      return;
+    }
+    final position = await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.bestForNavigation,
+      ),
+    );
+
+    await _updateDriverLocationInFirebase(
+      LatLng(position.latitude, position.longitude),
+    );
+
     final nextOrderState = _getNextOrderState(
       currentOrderState: state.currentOrderState,
     );
@@ -237,6 +268,31 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           selectedPhoneNumber: "",
         ),
       );
+    }
+  }
+
+  Future<void> _updateDriverLocationInFirebase(LatLng driverLocation) async {
+    final entity = UpdateDriverLocationEntity(
+      orderId: state.orderStatus.data?.id ?? "",
+      lat: driverLocation.latitude,
+      long: driverLocation.longitude,
+    );
+    final result = await _updateDriverLocationUseCase.execute(entity);
+    switch (result) {
+      case Success<void>():
+        break;
+      case Failure<void>():
+        emit(
+          state.copyWith(
+            updateOrderStateStatus: StateStatus.failure(
+              result.responseException,
+            ),
+          ),
+        );
+        emit(
+          state.copyWith(updateOrderStateStatus: const StateStatus.initial()),
+        );
+        break;
     }
   }
 
